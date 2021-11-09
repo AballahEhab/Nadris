@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,129 +9,152 @@
 
     <ImageView
         android:id="@+id/logo_nadris_login"
-        android:layout_width="411dp"
-        android:layout_height="229dp"
-        android:scaleType="fitStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintHeight_max="96dp"
         android:src="@drawable/logo_nadris"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textView_Welcom_login"
+        app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
+        app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView_Welcom_login"
-        android:layout_width="323dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cairo"
         android:text="@string/textView_Welcom_in_nadris"
         android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_nadris_login" />
+        app:layout_constraintTop_toBottomOf="@id/logo_nadris_login"
+        app:layout_constraintBottom_toTopOf="@id/material_email_or_phone"
+        />
 
-    <EditText
-        android:id="@+id/edt_E_mail_or_Phone_login"
-        android:layout_width="323dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/material_email_or_phone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cairo_light"
         android:hint="@string/edt_E_mail_or_Phone_hint"
-        android:inputType="textPersonName"
-        android:textColorHighlight="#050505"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Welcom_login" />
+        app:layout_constraintBottom_toTopOf="@id/edt_password_login"
+        app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
+        app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
+        app:layout_constraintTop_toBottomOf="@id/textView_Welcom_login"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        >
 
-    <EditText
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edt_password_login"
-        android:layout_width="323dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+         android:fontFamily="@font/cairo_light"
         android:hint="@string/edt_password_login"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/edt_E_mail_or_Phone_login"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_E_mail_or_Phone_login"
-        app:layout_constraintTop_toBottomOf="@+id/edt_E_mail_or_Phone_login" />
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_sign_in"
+        app:layout_constraintEnd_toEndOf="@id/material_email_or_phone"
+        app:layout_constraintStart_toStartOf="@id/material_email_or_phone"
+        app:layout_constraintTop_toBottomOf="@id/material_email_or_phone"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        >
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_in"
-        android:layout_width="323dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cairo"
         android:text="@string/btn_sign_in_login"
         android:textSize="24sp"
         app:backgroundTint="#D12F2F"
         app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
         app:layout_constraintStart_toStartOf="@+id/edt_password_login"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password_login" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
+        app:layout_constraintBottom_toTopOf="@id/img_google"/>
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="56dp"
+        android:id="@+id/img_google"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/logo_googal"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/TextView_new_account_signup"
+             app:layout_constraintStart_toStartOf="@id/btn_sign_in"
         app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/img_facebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/logo_facebook"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_google"
+        app:layout_constraintEnd_toStartOf="@+id/img_twitter"
+
+        app:layout_constraintStart_toEndOf="@+id/img_google"
+        app:layout_constraintTop_toTopOf="@+id/img_google" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="92dp"
+        android:id="@+id/img_twitter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/logo_twitter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_facebook"
+        app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+        app:layout_constraintTop_toTopOf="@+id/img_facebook" />
 
     <TextView
         android:id="@+id/textView_HaveAccount_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
         android:text="@string/textView_HaveAccount_login"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.579" />
+        app:layout_constraintEnd_toEndOf="@+id/img_twitter"
+        app:layout_constraintTop_toBottomOf="@+id/img_facebook" />
 
-    <Button
-        android:id="@+id/btn_new_account_signup"
+    <TextView
+        android:id="@+id/TextView_new_account_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="@string/btn_new_account_login"
-
         android:textColor="#E71E1E"
         android:textSize="18sp"
         app:backgroundTint="#FFFFFFFF"
+
         app:layout_constraintBottom_toBottomOf="@+id/textView_HaveAccount_login"
         app:layout_constraintEnd_toStartOf="@+id/textView_HaveAccount_login"
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_HaveAccount_login"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintStart_toStartOf="@+id/img_google"
+        app:layout_constraintTop_toTopOf="@+id/textView_HaveAccount_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--TODO :Ø³Ø±Ø­Ø§Ù†-->
+    <!--TODO :سرحان-->
