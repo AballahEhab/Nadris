@@ -1,15 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".LoginFragment">
-    
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"/>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment">
 
-</FrameLayout>
-<!--TODO :غراب-->
+    <ImageView
+        android:id="@+id/logo_nadris_login"
+        android:layout_width="411dp"
+        android:layout_height="229dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/logo_nadris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_Welcom_login"
+        android:layout_width="323dp"
+        android:layout_height="52dp"
+        android:text="@string/textView_Welcom_in_nadris"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_nadris_login" />
+
+    <EditText
+        android:id="@+id/edt_E_mail_or_Phone_login"
+        android:layout_width="323dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/edt_E_mail_or_Phone_hint"
+        android:inputType="textPersonName"
+        android:textColorHighlight="#050505"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Welcom_login" />
+
+    <EditText
+        android:id="@+id/edt_password_login"
+        android:layout_width="323dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/edt_password_login"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edt_E_mail_or_Phone_login"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edt_E_mail_or_Phone_login"
+        app:layout_constraintTop_toBottomOf="@+id/edt_E_mail_or_Phone_login" />
+
+    <Button
+        android:id="@+id/btn_sign_in"
+        android:layout_width="323dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/btn_sign_in_login"
+        android:textSize="24sp"
+        app:backgroundTint="#D12F2F"
+        app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
+        app:layout_constraintStart_toStartOf="@+id/edt_password_login"
+        app:layout_constraintTop_toBottomOf="@+id/edt_password_login" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/logo_googal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/logo_facebook"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="92dp"
+        android:src="@drawable/logo_twitter"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView_HaveAccount_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:text="@string/textView_HaveAccount_login"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.579" />
+
+    <Button
+        android:id="@+id/btn_new_account_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/btn_new_account_login"
+
+        android:textColor="#E71E1E"
+        android:textSize="18sp"
+        app:backgroundTint="#FFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_HaveAccount_login"
+        app:layout_constraintEnd_toStartOf="@+id/textView_HaveAccount_login"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView_HaveAccount_login"
+        app:layout_constraintVertical_bias="0.458" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--TODO :Ø³Ø±Ø­Ø§Ù†-->
