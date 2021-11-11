@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Nadris</string>
+    <string name="verifying_phone_text">التحقق من رقم الهاتف</string>
+    <string name="didnt_receive_the_code_yet_txt">ألم تستلم الرمز بعد؟</string>
 </resources>
