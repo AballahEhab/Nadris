@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/login_navigation"
     app:startDestination="@id/phoneFragment">
+<!--Todo: don't forget to return the start destination before pushing the code-->
 
     <fragment android:id="@+id/loginFragment" android:name="com.example.android.nadris.LoginFragment"
         android:label="login_fragment" tools:layout="@layout/login_fragment">
@@ -23,5 +24,8 @@
         android:label="phone_fragment" tools:layout="@layout/phone_fragment">
         <action android:id="@+id/action_phoneFragment_to_loginFragment" app:destination="@id/loginFragment"/>
         <action android:id="@+id/action_phoneFragment_to_signupFragment" app:destination="@id/signupFragment"/>
+        <argument
+            android:name="receivedOTBarg"
+            app:argType="string" />
     </fragment>
 </navigation>
