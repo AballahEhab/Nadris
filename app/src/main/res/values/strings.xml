@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nadris</string>
+    <string name="app_name">ندرِس</string>
     <string name="verifying_phone_text">التحقق من رقم الهاتف</string>
     <string name="didnt_receive_the_code_yet_txt">ألم تستلم الرمز بعد؟</string>
     <string name="textView_Welcom_in_nadris">  مرحبا بك في ندرس</string>
@@ -16,4 +16,19 @@
     <string name="textView_teacher_signup">المدرس</string>
     <string name="textView_HaveAccount_signin">هل لديك حساب</string>
     <string name="textView_account_login"><u>   تسجيل الدخول؟</u></string>
+    <string name="wrong_OTB_text_dialog">الرقم السرى المؤقت الذى أدخلته غير صحيح</string>
+    <string name="back_txt">السابق</string>
+    <string name="next_txt">التالي</string>
+    <string name="num_zero">0</string>
+    <string name="num_one">1</string>
+    <string name="num_two">2</string>
+    <string name="num_three">3</string>
+    <string name="num_four">4</string>
+    <string name="num_five">5</string>
+    <string name="num_six">6</string>
+    <string name="num_seven">7</string>
+    <string name="num_eight">8</string>
+    <string name="num_nine">9</string>
+    <string name="delet_symbol">⌦</string>
+    <string name="confirm_txt">تأكيد</string>
 </resources>

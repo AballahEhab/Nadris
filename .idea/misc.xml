@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/selector.xml" value="0.72" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/text_border.xml" value="0.278125" />
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/drawable/ic_icons8_human_head.xml" value="0.15462962962962962" />
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.25" />
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.33" />
@@ -16,7 +18,10 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_main.xml" value="0.23233695652173914" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_phone_verification.xml" value="0.4" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.14166666666666666" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.35974304068522484" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.2" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.23777173913043478" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_student_fragment.xml" value="0.176" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/wrong_otb_dialog.xml" value="0.264" />
       </map>
     </option>
   </component>
