@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Cs_Project/Nadris/app/src/main/res/drawable/ic_icons8_human_head.xml" value="0.15462962962962962" />
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.25" />
-        <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.10144927536231885" />
+        <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.33" />
       </map>
     </option>
   </component>
@@ -13,5 +14,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2" />
+      </ProjectState>
+    </option>
   </component>
 </project>

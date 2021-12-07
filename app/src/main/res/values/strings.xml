@@ -36,7 +36,7 @@
     <string name="edt_password_login">كلمه المرور </string>
     <string name="btn_sign_in_login">تسجيل الدخول</string>
     <string name="textView_HaveAccount_login">ليس لديك حساب بعد</string>
-    <string name="btn_new_account_login"><u> إنشاء حساب</u></string>
+    <string name="btn_new_account_login"><u>إنشاء حساب</u></string>
 
     <string name="textView_register_as_signup">التسجيل ك </string>
     <string name="textView_student_signup">الطالب</string>
