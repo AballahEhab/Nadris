@@ -69,7 +69,6 @@
                 app:onEmailChangedSetTo="@{viewModel}"
 
 
-
                 />
 
 
@@ -120,11 +119,11 @@
             android:onClick="@{()-> viewModel.onLoginClicked()}"
             />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/img_google"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/logo_googal"
+            android:background="@drawable/logo_googal"
             app:layout_constraintBottom_toTopOf="@id/TextView_new_account_signup"
             app:layout_constraintStart_toStartOf="@id/btn_sign_in"
             app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
@@ -137,16 +136,17 @@
             android:id="@+id/img_facebook"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/logo_facebook"
-            app:layout_constraintBottom_toBottomOf="@+id/img_google"
-            app:layout_constraintEnd_toStartOf="@+id/img_twitter"
-
-            app:layout_constraintStart_toEndOf="@+id/img_google"
-            app:layout_constraintTop_toTopOf="@+id/img_google"
             android:clickable="true"
             android:focusable="true"
             android:onClick="@{()->viewModel.OnLoginByFacebookClicked()}"
-            />
+
+            android:src="@drawable/logo_facebook"
+            app:layout_constraintBottom_toBottomOf="@+id/img_google"
+            app:layout_constraintEnd_toStartOf="@+id/img_twitter"
+            app:layout_constraintHorizontal_bias="0.637"
+            app:layout_constraintStart_toEndOf="@+id/img_google"
+            app:layout_constraintTop_toTopOf="@+id/img_google"
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/img_twitter"
@@ -173,7 +173,7 @@
             app:layout_constraintTop_toBottomOf="@+id/img_facebook" />
 
 
-        <Button
+        <TextView
             android:id="@+id/TextView_new_account_signup"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
             android:minHeight="0dp"
             android:onClick="@{()->viewModel.onCreateAccountClicked()}"
             android:text="@string/btn_new_account_login"
-            android:textColor="#E71E1E"
+            android:textColor="@drawable/create_account_txt_color_selector"
             android:textSize="18sp"
             app:backgroundTint="#FFFFFFFF"
             app:iconPadding="0dp"

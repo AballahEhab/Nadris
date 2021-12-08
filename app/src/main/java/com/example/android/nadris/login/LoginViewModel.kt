@@ -1,60 +1,76 @@
 package com.example.android.nadris.login
 
+import android.util.Patterns
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LoginViewModel : ViewModel() {
 
-     var emailOrMobile : String = String()
+     var email : String = String()
 
      var password:String = String()
 
 
-    private var _navigateToHomeScreen:Boolean = false
-    val navigateToHomeScreen :Boolean get() = _navigateToHomeScreen
+    private var _navigateToHomeScreen:MutableLiveData<Boolean> = MutableLiveData(false)
+    val navigateToHomeScreen :LiveData<Boolean> get() = _navigateToHomeScreen
 
-    private var _navigateToCreateAccount:Boolean = false
-    val navigateToCreateAccount :Boolean get() = _navigateToCreateAccount
+    private var _navigateToCreateAccount:MutableLiveData<Boolean> = MutableLiveData( false)
+    val navigateToCreateAccount :LiveData<Boolean> get() = _navigateToCreateAccount
+
+    private var _showWrongAccountCredentialsDialog :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+    val showWrongAccountCredentialsDialog get() = _showWrongAccountCredentialsDialog
 
 
 
 
 
     fun onLoginClicked(){
-        //ToDo: check for email and password if are correct then send for api to check if user registered finally set navigate to home page true
-        _navigateToHomeScreen = true
-
+        _showWrongAccountCredentialsDialog.value = false
+        if (email.isNotEmpty() && password.isNotEmpty()){
+            if(email.trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex())){
+                //todo:send the data to the api
+                _navigateToHomeScreen.value = true
+                return
+            }
+            }
+            _showWrongAccountCredentialsDialog.value = true
     }
+
     fun loginDone(){
-        _navigateToHomeScreen = false
+        _navigateToHomeScreen.value = false
+    }
 
-    }
     fun onCreateAccountClicked(){
-        _navigateToCreateAccount = true
+        _navigateToCreateAccount.value = true
     }
+
     fun navigationToCreateAccountDone(){
-        _navigateToCreateAccount = false
+        _navigateToCreateAccount.value = false
     }
 
     fun OnLoginByGoogleClicked(){
         // todo: use the api to lgin by google
         // if things done set navigate to home screen to true
 
-        _navigateToHomeScreen = true
+        _navigateToHomeScreen.value = true
     }
 
     fun OnLoginByFacebookClicked(){
         // todo: use the api to lgin by facebook
         // if things done set navigate to home screen to true
 
-        _navigateToHomeScreen = true
+        _navigateToHomeScreen.value = true
     }
 
     fun OnLoginByTwitterClicked(){
         // todo: use the api to lgin by Twitter
         // if things done set navigate to home screen to true
 
-        _navigateToHomeScreen = true
+        _navigateToHomeScreen.value = true
     }
+
 }

@@ -45,4 +45,5 @@
     <string name="textView_teacher_signup">المدرس</string>
     <string name="textView_HaveAccount_signin">هل لديك حساب</string>
     <string name="textView_account_login"><u>   تسجيل الدخول؟</u></string>
+    <string name="wron_cridentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
 </resources>
