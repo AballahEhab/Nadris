@@ -30,7 +30,6 @@
             android:id="@+id/textView_Welcom_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cairo"
             android:text="@string/textView_Welcom_in_nadris"
             android:textColor="@color/black"
             android:textSize="34sp"
@@ -108,7 +107,7 @@
             android:id="@+id/btn_sign_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cairo"
+            android:fontFamily="@font/cairo_light"
             android:text="@string/btn_sign_in_login"
             android:textSize="24sp"
             app:backgroundTint="#D12F2F"
@@ -195,7 +194,9 @@
             app:layout_constraintEnd_toStartOf="@+id/textView_HaveAccount_login"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/img_google"
-            app:layout_constraintTop_toTopOf="@+id/textView_HaveAccount_login" />
+            app:layout_constraintTop_toTopOf="@+id/textView_HaveAccount_login"
+            app:layout_constraintBaseline_toBaselineOf="@id/textView_HaveAccount_login"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
