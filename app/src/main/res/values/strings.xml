@@ -1,5 +1,26 @@
 <resources>
-    <string name="app_name">ندرِس</string>
+    <string name="app_name">Nadris</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="textView_register_as_student">التسجيل ك طالب</string>
+    <string name="textView_back"><![CDATA[<]]></string>
+    <string name="edt_first_name">الاسم الأول</string>
+    <string name="edt_last_name">الاسم الاخير</string>
+    <string name="edt_email_signup">البريد الالكتروني</string>
+    <string name="edt_phone_signup">رقم التليفون</string>
+    <string name="edt_password_1_signup">كلمة السر</string>
+    <string name="edt_password_2_signup">اعادة كلمة السر</string>
+    <string name="confirm">تأكيد</string>
+    <string name="textView_register_as_teacher">التسجيل ك مدرس</string>
+    <string name="SP_Signup_teacher_collage">الكلية</string>
+    <string name="sp_university_teacher_signup">الجامعة</string>
+    <string name="sp_subject_teacher_signup">مادة التخصص</string>
+    <string name="sp_gender_teacher_signup">النوع</string>
+    <string name="term">الفصل الدراسى</string>
+    <string-array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
     <string name="verifying_phone_text">التحقق من رقم الهاتف</string>
     <string name="didnt_receive_the_code_yet_txt">ألم تستلم الرمز بعد؟</string>
     <string name="textView_Welcom_in_nadris">  مرحبا بك في ندرس</string>
@@ -31,7 +52,6 @@
     <string name="num_nine">9</string>
     <string name="delet_symbol">⌦</string>
     <string name="confirm_txt">تأكيد</string>
-
     <string name="wron_cridentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
     >
 </resources>
