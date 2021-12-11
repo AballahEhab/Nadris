@@ -19,7 +19,9 @@ class signupStudentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        resources.getStringArray()
         return inflater.inflate(R.layout.signup_student_fragment, container, false)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
