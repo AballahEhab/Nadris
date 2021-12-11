@@ -17,7 +17,6 @@ class SignupStudentViewModel : ViewModel() {
     var lastname : String = String()
     var email : String = String()
     var password:String = String()
-    val gender = resources.getStringArray(R.array.Gender)
     //val arrayAdapter= ArrayAdapter(requireContext(),R.layout.list_item,gender)
 
 }

@@ -3,21 +3,11 @@ package com.example.android.nadris
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.BindingAdapter
-import com.example.android.nadris.login.LoginViewModel
 
 @BindingAdapter("onEmailChangedSetTo")
-fun EditText.listenToEmailValue(viewModel:LoginViewModel){
+fun EditText.listenToEmailValue(viewModel:SignupStudentViewModel){
     addTextChangedListener (
         onTextChanged = { text, start, before, count ->
             viewModel.email = text.toString()
-        })
+        }) }
 
-}
-@BindingAdapter("onPasswordchangedSetTo")
-fun EditText.listenToPasswordValue(viewModel:LoginViewModel){
-    addTextChangedListener (
-        onTextChanged = { text, start, before, count ->
-            viewModel.password = text.toString()
-        })
-
-}

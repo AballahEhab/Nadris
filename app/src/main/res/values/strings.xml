@@ -17,7 +17,7 @@
     <string name="sp_subject_teacher_signup">مادة التخصص</string>
     <string name="sp_gender_teacher_signup">النوع</string>
     <string name="term">الفصل الدراسى</string>
-    <string-array name="Gender">
+    <string-array name="GenderList">
         <item>Male</item>
         <item>Female</item>
     </string-array>
