@@ -15,7 +15,7 @@ class SignupStudentViewModel : ViewModel() {
 
     var firstname : String = String()
     var lastname : String = String()
-    var email : String = String()
+    var email : MutableLiveData<String> = MutableLiveData<String>()
     var password:String = String()
     //val arrayAdapter= ArrayAdapter(requireContext(),R.layout.list_item,gender)
 

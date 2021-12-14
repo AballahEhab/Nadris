@@ -29,11 +29,11 @@ class MainActivity : AppCompatActivity() {
         //confirm button
 
 
-        findViewById<Button>(R.id.containedButton).setOnClickListener {
-            Toast.makeText(this,viewModel.email, Toast.LENGTH_LONG).show()
-            Log.v("email: ",viewModel.email)
-
-        }
+//        findViewById<Button>(R.id.containedButton).setOnClickListener {
+//            Toast.makeText(this,viewModel.email, Toast.LENGTH_LONG).show()
+//            Log.v("email: ",viewModel.email)
+//
+//        }
 
 
 

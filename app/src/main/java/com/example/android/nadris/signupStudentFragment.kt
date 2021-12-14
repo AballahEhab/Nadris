@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import com.example.android.nadris.databinding.SignupStudentFragmentBinding
 import com.google.android.material.textfield.TextInputLayout
 
 class signupStudentFragment : Fragment() {
@@ -28,7 +30,19 @@ class signupStudentFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, gender)
         val genderTextFeild=container!!.findViewById<TextInputLayout>(R.id.sp_gender_student_signup)
         (genderTextFeild.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-        return inflater.inflate(R.layout.signup_student_fragment, container, false)
+
+
+
+        inflater.inflate(R.layout.signup_student_fragment, container, false)
+        val bindigin = SignupStudentFragmentBinding.inflate(inflater)
+
+        bindigin.studentViewModel = viewModel
+        bindigin.containedButton.setOnClickListener {
+            Toast.makeText(requireContext(),viewModel.email.value,Toast.LENGTH_LONG).show()
+        }
+        return bindigin.root
+
+
 
     }
 

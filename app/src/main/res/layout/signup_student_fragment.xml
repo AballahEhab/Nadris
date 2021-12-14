@@ -121,8 +121,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:minHeight="48dp"
-                    app:onEmailChangedSetTo="@{StudentViewModel}"
-            />
+                android:text="@={StudentViewModel.email}"            />
 
         </com.google.android.material.textfield.TextInputLayout>
 
