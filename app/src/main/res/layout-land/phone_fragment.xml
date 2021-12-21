@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/phone_verification_constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/back_btn"
+        style="@style/Material_btn_style"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/back_txt"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/verifying_phone_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1"
+        />
+
+    <Button
+        android:id="@+id/next_btn"
+        style="@style/Material_btn_style"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        android:text="@string/next_txt"
+        app:layout_constraintBottom_toTopOf="@id/verifying_phone_text"
+        app:layout_constraintEnd_toStartOf="@id/keyboard_table"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/verifying_phone_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:gravity="center|center_vertical"
+        android:text="@string/verifying_phone_text"
+        android:textSize="35sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintBottom_toTopOf="@id/outlinedTextField1"
+        app:layout_constraintEnd_toStartOf="@id/keyboard_table"
+        app:layout_constraintHorizontal_weight="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_btn"
+        app:layout_constraintVertical_weight="2" />
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/OTP_container"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/didnt_receive_the_code_yet_txt"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/verifying_phone_text"-->
+    <!--        app:layout_constraintVertical_weight="1"-->
+    <!--        >-->
+    <!--    </LinearLayout>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField1"
+        style="@style/OTP_TextInputLayout"
+        app:layout_constraintBottom_toTopOf="@id/didnt_receive_the_code_yet_txt"
+        app:layout_constraintEnd_toStartOf="@id/outlinedTextField2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/verifying_phone_text"
+        app:layout_constraintVertical_weight="1"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/OTP_TextInputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField2"
+        style="@style/OTP_TextInputLayout"
+        app:layout_constraintTop_toTopOf="@id/outlinedTextField1"
+        app:layout_constraintBottom_toBottomOf="@id/outlinedTextField1"
+        app:layout_constraintStart_toEndOf="@id/outlinedTextField1"
+        app:layout_constraintEnd_toStartOf="@id/outlinedTextField3"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/OTP_TextInputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField3"
+        style="@style/OTP_TextInputLayout"
+        app:layout_constraintTop_toTopOf="@id/outlinedTextField1"
+        app:layout_constraintBottom_toBottomOf="@id/outlinedTextField1"
+        app:layout_constraintStart_toEndOf="@id/outlinedTextField2"
+        app:layout_constraintEnd_toStartOf="@id/outlinedTextField4"            >
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/OTP_TextInputEditText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField4"
+        style="@style/OTP_TextInputLayout"
+        app:layout_constraintBottom_toBottomOf="@id/outlinedTextField1"
+        app:layout_constraintEnd_toStartOf="@id/keyboard_table"
+        app:layout_constraintStart_toEndOf="@id/outlinedTextField3"
+        app:layout_constraintTop_toTopOf="@id/outlinedTextField1"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText style="@style/OTP_TextInputEditText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/didnt_receive_the_code_yet_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingTop="10dp"
+        android:text="@string/didnt_receive_the_code_yet_txt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/outlinedTextField4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/outlinedTextField1"
+        app:layout_constraintVertical_weight="1"
+        />
+
+
+    <TableLayout
+        android:id="@+id/keyboard_table"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="4"
+        app:layout_constraintStart_toEndOf="@id/verifying_phone_text"
+        app:layout_constraintTop_toBottomOf="@+id/didnt_receive_the_code_yet_txt"
+
+        app:layout_constraintVertical_weight="4">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:layout_column="0"
+                android:text="@string/num_one"
+
+                />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:layout_column="0"
+                android:text="@string/num_two"
+
+                />
+
+
+            <Button
+                android:id="@+id/button3"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:layout_column="0"
+                android:text="@string/num_three" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+            <Button
+                android:id="@+id/button4"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/num_four" />
+
+            <Button
+                android:id="@+id/button5"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/num_five" />
+
+            <Button
+                android:id="@+id/button6"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/num_six" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/button7"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/num_seven" />
+
+            <Button
+                android:id="@+id/button8"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/num_eight" />
+
+            <Button
+                android:id="@+id/button9"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/num_nine" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/button_delet"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/delet_symbol" />
+
+            <Button
+                android:id="@+id/button0"
+                style="@style/keyboard_OutlinedButton_Style"
+                android:text="@string/num_zero" />
+
+            <Button
+                android:id="@+id/button_confirm"
+                style="@style/Wdiget.MaterialComponent.App.Button"
+                android:text="@string/confirm_txt" />
+
+
+        </TableRow>
+    </TableLayout>
+
+    <!--    <GridLayout-->
+    <!--        android:id="@+id/keyboard_gridlayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        -->
+    <!--        android:columnCount="3"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--      -->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+
+    <!--        app:layout_constraintTop_toBottomOf="@id/OTP_container"-->
+    <!--       >-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            android:layout_row="0"-->
+    <!--           />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            android:layout_row="1"-->
+    <!--            android:layout_column="11" />-->
+
+    <!--    </GridLayout>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
