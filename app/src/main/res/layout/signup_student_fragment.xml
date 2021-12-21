@@ -295,7 +295,7 @@
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp"
-                    app:backgroundTint="@color/pank"
+                    app:backgroundTint="@color/pink"
                     android:onClick="@{()-> StudentViewModel.onLoginClicked()}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
