@@ -11,9 +11,10 @@
             type="com.example.android.nadris.login.LoginViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".LoginFragment">
 
         <ImageView
             android:id="@+id/logo_nadris_login"
@@ -30,6 +31,7 @@
             android:id="@+id/textView_Welcom_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo"
             android:text="@string/textView_Welcom_in_nadris"
             android:textColor="@color/black"
             android:textSize="34sp"
@@ -110,93 +112,72 @@
             android:fontFamily="@font/cairo_light"
             android:text="@string/btn_sign_in_login"
             android:textSize="24sp"
-            app:backgroundTint="#D12F2F"
-            app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
-            app:layout_constraintStart_toStartOf="@+id/edt_password_login"
-            app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
-            app:layout_constraintBottom_toTopOf="@id/img_google"
+                app:backgroundTint="@color/pink"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
+                app:layout_constraintStart_toStartOf="@+id/edt_password_login"
+                app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
+                app:layout_constraintBottom_toTopOf="@id/img_google"
             android:onClick="@{()-> viewModel.onLoginClicked()}"
             />
 
-        <ImageButton
-            android:id="@+id/img_google"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/logo_googal"
-            app:layout_constraintBottom_toTopOf="@id/TextView_new_account_signup"
-            app:layout_constraintStart_toStartOf="@id/btn_sign_in"
-            app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{()->viewModel.OnLoginByGoogleClicked()}"
-            />
+        <ImageView
+                android:id="@+id/img_google"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_google"
+                android:onClick="@{()->viewModel.OnLoginByGoogleClicked()}"
+                app:layout_constraintBottom_toTopOf="@id/VG_create_acc"
+                app:layout_constraintStart_toStartOf="@id/btn_sign_in"
+                app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
+                app:layout_constraintEnd_toStartOf="@id/img_facebook"
+        />
 
         <ImageView
-            android:id="@+id/img_facebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{()->viewModel.OnLoginByFacebookClicked()}"
+                android:id="@+id/img_facebook"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_facebook"
+                android:onClick="@{()->viewModel.OnLoginByFacebookClicked()}"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+                app:layout_constraintStart_toEndOf="@id/img_google"
+                app:layout_constraintTop_toTopOf="@+id/img_google"
+                app:layout_constraintBottom_toBottomOf="@id/img_google"
+        />
 
-            android:src="@drawable/logo_facebook"
-            app:layout_constraintBottom_toBottomOf="@+id/img_google"
-            app:layout_constraintEnd_toStartOf="@+id/img_twitter"
-            app:layout_constraintHorizontal_bias="0.637"
-            app:layout_constraintStart_toEndOf="@+id/img_google"
-            app:layout_constraintTop_toTopOf="@+id/img_google"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/img_twitter"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/logo_twitter"
-            app:layout_constraintBottom_toBottomOf="@+id/img_facebook"
-            app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
-            app:layout_constraintTop_toTopOf="@+id/img_facebook"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{()->viewModel.OnLoginByTwitterClicked()}"
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/VG_create_acc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+                app:layout_constraintTop_toBottomOf="@+id/img_facebook"
+                app:layout_constraintStart_toStartOf="@id/btn_sign_in"
+        >
+            <TextView
+                    android:id="@+id/TextView_new_account_signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_new_account_login"
+                    android:textColor="@color/red"
+                    android:textSize="18sp"
+                    android:layout_margin="8dp"
+                    android:onClick="@{()->viewModel.onCreateAccountClicked()}"
+            />
+            <TextView
+                    android:id="@+id/textView_HaveAccount_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textView_HaveAccount_login"
+                    android:textSize="18sp"
+                    android:layout_margin="8dp"
+                    android:textStyle="bold"
             />
 
-        <TextView
-            android:id="@+id/textView_HaveAccount_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/textView_HaveAccount_login"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/img_twitter"
-            app:layout_constraintTop_toBottomOf="@+id/img_facebook" />
-
-
-        <TextView
-            android:id="@+id/TextView_new_account_signup"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:minWidth="0dp"
-
-            android:minHeight="0dp"
-            android:onClick="@{()->viewModel.onCreateAccountClicked()}"
-            android:text="@string/btn_new_account_login"
-            android:textColor="@drawable/create_account_txt_color_selector"
-            android:textSize="18sp"
-            app:backgroundTint="#FFFFFFFF"
-            app:iconPadding="0dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/textView_HaveAccount_login"
-
-            app:layout_constraintEnd_toStartOf="@+id/textView_HaveAccount_login"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/img_google"
-            app:layout_constraintTop_toTopOf="@+id/textView_HaveAccount_login"
-            app:layout_constraintBaseline_toBaselineOf="@id/textView_HaveAccount_login"
-            app:layout_constraintVertical_bias="1.0" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
