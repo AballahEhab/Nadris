@@ -1,12 +1,14 @@
 package com.example.android.nadris.login
 
-import android.util.Patterns
-import android.widget.EditText
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.network.APIInstance
+import com.example.android.nadris.network.CreateAccountData
+import com.example.android.nadris.network.LoginAccountModel
+import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
 
@@ -28,16 +30,22 @@ class LoginViewModel : ViewModel() {
 
 
 
-    fun onLoginClicked(){
+     fun onLoginClicked(){
         _showWrongAccountCredentialsDialog.value = false
         if (email.isNotEmpty() && password.isNotEmpty()){
             if(email.trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex())){
                 //todo:send the data to the api
-                _navigateToHomeScreen.value = true
-                return
+//                _navigateToHomeScreen.value = true
+//                return
             }
             }
-            _showWrongAccountCredentialsDialog.value = true
+
+         viewModelScope.launch{
+
+             val responce = APIInstance.API.createAccount(CreateAccountData(firstName = "first name", userName = "myemail@email.com", lastName = "last name", email = "email@email.com", password = "AaBbSsRr#!@123", phoneNumber = "1010101010", gender = "other", type = "student", grade = 15, university = "bakinam", colleage = "habdasa"))
+             Log.v("responce","the responce is: "+responce.body())
+         }
+//            _showWrongAccountCredentialsDialog.value = true
     }
 
     fun loginDone(){

@@ -1,118 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+    <!--TODO :سرحان-->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
         <variable
-                name="viewModel"
-                type="com.example.android.nadris.login.LoginViewModel"/>
+            name="viewModel"
+            type="com.example.android.nadris.login.LoginViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".LoginFragment">
-        
+
         <ImageView
-                android:id="@+id/logo_nadris_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintHeight_max="96dp"
-                android:src="@drawable/logo_nadris"
-                app:layout_constraintBottom_toTopOf="@id/textView_Welcom_login"
-                app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
-                app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
-                app:layout_constraintTop_toTopOf="parent"/>
-        
+            android:id="@+id/logo_nadris_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHeight_max="96dp"
+            android:src="@drawable/logo_nadris"
+            app:layout_constraintBottom_toTopOf="@id/textView_Welcom_login"
+            app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
+            app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView_Welcom_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            android:id="@+id/textView_Welcom_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo"
-                android:text="@string/textView_Welcom_in_nadris"
-                android:textColor="@color/black"
-                android:textSize="34sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logo_nadris_login"
-                app:layout_constraintBottom_toTopOf="@id/material_email_or_phone"
-        />
-        
-        
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/material_email_or_phone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_light"
-                android:hint="@string/edt_E_mail_or_Phone_hint"
-                app:layout_constraintBottom_toTopOf="@id/edt_password_login"
-                app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
-                app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
-                app:layout_constraintTop_toBottomOf="@id/textView_Welcom_login"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-        >
-            
-            
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:minHeight="48dp"
+            android:text="@string/textView_Welcom_in_nadris"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo_nadris_login"
+            app:layout_constraintBottom_toTopOf="@id/material_email_or_phone"
             />
-        
-        
-        </com.google.android.material.textfield.TextInputLayout>
-        
-        
+
+
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_password_login"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_light"
-                android:hint="@string/edt_password_login"
-                android:minHeight="48dp"
-                
-                app:layout_constraintBottom_toTopOf="@id/btn_sign_in"
-                app:layout_constraintEnd_toEndOf="@id/material_email_or_phone"
-                app:layout_constraintStart_toStartOf="@id/material_email_or_phone"
-                app:layout_constraintTop_toBottomOf="@id/material_email_or_phone"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-        >
-            
+            android:id="@+id/material_email_or_phone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_light"
+            android:hint="@string/edt_E_mail_or_Phone_hint"
+            app:layout_constraintBottom_toTopOf="@id/edt_password_login"
+            app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
+            app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
+            app:layout_constraintTop_toBottomOf="@id/textView_Welcom_login"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            >
+
+
             <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:minHeight="48dp"/>
-        
-        
-        </com.google.android.material.textfield.TextInputLayout>
-        
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_sign_in"
-                android:layout_width="0dp"
+                android:id="@+id/email_edittxt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo"
-                android:text="@string/btn_sign_in_login"
-                android:textSize="24sp"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:text="@={viewModel.email}"
+
+
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_password_login"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_light"
+            android:hint="@string/edt_password_login"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_sign_in"
+            app:layout_constraintEnd_toEndOf="@id/material_email_or_phone"
+            app:layout_constraintStart_toStartOf="@id/material_email_or_phone"
+            app:layout_constraintTop_toBottomOf="@id/material_email_or_phone"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusTopStart="12dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:text="@={viewModel.password}"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_light"
+            android:text="@string/btn_sign_in_login"
+            android:textSize="24sp"
                 app:backgroundTint="@color/pink"
                 app:cornerRadius="12dp"
-                android:onClick="@{()-> viewModel.onLoginClicked()}"
                 app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
                 app:layout_constraintStart_toStartOf="@+id/edt_password_login"
                 app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
-                app:layout_constraintBottom_toTopOf="@id/img_google"/>
-        
+                app:layout_constraintBottom_toTopOf="@id/img_google"
+            android:onClick="@{()-> viewModel.onLoginClicked()}"
+            />
+
         <ImageView
                 android:id="@+id/img_google"
                 android:layout_width="50dp"
@@ -124,7 +132,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
                 app:layout_constraintEnd_toStartOf="@id/img_facebook"
         />
-        
+
         <ImageView
                 android:id="@+id/img_facebook"
                 android:layout_width="50dp"
@@ -138,7 +146,7 @@
                 app:layout_constraintTop_toTopOf="@+id/img_google"
                 app:layout_constraintBottom_toBottomOf="@id/img_google"
         />
-        
+
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -168,9 +176,9 @@
                     android:layout_margin="8dp"
                     android:textStyle="bold"
             />
-        
+
         </LinearLayout>
-    
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
