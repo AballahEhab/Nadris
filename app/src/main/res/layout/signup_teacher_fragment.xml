@@ -301,5 +301,6 @@
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp" app:backgroundTint="@color/pank"/>
+            app:boxCornerRadiusTopStart="12dp"
+        app:backgroundTint="@color/pink"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
