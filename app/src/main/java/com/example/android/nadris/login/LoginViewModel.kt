@@ -42,8 +42,9 @@ class LoginViewModel : ViewModel() {
 
          viewModelScope.launch{
 
-             val responce = APIInstance.API.createAccount(CreateAccountData(firstName = "first name", userName = "myemail@email.com", lastName = "last name", email = "email@email.com", password = "AaBbSsRr#!@123", phoneNumber = "1010101010", gender = "other", type = "student", grade = 15, university = "bakinam", colleage = "habdasa"))
-             Log.v("responce","the responce is: "+responce.body())
+//             val responce = APIInstance.API.createAccount(CreateAccountData(firstName = "first name", userName = "myemail@email.com", lastName = "last name", email = "email@email.com", password = "AaBbSsRr#!@123", phoneNumber = "1010101010", gender = "other", type = "student", grade = 15, university = "bakinam", colleage = "habdasa"))
+             val responce = APIInstance.API.login(LoginAccountModel(email = email.trim(),password=password.trim()))
+             Log.v("responce","the responce is: "+responce.body()!!.token)
          }
 //            _showWrongAccountCredentialsDialog.value = true
     }

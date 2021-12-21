@@ -18,14 +18,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val binding :SignupStudentFragmentBinding = DataBindingUtil.setContentView(this,R.id.signupStudentFragment)
-
-        val gender = resources.getStringArray(R.array.GenderList)
-        val adapter = ArrayAdapter(this, R.layout.list_item, gender)
-        val genderTextFeild=findViewById<TextInputLayout>(R.id.sp_gender_student_signup)
-        (genderTextFeild.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-
-        val viewModel = ViewModelProvider(this).get(SignupStudentViewModel::class.java)
+//        val binding :SignupStudentFragmentBinding = DataBindingUtil.setContentView(this,R.id.signupStudentFragment)
+//
+//        val gender = resources.getStringArray(R.array.GenderList)
+//        val adapter = ArrayAdapter(this, R.layout.list_item, gender)
+//        val genderTextFeild=findViewById<TextInputLayout>(R.id.sp_gender_student_signup)
+//        (genderTextFeild.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+//
+//        val viewModel = ViewModelProvider(this).get(SignupStudentViewModel::class.java)
         //confirm button
 
 
