@@ -50,7 +50,8 @@ class LoginFragment : Fragment() {
 
         viewModel.navigateToCreateAccount.observe(viewLifecycleOwner, Observer {
             if(it){
-                this.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
+                //todo
+//                this.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
                 viewModel.navigationToCreateAccountDone()
             }
         })

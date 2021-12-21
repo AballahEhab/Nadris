@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
-                app:onEmailChangedSetTo="@{viewModel}"
+                android:text="@={viewModel.email}"
 
 
                 />
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                app:onPasswordchangedSetTo="@{viewModel}"
+                android:text="@={viewModel.password}"
                 />
 
 
