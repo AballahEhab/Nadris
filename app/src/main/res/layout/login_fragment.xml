@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <!--TODO :سرحان-->
+<!--TODO :سرحان-->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,10 +11,10 @@
             type="com.example.android.nadris.login.LoginViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".LoginFragment">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LoginFragment">
 
         <ImageView
             android:id="@+id/logo_nadris_login"
@@ -31,7 +31,7 @@
             android:id="@+id/textView_Welcom_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo"
+            android:fontFamily="@font/cairo"
             android:text="@string/textView_Welcom_in_nadris"
             android:textColor="@color/black"
             android:textSize="34sp"
@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo_light"
             android:hint="@string/edt_E_mail_or_Phone_hint"
+            android:minHeight="48dp"
             app:layout_constraintBottom_toTopOf="@id/edt_password_login"
             app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
             app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
@@ -58,6 +59,7 @@
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusTopStart="12dp"
+            app:errorEnabled="@{viewModel.emailHaveError}"
             >
 
 
@@ -65,9 +67,10 @@
                 android:id="@+id/email_edittxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:text="@={viewModel.email}"
+                android:afterTextChanged="@{()->viewModel.validateEmail()}"
+
 
 
                 />
@@ -92,6 +95,8 @@
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusTopStart="12dp"
+            app:errorEnabled="@{viewModel.passwordHaveError}"
+
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -100,6 +105,8 @@
                 android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:text="@={viewModel.password}"
+                android:afterTextChanged="@{()->viewModel.validatePassword()}"
+
                 />
 
 
@@ -112,70 +119,70 @@
             android:fontFamily="@font/cairo_light"
             android:text="@string/btn_sign_in_login"
             android:textSize="24sp"
-                app:backgroundTint="@color/pink"
-                app:cornerRadius="12dp"
-                app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
-                app:layout_constraintStart_toStartOf="@+id/edt_password_login"
-                app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
-                app:layout_constraintBottom_toTopOf="@id/img_google"
+            app:backgroundTint="@color/pink"
+            app:cornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
+            app:layout_constraintStart_toStartOf="@+id/edt_password_login"
+            app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
+            app:layout_constraintBottom_toTopOf="@id/img_google"
             android:onClick="@{()-> viewModel.onLoginClicked()}"
             />
 
         <ImageView
-                android:id="@+id/img_google"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_google"
-                android:onClick="@{()->viewModel.OnLoginByGoogleClicked()}"
-                app:layout_constraintBottom_toTopOf="@id/VG_create_acc"
-                app:layout_constraintStart_toStartOf="@id/btn_sign_in"
-                app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
-                app:layout_constraintEnd_toStartOf="@id/img_facebook"
-        />
+            android:id="@+id/img_google"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_google"
+            android:onClick="@{()->viewModel.OnLoginByGoogleClicked()}"
+            app:layout_constraintBottom_toTopOf="@id/VG_create_acc"
+            app:layout_constraintStart_toStartOf="@id/btn_sign_in"
+            app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
+            app:layout_constraintEnd_toStartOf="@id/img_facebook"
+            />
 
         <ImageView
-                android:id="@+id/img_facebook"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_facebook"
-                android:onClick="@{()->viewModel.OnLoginByFacebookClicked()}"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
-                app:layout_constraintStart_toEndOf="@id/img_google"
-                app:layout_constraintTop_toTopOf="@+id/img_google"
-                app:layout_constraintBottom_toBottomOf="@id/img_google"
-        />
+            android:id="@+id/img_facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_facebook"
+            android:onClick="@{()->viewModel.OnLoginByFacebookClicked()}"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+            app:layout_constraintStart_toEndOf="@id/img_google"
+            app:layout_constraintTop_toTopOf="@+id/img_google"
+            app:layout_constraintBottom_toBottomOf="@id/img_google"
+            />
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/VG_create_acc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+            app:layout_constraintTop_toBottomOf="@+id/img_facebook"
+            app:layout_constraintStart_toStartOf="@id/btn_sign_in"
+            >
+            <TextView
+                android:id="@+id/TextView_new_account_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/VG_create_acc"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
-                app:layout_constraintTop_toBottomOf="@+id/img_facebook"
-                app:layout_constraintStart_toStartOf="@id/btn_sign_in"
-        >
+                android:text="@string/btn_new_account_login"
+                android:textColor="@drawable/create_account_txt_color_selector"
+                android:textSize="18sp"
+                android:layout_margin="8dp"
+                android:onClick="@{()->viewModel.onCreateAccountClicked()}"
+                />
             <TextView
-                    android:id="@+id/TextView_new_account_signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btn_new_account_login"
-                    android:textColor="@color/red"
-                    android:textSize="18sp"
-                    android:layout_margin="8dp"
-                    android:onClick="@{()->viewModel.onCreateAccountClicked()}"
-            />
-            <TextView
-                    android:id="@+id/textView_HaveAccount_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/textView_HaveAccount_login"
-                    android:textSize="18sp"
-                    android:layout_margin="8dp"
-                    android:textStyle="bold"
-            />
+                android:id="@+id/textView_HaveAccount_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textView_HaveAccount_login"
+                android:textSize="18sp"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
 

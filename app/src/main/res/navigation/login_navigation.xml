@@ -13,7 +13,8 @@
         <action
             android:id="@+id/action_loginFragment_to_SignUpFragment"
             app:destination="@id/signupFragment"
-            />
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -32,7 +33,8 @@
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            />
+            app:popUpTo="@id/signupFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
