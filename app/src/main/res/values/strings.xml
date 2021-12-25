@@ -23,7 +23,7 @@
     </string-array>
     <string name="verifying_phone_text">التحقق من رقم الهاتف</string>
     <string name="didnt_receive_the_code_yet_txt">ألم تستلم الرمز بعد؟</string>
-    <string name="textView_Welcom_in_nadris">  مرحبا بك في ندرس</string>
+    <string name="textView_Welcome_in_nadris">  مرحبا بك في ندرس</string>
     <string name="edt_E_mail_or_Phone_hint">البريد الإلكتروني أو رقم الهاتف</string>
     <string name="edt_password_login">كلمه المرور </string>
     <string name="btn_sign_in_login">تسجيل الدخول</string>
