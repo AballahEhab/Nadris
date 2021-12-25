@@ -1,20 +1,15 @@
-package com.example.android.nadris.login
+package com.example.android.nadris.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.LoginFragmentBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class LoginFragment : Fragment() {
 
@@ -39,6 +34,7 @@ class LoginFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
+        //using view model to save UI state
         binding.viewModel = viewModel
 
 

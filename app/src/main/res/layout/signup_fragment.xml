@@ -6,12 +6,12 @@
     <data>
         <variable
                 name="viewModle"
-                type="com.example.android.nadris.signUp.SignupViewModel"/>
+                type="com.example.android.nadris.ui.signUp.SignupViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".signUp.SignupFragment">
+            tools:context=".ui.signUp.SignupFragment">
         
         <ImageView
                 android:id="@+id/IV_logo"
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/textView_account_login"
-                    android:textColor="@color/red"
+                    android:textColor="@drawable/create_account_txt_color_selector"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:onClick="@{()->viewModle.navigate_to_login()}"

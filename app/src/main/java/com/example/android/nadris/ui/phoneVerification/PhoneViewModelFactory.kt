@@ -1,4 +1,4 @@
-package com.example.android.nadris.phoneVerification
+package com.example.android.nadris.ui.phoneVerification
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

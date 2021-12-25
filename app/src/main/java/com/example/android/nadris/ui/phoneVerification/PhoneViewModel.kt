@@ -1,4 +1,4 @@
-package com.example.android.nadris.phoneVerification
+package com.example.android.nadris.ui.phoneVerification
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

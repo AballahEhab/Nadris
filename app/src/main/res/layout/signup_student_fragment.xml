@@ -4,12 +4,12 @@
                    xmlns:app="http://schemas.android.com/apk/res-auto"
 >
     <data>
-        <variable name="StudentViewModel" type="com.example.android.nadris.SignupStudentViewModel"/>
+        <variable name="StudentViewModel" type="com.example.android.nadris.ui.signUpStudent.SignupStudentViewModel"/>
     </data>
     <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent" android:layout_height="match_parent"
-                tools:context=".signupStudentFragment">
+                tools:context=".ui.signUpStudent.signupStudentFragment">
 
             <Button android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +57,10 @@
                     app:boxCornerRadiusTopStart="12dp"
                     app:layout_constraintEnd_toEndOf="@+id/guideline2"
                     android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp">
+                    android:layout_marginEnd="8dp"
+                app:errorEnabled="@{StudentViewModel.firstnameHaveError}"
+
+                >
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/firstNameTextFiled"
                         android:layout_width="match_parent"
@@ -65,8 +68,10 @@
                         android:inputType="text"
                         android:minHeight="48dp"
                         android:text="@={StudentViewModel.firstname}"
+                    android:afterTextChanged="@{()->StudentViewModel.validFirstName()}"
 
-                />
+
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -87,7 +92,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBaseline_toBaselineOf="@+id/edt_first_name_student"
                     android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp">
+                    android:layout_marginEnd="8dp"
+                app:errorEnabled="@{StudentViewModel.lastnameHaveError}"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/lastNameTextFiled"
@@ -96,6 +103,7 @@
                         android:inputType="text"
                         android:minHeight="48dp"
                         android:text="@={StudentViewModel.lastname}"
+                    android:afterTextChanged="@{()->StudentViewModel.validLastName()}"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -124,7 +132,10 @@
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp"
                     android:fontFamily="@font/cairo_light"
-                    android:layout_marginEnd="8dp" android:layout_marginStart="8dp">
+                    android:layout_marginEnd="8dp" android:layout_marginStart="8dp"
+                app:errorEnabled="@{StudentViewModel.emailHaveError}"
+
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emailTextFiled"
@@ -133,7 +144,10 @@
                         android:inputType="textEmailAddress"
                         android:minHeight="48dp"
                         app:errorEnabled="true"
-                        android:text="@={StudentViewModel.email}"            />
+                        android:text="@={StudentViewModel.email}"
+                    android:afterTextChanged="@{()->StudentViewModel.validEmail()}"
+
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +170,10 @@
                     app:boxCornerRadiusTopStart="12dp"
                     android:fontFamily="@font/cairo_light"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp">
+                    android:layout_marginStart="8dp"
+                app:errorEnabled="@{StudentViewModel.phoneHaveError}"
+
+                >
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phoneTextField"
                         android:layout_width="match_parent"
@@ -164,7 +181,9 @@
                         android:inputType="phone"
                         android:minHeight="48dp"
                         android:text="@={StudentViewModel.phone}"
-                />
+                    android:afterTextChanged="@{()->StudentViewModel.validPhone()}"
+
+                    />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     app:helperText="@string/Required1"
@@ -183,14 +202,19 @@
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp"
-                    android:minHeight="48dp" android:id="@+id/sp_Term_Student_Signup">
+                    android:minHeight="48dp"
+                android:id="@+id/sp_Term_Student_Signup"
+                app:errorEnabled="@{StudentViewModel.gradeHaveError}"
+                >
                 <AutoCompleteTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
 
                         android:text="@={StudentViewModel.grade}"
-                />
+                    android:afterTextChanged="@{()->StudentViewModel.validateGrade()}"
+
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -209,13 +233,17 @@
                     android:minHeight="48dp"
                     android:id="@+id/sp_gender_student_signup"
                     android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp" app:layout_constraintBaseline_toBaselineOf="@+id/sp_Term_Student_Signup">
+                    android:layout_marginEnd="8dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/sp_Term_Student_Signup"
+                app:errorEnabled="@{StudentViewModel.ganderHaveError}"
+                >
                 <AutoCompleteTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
 
-                        android:text="@={StudentViewModel.gander}"
+                        android:text="@={StudentViewModel.gender}"
+                    android:afterTextChanged="@{()->StudentViewModel.validateGender()}"
                 />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -238,7 +266,11 @@
                     android:fontFamily="@font/cairo_light"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    app:endIconMode="password_toggle" android:layout_marginTop="8dp">
+                    app:endIconMode="password_toggle"
+                android:layout_marginTop="8dp"
+                app:errorEnabled="@{StudentViewModel.password1HaveError}"
+
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordEditText1"
@@ -247,7 +279,9 @@
                         android:inputType="textPassword"
                         android:minHeight="48dp"
                         android:text="@={StudentViewModel.password1}"
-                />
+                    android:afterTextChanged="@{()->StudentViewModel.validPassword1()}"
+
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -269,7 +303,10 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     app:endIconMode="password_toggle"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                app:errorEnabled="@{StudentViewModel.passwordNotMatch}"
+
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordEditText2"
@@ -278,7 +315,9 @@
                         android:inputType="textPassword"
                         android:minHeight="48dp"
                         android:text="@={StudentViewModel.password2}"
-                />
+                    android:afterTextChanged="@{()->StudentViewModel.matchPassword1ToPassword2()}"
+
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -296,7 +335,7 @@
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp"
                     app:backgroundTint="@color/pink"
-                    android:onClick="@{()-> StudentViewModel.onLoginClicked()}"/>
+                    android:onClick="@{()-> StudentViewModel.onSignUpClicked()}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

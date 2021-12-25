@@ -1,4 +1,4 @@
-package com.example.android.nadris.phoneVerification
+package com.example.android.nadris.ui.phoneVerification
 
 import android.os.Bundle
 import android.view.LayoutInflater

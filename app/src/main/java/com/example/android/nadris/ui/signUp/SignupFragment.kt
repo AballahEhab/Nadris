@@ -1,4 +1,4 @@
-package com.example.android.nadris.signUp
+package com.example.android.nadris.ui.signUp
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -44,6 +44,7 @@ class SignupFragment : Fragment() {
         viewModel.navigate_to_login.observe(this.viewLifecycleOwner,{
             if(it){
                 this.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToLoginFragment())
+                viewModel.navigation_to_login_done()
             }
         })
 

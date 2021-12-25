@@ -6,7 +6,7 @@
     
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.android.nadris.login.LoginFragment"
+        android:name="com.example.android.nadris.ui.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment"
         >
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.android.nadris.signUp.SignupFragment"
+        android:name="com.example.android.nadris.ui.signUp.SignupFragment"
         android:label="signup_fragment"
         tools:layout="@layout/signup_fragment">
         <action
@@ -39,13 +39,13 @@
 
     <fragment
         android:id="@+id/signupTeacherFragment"
-        android:name="com.example.android.nadris.signupTeacherFragment"
+        android:name="com.example.android.nadris.ui.signUpTeacher.signupTeacherFragment"
         android:label="signup_teacher_fragment"
         tools:layout="@layout/signup_teacher_fragment"/>
 
     <fragment
         android:id="@+id/signupStudentFragment"
-        android:name="com.example.android.nadris.signupStudentFragment"
+        android:name="com.example.android.nadris.ui.signUpStudent.signupStudentFragment"
         android:label="signup_student_fragment"
         tools:layout="@layout/signup_student_fragment">
 
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/phoneFragment"
-        android:name="com.example.android.nadris.phoneVerification.PhoneFragment"
+        android:name="com.example.android.nadris.ui.phoneVerification.PhoneFragment"
         android:label="phone_fragment"
         tools:layout="@layout/phone_fragment"/>
 </navigation>

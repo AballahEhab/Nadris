@@ -1,6 +1,7 @@
-package com.example.android.nadris.login
+package com.example.android.nadris.ui.login
 
 import android.util.Log
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,9 +31,7 @@ class LoginViewModel : ViewModel() {
 
 
     fun validateEmail() {
-        _emailHaveError.value =
-            (email.isEmpty()
-                    || !email.trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex()))
+        _emailHaveError.value = !email.trim().matches(Patterns.EMAIL_ADDRESS.toRegex())
     }
     fun validatePassword(){
         _passwordHaveError.value = password.isEmpty()

@@ -8,7 +8,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.android.nadris.login.LoginViewModel" />
+            type="com.example.android.nadris.ui.login.LoginViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -54,6 +54,7 @@
             app:layout_constraintBottom_toTopOf="@id/edt_password_login"
             app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
             app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
+
             app:layout_constraintTop_toBottomOf="@id/textView_Welcom_login"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -67,6 +68,7 @@
                 android:id="@+id/email_edittxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:text="@={viewModel.email}"
                 android:afterTextChanged="@{()->viewModel.validateEmail()}"
@@ -95,6 +97,8 @@
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusTopStart="12dp"
+
+            app:endIconMode="password_toggle"
             app:errorEnabled="@{viewModel.passwordHaveError}"
 
             >

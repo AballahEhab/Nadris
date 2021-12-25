@@ -1,4 +1,4 @@
-package com.example.android.nadris.signUp
+package com.example.android.nadris.ui.signUp
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
