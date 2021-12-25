@@ -15,9 +15,11 @@
         
         <ImageView
                 android:id="@+id/IV_logo"
-                android:layout_width="408dp"
-                android:layout_height="170dp"
-                android:src="@drawable/logo_nadris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintHeight_max="96dp"
+                android:src="@drawable/ic_nadris_logo"
+                android:layout_marginTop="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -29,10 +31,10 @@
                 android:fontFamily="@font/cairo"
                 android:text="@string/textView_register_as_signup"
                 android:textSize="34sp"
+                android:layout_margin="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/IV_logo"
-        />
+                app:layout_constraintTop_toBottomOf="@+id/IV_logo"/>
         
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -45,7 +47,7 @@
                 android:id="@+id/cardView_teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/pink"
+                app:cardBackgroundColor="@color/yellow"
                 app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +97,6 @@
                 android:id="@+id/textView_teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
                 android:fontFamily="@font/cairo_light"
                 android:text="@string/textView_teacher_signup"
                 android:textSize="24sp"
@@ -106,7 +107,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_login"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="24dp"
+                
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/cardView_student"
                 app:layout_constraintStart_toStartOf="@id/cardView_teacher">
@@ -119,17 +121,14 @@
                     android:textColor="@drawable/create_account_txt_color_selector"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:onClick="@{()->viewModle.navigate_to_login()}"
-            />
+                    android:onClick="@{()->viewModle.navigate_to_login()}"/>
             <TextView
                     android:id="@+id/textView_HaveAccount_signin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/textView_HaveAccount_signin"
                     android:textStyle="bold"
-                    android:textSize="18sp"
-            />
-        
+                    android:textSize="18sp"/>
         
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

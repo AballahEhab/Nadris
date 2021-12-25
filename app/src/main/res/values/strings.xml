@@ -23,11 +23,11 @@
     </string-array>
     <string name="verifying_phone_text">التحقق من رقم الهاتف</string>
     <string name="didnt_receive_the_code_yet_txt">ألم تستلم الرمز بعد؟</string>
-    <string name="textView_Welcom_in_nadris">  مرحبا بك في ندرس</string>
+    <string name="textView_Welcome_in_nadris">  مرحبا بك في ندرس</string>
     <string name="edt_E_mail_or_Phone_hint">البريد الإلكتروني أو رقم الهاتف</string>
     <string name="edt_password_login">كلمه المرور </string>
     <string name="btn_sign_in_login">تسجيل الدخول</string>
-    <string name="textView_HaveAccount_login">ليس لديك حساب بعد</string>
+    <string name="textView_HaveAccount_login">ليس لديك حساب بعد؟</string>
     <string name="btn_new_account_login">إنشاء حساب</string>
     <string name="textView_register_as_signup">التسجيل ك </string>
 
@@ -53,10 +53,11 @@
     <string name="delet_symbol">⌦</string>
     <string name="confirm_txt">تأكيد</string>
     <string name="wron_cridentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
-
-
+ 
+   
     <string name="Required1">" " </string>
     <string name="Required"> </string>
+
     <string-array name="universty">
         <item>جامعة القاهرة</item>
         <item>جامعة الإسكندرية</item>
