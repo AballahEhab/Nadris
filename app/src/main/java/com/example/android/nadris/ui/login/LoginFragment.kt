@@ -74,9 +74,9 @@ class LoginFragment : Fragment() {
 
         viewModel.emailHaveError.observe(this.viewLifecycleOwner,{
             if (it)
-                binding.emailEdittxt.error = "this and error"
+                binding.emailEdTxt.error = "this and error"
             else
-                binding.emailEdittxt.error = null
+                binding.emailEdTxt.error = null
 
 
         })
