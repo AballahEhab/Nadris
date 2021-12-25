@@ -4,8 +4,6 @@ plugins {
     id 'kotlin-parcelize' // used instead of 'kotlin-android-extensions' as it's deprecated
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
-
-
 }
 
 android {
@@ -60,6 +58,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'io.github.nefilim.kjwt:kjwt-core:0.4.0'
+
+
 
 // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.3.0")
