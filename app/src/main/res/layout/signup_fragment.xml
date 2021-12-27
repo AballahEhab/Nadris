@@ -75,7 +75,8 @@
                     android:id="@+id/imageView_student"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
-                    android:src="@drawable/student"/>
+                    android:src="@drawable/student"
+            />
         </androidx.cardview.widget.CardView>
         
         

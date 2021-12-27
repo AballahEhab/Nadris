@@ -17,6 +17,10 @@
     <string name="sp_subject_teacher_signup">مادة التخصص</string>
     <string name="sp_gender_teacher_signup">النوع</string>
     <string name="term">الفصل الدراسى</string>
+    <string name="name">عبدالله غراب</string>
+    <string name="subject">اللغة العربية</string>
+    <string name="theSubject">المادة</string>
+    <string name="post">إزاي اقدر اعرف المفعول لاجله</string>
     <string-array name="GenderList">
         <item>Male</item>
         <item>Female</item>
@@ -57,6 +61,11 @@
 
     <string name="Required1">" " </string>
     <string name="Required"> </string>
+    <string name="search">Search</string>
+    <string name="welcome">صباح الخير</string>
+    <string name="yourQus">ما هو سؤالك......</string>
+    <string name="addImage">+ إضافة صور او ملفات</string>
+    <string name="PublisQus">نشر السؤال</string>
     <string-array name="universty">
         <item>جامعة القاهرة</item>
         <item>جامعة الإسكندرية</item>
