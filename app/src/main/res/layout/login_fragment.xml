@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-    <!--TODO :سرحان-->
-
+<!--     :سرحان-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
         <variable
             name="viewModel"
@@ -66,8 +63,6 @@
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 app:onEmailChangedSetTo="@{viewModel}"
-
-
                 />
 
 
@@ -115,8 +110,9 @@
             app:layout_constraintStart_toStartOf="@+id/edt_password_login"
             app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
             app:layout_constraintBottom_toTopOf="@id/img_google"
-            android:onClick="@{()-> viewModel.onLoginClicked()}"
+
             />
+<!--        android:onClick="@{()-> viewModel.onLoginClicked()}"-->
 
         <ImageButton
             android:id="@+id/img_google"

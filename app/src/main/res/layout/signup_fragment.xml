@@ -67,10 +67,13 @@
                 android:layout_height="130dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="@{()->viewModle.navigate_to_teacher_signUp()}"
+
                 android:src="@drawable/icon_teacher"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="286dp" />
+
+<!--            android:onClick="@{()->viewModle.navigate_to_teacher_signUp()}"-->
+
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView_student"

@@ -33,5 +33,18 @@
     <string name="confirm_txt">تأكيد</string>
 
     <string name="wron_cridentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
+    <string name="namesubjects">المواد الدراسيه</string>
+    <string name="TvChoseTeachers">إختار مدرس</string>
+    <string name="btn_joining">إنضمام</string>
+    <string name="tv_name_subject_phyiscs">الفيزياء</string>
+    <string name="tv_count_student_on_all_subjects">160 </string>
+    <string name="tv_count_teacher_on_all_subjects">15 </string>
+    <string name="tv_item_st_count">طالب</string>
+    <string name="tv_item_teach_count">مدرس</string>
+    <string name="tv_name_teachers">محمد مصطفي</string>
+    <string name="tv_content_description">شرح ومراجعه</string>
+    <string name="tv_add_teacher">إضافه</string>
+    <string name="tv_star">*</string>
+    <string name="tv_evaluation">4.8</string>
     >
 </resources>

@@ -26,51 +26,45 @@ class LoginViewModel : ViewModel() {
 
 
 
-
-
-    fun onLoginClicked(){
-        _showWrongAccountCredentialsDialog.value = false
-        if (email.isNotEmpty() && password.isNotEmpty()){
-            if(email.trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex())){
-                //todo:send the data to the api
-                _navigateToHomeScreen.value = true
-                return
-            }
-            }
-            _showWrongAccountCredentialsDialog.value = true
-    }
-
-    fun loginDone(){
-        _navigateToHomeScreen.value = false
-    }
-
-    fun onCreateAccountClicked(){
-        _navigateToCreateAccount.value = true
-    }
-
-    fun navigationToCreateAccountDone(){
-        _navigateToCreateAccount.value = false
-    }
-
-    fun OnLoginByGoogleClicked(){
-        // todo: use the api to lgin by google
-        // if things done set navigate to home screen to true
-
-        _navigateToHomeScreen.value = true
-    }
-
-    fun OnLoginByFacebookClicked(){
-        // todo: use the api to lgin by facebook
-        // if things done set navigate to home screen to true
-
-        _navigateToHomeScreen.value = true
-    }
-
-    fun OnLoginByTwitterClicked(){
-        // todo: use the api to lgin by Twitter
-        // if things done set navigate to home screen to true
-
-        _navigateToHomeScreen.value = true
-    }
+//    fun onLoginClicked(){
+//        _showWrongAccountCredentialsDialog.value = false
+//        if (email.isNotEmpty() && password.isNotEmpty()){
+//            if(email.trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex())){
+//                _navigateToHomeScreen.value = true
+//                return
+//            }
+//            }
+//            _showWrongAccountCredentialsDialog.value = true
+//    }
+//
+//    fun loginDone(){
+//        _navigateToHomeScreen.value = false
+//    }
+//
+//    fun onCreateAccountClicked(){
+//        _navigateToCreateAccount.value = true
+//    }
+//
+//    fun navigationToCreateAccountDone(){
+//        _navigateToCreateAccount.value = false
+//    }
+//
+//    fun OnLoginByGoogleClicked(){
+//        // if things done set navigate to home screen to true
+//
+//        _navigateToHomeScreen.value = true
+//    }
+//
+//    fun OnLoginByFacebookClicked(){
+//        // if things done set navigate to home screen to true
+//
+//        _navigateToHomeScreen.value = true
+//    }
+//
+//    fun OnLoginByTwitterClicked(){
+//        // if things done set navigate to home screen to true
+//
+//        _navigateToHomeScreen.value = true
+//    }
 
 }

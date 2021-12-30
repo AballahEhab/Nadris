@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/login_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/subjectsRvFragment">
     
     <fragment
         android:id="@+id/loginFragment"
@@ -53,5 +53,13 @@
         android:name="com.example.android.nadris.phoneVerification.PhoneFragment"
         android:label="phone_fragment"
         tools:layout="@layout/phone_fragment"/>
+    <fragment
+        android:id="@+id/subjectsRvFragment"
+        android:name="com.example.android.nadris.SubjectsRvFragment"
+        android:label="SubjectsRvFragment" />
+    <fragment
+        android:id="@+id/teachers_RV_fragment"
+        android:name="com.example.android.nadris.teachers_RV_fragment"
+        android:label="teachers_RV_fragment" />
 
 </navigation>

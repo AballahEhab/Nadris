@@ -177,7 +177,7 @@
         <Button
             android:id="@+id/btn_1"
             style="@style/keyboard_OutlinedButton_Style"
-            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(1)}"
+
             android:text="@string/num_one"
             app:layout_constraintBottom_toTopOf="@id/btn_4"
             app:layout_constraintEnd_toStartOf="@id/btn_2"
@@ -186,6 +186,7 @@
 
             />
 
+<!--        android:onClick="@{() -> viewModel.onKeyboardButtonPressed(1)}"-->
         <Button
             android:id="@+id/btn_2"
             style="@style/keyboard_OutlinedButton_Style"

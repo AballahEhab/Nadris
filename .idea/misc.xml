@@ -3,19 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Cs_Project/Nadris/app/src/main/res/drawable/ic_icons8_human_head.xml" value="0.15462962962962962" />
-        <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.25" />
-        <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.33" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/circular_button.xml" value="0.278125" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/circular_facebook_button.xml" value="0.278125" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/create_account_txt_color_selector.xml" value="0.278125" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/font/cairo_light.xml" value="0.1703125" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout-v21/login_fragment.xml" value="0.38125" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_main.xml" value="0.1390625" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.264" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.17857142857142858" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.2" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_teacher_fragment.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11296296296296296" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/iteam_rv_fragment.xml" value="1.0" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/item_rv_subjects.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/item_rv_teachers.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/signup_student_fragment.xml" value="0.1852355072463768" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/subects__rv_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/subjects_rv_fragment.xml" value="0.16168478260869565" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/teachers__r_v_fragment.xml" value="0.22" />
       </map>
     </option>
   </component>
@@ -24,12 +23,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.2" />
-      </ProjectState>
-    </option>
   </component>
 </project>
