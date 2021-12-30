@@ -43,7 +43,6 @@
         android:gravity="center|center_vertical"
         android:text="@string/verifying_phone_text"
         android:textSize="35sp"
-        app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toTopOf="@id/outlinedTextField1"
         app:layout_constraintEnd_toStartOf="@id/keyboard_table"
         app:layout_constraintHorizontal_weight="5"
@@ -51,17 +50,6 @@
         app:layout_constraintTop_toBottomOf="@id/back_btn"
         app:layout_constraintVertical_weight="2" />
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/OTP_container"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/didnt_receive_the_code_yet_txt"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/verifying_phone_text"-->
-    <!--        app:layout_constraintVertical_weight="1"-->
-    <!--        >-->
-    <!--    </LinearLayout>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/outlinedTextField1"
@@ -248,96 +236,6 @@
 
         </TableRow>
     </TableLayout>
-
-    <!--    <GridLayout-->
-    <!--        android:id="@+id/keyboard_gridlayout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        -->
-    <!--        android:columnCount="3"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--      -->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-
-    <!--        app:layout_constraintTop_toBottomOf="@id/OTP_container"-->
-    <!--       >-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            android:layout_row="0"-->
-    <!--           />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            />-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-
-    <!--            android:layout_row="1"-->
-    <!--            android:layout_column="11" />-->
-
-    <!--    </GridLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -209,7 +209,7 @@
                 android:inputType="none"
                 android:text="@={TeacherViewModel.collage}"
             android:afterTextChanged="@{()->TeacherViewModel.validateCollegeFeild()}"
-        />
+                tools:ignore="LabelFor"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -239,7 +239,7 @@
                 android:text="@={TeacherViewModel.universty}"
             android:afterTextChanged="@{()->TeacherViewModel.validateUniversityFeildInput()}"
 
-            />
+                tools:ignore="LabelFor"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
 
@@ -268,7 +268,7 @@
                 android:text="@={TeacherViewModel.subjects}"
             android:afterTextChanged="@{()->TeacherViewModel.validateSubjec()}"
 
-            />
+                tools:ignore="LabelFor"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -298,7 +298,7 @@
                 android:text="@={TeacherViewModel.gender}"
             android:afterTextChanged="@{()->TeacherViewModel.validateGender()}"
 
-            />
+                tools:ignore="LabelFor"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

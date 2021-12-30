@@ -24,7 +24,7 @@
                 app:layout_constraintBottom_toTopOf="@id/textView_Welcome_login"
                 app:layout_constraintEnd_toEndOf="@id/textView_Welcome_login"
                 app:layout_constraintStart_toStartOf="@id/textView_Welcome_login"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" android:contentDescription="TODO"/>
 
         <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_Welcome_login"
@@ -138,7 +138,7 @@
                 app:layout_constraintBottom_toTopOf="@id/VG_create_acc"
                 app:layout_constraintStart_toStartOf="@id/btn_sign_in"
                 app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
-                app:layout_constraintEnd_toStartOf="@id/img_facebook"/>
+                app:layout_constraintEnd_toStartOf="@id/img_facebook" android:contentDescription="TODO"/>
 
         <ImageView
                 android:id="@+id/img_facebook"
@@ -151,7 +151,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
                 app:layout_constraintStart_toEndOf="@id/img_google"
                 app:layout_constraintTop_toTopOf="@+id/img_google"
-                app:layout_constraintBottom_toBottomOf="@id/img_google"/>
+                app:layout_constraintBottom_toBottomOf="@id/img_google" android:contentDescription="TODO"/>
 
         <LinearLayout
                 android:layout_width="wrap_content"

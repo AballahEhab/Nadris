@@ -22,7 +22,7 @@
                 android:layout_marginTop="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" android:contentDescription="TODO"/>
         
         <TextView
                 android:id="@+id/textView_register_as"
@@ -58,7 +58,7 @@
                     android:id="@+id/imageView_teacher"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
-                    android:src="@drawable/teacher"/>
+                    android:src="@drawable/teacher" android:contentDescription="TODO"/>
         </androidx.cardview.widget.CardView>
         
         <androidx.cardview.widget.CardView
@@ -77,7 +77,7 @@
                     android:id="@+id/imageView_student"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
-                    android:src="@drawable/student"/>
+                    android:src="@drawable/student" android:contentDescription="TODO"/>
         </androidx.cardview.widget.CardView>
         
         

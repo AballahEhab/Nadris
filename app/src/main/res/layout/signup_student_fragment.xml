@@ -216,7 +216,7 @@
                         android:text="@={StudentViewModel.grade}"
                     android:afterTextChanged="@{()->StudentViewModel.validateGrade()}"
 
-                    />
+                        tools:ignore="LabelFor"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -246,7 +246,7 @@
 
                         android:text="@={StudentViewModel.gender}"
                     android:afterTextChanged="@{()->StudentViewModel.validateGender()}"
-                />
+                        tools:ignore="LabelFor"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
