@@ -70,7 +70,7 @@ class PhoneFragment : Fragment() {
                     .setCancelable(false)
                     .setTitle(R.string.wrong_OTB_text_dialog)
 
-                    .setPositiveButton("ok") { dialog, which ->
+                    .setPositiveButton("ok") { dialog, _ ->
                         dialog.cancel()
                     }.show()
 

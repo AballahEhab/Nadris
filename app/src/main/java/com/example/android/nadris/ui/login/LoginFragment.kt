@@ -8,18 +8,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.LoginFragmentBinding
+import javax.inject.Inject
 
 class LoginFragment : Fragment() {
 
     lateinit var  binding: LoginFragmentBinding
 
-//    companion object {
-//        fun newInstance() = LoginFragment()
-//    }
-
-    private lateinit var viewModel: LoginViewModel
+    @Inject lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +30,8 @@ class LoginFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+        (requireContext().applicationContext as NadrisApplication).appGraph.injectFieldsOfLoginFragment(this)
 
         //using view model to save UI state
         binding.viewModel = viewModel
@@ -53,24 +52,6 @@ class LoginFragment : Fragment() {
                 viewModel.navigationToCreateAccountDone()
             }
         })
-
-//        viewModel.showWrongAccountCredentialsDialog.observe(viewLifecycleOwner,{
-//            if (it){
-//                val dialog = MaterialAlertDialogBuilder(requireContext())
-//                    .setCancelable(false)
-//                    .setTitle(getString(R.string.wron_cridentials))
-//
-//                    .setPositiveButton("ok") { dialog, which ->
-//                        dialog.cancel()
-//                    }.show()
-//
-//                val button = dialog.findViewById<Button>(android.R.id.button1)
-//                val layoutParams:LinearLayout.LayoutParams = button!!.layoutParams as LinearLayout.LayoutParams
-//                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-//                button.setLayoutParams(layoutParams)
-//            }
-//        })
-
 
         viewModel.emailHaveError.observe(this.viewLifecycleOwner,{
             if (it)

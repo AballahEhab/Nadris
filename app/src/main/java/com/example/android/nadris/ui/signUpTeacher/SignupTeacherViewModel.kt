@@ -5,8 +5,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.PasswordError
+import com.example.android.nadris.repository.Repository
+import javax.inject.Inject
 
-class SignupTeacherViewModel : ViewModel() {
+class SignupTeacherViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 
 //    var firstname : MutableLiveData<String> = MutableLiveData<String>()

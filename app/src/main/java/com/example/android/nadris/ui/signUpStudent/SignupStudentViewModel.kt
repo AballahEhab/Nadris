@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.PasswordError
-import com.example.android.nadris.Repo.UserDataUseCase
-import com.example.android.nadris.database.UserData
+import com.example.android.nadris.repository.Repository
+import javax.inject.Inject
 
 
-class SignupStudentViewModel : ViewModel() {
+class SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 //    val userdata:LiveData<UserData> =
 

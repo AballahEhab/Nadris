@@ -5,8 +5,10 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.nadris.repository.Repository
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     var email : String = String()
 
     var password:String = String()

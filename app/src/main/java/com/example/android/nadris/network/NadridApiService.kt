@@ -18,15 +18,3 @@ interface NadrisAPIService{
     suspend fun createAccount(@Body accountData: CreateAccountData ):Response<AuthModel>
 
 }
-
-object APIInstance{
-
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://nadrisapi.conveyor.cloud/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    val API :NadrisAPIService by lazy {
-        retrofit.create(NadrisAPIService::class.java)
-    }
-}

@@ -2,8 +2,9 @@ package com.example.android.nadris.ui.signUp
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class SignupViewModel : ViewModel() {
+class SignupViewModel @Inject constructor() : ViewModel() {
 
     private var _navigate_to_teacher_signUp:MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val navigate_to_teacher_signUp:MutableLiveData<Boolean> get() = _navigate_to_teacher_signUp

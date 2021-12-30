@@ -1,25 +1,22 @@
 package com.example.android.nadris.ui.signUpStudent
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import android.widget.*
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.SignupStudentFragmentBinding
+import javax.inject.Inject
 
 class signupStudentFragment : Fragment() {
 
-//    companion object {
-//        fun newInstance() = signupStudentFragment()
-//    }
 
-    private lateinit var viewModel: SignupStudentViewModel
+    @Inject lateinit var viewModel: SignupStudentViewModel
     private lateinit var binding :SignupStudentFragmentBinding
     private lateinit var gender : Array<String>
     private lateinit var grade:Array<String>
@@ -32,6 +29,7 @@ class signupStudentFragment : Fragment() {
     ): View? {
         inflater.inflate(R.layout.signup_student_fragment, container, false)
         binding = SignupStudentFragmentBinding.inflate(inflater)
+        (requireContext().applicationContext as NadrisApplication).appGraph.injectFieldsOfSignupStudentViewModel(this)
 
         initiate()
 
@@ -40,41 +38,6 @@ class signupStudentFragment : Fragment() {
         setAdapterForSpiners()
 
         registerObservers()
-//        validateInputONFocusChane()
-
-
-
-
-//        bindigin.containedButton.setOnClickListener {
-//            var str:String=""+viewModel.email.value+"\n"+viewModel.password1.value+"\n"+viewModel.grade.value+"\n"+viewModel.gander.value;
-//            Toast.makeText(requireContext(),str,Toast.LENGTH_LONG).show()
-//        }
-
-
-//        viewModel.navigateToCreateAccount.observe(viewLifecycleOwner, Observer {
-//            if (it) {
-//                this.findNavController().navigate(signupStudentFragment.Directions)
-//                viewModel.navigationToCreateAccountDone()
-//            }
-//        }
-
-//        viewModel.showWrongAccountCredentialsDialog.observe(viewLifecycleOwner) {
-//            if (it) {
-//                val dialog = MaterialAlertDialogBuilder(requireContext())
-//                    .setCancelable(false)
-//                    .setTitle(getString(R.string.wron_cridentials))
-//
-//                    .setPositiveButton("ok") { dialog, which ->
-//                        dialog.cancel()
-//                    }.show()
-//
-//                val button = dialog.findViewById<Button>(android.R.id.button1)
-//                val layoutParams: LinearLayout.LayoutParams = button!!.layoutParams as LinearLayout.LayoutParams
-//                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-//                button.layoutParams = layoutParams
-//            }
-//        }
-
 
         return binding.root
 
@@ -88,51 +51,12 @@ class signupStudentFragment : Fragment() {
 
     }
     private fun initiate() {
-        viewModel = ViewModelProvider(this).get(SignupStudentViewModel::class.java)
         gender = resources.getStringArray(R.array.GenderList)
         grade = resources.getStringArray(R.array.GradeList)
         adapter1 = ArrayAdapter(requireContext(), R.layout.list_item, gender)
         adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, grade)
 
     }
-
-//    fun validateInputONFocusChane(){
-//        binding.firstNameTextFiled.setOnFocusChangeListener { _, focused ->
-//            if (!focused) {
-//                viewModel.validFirstName()
-//            }
-//
-//        }
-//        binding.lastNameTextFiled.setOnFocusChangeListener { _, focused ->
-//            if (!focused) {
-//                viewModel.validLastName()
-//            }
-//        }
-//
-//
-//        binding.emailTextFiled.setOnFocusChangeListener { _, focused ->
-//            if (!focused) {
-//                viewModel.validEmail()
-//            }
-//        }
-//        binding.passwordEditText1.setOnFocusChangeListener { _, focused ->
-//            if (!focused) {
-//                viewModel.validPassword1()
-//            }
-//        }
-//
-//        binding.passwordEditText2.setOnFocusChangeListener { _, focused ->
-//            if (!focused) {
-//                viewModel.matchPassword1ToPassword2()
-//            }
-//        }
-//
-//        binding.phoneTextField.setOnFocusChangeListener { _, focused ->
-//            if (!focused) {
-//                viewModel.validPhone()
-//            }
-//        }
-//    }
 
     fun registerObservers(){
         this.viewModel.firstnameHaveError.observe(viewLifecycleOwner) {
