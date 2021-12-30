@@ -5,6 +5,5 @@ enum class PasswordError   {
     NOT_CONTAIN_UPPERCASE,
     NOT_CONTAIN_LOWER_CASE,
     NOT_CONTAIN_SPECIAL_CHARACTER
-
 }
 

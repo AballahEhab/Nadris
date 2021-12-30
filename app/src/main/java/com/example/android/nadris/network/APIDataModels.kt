@@ -1,46 +1,38 @@
 package com.example.android.nadris.network
 
 import com.google.gson.annotations.SerializedName
+import java.time.format.DateTimeFormatter
 
-
-class CreateAccountData (
-    val firstName:String,
-    val lastName:String,
-    val userName :String ,
-    val email:String,
-    val password:String,
-    val phoneNumber:String,
-    val gender:String,
-    val type:String,
-    val grade:Int,
-    val university:String? = null,
-    val colleage: String?
-
-    )
-
-class GetAccountData (
-    @SerializedName("message")
-    val errorMessage :String?,
-    val isAuthenticated:Boolean,
-    val userName:String,
-    val email:String,
-    val phoneNumber :String,
-    val type:String,
-    val gender:String,
-    val exp:Long,
-    val grade:Int,
-    val university:String?,
-    val colleage: String?,
-    val roles:List<String>,
-    val token:String,
-    val expiresOn:String // this may be date type
+class CreateAccountData(
+    val firstName: String,
+    val lastName: String,
+    val email: String,
+    val password: String,
+    val PhoneNumber: String,
+    val Gender: Byte,
+    val Type: String,
+    val Grade: Int,
+    val University: String?,
+    val College: String?,
 )
-
-
 data class LoginAccountModel(
     val email: String,
-    val password: String
+    val password: String,
 )
-data class Token(
-    val token:String
+
+data class AuthModel(
+    val Message: String?,
+    val isAuthenticated: Boolean,
+    val Email: String,
+    val FirstName:String,
+    val LastName:String,
+    val PhoneNumber: String,
+    val Type: String,
+    val Gender: Byte,
+    val Exp: Long,
+    val Grade: Int,
+    val University: String?,
+    val College: String?,
+    val Token: String,
+    val ExpiresOn: DateTimeFormatter,
 )

@@ -12,10 +12,11 @@ interface NadrisAPIService{
     @POST("api/Auth/Token")
     suspend fun login(
         @Body loginAccountModel: LoginAccountModel
-    ):Response<Token>  // send email and password and receive token as return string
+    ):Response<AuthModel>  // send email and password and receive token as return string
 
     @POST("api/Auth/Register")
-    suspend fun createAccount(@Body accountData: CreateAccountData ):Response<GetAccountData>
+    suspend fun createAccount(@Body accountData: CreateAccountData ):Response<AuthModel>
+
 }
 
 object APIInstance{
@@ -24,7 +25,6 @@ object APIInstance{
         .baseUrl("https://nadrisapi.conveyor.cloud/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-
 
     val API :NadrisAPIService by lazy {
         retrofit.create(NadrisAPIService::class.java)

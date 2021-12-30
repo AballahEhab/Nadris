@@ -77,7 +77,7 @@ class PhoneFragment : Fragment() {
                     val button = dialog.findViewById<Button>(android.R.id.button1)
                     val layoutParams:LinearLayout.LayoutParams = button!!.layoutParams as LinearLayout.LayoutParams
                     layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-                    button.setLayoutParams(layoutParams)
+                button.layoutParams = layoutParams
 
                 //another solution to center the button
 //                val parent = button.parent as LinearLayout

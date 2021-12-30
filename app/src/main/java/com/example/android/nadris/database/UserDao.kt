@@ -1,5 +1,7 @@
 package com.example.android.nadris.database
 
+import android.provider.ContactsContract
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -14,7 +16,7 @@ interface UserDao {
     @Update
     suspend fun update(user: UserData)
 
-    @Query("SELECT * FROM UserData WHERE email = :user_email")
-    suspend fun get(user_email:String)
+    @Query("SELECT * FROM UserData WHERE id = 1")
+    suspend fun get():LiveData<UserData>
 
 }

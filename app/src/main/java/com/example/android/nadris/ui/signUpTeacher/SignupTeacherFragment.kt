@@ -1,14 +1,14 @@
 package com.example.android.nadris.ui.signUpTeacher
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.SignupTeacherFragmentBinding
@@ -46,41 +46,6 @@ class signupTeacherFragment : Fragment() {
 
         registerObservers()
 
-//        bindigin.firstNameTextFiled.setOnFocusChangeListener{_,focused ->
-//            if(!focused){
-//                bindigin.edtFirstNameTeacher.helperText= viewModel.validFirstName()
-//            }
-//
-//        }
-//        bindigin.lastNameTextFiled.setOnFocusChangeListener{_,focused ->
-//            if(!focused){
-//                bindigin.edtLastNameTeacher.helperText= viewModel.validLastName()
-//            }
-//        }
-//
-//
-//        bindigin.emailTextFiled.setOnFocusChangeListener{_,focused ->
-//            if(!focused){
-//                bindigin.edtEmailTeacherSignup.helperText= viewModel.validEmail()
-//            }
-//        }
-//        bindigin.passwordEditText1.setOnFocusChangeListener{_ ,focused ->
-//            if(!focused){
-//                bindigin.edtPassword1TeacherSignup.helperText= viewModel.validPassword1()
-//            }
-//        }
-//
-//        bindigin.passwordEditText2.setOnFocusChangeListener{_ ,focused ->
-//            if(!focused){
-//                bindigin.edtPassword2TeacherSignup.helperText= viewModel.validPassword2()
-//            }
-//        }
-//
-//        bindigin.phoneTextField.setOnFocusChangeListener{_ ,focused ->
-//            if(!focused){
-//                bindigin.edtPhoneTeacherSingup.helperText= viewModel.validPhone()
-//            }
-//        }
         return binding.root
     }
     fun setAdaptersForSpinners(){
@@ -176,8 +141,6 @@ class signupTeacherFragment : Fragment() {
             else
                 binding.spUnvistyTeacherSignup.error = null
         }
-
-
         viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
             if (it) {
                 //todo: navigate to home screen
