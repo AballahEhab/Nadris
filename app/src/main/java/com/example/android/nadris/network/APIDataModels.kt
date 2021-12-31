@@ -22,21 +22,33 @@ data class LoginAccountModel(
 )
 
 data class AuthModel(
-    val Message: String?,
+    val message: String?,
     val isAuthenticated: Boolean,
-    val Email: String,
-    val FirstName:String,
-    val LastName:String,
-    val PhoneNumber: String,
-    val Type: String,
-    val Gender: Byte,
-    val Exp: Long,
-    val Grade: Int,
-    val University: String?,
-    val College: String?,
-    val Token: String,
-    val ExpiresOn: DateTimeFormatter,
+    val firstName:String,
+    val lastName:String,
+    val email: String,
+    val phoneNumber: String,
+    val type: String,
+    val gender: Byte,
+    val exp: Long,
+    val grade: Int,
+    val university: String?,
+    val college: String?,
+    val roles:List<String>,
+    val token: String,
+    val expiresOn: String,
 )
 
 //fun AuthModel.asDomainModel():UserData{}
-//fun AuthModel.asNetworkModel(){}
+fun AuthModel.asNetworkModel() :UserData = UserData(
+    Email = this.email,
+      firstName = this.email,
+      lastName = this.lastName,
+      PhoneNumber = this.phoneNumber,
+      Type = this.type,
+      Gender = this.gender,
+      Exp = this.exp,
+      Grade = this.grade,
+      University = this.university,
+      College = this.college,
+      Token = this.token)

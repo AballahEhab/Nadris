@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter
 
 
 @Entity
-class UserData(
+data class UserData(
     @PrimaryKey
     val Email: String,
     val firstName: String,

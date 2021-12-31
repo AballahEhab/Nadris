@@ -8,10 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class NetworkAPIServiceModule {
-@Provides
-fun provideNetworkAPIService():NadrisAPIService
-=  Retrofit.Builder()
-        .baseUrl("https://nadris-api.conveyor.cloud/")
+    @Provides
+    fun provideNetworkAPIService(): NadrisAPIService = Retrofit.Builder()
+        .baseUrl("https://nadris-api-ic8.conveyor.cloud/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(NadrisAPIService::class.java)

@@ -1,16 +1,15 @@
 package com.example.android.nadris.database
 
-import android.provider.ContactsContract
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Update
 
 @Dao
 interface UserDao {
 
-    @Insert
+    @Insert(onConflict = REPLACE)
     suspend fun insert(user: UserData)
 
     @Update
