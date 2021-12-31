@@ -5,7 +5,10 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.network.LoginAccountModel
 import com.example.android.nadris.repository.Repository
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel() {
@@ -45,12 +48,16 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
         validatePassword()
         if((!_emailHaveError.value!!)&&(!_passwordHaveError.value!!)){
             //todo:send the data to the api
-//         viewModelScope.launch{
-//
-////             val responce = APIInstance.API.createAccount(CreateAccountData(firstName = "first name", userName = "myemail@email.com", lastName = "last name", email = "email@email.com", password = "AaBbSsRr#!@123", phoneNumber = "1010101010", gender = "other", type = "student", grade = 15, university = "bakinam", College = "habdasa"))
-//             val responce = APIInstance.API.login(LoginAccountModel(email = email.trim(),password=password.trim()))
-//             Log.v("responce","the responce is: "+responce.body()!!.token)
-//         }
+         viewModelScope.launch{
+
+//             val responce = APIInstance.API.createAccount(CreateAccountData(firstName = "first name", userName = "myemail@email.com", lastName = "last name", email = "email@email.com", password = "AaBbSsRr#!@123", phoneNumber = "1010101010", gender = "other", type = "student", grade = 15, university = "bakinam", College = "habdasa"))
+             val responce = repository.Login(LoginAccountModel(email,password))
+             if (responce.isSuccessful){
+                 Log.v("responce","the responce is: "+responce.body()!!.Email)
+             }else{
+//                 Log.v("responce","the responce is: "+responce.code()!!+" " +responce.error()!!)
+             }
+         }
 
             Log.v("login","successful login")
 

@@ -17,6 +17,6 @@ interface UserDao {
     suspend fun update(user: UserData)
 
     @Query("SELECT * FROM UserData WHERE id = 1")
-    suspend fun get():LiveData<UserData>
+    suspend fun get(): UserData
 
 }

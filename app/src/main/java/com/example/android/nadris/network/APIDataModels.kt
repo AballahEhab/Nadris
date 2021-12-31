@@ -1,5 +1,6 @@
 package com.example.android.nadris.network
 
+import com.example.android.nadris.database.UserData
 import com.google.gson.annotations.SerializedName
 import java.time.format.DateTimeFormatter
 
@@ -36,3 +37,6 @@ data class AuthModel(
     val Token: String,
     val ExpiresOn: DateTimeFormatter,
 )
+
+//fun AuthModel.asDomainModel():UserData{}
+//fun AuthModel.asNetworkModel(){}

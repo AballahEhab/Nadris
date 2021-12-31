@@ -11,7 +11,7 @@ class NetworkAPIServiceModule {
 @Provides
 fun provideNetworkAPIService():NadrisAPIService
 =  Retrofit.Builder()
-        .baseUrl("https://nadrisapi.conveyor.cloud/")
+        .baseUrl("https://nadris-api.conveyor.cloud/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(NadrisAPIService::class.java)

@@ -1,13 +1,8 @@
-package com.example.android.nadris.database
+package com.example.android.nadris.domain
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import java.time.format.DateTimeFormatter
 
-
-@Entity
-class UserData(
-    @PrimaryKey
+data class UserData(
     val Email: String,
     val firstName: String,
     val lastName: String,
@@ -19,5 +14,6 @@ class UserData(
     val University: String?,
     val College: String?,
     val Token: String,
-    val id:Int=1,
+    val ExpiresOn: DateTimeFormatter,
 )
+

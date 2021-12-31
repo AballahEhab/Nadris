@@ -39,9 +39,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
     packagingOptions{
         pickFirst "androidsupportmultidexversion.txt"
+        exclude 'META-INF/atomicfu.kotlin_module'
     }
 }
 
@@ -61,12 +61,10 @@ dependencies {
     implementation "io.github.nefilim.kjwt:kjwt-core:0.4.0"
 
 
-
-// optional - Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$room_version")
-
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
 
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
