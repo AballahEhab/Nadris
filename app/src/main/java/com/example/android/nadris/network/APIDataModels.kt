@@ -40,8 +40,8 @@ data class AuthModel(
 )
 
 //fun AuthModel.asDomainModel():UserData{}
-fun AuthModel.asNetworkModel() :UserData = UserData(
-    Email = this.email,
+fun AuthModel.asDataBaseModel() :UserData = UserData(
+      Email = this.email,
       firstName = this.email,
       lastName = this.lastName,
       PhoneNumber = this.phoneNumber,
@@ -51,4 +51,5 @@ fun AuthModel.asNetworkModel() :UserData = UserData(
       Grade = this.grade,
       University = this.university,
       College = this.college,
-      Token = this.token)
+      Token = this.token
+    )

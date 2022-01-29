@@ -1,7 +1,6 @@
 package com.example.android.nadris.ui.signUpTeacher
 
 import android.util.Patterns
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.PasswordError

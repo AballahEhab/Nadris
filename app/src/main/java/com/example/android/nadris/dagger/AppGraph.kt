@@ -17,7 +17,7 @@ import com.example.android.nadris.ui.signUpTeacher.SignupTeacherViewModel
 import com.example.android.nadris.ui.signUpTeacher.signupTeacherFragment
 import dagger.Component
 
-@Component(modules = [DataBaseModule::class,NetworkAPIServiceModule::class])
+@Component(modules = [DataBaseModule::class,NetworkAPIServiceModule::class,/*LoginViewModelModule::class*/])
 interface AppGraph {
 
     fun getDataBase():UserDataBase
@@ -26,8 +26,7 @@ interface AppGraph {
     fun getNetWorkAPI():NadrisAPIService
     fun getRemoteDataSource():RemoteDataSource
     
-    fun getRepository():Repository
-
+    fun getRepository(): Repository
 
     fun getLoginViewModel(): LoginViewModel
     fun injectFieldsOfLoginFragment(loginFragment: LoginFragment)

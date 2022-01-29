@@ -1,4 +1,4 @@
-package com.example.android.nadris.network
+package com.example.android.nadris.repository
 
 sealed class ResultData<out T > {
 

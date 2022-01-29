@@ -11,10 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.LoginFragmentBinding
+import com.example.android.nadris.ui.signUp.SignupFragment
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
-
+    companion object {
+        fun newInstance() = LoginFragment()
+    }
     lateinit var  binding: LoginFragmentBinding
 
     @Inject lateinit var viewModel: LoginViewModel
@@ -26,6 +29,7 @@ class LoginFragment : Fragment() {
 
         inflater.inflate(R.layout.login_fragment, container, false)
 
+        ViewModelProvider(this).get(LoginViewModel::class.java)
         binding = LoginFragmentBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
