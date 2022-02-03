@@ -8,4 +8,5 @@ import androidx.room.RoomDatabase
 abstract class UserDataBase : RoomDatabase() {
 
     abstract fun UserDao(): UserDao
+
 }

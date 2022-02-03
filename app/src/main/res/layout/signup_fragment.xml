@@ -22,7 +22,8 @@
                 android:layout_marginTop="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" android:contentDescription="TODO"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO"/>
         
         <TextView
                 android:id="@+id/textView_register_as"
@@ -126,7 +127,7 @@
                     android:id="@+id/textView_HaveAccount_signin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/textView_HaveAccount_signin"
+                    android:text="@string/textView_HaveAccount_SignIn"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
         

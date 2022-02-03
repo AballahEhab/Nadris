@@ -21,7 +21,7 @@ class signupTeacherFragment : Fragment() {
     private lateinit var binding : SignupTeacherFragmentBinding
     private lateinit var gender : Array<String>
     private lateinit var collage: Array<String>
-    private lateinit var universty: Array<String>
+    private lateinit var university: Array<String>
     private lateinit var subjects: Array<String>
     private lateinit var adapter1: ArrayAdapter<String>
     private lateinit var adapter2 :ArrayAdapter<String>
@@ -34,14 +34,18 @@ class signupTeacherFragment : Fragment() {
     ): View? {
 
         inflater.inflate(R.layout.signup_teacher_fragment, container, false)
+
         binding = SignupTeacherFragmentBinding.inflate(inflater)
 
         (requireContext().applicationContext as NadrisApplication).appGraph.injectFieldsOfSignupTeacherFragment(this)
+
         initiate()
+
         setAdaptersForSpinners()
 
-
         binding.teacherViewModel = viewModel
+
+        binding.lifecycleOwner = this
 
         registerObservers()
 
@@ -58,33 +62,33 @@ class signupTeacherFragment : Fragment() {
 //        viewModel = ViewModelProvider(this).get(SignupTeacherViewModel::class.java)
         gender = resources.getStringArray(R.array.GenderList)
          collage = resources.getStringArray(R.array.collage)
-         universty = resources.getStringArray(R.array.universty)
+         university = resources.getStringArray(R.array.university)
          subjects = resources.getStringArray(R.array.subject)
          adapter1= ArrayAdapter(requireContext(), R.layout.list_item, gender)
          adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, collage)
-         adapter3 = ArrayAdapter(requireContext(), R.layout.list_item, universty)
+         adapter3 = ArrayAdapter(requireContext(), R.layout.list_item, university)
          adapter4 = ArrayAdapter(requireContext(), R.layout.list_item, subjects)
     }
 
     fun registerObservers(){
         this.viewModel.firstnameHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.firstNameTextFiled.error = "مطلوب"
+                binding.edtFirstNameTeacher.error = "مطلوب"
             else
-                binding.firstNameTextFiled.error = null
+                binding.edtFirstNameTeacher.error = null
 
         }
         this.viewModel.lastnameHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.lastNameTextFiled.error = "مطلوب"
+                binding.edtLastNameTeacher.error = "مطلوب"
             else
-                binding.lastNameTextFiled.error = null
+                binding.edtLastNameTeacher.error = null
         }
         this.viewModel.emailHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.emailTextFiled.error = "Invalid Email Address"
+                binding.edtEmailTeacherSignup.error = "Invalid Email Address"
             else
-                binding.emailTextFiled.error = null
+                binding.edtEmailTeacherSignup.error = null
         }
         this.viewModel.password1HaveError.observe(viewLifecycleOwner) {
             var errorMessage :String? = null
@@ -101,19 +105,19 @@ class signupTeacherFragment : Fragment() {
                     null -> errorMessage = null // impossible case
                 }
 
-            binding.passwordEditText1.error = errorMessage
+            binding.edtPassword1TeacherSignup.error = errorMessage
         }
         viewModel.passwordNotMatch.observe(viewLifecycleOwner) {
             if (it)
-                binding.passwordEditText2.error = "Password does not match"
+                binding.edtPassword2TeacherSignup.error = "Password does not match"
             else
-                binding.passwordEditText2.error = null
+                binding.edtPassword2TeacherSignup.error = null
         }
         viewModel.phoneHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.phoneTextField.error = "not valid mobile number"
+                binding.edtPhoneTeacherSingup.error = "not valid mobile number"
             else
-                binding.phoneTextField.error = null
+                binding.edtPhoneTeacherSingup.error = null
         }
         viewModel.ganderHaveError.observe(viewLifecycleOwner) {
             if (it)
@@ -134,9 +138,9 @@ class signupTeacherFragment : Fragment() {
             else
                 binding.collageTeacherSingup.error = null
         }
-        viewModel.universtyHaveError.observe(viewLifecycleOwner) {
+        viewModel.universityHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.spUnvistyTeacherSignup.error = "please set the univercity"
+                binding.spUnvistyTeacherSignup.error = "please set the university"
             else
                 binding.spUnvistyTeacherSignup.error = null
         }

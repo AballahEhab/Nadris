@@ -104,7 +104,7 @@
     </style>
 
 
-    <style name="Wdiget.MaterialComponent.App.Button" parent="Widget.MaterialComponents.Button">
+    <style name="Widget.MaterialComponent.App.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">7dp</item>

@@ -1,6 +1,5 @@
 package com.example.android.nadris.ui.signUpStudent
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,23 +34,32 @@ class signupStudentFragment : Fragment() {
 
         binding.studentViewModel = viewModel
 
-        setAdapterForSpiners()
+        binding.lifecycleOwner = this
+
+        setAdapterForSpinners()
 
         registerObservers()
+
+        viewModel.grade.observe(this.viewLifecycleOwner){
+            viewModel.gradeId = grade.indexOf(it)
+        }
+        viewModel.gender.observe(this.viewLifecycleOwner){
+            viewModel.genderId = gender.indexOf(it)
+        }
 
         return binding.root
 
 
     }
 
-    private fun setAdapterForSpiners()
+    private fun setAdapterForSpinners()
     {
         (binding.spGenderStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter1)!!
         (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter2)!!
 
     }
     private fun initiate() {
-        gender = resources.getStringArray(R.array.GenderList)
+        gender = this.resources.getStringArray(R.array.GenderList)
         grade = resources.getStringArray(R.array.GradeList)
         adapter1 = ArrayAdapter(requireContext(), R.layout.list_item, gender)
         adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, grade)
@@ -61,22 +69,22 @@ class signupStudentFragment : Fragment() {
     fun registerObservers(){
         this.viewModel.firstnameHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.firstNameTextFiled.error = "مطلوب"
+                binding.edtFirstNameStudent.error = "مطلوب"
             else
-                binding.firstNameTextFiled.error = null
+                binding.edtFirstNameStudent.error = null
 
         }
         this.viewModel.lastnameHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.lastNameTextFiled.error = "مطلوب"
+                binding.edtLastNameStudent.error = "مطلوب"
             else
-                binding.lastNameTextFiled.error = null
+                binding.edtLastNameStudent.error = null
         }
         this.viewModel.emailHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.emailTextFiled.error = "Invalid Email Address"
+                binding.edtEmailStudentSignup.error = "Invalid Email Address"
             else
-                binding.emailTextFiled.error = null
+                binding.edtEmailStudentSignup.error = null
         }
         this.viewModel.password1HaveError.observe(viewLifecycleOwner) {
             var errorMessage :String? = null
@@ -93,19 +101,19 @@ class signupStudentFragment : Fragment() {
                     null -> errorMessage = null // impossible case
                 }
 
-            binding.passwordEditText1.error = errorMessage
+            binding.edtPassword1StudentSignup.error = errorMessage
         }
         viewModel.passwordNotMatch.observe(viewLifecycleOwner) {
             if (it)
-                binding.passwordEditText2.error = "Password does not match"
+                binding.edtPassword2StudentSignup.error = "Password does not match"
             else
-                binding.passwordEditText2.error = null
+                binding.edtPassword2StudentSignup.error = null
         }
         viewModel.phoneHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.phoneTextField.error = "not valid mobile number"
+                binding.edtPhoneStudentSingup.error = "not valid mobile number"
             else
-                binding.phoneTextField.error = null
+                binding.edtPhoneStudentSingup.error = null
         }
         viewModel.ganderHaveError.observe(viewLifecycleOwner) {
             if (it)

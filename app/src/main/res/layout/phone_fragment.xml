@@ -151,7 +151,7 @@
             android:clickable="true"
             android:focusable="true"
             android:paddingTop="10dp"
-            android:text="@string/didnt_receive_the_code_yet_txt"
+            android:text="@string/did_not_receive_the_code_yet_txt"
             app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintEnd_toEndOf="@id/outlinedTextField4"
             app:layout_constraintHorizontal_bias="1.0"
@@ -282,7 +282,7 @@
         <Button
             android:id="@+id/btn_delete"
             style="@style/keyboard_OutlinedButton_Style"
-            android:text="@string/delet_symbol"
+            android:text="@string/delete_symbol"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_0"
             app:layout_constraintStart_toStartOf="parent"
@@ -306,7 +306,7 @@
 
         <Button
             android:id="@+id/btn_confirm"
-            style="@style/Wdiget.MaterialComponent.App.Button"
+            style="@style/Widget.MaterialComponent.App.Button"
             android:text="@string/confirm_txt"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

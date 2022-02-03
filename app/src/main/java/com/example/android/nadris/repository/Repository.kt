@@ -1,72 +1,86 @@
 package com.example.android.nadris.repository
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.map
-import com.example.android.nadris.database.UserData
+import com.example.android.nadris.network.CreateStudentAccountDataModelModel
+import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
 import com.example.android.nadris.network.LoginAccountModel
 import com.example.android.nadris.network.asDataBaseModel
-import kotlinx.coroutines.Dispatchers
+import com.example.android.nadris.util.postToApiHandler
 import javax.inject.Inject
 
 
 class Repository @Inject constructor(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource) {
 
-     fun login(loginAccountModel: LoginAccountModel): ResultData<UserData>? {
-        val response = responseLiveData(
-                {localDataSource.getUserData()},
-                {remoteDataSource.get(loginAccountModel)},
-                { localDataSource.addUserData(it.asDataBaseModel())}
+       fun login(loginAccountModel: LoginAccountModel)= postToApiHandler(
+            request= { remoteDataSource.login(loginAccountModel) }
+            ,saveFetchResult= {user-> localDataSource.addUserData(user)}
+        , convertToSaveModel = {networkModel ->  asDataBaseModel( networkModel  )}
+        )
 
-            )
+    fun registerNewStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) = postToApiHandler(
+        request= { remoteDataSource.createStudentAccount(accountDataModel) }
+        ,saveFetchResult= {user-> localDataSource.addUserData(user)}
+        , convertToSaveModel = {networkModel ->  asDataBaseModel(networkModel)}
+    )
 
-        return response.value
-    }
+    fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =  postToApiHandler(
+        request= { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) }
+        ,saveFetchResult= {user-> localDataSource.addUserData(user)}
+        , convertToSaveModel = {networkModel ->  asDataBaseModel(networkModel)}
+    )
 }
 
-fun <T, L> responseLiveData
-
-
-
-        (
-                roomQueryToRetrieveData: suspend () -> LiveData<T>,
-                networkRequest: suspend () -> ResultData<L>,
-                roomQueryToSaveData: suspend (L) -> Unit
-)
 
 
 
 
-: LiveData<ResultData<T>> =
 
 
 
-        liveData (Dispatchers.IO) {
 
 
 
-            emit(ResultData.loading(null))
-
-            val source = roomQueryToRetrieveData().map { ResultData.success(it) }
-
-            emitSource(source)
-            val responseStatus = networkRequest()
-            Log.v("responseStatus",responseStatus.toString())
-            when ( responseStatus) {
-                is ResultData.Success -> {
-                    roomQueryToSaveData(responseStatus.value)
-                }
-
-                is ResultData.Failure -> {
-                    emit(ResultData.failure(responseStatus.message))
-                    emitSource(source)
-                }
-
-                else -> {
-                    emit(ResultData.failure("Something went wrong, please try again later"))
-                    emitSource(source)
-                }
-            }
-
-        }
+//fun <T, L> responseLiveData
+//
+//
+//
+//        (
+//                roomQueryToRetrieveData: suspend () -> LiveData<T>,
+//                networkRequest: suspend () -> ResultData<L>,
+//                roomQueryToSaveData: suspend (L) -> Unit
+//)
+//
+//
+//
+//
+//: LiveData<ResultData<T>> =
+//
+//
+//
+//        liveData (Dispatchers.IO) {
+//
+//
+//
+//            emit(ResultData.loading(null))
+//
+//            val source = roomQueryToRetrieveData().map { ResultData.success(it) }
+//
+//            emitSource(source)
+//            val responseStatus = networkRequest()
+//            Log.v("responseStatus",responseStatus.toString())
+//            when ( responseStatus) {
+//                is ResultData.Success -> {
+//                    roomQueryToSaveData(responseStatus.value)
+//                }
+//
+//                is ResultData.Failure -> {
+//                    emit(ResultData.failure(responseStatus.message))
+//                    emitSource(source)
+//                }
+//
+//                else -> {
+//                    emit(ResultData.failure("Something went wrong, please try again later"))
+//                    emitSource(source)
+//                }
+//            }
+//
+//        }

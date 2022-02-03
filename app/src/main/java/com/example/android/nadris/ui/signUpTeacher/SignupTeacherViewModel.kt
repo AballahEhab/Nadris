@@ -1,10 +1,16 @@
 package com.example.android.nadris.ui.signUpTeacher
 
 import android.util.Patterns
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.PasswordError
+import com.example.android.nadris.network.CreateStudentAccountDataModelModel
+import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
 import com.example.android.nadris.repository.Repository
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SignupTeacherViewModel @Inject constructor(val repository: Repository) : ViewModel() {
@@ -19,7 +25,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
 //    var gander: MutableLiveData<String> = MutableLiveData<String>()
 //    var subjects : MutableLiveData<String> = MutableLiveData<String>()
 //    var collage : MutableLiveData<String> = MutableLiveData<String>()
-//    var universty : MutableLiveData<String> = MutableLiveData<String>()
+//    var university : MutableLiveData<String> = MutableLiveData<String>()
 
     var firstname:String = ""
     var lastname:String = ""
@@ -27,38 +33,64 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     var password1:String = ""
     var password2:String = ""
     var phone:String = ""
-    var universty:String = "" // todo:should be modified to get the value of the choosed item not the shown string
-    var collage:String = "" // todo:should be modified to get the value of the choosed item not the shown string
-    var gender:String = "" // todo:should be modified to get the value of the choosed item not the shown string
-    var subjects:String = ""  // todo:should be modified to get the value of the choosed item not the shown string
+
+
+    private var _university :MutableLiveData<String> =  MutableLiveData<String>("")
+    val university get() = _university
+
+    private var _collage :MutableLiveData<String> =  MutableLiveData<String>("")
+    val collage get() = _collage
+
+    private var _subjects :MutableLiveData<String> =  MutableLiveData<String>("")
+    val subjects get() = _subjects
+
+    private var _gender :MutableLiveData<String> =  MutableLiveData<String>("")
+    val gender get() = _gender
+    var genderId:Int = 1
 
     private var _firstnameHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val firstnameHaveError get() = _firstnameHaveError
+
     private var _lastnameHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val lastnameHaveError get() = _lastnameHaveError
+
     private var _emailHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val emailHaveError get() = _emailHaveError
+
     private var _password1HaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val password1HaveError get() = _password1HaveError
-    private var _passwordNotMatch :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+
     var passwordErrorType : PasswordError? = null
+
+    private var _passwordNotMatch :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val passwordNotMatch get() = _passwordNotMatch
+
     private var _phoneHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val phoneHaveError get() = _phoneHaveError
+
     private var _ganderHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val ganderHaveError get() = _ganderHaveError
+
     private var _subjectsHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val subjectsHaveError get() = _subjectsHaveError
 
     private var _collageHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val collageHaveError get() = _collageHaveError
-    private var _universtyHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
-    val universtyHaveError get() = _universtyHaveError
 
-
+    private var _universityHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+    val universityHaveError get() = _universityHaveError
 
     private var _navigateToHomeScreen:MutableLiveData<Boolean> = MutableLiveData(false)
     val  navigateToHomeScreen get() = _navigateToHomeScreen
+
+    private var _showIndicator :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+    val showIndicator get() = _showIndicator
+
+    private var _errorMessage :MutableLiveData<String> =  MutableLiveData<String>("")
+    val errorMessage get() = _errorMessage
+
+    private var _errorMessageVisibility :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+    val errorMessageVisibility get() = _errorMessageVisibility
 
 
     fun validFirstName(){
@@ -100,18 +132,18 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
         _phoneHaveError.value = !phone.matches(Patterns.PHONE.toRegex())
     }
     fun validateGender(){
-        _ganderHaveError.value = gender.isEmpty()
+        _ganderHaveError.value = gender.value?.isEmpty()
     }
-    fun validateSubjec(){
+    fun validateSubject(){
 
-        _subjectsHaveError.value = subjects.isEmpty()
+        _subjectsHaveError.value = subjects.value?.isEmpty()
 
     }
-    fun validateCollegeFeild(){
-        _collageHaveError.value = collage.isEmpty()
+    fun validateCollegeField(){
+        _collageHaveError.value = collage.value?.isEmpty()
     }
-    fun validateUniversityFeildInput(){
-        _universtyHaveError.value = universty.isEmpty()
+    fun validateUniversityFieldInput(){
+        _universityHaveError.value = university.value?.isEmpty()
     }
     fun onSignUpClicked(){
         validFirstName()
@@ -121,9 +153,9 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
         matchPassword1ToPassword2()
         validPhone()
         validateGender()
-        validateSubjec()
-        validateUniversityFeildInput()
-        validateCollegeFeild()
+        validateSubject()
+        validateUniversityFieldInput()
+        validateCollegeField()
 
         val isDataNotValid = _firstnameHaveError.value!!
                 ||_lastnameHaveError.value!!
@@ -134,15 +166,61 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
                 ||_ganderHaveError.value!!
                 || _subjectsHaveError.value!!
                 ||_collageHaveError.value!!
-                ||_universtyHaveError.value!!
+                ||_universityHaveError.value!!
 
         if (!isDataNotValid){
-            //todo: send data to API
-            _navigateToHomeScreen.value = true
+            disableErrorMessage()
+            enableProgressBar()
+            viewModelScope.launch {
+                val response = repository.registerNewTeacherAccount(
+                    CreateTeacherAccountDataModelModel(
+                    firstname,lastname,email,password1,phone, genderId,university.value,collage.value)
+                )
+                response.collect{
+
+                    it.handleRepoResponse(
+                        onLoading= {},
+                        onError= {
+                            disableProgressBar()
+                            enableErrorMessage()
+                            _errorMessage.value = it.error!!
+                        },
+                        onSuccess= {
+                            disableProgressBar()
+                            navigateToHomeScreen()
+                        },
+                    )
+
+                }
+            }
         }
 
+    }
+
+    private fun enableErrorMessage(){
+        _errorMessageVisibility.value = true
 
     }
+
+    private fun disableErrorMessage(){
+        _errorMessageVisibility.value = false
+    }
+
+    private fun enableProgressBar(){
+        _showIndicator.value = true
+    }
+
+    private fun disableProgressBar(){
+        _showIndicator.value = false
+    }
+    private fun navigateToHomeScreen(){
+        _navigateToHomeScreen.value = true
+    }
+    fun navigationAfterSuccessfulLoginDone(){
+        _navigateToHomeScreen.value = false
+    }
+
+
 
 
 }

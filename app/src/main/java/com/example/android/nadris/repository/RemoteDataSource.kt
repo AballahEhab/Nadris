@@ -1,38 +1,22 @@
 package com.example.android.nadris.repository
 
+import com.example.android.nadris.network.CreateStudentAccountDataModelModel
+import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
 import com.example.android.nadris.network.LoginAccountModel
 import com.example.android.nadris.network.NadrisAPIService
-import retrofit2.Response
 import javax.inject.Inject
 
 
-class RemoteDataSource @Inject constructor(
-        private val apiService: NadrisAPIService) : BaseDataSource() {
+class RemoteDataSource @Inject
+constructor(private val apiService: NadrisAPIService)  {
 
-    suspend fun get(loginModel: LoginAccountModel) =
-            getData { apiService.login(loginModel) }
+    suspend fun login(loginModel: LoginAccountModel) =
+             apiService.login(loginModel)
 
-}
+    suspend fun createStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) =
+        apiService.createStudentAccount(accountDataModel)
 
-
-
-abstract class BaseDataSource {
-
-    protected suspend fun <T> getData(call: suspend () -> Response<T>): ResultData<T> {
-        try {
-            val response = call()
-            if (response.isSuccessful) {
-                val body = response.body()
-                if (body != null) return ResultData.success(body)
-            }
-            return formateError(" ${response.code()} ${response.message()}")
-        } catch (exception: Exception) {
-            return formateError(exception.message!!)
-        }
-    }
-
-    private fun <T> formateError(errorMessage: String): ResultData<T> {
-        return ResultData.failure("Network call has failed for a following reason: $errorMessage")
-    }
+    suspend fun createTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
+        apiService.createTeacherAccount(createTeacherAccountDataModelModel)
 
 }

@@ -1,6 +1,5 @@
 package com.example.android.nadris.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
@@ -12,12 +11,12 @@ import kotlinx.coroutines.flow.Flow
 interface UserDao {
 
     @Insert(onConflict = REPLACE)
-    suspend fun insert(user: UserData)
+    suspend fun insertUser(user: UserData)
 
     @Update
-    suspend fun update(user: UserData)
+     suspend fun updateUser(user: UserData)
 
     @Query("SELECT * FROM UserData WHERE id = 1")
-     fun get(): LiveData<UserData>
+     fun getUser(): Flow<UserData>
 
 }

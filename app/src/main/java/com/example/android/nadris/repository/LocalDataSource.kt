@@ -8,8 +8,11 @@ class LocalDataSource @Inject constructor(private val userDataBase: UserDataBase
 
     private val dao = userDataBase.UserDao()
 
-    suspend fun addUserData(userData:UserData){
-        dao.insert(userData)
-    }
-     suspend fun getUserData() = dao.get()
+     suspend fun addUserData(userData:UserData)=
+        dao.insertUser(userData)
+
+    fun getUserData() = dao.getUser()
+
+    suspend fun updateUserData(updatedUserData: UserData) =
+        dao.updateUser(updatedUserData)
 }

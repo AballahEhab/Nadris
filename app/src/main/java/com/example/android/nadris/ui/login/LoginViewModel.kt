@@ -1,26 +1,40 @@
 package com.example.android.nadris.ui.login
 
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.nadris.database.UserData
 import com.example.android.nadris.network.LoginAccountModel
 import com.example.android.nadris.repository.Repository
-import com.example.android.nadris.repository.ResultData
+import com.example.android.nadris.util.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class LoginViewModel @Inject constructor() : ViewModel() {
-    var email : String = String()
-
-    var password:String = String()
+class LoginViewModel @Inject constructor(val repository:Repository) : ViewModel() {
 
 
+    var email:MutableLiveData<String> = MutableLiveData("")
+//    private var _emailHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+//    val emailHaveError get() = _emailHaveError
+    var emailErrorMessage :MutableLiveData<String?> =  MutableLiveData<String?>()
 
+
+    var password:MutableLiveData<String> = MutableLiveData("")
+//    private var _passwordHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+//    val passwordHaveError get() = _passwordHaveError
+    var passwordErrorMessage :MutableLiveData<String?> =  MutableLiveData<String?>()
+
+
+
+    private var _showIndicator :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+    val showIndicator get() = _showIndicator
+    private var _errorMessage :MutableLiveData<String> =  MutableLiveData<String>("")
+    val errorMessage get() = _errorMessage
+    private var _errorMessageVisibility :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
+    val errorMessageVisibility get() = _errorMessageVisibility
 
 
     private var _navigateToHomeScreen:MutableLiveData<Boolean> = MutableLiveData(false)
@@ -29,84 +43,93 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     private var _navigateToCreateAccount:MutableLiveData<Boolean> = MutableLiveData( false)
     val navigateToCreateAccount :LiveData<Boolean> get() = _navigateToCreateAccount
 
-//    private var _showWrongAccountCredentialsDialog :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
-//    val showWrongAccountCredentialsDialog get() = _showWrongAccountCredentialsDialog
-
-    private var _emailHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
-    val emailHaveError get() = _emailHaveError
-
-    private var _passwordHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
-    val passwordHaveError get() = _passwordHaveError
 
 
 
 
-    fun validateEmail() {
-        _emailHaveError.value = !email.trim().matches(Patterns.EMAIL_ADDRESS.toRegex())
+
+
+    private fun validateEmail() {
+
+        email.value?.trim()
+
+        var errorFlag = matchEmailPattern(email.value!!)
+
+        checkEmpty(email.value!!)?.let {
+            errorFlag = it
+        }
+         emailErrorMessage.value = getErrorMessage(errorFlag)
+
+
     }
-    fun validatePassword(){
-        _passwordHaveError.value = password.isEmpty()
+    private fun validatePassword(){
+        var errorFlag = checkPasswordLength(password.value!!)
+
+        containsSpecialLetter(password.value!!)?.let {
+            errorFlag = it
+        }
+        containsLowerLetter(password.value!!)?.let {
+                    errorFlag = it
+                }
+        containsUpperLetter(password.value!!)?.let {
+                    errorFlag = it
+                }
+
+        checkEmpty(password.value!!)?.let {
+            errorFlag = it
+        }
+        passwordErrorMessage.value = getErrorMessage(errorFlag)
     }
 
     fun onLoginClicked(){
-//        _showWrongAccountCredentialsDialog.value = false
+        disableErrorMessage()
         validateEmail()
         validatePassword()
-        if((!_emailHaveError.value!!)&&(!_passwordHaveError.value!!)){
-            //todo:send the data to the api
-//                val model=LoginAccountModel(email,password)
-
-
-//                val response = repository.login(LoginAccountModel(email,password))
-//                Log.v("responce", (response ).toString())
-
-    var responce:String = ""
+        if((emailErrorMessage.value == null)&&(passwordErrorMessage.value == null)){
+            enableProgressBar()
             viewModelScope.launch {
-                responce = "sssssssssss"
-//                val responce = repository.Login(model)
-//                val userData = responce.asLiveData()
-//
-//                when (userData.value) {
-//                    is Resource.Error -> Log.v("response", "error")
-//                    is Resource.Loading -> Log.v("response", "loading")
-//                    is Resource.Success -> Log.v(
-//                        "response",
-//                        "loggedin" + " " + (userData.value as Resource.Success<UserData>).data
-//                    )
-//                    null -> Log.v("response", "error like that")
-//                }
-//                userData.value is Resource.Error
-            }
-//
-////             val responce = APIInstance.API.createAccount(CreateAccountData(firstName = "first name", userName = "myemail@email.com", lastName = "last name", email = "email@email.com", password = "AaBbSsRr#!@123", phoneNumber = "1010101010", gender = "other", type = "student", grade = 15, university = "bakinam", College = "habdasa"))
-//             try{
-//                 val responce = repository.Login(LoginAccountModel(email, password))
-//                 if (responce.isSuccessful) { //loggedin
-//                     "the responce is: " + responce.code() + " " + responce.body()!!
-//                     Log.v("responce", "the responce is: " + responce.body()!!)
-//                     repository.addUserData(responce.body()!!.asNetworkModel())
-//                     val data = repository.localDataSource.userDataBase.UserDao.get()
-//                     Log.v("responce", "the database data is: $data")
-//
-//                 } else {
-//                     Log.v(
-//                         "responce",
-//                         "the responce is: " + responce.code() + " " + responce.errorBody()!!.string()
-//                     )
-//                 }
-//             } catch (throable: Throwable){
-//                 Log.v(
-//                     "responce",
-//                     "the responce is: " + throable.message
-//                 )
-//             }
-//         }
-//
-//            Log.v("login","successful login")
+                val response = repository.login(LoginAccountModel(email.value!!, password.value!!))
+                response.collect {
+                    it.handleRepoResponse(
+                        onLoading= {},
+                        onError= {
+                            disableProgressBar()
+                            enableErrorMessage()
+                            _errorMessage.value = it.error!!
+                        },
+                        onSuccess= {
+                            disableProgressBar()
+                            navigateToHomeScreen()
+                        },
+                    )
 
+                }
+            }
         }
     }
 
+
+    private fun enableErrorMessage(){
+        _errorMessageVisibility.value = true
+
+    }
+
+    private fun disableErrorMessage(){
+        _errorMessageVisibility.value = false
+    }
+
+
+    private fun enableProgressBar(){
+        _showIndicator.value = true
+    }
+
+    private fun disableProgressBar(){
+        _showIndicator.value = false
+    }
+
+    private fun navigateToHomeScreen(){
+        _navigateToHomeScreen.value = true
+    }
     fun navigationAfterSuccessfulLoginDone(){
         _navigateToHomeScreen.value = false
     }
@@ -119,17 +142,11 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         _navigateToCreateAccount.value = false
     }
 
-    fun OnLoginByGoogleClicked(){
-        // todo: use the api to lgin by google
-        // if things done set navigate to home screen to true
-
+    fun onLoginByGoogleClick(){
         _navigateToHomeScreen.value = true
     }
 
-    fun OnLoginByFacebookClicked(){
-        // todo: use the api to lgin by facebook
-        // if things done set navigate to home screen to true
-
+    fun onLoginByFacebookClick(){
         _navigateToHomeScreen.value = true
     }
 
