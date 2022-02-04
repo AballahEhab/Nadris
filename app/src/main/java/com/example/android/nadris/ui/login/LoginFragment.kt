@@ -45,7 +45,9 @@ class LoginFragment : Fragment() {
 
         viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
             if (it) {
-                //todo: navigate to home screen after creating home screen activity
+                //todo:navigateToHomeScreen
+//                this.findNavController()
+//                    .navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
                 Toast.makeText(
                     context,
                     "navigated to home screen after successful login",
