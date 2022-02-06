@@ -30,7 +30,7 @@
     <string name="textView_HaveAccount_login">ليس لديك حساب بعد؟</string>
     <string name="btn_new_account_login">إنشاء حساب</string>
     <string name="textView_register_as_signup">التسجيل ك</string>
-    
+
     <string name="textView_student_signup">الطالب</string>
     <string name="textView_parent">ولي الأمر</string>
     <string name="textView_other">غير ذلك</string>
@@ -55,11 +55,18 @@
     <string name="delete_symbol">⌦</string>
     <string name="confirm_txt">تأكيد</string>
     <string name="wrong_credentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
-    
-    
+
+
     <string name="Required1">" "</string>
+    <string name="Required"> </string>
+    <string name="search">Search</string>
+    <string name="welcome">صباح الخير</string>
+    <string name="yourQus">ما هو سؤالك......</string>
+    <string name="addImage">+ إضافة صور او ملفات</string>
+    <string name="PublisQus">نشر السؤال</string>
+    <string-array name="universty">
     <string name="Required"/>
-    
+
     <string-array name="university">
         <item>جامعة القاهرة</item>
         <item>جامعة الإسكندرية</item>

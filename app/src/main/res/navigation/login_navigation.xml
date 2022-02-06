@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/login_navigation"
-            app:startDestination="@id/loginFragment">
+            app:startDestination="@id/postFragment">
     
     <fragment
         android:id="@+id/loginFragment"
@@ -41,7 +41,12 @@
         android:id="@+id/signupTeacherFragment"
         android:name="com.example.android.nadris.ui.signUpTeacher.signupTeacherFragment"
         android:label="signup_teacher_fragment"
-        tools:layout="@layout/signup_teacher_fragment"/>
+        tools:layout="@layout/signup_teacher_fragment">
+        <action android:id="@+id/action_signupTeacherFragment_to_signupFragment"
+                app:destination="@id/signupFragment"/>
+        <action android:id="@+id/action_signupTeacherFragment_to_PhoneFragment"
+                app:destination="@id/phoneFragment"/>
+    </fragment>
 
     <fragment
         android:id="@+id/signupStudentFragment"
@@ -60,4 +65,16 @@
         android:name="com.example.android.nadris.ui.phoneVerification.PhoneFragment"
         android:label="phone_fragment"
         tools:layout="@layout/phone_fragment"/>
+    <fragment android:id="@+id/postFragment"
+              android:name="com.example.android.nadris.post_pageFragment"
+              android:label="post_fragment"
+              tools:layout="@layout/post_page_fragment">
+        <action android:id="@+id/action_postFragment_to_addPostFragment"
+                app:destination="@id/addPostFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/addPostFragment"
+              android:name="com.example.android.nadris.addPostFragment"
+              android:label="addPost_fragment"
+              tools:layout="@layout/add_post_fragment"/>
 </navigation>
