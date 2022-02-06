@@ -28,15 +28,15 @@ class CreateStudentAccountDataModelModel(
 
 
 class CreateTeacherAccountDataModelModel(
-    val T_firstName: String,
-    val T_lastName: String,
-    val T_email: String,
-    val T_password: String,
-    val T_PhoneNumber: String,
-    val T_Gender: Int,
+    val firstName: String,
+    val lastName: String,
+    val email: String,
+    val password: String,
+    val phoneNumber: String,
+    val gender: Int,
     val University: String?,
     val College: String?,
-):CreateAccountDataModel(T_firstName,T_lastName,T_email,T_password,T_PhoneNumber,T_Gender)
+):CreateAccountDataModel(firstName,lastName,email,password,phoneNumber,gender)
 
 
 
@@ -64,6 +64,31 @@ data class AuthModel(
     val token: String,
     val expiresOn: String,
 )
+data class PostModel(
+    val subject: String,
+    val body: String,
+)
+
+data class VoteModel(
+    val email: String,
+    val value: Boolean,
+    val postId:Int
+)
+
+data class CommentModel(
+    val email: String,
+    val content: String,
+    val postId:Int
+)
+
+
+
+
+
+
+
+
+
 
 fun asDataBaseModel(model: AuthModel) :UserData = UserData(
       Email = model.email,

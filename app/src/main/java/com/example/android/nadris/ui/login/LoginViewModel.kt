@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.login
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -100,6 +101,7 @@ class LoginViewModel @Inject constructor(val repository:Repository) : ViewModel(
                         onSuccess= {
                             disableProgressBar()
                             navigateToHomeScreen()
+                            Log.v("responceTag", it.data?.token!!)
                         },
                     )
 

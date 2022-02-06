@@ -10,6 +10,7 @@ enum class PasswordError   {
 enum class InputError   {
     EMPTY_FIELD,
     NOT_AN_EMAIL_FORMAT,
+    SHORT_INPUT,
     SHORT_PASSWORD,
     NOT_CONTAIN_UPPERCASE_LETTER,
     NOT_CONTAIN_A_LOWER_CASE_LETTER,

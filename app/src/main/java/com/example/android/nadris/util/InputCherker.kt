@@ -3,6 +3,14 @@ package com.example.android.nadris.util
 import android.util.Patterns
 import com.example.android.nadris.InputError
 
+fun checkTextLength(value: String): InputError? {
+    return if(value.length >2)
+        InputError.EMPTY_FIELD
+    else
+        null
+
+}
+
 fun checkEmpty(value: String): InputError? {
     return if(value.isEmpty())
                     InputError.EMPTY_FIELD
