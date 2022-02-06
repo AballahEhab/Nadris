@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.ui.posts
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

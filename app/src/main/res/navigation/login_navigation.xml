@@ -66,7 +66,7 @@
         android:label="phone_fragment"
         tools:layout="@layout/phone_fragment"/>
     <fragment android:id="@+id/postFragment"
-              android:name="com.example.android.nadris.post_pageFragment"
+              android:name="com.example.android.nadris.ui.posts.post_pageFragment"
               android:label="post_fragment"
               tools:layout="@layout/post_page_fragment">
         <action android:id="@+id/action_postFragment_to_addPostFragment"
@@ -74,7 +74,7 @@
     </fragment>
 
     <fragment android:id="@+id/addPostFragment"
-              android:name="com.example.android.nadris.addPostFragment"
+              android:name="com.example.android.nadris.ui.posts.addPostFragment"
               android:label="addPost_fragment"
               tools:layout="@layout/add_post_fragment"/>
 </navigation>

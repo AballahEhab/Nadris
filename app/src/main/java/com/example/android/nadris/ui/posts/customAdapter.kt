@@ -1,12 +1,12 @@
-package com.example.android.nadris
+package com.example.android.nadris.ui.posts
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.R
 
 class customAdapter (var postList:ArrayList<dataRvPost>)
     :RecyclerView.Adapter<customAdapter.Viewholder>() {
@@ -16,7 +16,7 @@ class customAdapter (var postList:ArrayList<dataRvPost>)
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        val data:dataRvPost=postList[position]
+        val data: dataRvPost =postList[position]
 
         holder.imageStudent.setImageResource(data.imageStudent)
         holder.studentName.text=data.studentName
@@ -31,7 +31,7 @@ class customAdapter (var postList:ArrayList<dataRvPost>)
         return postList.size
     }
 
-    class Viewholder(itemViewt :View,var my_data:dataRvPost?=null):RecyclerView.ViewHolder(itemViewt){
+    class Viewholder(itemViewt :View,var my_data: dataRvPost?=null):RecyclerView.ViewHolder(itemViewt){
 //        init {
 //            Toast.makeText(itemView.context,my_data?.studentName, Toast.LENGTH_LONG).show()
 //

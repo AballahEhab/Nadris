@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.ui.posts
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.R
 import com.example.android.nadris.databinding.PostPageFragmentBinding
-import com.example.android.nadris.databinding.SignupStudentFragmentBinding
-import com.example.android.nadris.signUp.SignupFragmentDirections
 
 class post_pageFragment : Fragment() {
 

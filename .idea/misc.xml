@@ -15,7 +15,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_teacher.xml" value="0.2341485507246377" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_teatcher.xml" value="0.2341485507246377" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/add_post_fragment.xml" value="0.4" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/add_post_fragment.xml" value="0.38425925925925924" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/cardcell.xml" value="0.22056159420289856" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_dashboard.xml" value="0.13541666666666666" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_home.xml" value="0.2477355072463768" />
@@ -45,7 +45,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.21219065077910174" />
+        <option name="scale" value="0.2" />
       </ProjectState>
     </option>
   </component>

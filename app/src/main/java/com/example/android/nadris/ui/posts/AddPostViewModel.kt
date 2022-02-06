@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.ui.posts
 
 import android.content.Intent
 import android.widget.ImageView

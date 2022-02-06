@@ -7,12 +7,12 @@
 <data>
     <variable
             name="postViewModle"
-            type="com.example.android.nadris.PostPageViewModel"/>
+            type="com.example.android.nadris.ui.posts.PostPageViewModel"/>
 </data>
 <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".post_pageFragment">
+        tools:context=".ui.posts.post_pageFragment">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:id="@+id/textViewAccountName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
+                android:text="string/name"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:layout_margin="1dp"
@@ -96,7 +96,7 @@
         <SearchView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_margin="10sp"
                 android:background="@drawable/background1"
                 android:searchIcon="@drawable/ic_search"
                 android:queryHint="@string/search"
@@ -107,7 +107,7 @@
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="10sp"
             app:layout_constraintTop_toBottomOf="@+id/l1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

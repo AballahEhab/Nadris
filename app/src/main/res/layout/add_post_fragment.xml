@@ -3,12 +3,12 @@
                    xmlns:tools="http://schemas.android.com/tools"
                    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="AddPostViewModel" type="com.example.android.nadris.AddPostViewModel"/>
+        <variable name="AddPostViewModel" type="com.example.android.nadris.ui.posts.AddPostViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".addPostFragment">
+            tools:context=".ui.posts.addPostFragment">
         <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
                 app:boxCornerRadiusBottomStart="24dp"
                 app:boxCornerRadiusTopEnd="24dp"
                 app:boxCornerRadiusTopStart="24dp"
-                android:hint="@string/theSubject"
+                android:hint="string/theSubject"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:minHeight="48dp"
                 android:id="@+id/spAddSubject"
