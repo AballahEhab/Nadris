@@ -61,6 +61,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'io.github.nefilim.kjwt:kjwt-core:0.4.0'
 
+
 // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.3.0")
 
@@ -92,6 +93,12 @@ dependencies {
 
     //scalable unit size
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    //crop image library
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    //easy permission
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+
 
 
 

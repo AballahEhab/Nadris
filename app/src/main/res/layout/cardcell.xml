@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
@@ -9,26 +10,28 @@
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="30dp"
+            app:cardCornerRadius="20dp"
             android:layout_margin="10dp"
             android:clickable="true"
             app:cardElevation="7dp"
-            android:background="@drawable/background">
+            android:background="@drawable/background"
+            android:outlineSpotShadowColor="@color/ColorGray">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="vertical">
+                      android:orientation="vertical"
+                      android:background="#F8F8F8">
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="match_parent"
                           android:orientation="horizontal">
                 <ImageView
                         android:src="@drawable/ic_facebook"
                         android:id="@+id/profileImage"
-                        android:layout_width="80dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:clickable="true"
                         android:focusable="true"/>
 
-                <LinearLayout android:layout_width="match_parent"
+                <LinearLayout android:layout_width="wrap_content"
                               android:layout_height="match_parent"
                               android:orientation="vertical">
                     <TextView
@@ -37,8 +40,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/name"
                             android:textColor="@color/black"
-                            android:textSize="17sp"
-                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:layout_marginTop="8sp"
+                            android:layout_marginRight="8dp"
                     />
                     <TextView
                             android:id="@+id/textSubjectName"
@@ -46,39 +50,149 @@
                             android:layout_height="wrap_content"
                             android:text="@string/subject"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="14dp"
-                            android:layout_margin="1dp"
+                            android:textSize="11dp"
+                            android:layout_marginRight="8dp"
                     />
                 </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <ImageView
+                            android:id="@+id/bookmark"
+                            android:layout_width="24dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_bookmark"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/textsave"
+                            app:layout_constraintVertical_bias="0.23000002"/>
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="@string/save"
+                              android:textSize="12dp"
+                              android:id="@+id/textsave"
+                              app:layout_constraintTop_toTopOf="parent"
+                              android:fontFamily="@font/cairo_light"
+                              app:layout_constraintEnd_toEndOf="parent"
+                              android:layout_marginTop="12dp"
+                              app:layout_constraintBottom_toBottomOf="@+id/bookmark"
+                              android:textColor="@color/ColorGray"
+                              android:layout_marginEnd="10dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-            <TextView
-                    android:id="@+id/textViewPost"
+            <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                               android:layout_height="match_parent">
+                <TextView
+                        android:id="@+id/textViewPost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/post"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/cairo"
+
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.7"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/post"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/cairo"
+                    android:layout_height="match_parent">
+                <androidx.constraintlayout.widget.Guideline
+                        app:endIconMode="clear_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/guideline2"
+                        android:orientation="vertical"
 
-            />
-            <Button
-                    android:id="@+id/voteButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="61dp"
-                    android:text="@string/addImage"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:backgroundTint="@color/pink"
+                        app:layout_constraintGuide_end="205dp"/>
 
-                    app:layout_constraintTop_toBottomOf="@+id/textViewAddQesition" android:textSize="12sp"
-                    android:textAlignment="textStart" app:layout_constraintHorizontal_bias="0.033"
-                    android:layout_marginTop="52dp"/>
+                <ImageView
+                        android:id="@+id/img_vote"
+                        android:layout_width="24dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_scroll1_up"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="24dp"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/vote"
+                          android:textSize="12dp"
+                          android:id="@+id/textvote"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintBottom_toBottomOf="@+id/img_vote"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintVertical_bias="1.0"
+                          app:layout_constraintStart_toEndOf="@+id/img_vote"
+                          android:layout_marginStart="8dp"
+                          android:fontFamily="@font/cairo_light"
+                />
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/_1"
+                          android:textSize="12dp"
+                          app:layout_constraintStart_toEndOf="@+id/textvote" app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintBottom_toBottomOf="@+id/textvote"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                          app:layout_constraintHorizontal_bias="0.02"
+                          app:layout_constraintVertical_bias="0.8"
+                          android:fontFamily="@font/cairo_light"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="|"
+                          app:layout_constraintStart_toEndOf="@+id/guideline2"
+                          android:id="@+id/textView"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintTop_toTopOf="parent"
+                          android:textSize="20dp"/>
+                <ImageView
+                        android:id="@+id/img_reply"
+                        android:layout_width="24dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_chat_room"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toEndOf="@+id/textView"
+                        android:layout_marginStart="24dp"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/reply"
+                          android:textSize="12dp"
+                          android:id="@+id/textreply"
+                          android:fontFamily="@font/cairo_light"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintBottom_toBottomOf="@+id/img_reply"
+                          android:layout_marginTop="10dp"
+                          app:layout_constraintVertical_bias="1.0"
+                          app:layout_constraintStart_toEndOf="@+id/img_reply"
+                          android:layout_marginStart="8dp"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/_1"
+                          android:textSize="12dp"
+                          android:fontFamily="@font/cairo_light"
+                          app:layout_constraintStart_toEndOf="@+id/textreply"
+                          app:layout_constraintTop_toTopOf="parent"
+                          app:layout_constraintBottom_toBottomOf="@+id/textreply"
+                          app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.02"
+                          app:layout_constraintVertical_bias="0.8" android:layout_marginTop="10dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

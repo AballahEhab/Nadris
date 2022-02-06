@@ -66,6 +66,11 @@
     <string name="yourQus">ما هو سؤالك......</string>
     <string name="addImage">+ إضافة صور او ملفات</string>
     <string name="PublisQus">نشر السؤال</string>
+    <string name="vote">تصويت</string>
+    <string name="reply">الرد</string>
+    <string name="_1">(1)</string>
+    <string name="save">حفظ</string>
+    <string name="storage_permission_text">This app needs access to your storage.</string>
     <string-array name="universty">
         <item>جامعة القاهرة</item>
         <item>جامعة الإسكندرية</item>

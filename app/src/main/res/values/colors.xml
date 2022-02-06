@@ -9,8 +9,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pink">#FFFF6364</color>
+    <color name="pink2">#fe5244</color>
     <color name="red">#D01002</color>
-    <color name="ColorGray">#CACACA</color>
+    <color name="ColorGray">#C4C4C4</color>
+    <color name="ColorGray2">#7c7c7c</color>
     <color name="colorPrimaryDark">#10141C</color>
-    <color name="colorAccent">#4e33ff</color>
+    <color name="colorAccent">#f8f8f8</color>
+
 </resources>
