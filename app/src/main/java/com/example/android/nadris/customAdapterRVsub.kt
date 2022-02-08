@@ -14,8 +14,11 @@ class customAdapterRVsub(val subjectList:ArrayList<dataRVsubITEM>)
     : RecyclerView.Adapter<customAdapterRVsub.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int
-    ): customAdapterRVsub.ViewHolder {
-       var v =LayoutInflater.from(parent.context).inflate(R.layout.item_rv_subjects,parent,false)
+    ): ViewHolder {
+        //val v = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_teachers,parent,false)
+
+        var v =LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_rv_subjects,parent,false)
 
         return ViewHolder(v);
     }

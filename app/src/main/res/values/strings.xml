@@ -46,5 +46,15 @@
     <string name="tv_add_teacher">إضافه</string>
     <string name="tv_star">*</string>
     <string name="tv_evaluation">4.8</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_course">"المواد الدراسيه "</string>
+    <string name="add_subject">إضافه ماده</string>
+    <string name="add_explain_subject">إضافه شرح ماده</string>
+    <string name="btn_modification">تعديل</string>
+    <string name="tv_semester">الفصل الدراسي الأول</string>
+    <string name="tv_class">الثالث الثانوي</string>
+    <string name="autoCompleteTV_choose_class">إختيار الصف الدراسي</string>
+
     >
 </resources>

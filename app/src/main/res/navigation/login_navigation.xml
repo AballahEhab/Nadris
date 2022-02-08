@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/login_navigation"
-    app:startDestination="@id/subjectsRvFragment">
+    app:startDestination="@id/teachers_RV_fragment">
     
     <fragment
         android:id="@+id/loginFragment"
@@ -61,5 +61,13 @@
         android:id="@+id/teachers_RV_fragment"
         android:name="com.example.android.nadris.teachers_RV_fragment"
         android:label="teachers_RV_fragment" />
+    <fragment
+        android:id="@+id/sub_teacher_rv_Fragment"
+        android:name="com.example.android.nadris.sub_teacher_rv_Fragment"
+        android:label="sub_teacher_rv_Fragment" />
+    <fragment
+        android:id="@+id/choosing_new_subjects"
+        android:name="com.example.android.nadris.choosing_new_subjects"
+        android:label="choosing_new_subjects" />
 
 </navigation>

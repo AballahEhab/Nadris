@@ -1,4 +1,5 @@
 package com.example.android.nadris
+
 /**
  * @author mohammed sarhan
  * **/
@@ -18,40 +19,48 @@ class teachers_RV_fragment : Fragment() {
 
 
     private lateinit var viewModel: TeachersRVFragmentViewModel
-
+    private lateinit var adapter: customAdapterRVTeach
+    private lateinit var binding: TeachersRVFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        inflater.inflate(R.layout.teachers__r_v_fragment, container, false)
 
-        var binding= TeachersRVFragmentBinding.inflate(inflater);
+        inflater.inflate(R.layout.teachers__r_v_fragment, container, false)
+        binding = TeachersRVFragmentBinding.inflate(inflater);
 
         viewModel = ViewModelProvider(this).get(TeachersRVFragmentViewModel::class.java)
         binding.viewmodel = viewModel
 
+        setupRV()
+//        binding.RVTeachers.layoutManager=
+//            LinearLayoutManager(requireContext(),
+//            RecyclerView.VERTICAL,false)
+//        binding.RVTeachers.adapter= customAdapterRVTeach()
 
-        var teachers=ArrayList<dataRvTeach>()
-         teachers.add(dataRvTeach("محمد مصطفي", "شرح ومراجعه", 8, R.drawable.icon_parent))
-         teachers.add(dataRvTeach("شكري فضل", "شرح ", 8, R.drawable.icon_parent))
-         teachers.add(dataRvTeach("عبدالله إيهاب", "ومراجعه", 8, R.drawable.icon_parent))
-         teachers.add(dataRvTeach("عبدالله صلاح", "شرح ومراجعه", 8, R.drawable.icon_parent))
-         teachers.add(dataRvTeach("محمد مصطفي", "شرح ", 8, R.drawable.icon_parent))
-         teachers.add(dataRvTeach("شكري فضل", "مراجعه", 8, R.drawable.icon_parent))
-
-
-//         RV_teachers.layoutmanager=linearlayoutmanager(this,linearlayout.VERTICAL,false)
-//        RV_teachers.adapter= customAdapterRVTeach(teachers)
-//        RV_teachers
-        binding.RVTeachers.layoutManager=LinearLayoutManager(requireContext(),
-            RecyclerView.VERTICAL,false)
-        binding.RVTeachers.adapter= customAdapterRVTeach(teachers)
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    private fun setupRV() {
+
+        adapter = customAdapterRVTeach()
+        binding.RVTeachers.layoutManager =
+            LinearLayoutManager(
+                requireContext(),
+                RecyclerView.VERTICAL, false
+            )
+        binding.RVTeachers.adapter = adapter
+
+        activity?.let {
+            viewModel.getdata().observe(
+                viewLifecycleOwner, {
+                    adapter.differ.submitList(it)
+                }
+            )
+
+        }
     }
+
 
 }

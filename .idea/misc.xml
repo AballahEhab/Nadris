@@ -5,16 +5,22 @@
       <map>
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11296296296296296" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/choosing_new_subject.xml" value="0.15896739130434784" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/choosing_new_subjects_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/dropdown_item_choose_class.xml" value="0.23169601482854496" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/fragment_subject_rv_teachers.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/iteam_rv_fragment.xml" value="1.0" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/item_rv_subjects.xml" value="0.22" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/item_rv_teachers.xml" value="0.25" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.33" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/item_rv_sub_teacher.xml" value="0.1" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/item_rv_subjects.xml" value="0.5" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/item_rv_teachers.xml" value="0.33" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.18" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.22" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/signup_student_fragment.xml" value="0.1852355072463768" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/sub_teacher_rv__fragment.xml" value="0.22" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/subects__rv_fragment.xml" value="0.1" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/subjects_rv_fragment.xml" value="0.16168478260869565" />
-        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/teachers__r_v_fragment.xml" value="0.22" />
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/teachers__r_v_fragment.xml" value="0.15" />
       </map>
     </option>
   </component>

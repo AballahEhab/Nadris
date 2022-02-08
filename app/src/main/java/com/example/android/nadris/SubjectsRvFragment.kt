@@ -41,7 +41,9 @@ class SubjectsRvFragment : Fragment() {
         subjects.add(dataRVsubITEM("الأحياء",300,75,R.drawable.icon_physics))
         subjects.add(dataRVsubITEM("الجبر",94,36,R.drawable.icon_physics))
 
-        binding.RVSubjects.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+        binding.RVSubjects.layoutManager=
+            LinearLayoutManager(requireContext(),
+            RecyclerView.VERTICAL,false)
         binding.RVSubjects.adapter= customAdapterRVsub(subjects)
 
 
