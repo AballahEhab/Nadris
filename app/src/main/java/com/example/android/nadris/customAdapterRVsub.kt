@@ -8,45 +8,51 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.databinding.ItemRvSubjectsBinding
 
-class customAdapterRVsub(val subjectList:ArrayList<dataRVsubITEM>)
+class customAdapterRVsub()
     : RecyclerView.Adapter<customAdapterRVsub.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup,viewType: Int
+    private val differCallback=object : DiffUtil.ItemCallback<dataRVsubITEM>(){
+        override fun areItemsTheSame(oldItem: dataRVsubITEM, newItem: dataRVsubITEM): Boolean {
+            return oldItem.id==newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: dataRVsubITEM, newItem: dataRVsubITEM): Boolean {
+            return oldItem==newItem
+        }
+
+    }
+
+     val differ=AsyncListDiffer(this,differCallback)
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup, viewType: Int
     ): ViewHolder {
-        //val v = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_teachers,parent,false)
-
-        var v =LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_rv_subjects,parent,false)
-
+        var v = ItemRvSubjectsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(v);
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       val data:dataRVsubITEM=subjectList[position]
+        val data: dataRVsubITEM = differ.currentList[position]
 
-        holder.my_name_subject.text=data.name_subject
-        holder.my_count_student.text=data.count_student.toString()
-        holder.my_count_teacher.text=data.count_teach.toString()
-        holder.my_iv_subjects.setImageResource(data.imv_subjects)
-       holder.my_data=data  //to send the valu data to veiw holder
+        holder.binding.tvNameSubject.text = data.name_subject
+        holder.binding.tvCountTeacher.text = data.count_teach.toString()
+        holder.binding.ivSubjects.setImageResource(data.imv_subjects)
     }
 
     override fun getItemCount(): Int {
-        return subjectList.size
+        return differ.currentList.size
     }
 
-    class ViewHolder(itemView:View ,var my_data:dataRVsubITEM?=null):RecyclerView.ViewHolder(itemView){
-       init {
-           itemView.setOnClickListener{
-                Toast.makeText(itemView.context,my_data?.name_subject,Toast.LENGTH_LONG).show()
-            }
-        }
-        var my_name_subject=itemView.findViewById(R.id.tv_name_subject) as TextView
-        var my_count_student=itemView.findViewById(R.id.tv_count_student) as TextView
-        var my_count_teacher=itemView.findViewById(R.id.tv_count_teacher)  as TextView
-        var my_iv_subjects =itemView.findViewById(R.id.iv_subjects)  as ImageView
+    class ViewHolder(var binding: ItemRvSubjectsBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 }
+data class dataRVsubITEM(var id:Int,
+                         var name_subject:String ,
+                         var count_teach:Int,
+                         var imv_subjects:Int )

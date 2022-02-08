@@ -10,12 +10,12 @@ class TeachersRVFragmentViewModel : ViewModel() {
    private var list=MutableLiveData<List<dataRvTeach>>();
     fun  getdata(): MutableLiveData<List<dataRvTeach>> {
         var teachers= mutableListOf<dataRvTeach>()
-        teachers.add(dataRvTeach(1,"محمد مصطفي", "شرح ومراجعه", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(2,"شكري فضل", "شرح ", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(3,"عبدالله إيهاب", "ومراجعه", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(4,"عبدالله صلاح", "شرح ومراجعه", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(5,"محمد مصطفي", "شرح ", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(6,"شكري فضل", "مراجعه", 8, R.drawable.icon_parent))
+        teachers.add(dataRvTeach(1,"محمد مصطفي", 8, R.drawable.icon_parent))
+        teachers.add(dataRvTeach(2,"شكري فضل", 8, R.drawable.icon_parent))
+        teachers.add(dataRvTeach(3,"عبدالله إيهاب", 8, R.drawable.icon_parent))
+        teachers.add(dataRvTeach(4,"عبدالله صلاح", 8, R.drawable.icon_parent))
+        teachers.add(dataRvTeach(5,"محمد مصطفي", 8, R.drawable.icon_parent))
+        teachers.add(dataRvTeach(6,"شكري فضل", 8, R.drawable.icon_parent))
         list.value = teachers
      return list
     }

@@ -17,37 +17,40 @@ import com.example.android.nadris.login.LoginViewModel
 class SubjectsRvFragment : Fragment() {
 
     private lateinit var viewModel: SubjectsRvFragmentViewModel
-
+    private lateinit var binding:SubjectsRvFragmentBinding
+    private lateinit var adapter:customAdapterRVsub
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
      inflater.inflate(R.layout.subjects_rv_fragment, container, false)
-        var binding=SubjectsRvFragmentBinding.inflate(inflater);
+        binding=SubjectsRvFragmentBinding.inflate(inflater);
 
        viewModel =ViewModelProvider(this).get(SubjectsRvFragmentViewModel::class.java)
        binding.viewmodel = viewModel
 
-        val subjects =ArrayList<dataRVsubITEM>()
-        subjects.add(dataRVsubITEM("الفيزياء",160,15,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("الكيمياء",210,20,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("اللغه العربيه",400,118,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("الأحياء",300,75,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("الجبر",94,36,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("الفيزياء",160,15,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("الكيمياء",210,20,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("اللغه العربيه",400,118,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("الأحياء",300,75,R.drawable.icon_physics))
-        subjects.add(dataRVsubITEM("الجبر",94,36,R.drawable.icon_physics))
-
-        binding.RVSubjects.layoutManager=
-            LinearLayoutManager(requireContext(),
-            RecyclerView.VERTICAL,false)
-        binding.RVSubjects.adapter= customAdapterRVsub(subjects)
-
+        setupRV()
 
         return binding.root
+    }
+    private fun setupRV(){
+        adapter=customAdapterRVsub()
+        binding.RVSubjects.layoutManager=
+            LinearLayoutManager(requireContext(),
+                RecyclerView.VERTICAL,false)
+        binding.RVSubjects.adapter= adapter
+
+        activity?.let {
+            viewModel.getdata().observe(
+                viewLifecycleOwner, {
+                    adapter.differ.submitList(it)
+                }
+            )
+
+        }
+
+
     }
 
 

@@ -19,6 +19,8 @@ class sub_teacher_rv_Fragment : Fragment() {
 
 
     private lateinit var viewModel: SubTeacherRvViewModel
+    private lateinit var adapter:customAdapterRVsubTeacher
+    private lateinit var binding:SubTeacherRvFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,23 +28,37 @@ class sub_teacher_rv_Fragment : Fragment() {
     ): View? {
 
         inflater.inflate(R.layout.sub_teacher_rv__fragment, container, false)
-        var binding =SubTeacherRvFragmentBinding.inflate(inflater)
+         binding =SubTeacherRvFragmentBinding.inflate(inflater)
 
         viewModel = ViewModelProvider(this).get(SubTeacherRvViewModel::class.java)
         binding.viewmodel = viewModel
 
-        val subjects =ArrayList<dataRvsubTeach>()
-        subjects.add(dataRvsubTeach("الفيزياء",160,"الثالث الثانوي","الفصل الدراسي الاول",R.drawable.icon_physics))
-        subjects.add(dataRvsubTeach("الكيمياء",210,"الثاني الثانوي","الفصل الدراسي الثاني",R.drawable.icon_physics))
 
+
+        setupRV();
         binding.fabAddSubject.setOnClickListener {
             //todo Respond to Extended FAB click
         }
-       binding.rvSubjectTeacher.layoutManager=
-          LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-        binding.rvSubjectTeacher.adapter= customAdapterRVsubTeacher(subjects)
 
         return binding.root
+    }
+    private fun setupRV(){
+        adapter= customAdapterRVsubTeacher()
+        binding.rvSubjectTeacher.layoutManager=
+            LinearLayoutManager(
+                requireContext(),
+                RecyclerView.VERTICAL,false)
+        binding.rvSubjectTeacher.adapter= adapter
+
+        activity?.let {
+            viewModel.getdata().observe(
+                viewLifecycleOwner, {
+                    adapter.differ.submitList(it)
+                }
+            )
+
+        }
+
     }
 
 

@@ -6,4 +6,5 @@ package com.example.android.nadris
 import androidx.lifecycle.ViewModel
 
 class subject_item_vm: ViewModel()  {
+
 }

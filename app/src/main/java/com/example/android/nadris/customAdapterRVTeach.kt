@@ -27,11 +27,14 @@ class customAdapterRVTeach()
     }
 //computing different bettween two
     val differ =AsyncListDiffer(this,differCallback)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
+    : Viewholder {
 //        val v = LayoutInflater.from(parent.context)
 //            .inflate(R.layout.item_rv_teachers,parent,false)
-        val v =ItemRvTeachersBinding.inflate(LayoutInflater.from
-            (parent.context),parent,false)
+        val v =ItemRvTeachersBinding.inflate(LayoutInflater.
+        from(parent.context),
+            parent,false)
         return Viewholder(v)
     }
 
@@ -39,10 +42,8 @@ class customAdapterRVTeach()
         val data:dataRvTeach=differ.currentList[position]
 
         holder.binding.tvNameTeachers.text=data.name_teachers
-        holder.binding.tvContentDescription.text=data.content_description
         holder.binding.tvEvaluation.text=data.evaluation.toString()
         holder.binding.ivTeachers.setImageResource(data.iv_teachers_photo)
-
          //holder.my_data=data  //to send the valu data to veiw holder
 
     }
@@ -51,21 +52,22 @@ class customAdapterRVTeach()
         return differ.currentList.size
     }
 
-class Viewholder(    var binding:ItemRvTeachersBinding):RecyclerView.ViewHolder(binding.root){
-    init {
-        itemView.setOnClickListener {
-            //,var my_data:dataRvTeach?=null
-           // Toast.makeText(itemView.context, my_data?.name_teachers, Toast.LENGTH_LONG).show()
-        }
-    }
-    //data binding in item
-    //used in view holder
-    //used in on bindingHolder
-    //change onCreateViewHolder to use binding
-    //difutil
-    //AsyncListDiffer<data>
-    //used differ in onBindViewHolder & getItemCount
-
+class Viewholder(var binding:ItemRvTeachersBinding):RecyclerView.ViewHolder(binding.root){
+//    init {
+//        itemView.setOnClickListener {
+//            //,var my_data:dataRvTeach?=null
+//           // Toast.makeText(itemView.context, my_data?.name_teachers, Toast.LENGTH_LONG).show()
+//        }
+//    }
+    /*
+    data binding in item
+    used in view holder
+    used in on bindingHolder
+    change onCreateViewHolder to use binding
+    difutil
+    AsyncListDiffer<data>
+    used differ in onBindViewHolder & getItemCount
+   */
 
 
 
@@ -80,6 +82,5 @@ class Viewholder(    var binding:ItemRvTeachersBinding):RecyclerView.ViewHolder(
 }
 data class dataRvTeach(var id:Int,
                 var name_teachers : String,
-                var content_description:String,
                 var evaluation:Int,
                 var iv_teachers_photo:Int)

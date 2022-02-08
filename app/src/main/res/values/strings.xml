@@ -44,7 +44,7 @@
     <string name="tv_name_teachers">محمد مصطفي</string>
     <string name="tv_content_description">شرح ومراجعه</string>
     <string name="tv_add_teacher">إضافه</string>
-    <string name="tv_star">*</string>
+    <string name="tv_star">* * * </string>
     <string name="tv_evaluation">4.8</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -55,6 +55,9 @@
     <string name="tv_semester">الفصل الدراسي الأول</string>
     <string name="tv_class">الثالث الثانوي</string>
     <string name="autoCompleteTV_choose_class">إختيار الصف الدراسي</string>
+    <string name="btn_add_new_subject">إضافة المادة</string>
+    <string name="autoCompleteTV_choose_subjects">إختيار المادة</string>
+    <string name="autoCompleteTV_choose_semester">إختيار الفصل الدراسي</string>
 
     >
 </resources>
