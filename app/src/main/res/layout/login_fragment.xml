@@ -117,7 +117,7 @@
                     android:id="@+id/login_error_message"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.errorMessage}"
+                    android:text="@{viewModel.loginRequestErrorMessage}"
                     android:fontFamily="@font/cairo_light"
                     android:textColor="@android:color/holo_red_dark"
                     app:isVisible="@{viewModel.errorMessageVisibility}"

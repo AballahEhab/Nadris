@@ -126,6 +126,25 @@
             android:layout_marginStart="28dp"
             android:layout_marginBottom="64dp"
             android:onClick="@{()->postViewModle.navigate_to_add_post()}"/>
+    <FrameLayout
 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7A787878"
+        android:translationZ="2dp"
+        app:isVisible="@{postViewModle.showIndicator}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:indicatorColor="#FE6464" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

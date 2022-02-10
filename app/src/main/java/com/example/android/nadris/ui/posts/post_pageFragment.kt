@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.PostPageFragmentBinding
+import com.example.android.nadris.domain.dataRvPost
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -27,11 +28,13 @@ class post_pageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-//        viewModel = ViewModelProvider(this).get(PostPageViewModel::class.java)
         inflater.inflate(R.layout.post_page_fragment, container, false)
         val bindigin = PostPageFragmentBinding.inflate(inflater)
+        bindigin.lifecycleOwner = this.viewLifecycleOwner
         bindigin.postViewModle = viewModel
 
+        val userData = NadrisApplication.instance!!.userData
+        userData?.Token?.let { it1 -> viewModel.getPosts(it1) }
         var posts=ArrayList<dataRvPost>()
         posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
         posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))

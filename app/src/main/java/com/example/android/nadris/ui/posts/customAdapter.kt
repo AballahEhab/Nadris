@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
+import com.example.android.nadris.domain.dataRvPost
 
 class customAdapter (var postList:ArrayList<dataRvPost>)
     :RecyclerView.Adapter<customAdapter.Viewholder>() {
@@ -46,8 +47,3 @@ class customAdapter (var postList:ArrayList<dataRvPost>)
 
 
 }
-data class dataRvPost(
-    var imageStudent : Int,
-    var studentName:String,
-    var subjectName:String,
-    var post_text:String, )
