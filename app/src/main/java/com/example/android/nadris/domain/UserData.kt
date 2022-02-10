@@ -7,13 +7,13 @@ data class UserData(
     val firstName: String,
     val lastName: String,
     val PhoneNumber: String,
-    val Type: String,
+    val Type: String?,
     val Gender: Byte,
     val Exp: Long,
-    val Grade: Int,
+    val Grade: Int?,
     val University: String?,
     val College: String?,
     val Token: String,
-    val ExpiresOn: DateTimeFormatter,
+    val ExpiresOn: String,
 )
 

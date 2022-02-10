@@ -1,13 +1,16 @@
-package com.example.android.nadris.ui.posts
+package com.example.android.nadris.ui.addPosts
 
 import android.content.Intent
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 
-class AddPostViewModel : ViewModel() {
+@HiltViewModel
+class AddPostViewModel @Inject constructor() : ViewModel() {
     var subjects : MutableLiveData<String> = MutableLiveData<String>()
     var question : MutableLiveData<String> = MutableLiveData<String>()
     var IMAGE_REQUEST_CODE=456

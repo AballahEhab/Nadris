@@ -3,8 +3,14 @@ package com.example.android.nadris.ui.phoneVerification
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.android.nadris.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class PhoneViewModel(val receivedOTB: String) : ViewModel() {
+@HiltViewModel
+class PhoneViewModel @Inject constructor(/*val receivedOTB: String,*/val repository: Repository) : ViewModel() {
+
 
 
     private var _OTBdigit1 = MutableLiveData<String?>()
@@ -123,7 +129,7 @@ class PhoneViewModel(val receivedOTB: String) : ViewModel() {
 
             val OTB = _OTBdigit1.value + _OTBdigit2.value + _OTBdigit3.value + _OTBdigit4.value
 
-            _isOTBMatched.value = OTB == receivedOTB
+//            _isOTBMatched.value = OTB == receivedOTB
 
 
         }

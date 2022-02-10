@@ -6,41 +6,45 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.flow.*
 import org.json.JSONObject
 import retrofit2.Response
+import java.lang.Exception
 import java.net.HttpURLConnection
 
-//inline fun <ResultType, RequestType> networkBoundResource(
-//    crossinline query: () -> Flow<ResultType>,
-//    crossinline fetch: suspend () -> RequestType,
-//    crossinline saveFetchResult: suspend (RequestType) -> Unit,
-//    crossinline shouldFetch: (ResultType) -> Boolean = { true }
-//) = flow {
-//    val data = query().first()
-//
-//    val flow = if (shouldFetch(data)) {
-//
-//        emit(Resource.Loading(data))
-//
-//        try {
-//             val res=  fetch()
-//             saveFetchResult(res)
-//            query().map { Resource.Success(it) }
-//
-//        } catch (throwable: Throwable) {
-//            query().map { Resource.Error(throwable, it) }
-//            }
-//
-//    } else {
-//        query().map { Resource.Success(it) }
-//    }
-//
-//    emitAll(flow)
-//}
+inline fun <ResultType, RequestType> requestDataFromAPI(
+    crossinline query: () -> Flow<ResultType>,
+    crossinline fetch: suspend () -> RequestType,
+    crossinline saveFetchResult: suspend (ResultType) -> Unit,
+    crossinline convertToSaveModel:  (RequestType) -> ResultType,
+    crossinline shouldFetch: (ResultType) -> Boolean = { true }
+) = flow {
+
+    val data = query().first()
+
+     if (shouldFetch(data)) {
+
+        emit(Result.Loading(data))
+
+        try {
+             val res=  fetch()
+             saveFetchResult(convertToSaveModel(res))
+            emit(Result.Success(query()))
+
+        } catch (throwable: Throwable) {
+            emit(Result.Error(throwable.message.toString(),query()))
+
+            }
+
+    } else {
+         emit(Result.Success(query()))
+    }
+
+}
 
 inline fun <DatabaseModel, NetworkModel> postToApiHandler(
     crossinline request: suspend () -> Response<NetworkModel>,
     crossinline saveFetchResult: suspend (DatabaseModel) -> Unit,
     crossinline convertToSaveModel:  (NetworkModel) -> DatabaseModel
     ) = flow {
+
     emit(Result.Loading<Nothing>())
     try {
 
@@ -62,9 +66,9 @@ inline fun <DatabaseModel, NetworkModel> postToApiHandler(
     } catch (throwable: Throwable) {
         val errorMessage = when (throwable) {
             is java.net.SocketTimeoutException ->  "نفذ الوقت لم نستطع الوصول لخادم برجاء المحاولة مرة أخرى فى وقت لاحق"
-            else ->  "حدث خطأ غير متوقع برجاء المحاولة مرة أخرى فى وقت لاحق"
+            else ->  throwable.message
         }
-        emit(Result.Error<Nothing>(error = errorMessage))
+        emit(errorMessage?.let { Result.Error<Nothing>(error = it) })
     }
 }
 
@@ -75,6 +79,7 @@ fun disableUserInterAction(activity: FragmentActivity?) =
 
 fun enableUserInterAction(activity: FragmentActivity?)=
     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
 
 //class NetworkUtils @Inject constructor( private val context: Context) {
 //

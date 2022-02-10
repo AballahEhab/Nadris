@@ -1,20 +1,23 @@
 package com.example.android.nadris.ui.login
 
 import android.util.Log
-import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.network.LoginAccountModel
+import com.example.android.nadris.network.authModelAsDomainModel
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.*
+import dagger.assisted.Assisted
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
-class LoginViewModel @Inject constructor(val repository:Repository) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel() {
 
 
     var email:MutableLiveData<String> = MutableLiveData("")
@@ -27,6 +30,8 @@ class LoginViewModel @Inject constructor(val repository:Repository) : ViewModel(
 //    private var _passwordHaveError :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
 //    val passwordHaveError get() = _passwordHaveError
     var passwordErrorMessage :MutableLiveData<String?> =  MutableLiveData<String?>()
+
+
 
 
 
@@ -91,7 +96,7 @@ class LoginViewModel @Inject constructor(val repository:Repository) : ViewModel(
             viewModelScope.launch {
                 val response = repository.login(LoginAccountModel(email.value!!, password.value!!))
                 response.collect {
-                    it.handleRepoResponse(
+                    it?.handleRepoResponse(
                         onLoading= {},
                         onError= {
                             disableProgressBar()
@@ -102,6 +107,9 @@ class LoginViewModel @Inject constructor(val repository:Repository) : ViewModel(
                             disableProgressBar()
                             navigateToHomeScreen()
                             Log.v("responceTag", it.data?.token!!)
+                            NadrisApplication.instance!!.userData = authModelAsDomainModel(it.data)
+                            val user = NadrisApplication.instance!!.userData
+                            user?.Token?.let { it1 -> getPosts(it1) }
                         },
                     )
 
@@ -110,7 +118,15 @@ class LoginViewModel @Inject constructor(val repository:Repository) : ViewModel(
         }
     }
 
-
+    fun getPosts(token:String) {
+        viewModelScope.launch {
+            val postsFlow = repository.getPosts("Bearer " + token)
+            postsFlow.collect {
+//                postsList.addAll(it.data as Collection<PostData>)
+                Log.v("poss", it.data.toString() )
+            }
+        }
+    }
     private fun enableErrorMessage(){
         _errorMessageVisibility.value = true
 

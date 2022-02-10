@@ -1,9 +1,8 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.network.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
-import com.example.android.nadris.network.LoginAccountModel
-import com.example.android.nadris.network.NadrisAPIService
+import com.example.android.nadris.network.*
+import retrofit2.Response
+import retrofit2.http.*
 import javax.inject.Inject
 
 
@@ -18,5 +17,28 @@ constructor(private val apiService: NadrisAPIService)  {
 
     suspend fun createTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
         apiService.createTeacherAccount(createTeacherAccountDataModelModel)
+
+    suspend fun getAllPosts(token:String) =
+        apiService.getAllPosts(token)
+
+    suspend fun publishAPost(createPostModel: CreatePostModel,token:String) =
+        apiService.publishAPost(createPostModel,token)
+
+    suspend fun getAPostByPostId(postId:Int,token:String) =
+        apiService.getAPostByPostId(postId,token)
+
+    suspend fun getPostsByEmail(email:String,token:String) =
+        apiService.getPostsByEmail(email,token)
+
+    suspend fun vote(voteModel: VoteModel,token:String) =
+        apiService.vote(voteModel,token)
+
+    suspend fun comment(commentModel: CommentModel,token:String) =
+        apiService.comment(commentModel,token)
+
+    suspend fun getCommentsByPostId(postId:Int,token:String) =
+        apiService.getCommentByPostId(postId,token)
+
+
 
 }

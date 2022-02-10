@@ -5,30 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.SignupFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SignupFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SignupFragment()
-    }
 
-    @Inject lateinit var viewModel: SignupViewModel
+    val viewModel: SignupViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        (requireContext().applicationContext as NadrisApplication).appGraph.injectFieldsOfSignupFragment(this)
-//        viewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
-         inflater.inflate(R.layout.signup_fragment, container, false)
-        val binding = SignupFragmentBinding.inflate(inflater)
 
+         inflater.inflate(R.layout.signup_fragment, container, false)
+
+        val binding = SignupFragmentBinding.inflate(inflater)
 
         binding.viewModle = viewModel
 

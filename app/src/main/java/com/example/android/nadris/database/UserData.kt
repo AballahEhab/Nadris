@@ -2,7 +2,6 @@ package com.example.android.nadris.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.time.format.DateTimeFormatter
 
 
 @Entity
@@ -12,7 +11,7 @@ data class UserData(
     val firstName: String,
     val lastName: String,
     val PhoneNumber: String,
-    val Type: String,
+    val Type: String?,
     val Gender: Byte,
     val Exp: Long,
     val GradeId: Int?,
@@ -21,3 +20,4 @@ data class UserData(
     val Token: String,
     @PrimaryKey val id:Int=1,
 )
+

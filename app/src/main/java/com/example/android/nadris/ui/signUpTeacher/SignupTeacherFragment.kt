@@ -8,16 +8,18 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.SignupTeacherFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class signupTeacherFragment : Fragment() {
 
-
-    @Inject lateinit var viewModel: SignupTeacherViewModel
+    val viewModel: SignupTeacherViewModel by viewModels()
     private lateinit var binding : SignupTeacherFragmentBinding
     private lateinit var gender : Array<String>
     private lateinit var collage: Array<String>
@@ -36,8 +38,6 @@ class signupTeacherFragment : Fragment() {
         inflater.inflate(R.layout.signup_teacher_fragment, container, false)
 
         binding = SignupTeacherFragmentBinding.inflate(inflater)
-
-        (requireContext().applicationContext as NadrisApplication).appGraph.injectFieldsOfSignupTeacherFragment(this)
 
         initiate()
 

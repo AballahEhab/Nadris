@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
@@ -15,16 +16,15 @@ import com.example.android.nadris.databinding.LoginFragmentBinding
 import com.example.android.nadris.util.disableUserInterAction
 import com.example.android.nadris.util.enableUserInterAction
 import com.example.android.nadris.util.isVisible
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
+
     lateinit var  binding: LoginFragmentBinding
 
-    @Inject lateinit var viewModel: LoginViewModel
+     val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,11 +33,8 @@ class LoginFragment : Fragment() {
 
         inflater.inflate(R.layout.login_fragment, container, false)
 
-//        ViewModelProvider(this).get(LoginViewModel::class.java)
         binding = LoginFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this.viewLifecycleOwner
-
-        (requireContext().applicationContext as NadrisApplication).appGraph.injectFieldsOfLoginFragment(this)
 
         //using view model to save UI state
         binding.viewModel = viewModel
@@ -47,10 +44,10 @@ class LoginFragment : Fragment() {
             if (it) {
                 //todo:navigateToHomeScreen
 //                this.findNavController()
-//                    .navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
+//                    .navigate(LoginFragmentDirections.actionLoginFragmentToPostsFragment())
                 Toast.makeText(
                     context,
-                    "navigated to home screen after successful login",
+                    "navigated to posts screen after successful login",
                     Toast.LENGTH_SHORT
                 ).show()
                 viewModel.navigationAfterSuccessfulLoginDone()
@@ -82,9 +79,6 @@ class LoginFragment : Fragment() {
             else
                 enableUserInterAction(activity)
         }
-
-
-
 
         return binding.root
 

@@ -9,10 +9,12 @@ import com.example.android.nadris.PasswordError
 import com.example.android.nadris.network.CreateStudentAccountDataModelModel
 import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
 import com.example.android.nadris.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SignupTeacherViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 
@@ -178,7 +180,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
                 )
                 response.collect{
 
-                    it.handleRepoResponse(
+                    it?.handleRepoResponse(
                         onLoading= {},
                         onError= {
                             disableProgressBar()

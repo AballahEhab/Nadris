@@ -9,11 +9,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.network.CreateStudentAccountDataModelModel
 import com.example.android.nadris.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+@HiltViewModel
 class SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 //    val userdata:LiveData<UserData> =
@@ -146,7 +147,7 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
                 val response = repository.registerNewStudentAccount(CreateStudentAccountDataModelModel(
                     firstname,lastname,email,password1,phone, genderId,gradeId))
                 response.collect {
-                    it.handleRepoResponse(
+                    it?.handleRepoResponse(
                         onLoading= {},
                         onError= {
                             disableProgressBar()

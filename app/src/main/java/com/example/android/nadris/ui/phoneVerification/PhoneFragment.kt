@@ -9,23 +9,27 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.PhoneFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
 
+@AndroidEntryPoint
 class PhoneFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = PhoneFragment()
-    }
+//
+//    companion object {
+//        fun newInstance() = PhoneFragment()
+//    }
 
     //initiating viewModel variable
-    private lateinit var viewModel: PhoneViewModel
+    val viewModel: PhoneViewModel by viewModels()
 
     // initiating binding object for phone verification fragment
-    private lateinit var binding : PhoneFragmentBinding
+    lateinit var binding : PhoneFragmentBinding
 
     private var OTB:String =""
     private var OTBdigitsText = mutableListOf<TextView>()
@@ -51,15 +55,15 @@ class PhoneFragment : Fragment() {
 //                val viewModelFactory = PhoneViewModelFactory(args.receivedOTBarg)
 
 
-        val args = "1234"
-        val viewModelFactory = PhoneViewModelFactory(args)
+//        val args = "1234"
+//        val viewModelFactory = PhoneViewModelFactory(args)
+//
+//        val viewModel = ViewModelProvider(this,viewModelFactory).get(PhoneViewModel::class.java)
 
-        val viewModel = ViewModelProvider(this,viewModelFactory).get(PhoneViewModel::class.java)
-
+        binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
 
-        binding.lifecycleOwner = this
 
         viewModel.isOTBMatched.observe(this.viewLifecycleOwner, {
             if (it){

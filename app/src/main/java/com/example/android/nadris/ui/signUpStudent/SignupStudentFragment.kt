@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.viewModels
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.SignupStudentFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class signupStudentFragment : Fragment() {
 
-
-    @Inject lateinit var viewModel: SignupStudentViewModel
+    val viewModel: SignupStudentViewModel by viewModels()
     private lateinit var binding :SignupStudentFragmentBinding
     private lateinit var gender : Array<String>
     private lateinit var grade:Array<String>
@@ -28,7 +30,7 @@ class signupStudentFragment : Fragment() {
     ): View? {
         inflater.inflate(R.layout.signup_student_fragment, container, false)
         binding = SignupStudentFragmentBinding.inflate(inflater)
-        (requireContext().applicationContext as NadrisApplication).appGraph.injectFieldsOfSignupStudentViewModel(this)
+
 
         initiate()
 

@@ -1,8 +1,7 @@
 package com.example.android.nadris.network
 
+import com.example.android.nadris.database.PostData
 import com.example.android.nadris.database.UserData
-
-
 
 
 open class CreateAccountDataModel(
@@ -54,7 +53,7 @@ data class AuthModel(
     val lastName:String,
     val email: String,
     val phoneNumber: String,
-    val type: String,
+    val type: String?,
     val gender: Byte,
     val exp: Long,
     val gradeId: Int?,
@@ -64,11 +63,23 @@ data class AuthModel(
     val token: String,
     val expiresOn: String,
 )
-data class PostModel(
+data class CreatePostModel(
     val subject: String,
     val body: String,
 )
 
+data class PostModel(
+    val id: Int,
+    val subjectId: String,
+    val content: String,
+    val votes:Int,
+    val comments:List<CommentModel>,
+    val time:String,
+    val email:String,
+    val name:String
+
+
+)
 data class VoteModel(
     val email: String,
     val value: Boolean,
@@ -88,9 +99,15 @@ data class CommentModel(
 
 
 
+fun postAsDatabaseModel(post:PostModel) =
+    PostData(
+        post.id ,
+        post.subjectId ,
+        post.content,
+        post.votes ,
+    )
 
-
-fun asDataBaseModel(model: AuthModel) :UserData = UserData(
+fun authModelAsDataBaseModel(model: AuthModel) = UserData(
       Email = model.email,
       firstName = model.email,
       lastName = model.lastName,
@@ -103,3 +120,19 @@ fun asDataBaseModel(model: AuthModel) :UserData = UserData(
       College = model.college,
       Token = model.token
     )
+
+fun authModelAsDomainModel(model: AuthModel)  = com.example.android.nadris.domain.UserData(
+      Email = model.email,
+      firstName = model.email,
+      lastName = model.lastName,
+      PhoneNumber = model.phoneNumber,
+      Type = model.type,
+      Gender = model.gender,
+      Exp = model.exp,
+      Grade = model.gradeId,
+      University = model.university,
+      College = model.college,
+      Token = model.token,
+    ExpiresOn = model.expiresOn
+    )
+

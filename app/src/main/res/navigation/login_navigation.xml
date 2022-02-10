@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/login_navigation"
-            app:startDestination="@id/postFragment">
+            app:startDestination="@id/">
     
     <fragment
         android:id="@+id/loginFragment"
@@ -15,6 +15,12 @@
             app:destination="@id/signupFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_PostsFragment"
+            app:destination="@id/postFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -60,11 +66,13 @@
                 app:destination="@id/phoneFragment"/>
 
     </fragment>
+
     <fragment
         android:id="@+id/phoneFragment"
         android:name="com.example.android.nadris.ui.phoneVerification.PhoneFragment"
         android:label="phone_fragment"
         tools:layout="@layout/phone_fragment"/>
+
     <fragment android:id="@+id/postFragment"
               android:name="com.example.android.nadris.ui.posts.post_pageFragment"
               android:label="post_fragment"
@@ -74,7 +82,7 @@
     </fragment>
 
     <fragment android:id="@+id/addPostFragment"
-              android:name="com.example.android.nadris.ui.posts.addPostFragment"
+              android:name="com.example.android.nadris.ui.posts.post_pageFragment"
               android:label="addPost_fragment"
               tools:layout="@layout/add_post_fragment"/>
 </navigation>

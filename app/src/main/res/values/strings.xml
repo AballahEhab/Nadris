@@ -69,8 +69,7 @@
     <string name="_1">(1)</string>
     <string name="save">حفظ</string>
     <string name="storage_permission_text">This app needs access to your storage.</string>
-    <string-array name="universty">
-    <string name="Required"/>
+
 
     <string-array name="university">
         <item>جامعة القاهرة</item>
@@ -102,4 +101,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="name">عربى</string>
+    <string name="subject">انجليزى</string>
+    <string name="post">هذا بوست</string>
 </resources>

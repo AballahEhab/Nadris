@@ -10,19 +10,19 @@ import com.example.android.nadris.R
 
 class customAdapter (var postList:ArrayList<dataRvPost>)
     :RecyclerView.Adapter<customAdapter.Viewholder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.cardcell,parent,false)
         return Viewholder(v)
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
+        
         val data: dataRvPost =postList[position]
-
         holder.imageStudent.setImageResource(data.imageStudent)
         holder.studentName.text=data.studentName
         holder.subjectName.text=data.subjectName
         holder.post_text.text=data.post_text
-
         holder.my_data=data  //to send the valu data to veiw holder
 
     }

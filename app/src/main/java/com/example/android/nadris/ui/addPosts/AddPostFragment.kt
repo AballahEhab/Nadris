@@ -1,40 +1,34 @@
 package com.example.android.nadris
 
-import android.Manifest
-import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.nadris.databinding.AddPostFragmentBinding
-import com.example.android.nadris.databinding.PostPageFragmentBinding
-import com.example.android.nadris.databinding.SignupStudentFragmentBinding
-import pub.devrel.easypermissions.AppSettingsDialog
-import pub.devrel.easypermissions.EasyPermissions
-import android.content.pm.PackageManager as PmPackageManager
+import com.example.android.nadris.ui.addPosts.AddPostViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class addPostFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = addPostFragment()
-    }
+//    companion object {
+//        fun newInstance() = addPostFragment()
+//    }
 
-    private lateinit var viewModel: AddPostViewModel
+    val viewModel: AddPostViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        viewModel = ViewModelProvider(this).get(AddPostViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(AddPostViewModel::class.java)
         inflater.inflate(R.layout.add_post_fragment, container, false)
         val bindigin =AddPostFragmentBinding.inflate(inflater)
         bindigin.addPostViewModel = viewModel

@@ -1,33 +1,42 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.network.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
-import com.example.android.nadris.network.LoginAccountModel
-import com.example.android.nadris.network.asDataBaseModel
+import com.example.android.nadris.network.*
 import com.example.android.nadris.util.postToApiHandler
+import com.example.android.nadris.util.requestDataFromAPI
 import javax.inject.Inject
 
 
-class Repository @Inject constructor(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource) {
+class Repository @Inject constructor(
+    private val localDataSource: LocalDataSource,
+    private val remoteDataSource: RemoteDataSource) {
 
        fun login(loginAccountModel: LoginAccountModel)= postToApiHandler(
             request= { remoteDataSource.login(loginAccountModel) }
             ,saveFetchResult= {user-> localDataSource.addUserData(user)}
-        , convertToSaveModel = {networkModel ->  asDataBaseModel( networkModel  )}
+        , convertToSaveModel = {networkModel ->  authModelAsDataBaseModel( networkModel  )}
         )
 
     fun registerNewStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) = postToApiHandler(
         request= { remoteDataSource.createStudentAccount(accountDataModel) }
         ,saveFetchResult= {user-> localDataSource.addUserData(user)}
-        , convertToSaveModel = {networkModel ->  asDataBaseModel(networkModel)}
+        , convertToSaveModel = {networkModel ->  authModelAsDataBaseModel(networkModel)}
     )
 
-    fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =  postToApiHandler(
+    fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
+        postToApiHandler(
         request= { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) }
         ,saveFetchResult= {user-> localDataSource.addUserData(user)}
-        , convertToSaveModel = {networkModel ->  asDataBaseModel(networkModel)}
+        , convertToSaveModel = {networkModel ->  authModelAsDataBaseModel(networkModel)}
+    )
+
+    fun getPosts(token:String) = requestDataFromAPI(
+        query = { localDataSource.getAllPosts() },
+        fetch = { remoteDataSource.getAllPosts(token) },
+        convertToSaveModel = {networkpostsList-> networkpostsList.body()?.map { networkposts->postAsDatabaseModel(networkposts) } },
+        saveFetchResult = {list_of_posts-> list_of_posts?.let { localDataSource.insertPost(it) } }
     )
 }
+
 
 
 
