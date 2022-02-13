@@ -4,7 +4,7 @@
                    xmlns:app="http://schemas.android.com/apk/res-auto"
 >
     <data>
-        <variable name="StudentViewModel" type="com.example.android.nadris.ui.signUpStudent.SignupStudentViewModel"/>
+        <variable name="StudentViewModel" type="com.example.android.nadris.ui.loginActivity.signUpStudent.SignupStudentViewModel"/>
     </data>
     <FrameLayout
         android:layout_height="match_parent"
@@ -16,7 +16,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ui.signUpStudent.signupStudentFragment">
+                tools:context=".ui.loginActivity.signUpStudent.signupStudentFragment">
 
                 <Button
 

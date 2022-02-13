@@ -98,11 +98,14 @@
         <item>الفيزياء</item>
     </string-array>
     <string name="title_activity_teacher">MainActivity</string>
+    <string name="student_home_title">الرئيسه</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="student_subjects_title">المواد</string>
+    <string name="student_schedual_title">المواعيد</string>
     <string name="name">عربى</string>
     <string name="subject">انجليزى</string>
     <string name="post">هذا بوست</string>
     <string name="title_activity_student_home">StudentHome</string>
+    <string name="title_activity_studnet_main_acitivity">StudnetMainAcitivity</string>
+    <string name="title_activity_teacher_main">TeacherMainActivity</string>
 </resources>

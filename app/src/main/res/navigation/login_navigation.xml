@@ -6,7 +6,7 @@
     
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.android.nadris.ui.login.LoginFragment"
+        android:name="com.example.android.nadris.ui.loginActivity.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment"
         >
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.android.nadris.ui.signUp.SignupFragment"
+        android:name="com.example.android.nadris.ui.loginActivity.signUp.SignupFragment"
         android:label="signup_fragment"
         tools:layout="@layout/signup_fragment">
         <action
@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/signupTeacherFragment"
-        android:name="com.example.android.nadris.ui.signUpTeacher.signupTeacherFragment"
+        android:name="com.example.android.nadris.ui.loginActivity.signUpTeacher.signupTeacherFragment"
         android:label="signup_teacher_fragment"
         tools:layout="@layout/signup_teacher_fragment">
         <action android:id="@+id/action_signupTeacherFragment_to_signupFragment"
@@ -56,7 +56,7 @@
 
     <fragment
         android:id="@+id/signupStudentFragment"
-        android:name="com.example.android.nadris.ui.signUpStudent.signupStudentFragment"
+        android:name="com.example.android.nadris.ui.loginActivity.signUpStudent.signupStudentFragment"
         android:label="signup_student_fragment"
         tools:layout="@layout/signup_student_fragment">
 
@@ -69,12 +69,12 @@
 
     <fragment
         android:id="@+id/phoneFragment"
-        android:name="com.example.android.nadris.ui.phoneVerification.PhoneFragment"
+        android:name="com.example.android.nadris.ui.loginActivity.phoneVerification.PhoneFragment"
         android:label="phone_fragment"
         tools:layout="@layout/phone_fragment"/>
 
     <fragment android:id="@+id/postFragment"
-              android:name="com.example.android.nadris.ui.posts.post_pageFragment"
+              android:name="com.example.android.nadris.ui.studentActivity.posts.post_pageFragment"
               android:label="post_fragment"
               tools:layout="@layout/post_page_fragment">
         <action android:id="@+id/action_postFragment_to_addPostFragment"
@@ -82,7 +82,7 @@
     </fragment>
 
     <fragment android:id="@+id/addPostFragment"
-              android:name="com.example.android.nadris.ui.posts.post_pageFragment"
+              android:name="com.example.android.nadris.ui.studentActivity.posts.post_pageFragment"
               android:label="addPost_fragment"
               tools:layout="@layout/add_post_fragment"/>
 </navigation>

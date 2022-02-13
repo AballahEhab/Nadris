@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_dashboard">
+
+    <fragment
+        android:id="@+id/navigation_posts"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.post_pageFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/post_page_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.android.nadris.ui.studentActivity.dashboard.DashboardFragment"
+        android:label="@string/student_subjects_title"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.android.nadris.ui.studentActivity.notifications.NotificationsFragment"
+        android:label="@string/student_schedual_title"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>

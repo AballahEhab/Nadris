@@ -6,12 +6,12 @@
     <data>
         <variable
                 name="viewModle"
-                type="com.example.android.nadris.ui.signUp.SignupViewModel"/>
+                type="com.example.android.nadris.ui.loginActivity.signUp.SignupViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.signUp.SignupFragment">
+            tools:context=".ui.loginActivity.signUp.SignupFragment">
         
         <ImageView
                 android:id="@+id/IV_logo"

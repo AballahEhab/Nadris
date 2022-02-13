@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="viewModel"
-            type="com.example.android.nadris.ui.login.LoginViewModel" />
+            type="com.example.android.nadris.ui.loginActivity.login.LoginViewModel" />
     </data>
 
     <FrameLayout
