@@ -61,7 +61,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/back_btn"
             app:layout_constraintVertical_weight="2"
-
             />
 
         <TextView
@@ -81,8 +80,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/verifying_phone_text"
             app:layout_constraintVertical_weight="1"
-
-
             />
 
         <TextView

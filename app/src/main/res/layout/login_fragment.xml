@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintHeight_max="96dp"
-            android:src="@drawable/logo_nadris"
+            android:src="@drawable/nadris_logo"
             app:layout_constraintBottom_toTopOf="@id/textView_Welcom_login"
             app:layout_constraintEnd_toEndOf="@id/textView_Welcom_login"
             app:layout_constraintStart_toStartOf="@id/textView_Welcom_login"
@@ -31,9 +31,8 @@
             android:id="@+id/textView_Welcom_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo"
+            android:fontFamily="@font/cairo"
             android:text="@string/textView_Welcom_in_nadris"
-            android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,11 +161,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn_new_account_login"
-                    android:textColor="@color/red"
-                    android:textSize="18sp"
                     android:layout_margin="8dp"
-                    android:onClick="@{()->viewModel.onCreateAccountClicked()}"
-            />
+                    style="@style/new_account"
+                    android:onClick="@{()->viewModel.onCreateAccountClicked()}"/>
             <TextView
                     android:id="@+id/textView_HaveAccount_login"
                     android:layout_width="wrap_content"
