@@ -19,5 +19,5 @@
     <color name="colorPrimaryDark">#10141C</color>
     <color name="colorOnSecondary">#000000</color>
 
-
+    <color name="colorAccent">#f8f8f8</color>
 </resources>
