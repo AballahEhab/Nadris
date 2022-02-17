@@ -78,10 +78,10 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
 
 
     fun validFirstName(){
-        _firstnameHaveError.value = firstname.isEmpty()
+        _firstnameHaveError.value = firstname.isEmpty() || (firstname.length <3)
     }
     fun validLastName(){
-        _lastnameHaveError.value = lastname.isEmpty()
+        _lastnameHaveError.value = lastname.isEmpty() || (lastname.length <3)
     }
     fun validEmail(){
         _emailHaveError.value = !Patterns.EMAIL_ADDRESS.matcher(email).matches()

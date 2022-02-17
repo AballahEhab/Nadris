@@ -19,6 +19,7 @@ class StudentMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         binding = ActivityStudnetMainAcitivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -36,4 +37,9 @@ class StudentMainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
 }

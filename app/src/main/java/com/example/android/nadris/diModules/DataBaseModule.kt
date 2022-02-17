@@ -2,7 +2,7 @@ package com.example.android.nadris.diModules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.android.nadris.database.UserDataBase
+import com.example.android.nadris.database.NadrisDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,17 +15,17 @@ import dagger.hilt.components.SingletonComponent
 class DataBaseModule() {
 
 
-    private lateinit var  INSTANCE: UserDataBase
+    private lateinit var  INSTANCE: NadrisDatabase
 
     @Provides
-    fun provideDataBase(@ApplicationContext  applicationContext: Context): UserDataBase {
+    fun provideDataBase(@ApplicationContext  applicationContext: Context): NadrisDatabase {
 
         synchronized(this) {
 
             if (!::INSTANCE.isInitialized) {
                 INSTANCE = Room.databaseBuilder(
                     applicationContext,
-                    UserDataBase::class.java,
+                    NadrisDatabase::class.java,
                     "user_data_database"
                 )
                     .fallbackToDestructiveMigration()

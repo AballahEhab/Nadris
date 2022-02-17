@@ -1,19 +1,14 @@
 package com.example.android.nadris.repository
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
 import com.example.android.nadris.database.CommentData
-import com.example.android.nadris.database.PostData
+import com.example.android.nadris.database.DatabasePost
 import com.example.android.nadris.database.UserData
-import com.example.android.nadris.database.UserDataBase
-import kotlinx.coroutines.flow.Flow
+import com.example.android.nadris.database.NadrisDatabase
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(private val userDataBase: UserDataBase) {
+class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisDatabase) {
 
-    private val dao = userDataBase.UserDao()
+    private val dao = nadrisDatabase.UserDao()
 
      suspend fun addUserData(userData:UserData)=
         dao.insertUser(userData)
@@ -26,8 +21,8 @@ class LocalDataSource @Inject constructor(private val userDataBase: UserDataBase
      fun getAllPosts() =
         dao.getAllPosts()
 
-    suspend fun insertPost(post: List<PostData>) =
-        dao.insertPost( post )
+    suspend fun insertPost(databasePost: List<DatabasePost>) =
+        dao.insertPost( databasePost )
 
     suspend fun insertComments(vararg comment: CommentData) =
         dao.insertComments(*comment)

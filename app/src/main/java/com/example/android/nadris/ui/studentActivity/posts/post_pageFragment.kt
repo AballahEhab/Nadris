@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
+import com.example.android.nadris.database.DatabasePost
 import com.example.android.nadris.databinding.PostPageFragmentBinding
-import com.example.android.nadris.domain.dataRvPost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,18 +31,23 @@ class post_pageFragment : Fragment() {
         bindigin.lifecycleOwner = this.viewLifecycleOwner
         bindigin.postViewModle = viewModel
 
-        val userData = NadrisApplication.instance!!.userData
+        val userData = NadrisApplication.userData
         userData?.Token?.let { it1 -> viewModel.getPosts(it1) }
-        var posts=ArrayList<dataRvPost>()
-        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
+        lateinit var databasePosts : List<DatabasePost>
+//        var posts=ArrayList<dataRvPost>()
+//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
+//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
+//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
+//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
+//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
+//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
 
+        viewModel.postsList.observe(viewLifecycleOwner, Observer {
+            databasePosts = it
+            bindigin.recyclerView.adapter= customAdapter(databasePosts)
+        })
         bindigin.recyclerView.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-        bindigin.recyclerView.adapter= customAdapter(posts)
+
 
 
         viewModel.navigate_to_add_post.observe(this.viewLifecycleOwner) {

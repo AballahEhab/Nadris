@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
-import com.example.android.nadris.domain.dataRvPost
+import com.example.android.nadris.database.DatabasePost
 
-class customAdapter (var postList:ArrayList<dataRvPost>)
+class customAdapter (val postList:List<DatabasePost>)
     :RecyclerView.Adapter<customAdapter.Viewholder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
@@ -19,11 +19,11 @@ class customAdapter (var postList:ArrayList<dataRvPost>)
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         
-        val data: dataRvPost =postList[position]
+        val data: DatabasePost =postList[position]
         holder.imageStudent.setImageResource(data.imageStudent)
-        holder.studentName.text=data.studentName
-        holder.subjectName.text=data.subjectName
-        holder.post_text.text=data.post_text
+        holder.studentName.text=data.name
+        holder.subjectName.text=data.subjectId
+        holder.post_text.text=data.content
         holder.my_data=data  //to send the valu data to veiw holder
 
     }
@@ -32,7 +32,7 @@ class customAdapter (var postList:ArrayList<dataRvPost>)
         return postList.size
     }
 
-    class Viewholder(itemViewt :View,var my_data: dataRvPost?=null):RecyclerView.ViewHolder(itemViewt){
+    class Viewholder(itemViewt :View,var my_data: DatabasePost?=null):RecyclerView.ViewHolder(itemViewt){
 //        init {
 //            Toast.makeText(itemView.context,my_data?.studentName, Toast.LENGTH_LONG).show()
 //

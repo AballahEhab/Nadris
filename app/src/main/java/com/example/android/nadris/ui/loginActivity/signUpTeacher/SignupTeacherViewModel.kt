@@ -94,10 +94,10 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
 
 
     fun validFirstName(){
-        _firstnameHaveError.value = firstname.isEmpty()
+        _firstnameHaveError.value = firstname.isEmpty() || (firstname.length < 3)
     }
     fun validLastName(){
-        _lastnameHaveError.value = lastname.isEmpty()
+        _lastnameHaveError.value = lastname.isEmpty() || (lastname.length <3)
     }
     fun validEmail(){
         _emailHaveError.value = !Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -201,15 +201,12 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
         _errorMessageVisibility.value = true
 
     }
-
     private fun disableErrorMessage(){
         _errorMessageVisibility.value = false
     }
-
     private fun enableProgressBar(){
         _showIndicator.value = true
     }
-
     private fun disableProgressBar(){
         _showIndicator.value = false
     }

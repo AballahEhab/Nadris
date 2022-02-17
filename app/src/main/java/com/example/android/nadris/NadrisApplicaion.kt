@@ -4,7 +4,7 @@ import android.app.Application
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.example.android.nadris.domain.UserData
+import com.example.android.nadris.database.UserData
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -12,7 +12,8 @@ class NadrisApplication: Application()
 {
 
     companion object {
-         var  instance:NadrisApplication? = null
+        var  instance:NadrisApplication? = null
+        var userData: UserData? = null
     }
 
      var userData: UserData? = null

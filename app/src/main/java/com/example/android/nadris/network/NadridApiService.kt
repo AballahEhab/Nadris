@@ -18,7 +18,7 @@ interface NadrisAPIService{
 
     // todo: add token as an input to the header of the request
     @GET("api/Posts")
-    suspend fun getAllPosts(@Header("authorization") token: String): Response<List<PostModel>>
+    suspend fun getAllPosts(@Header("authorization") token: String): Response<List<NetworkPost>>
 
     @POST("api/Posts")
     suspend fun publishAPost(@Body createPostModel: CreatePostModel, @Header("authorization") token: String):Response<AuthModel>

@@ -2,19 +2,16 @@ package com.example.android.nadris.util
 
 import android.view.WindowManager
 import androidx.fragment.app.FragmentActivity
-import com.google.gson.JsonObject
 import kotlinx.coroutines.flow.*
-import org.json.JSONObject
 import retrofit2.Response
-import java.lang.Exception
 import java.net.HttpURLConnection
 
-inline fun <ResultType, RequestType> requestDataFromAPI(
-    crossinline query: () -> Flow<ResultType>,
-    crossinline fetch: suspend () -> RequestType,
-    crossinline saveFetchResult: suspend (ResultType) -> Unit,
-    crossinline convertToSaveModel:  (RequestType) -> ResultType,
-    crossinline shouldFetch: (ResultType) -> Boolean = { true }
+inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
+    crossinline query: () -> Flow<DatabaseModel>,
+    crossinline fetch: suspend () -> Response<NetworkModel>,
+    crossinline saveFetchResult: suspend (DatabaseModel) -> Unit,
+    crossinline convertToDatabaseModel:  (NetworkModel) -> DatabaseModel,
+    crossinline shouldFetch: (DatabaseModel) -> Boolean = { true }
 ) = flow {
 
     val data = query().first()
@@ -24,9 +21,9 @@ inline fun <ResultType, RequestType> requestDataFromAPI(
         emit(Result.Loading(data))
 
         try {
-             val res=  fetch()
-             saveFetchResult(convertToSaveModel(res))
-            emit(Result.Success(query()))
+             val res=  convertToDatabaseModel(fetch().body()!!)
+             saveFetchResult(res)
+            emit(Result.Success(res))
 
         } catch (throwable: Throwable) {
             emit(Result.Error(throwable.message.toString(),query()))
@@ -42,7 +39,7 @@ inline fun <ResultType, RequestType> requestDataFromAPI(
 inline fun <DatabaseModel, NetworkModel> postToApiHandler(
     crossinline request: suspend () -> Response<NetworkModel>,
     crossinline saveFetchResult: suspend (DatabaseModel) -> Unit,
-    crossinline convertToSaveModel:  (NetworkModel) -> DatabaseModel
+    crossinline convertToDatabaseModel:  (NetworkModel) -> DatabaseModel,
     ) = flow {
 
     emit(Result.Loading<Nothing>())
@@ -51,8 +48,8 @@ inline fun <DatabaseModel, NetworkModel> postToApiHandler(
         val response = request()
         if (response.isSuccessful){
 
-            val result = response.body()
-            saveFetchResult(convertToSaveModel(result!!))
+            val result = convertToDatabaseModel(response.body()!!)
+            saveFetchResult(result)
             emit(Result.Success(data = result))
 
         }else{

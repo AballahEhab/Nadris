@@ -1,6 +1,8 @@
 package com.example.android.nadris.ui.loginActivity.login
 
 import android.app.Activity
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +12,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.LoginFragmentBinding
+import com.example.android.nadris.ui.studentActivity.StudentMainActivity
+import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.disableUserInterAction
 import com.example.android.nadris.util.enableUserInterAction
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.reflect.KClass
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -39,15 +45,15 @@ class LoginFragment : Fragment() {
 
         viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
             if (it) {
-                //todo:navigateToHomeScreen
-//                this.findNavController()
-//                    .navigate(LoginFragmentDirections.actionLoginFragmentToPostsFragment())
-                Toast.makeText(
-                    context,
-                    "navigated to posts screen after successful login",
-                    Toast.LENGTH_SHORT
-                ).show()
-                viewModel.navigationAfterSuccessfulLoginDone()
+
+                lateinit var directionClass:Class<*>
+                if (NadrisApplication.userData?.Type == "student")
+                    directionClass = StudentMainActivity::class.java
+                else if(NadrisApplication.userData?.Type == "teacher")
+                    directionClass = TeacherMainActivity::class.java
+
+                startActivity(Intent(requireContext(), directionClass))
+                this.activity?.finish()
             }
         }
 

@@ -13,26 +13,27 @@ class Repository @Inject constructor(
        fun login(loginAccountModel: LoginAccountModel)= postToApiHandler(
             request= { remoteDataSource.login(loginAccountModel) }
             ,saveFetchResult= {user-> localDataSource.addUserData(user)}
-        , convertToSaveModel = {networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel( networkModel  )}
+        , convertToDatabaseModel = { networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel( networkModel  )}
         )
 
     fun registerNewStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) = postToApiHandler(
         request= { remoteDataSource.createStudentAccount(accountDataModel) }
         ,saveFetchResult= {user-> localDataSource.addUserData(user)}
-        , convertToSaveModel = {networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel(networkModel)}
+        , convertToDatabaseModel = { networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel(networkModel)}
     )
 
     fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
         postToApiHandler(
         request= { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) }
         ,saveFetchResult= {user-> localDataSource.addUserData(user)}
-        , convertToSaveModel = {networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel(networkModel)}
+        , convertToDatabaseModel = { networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel(networkModel)}
     )
 
     fun getPosts(token:String) = requestDataFromAPI(
         query = { localDataSource.getAllPosts() },
         fetch = { remoteDataSource.getAllPosts(token) },
-        convertToSaveModel = {networkpostsList-> networkpostsList.body()?.map { networkposts-> NetworkModelsMapper.postAsDatabaseModel(networkposts) } },
+        convertToDatabaseModel = { networkPostsList-> networkPostsList.map {
+                networkPost-> NetworkModelsMapper.postAsDatabaseModel(networkPost) } },
         saveFetchResult = {list_of_posts-> list_of_posts?.let { localDataSource.insertPost(it) } }
     )
 }

@@ -100,9 +100,10 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
                         },
                         onSuccess= {
                             disableProgressBar()
+                            Log.v("responceTag", it.data?.Token!!)
+                            NadrisApplication.userData =it.data
                             navigateToHomeScreen()
-                            Log.v("responceTag", it.data?.token!!)
-                            NadrisApplication.instance!!.userData = NetworkModelsMapper.authModelAsDomainModel(it.data)
+
 //                            val user = NadrisApplication.instance!!.userData
 //                            user?.Token?.let { it1 -> getPosts(it1) }
                         },
@@ -112,6 +113,8 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
             }
         }
     }
+
+
 
 
     private fun enableErrorMessage(){
@@ -134,9 +137,6 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
 
     private fun navigateToHomeScreen(){
         _navigateToHomeScreen.value = true
-    }
-    fun navigationAfterSuccessfulLoginDone(){
-        _navigateToHomeScreen.value = false
     }
 
     fun onCreateAccountClicked(){

@@ -5,8 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Update
-import com.example.android.nadris.network.CommentModel
-import com.example.android.nadris.network.VoteModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,11 +19,11 @@ interface UserDao {
     @Query("SELECT * FROM UserData WHERE id = 1")
      fun getUser(): Flow<UserData>
 
-    @Query("SELECT * FROM PostData")
-     fun getAllPosts():Flow<List<PostData>>
+    @Query("SELECT * FROM DatabasePost")
+     fun getAllPosts():Flow<List<DatabasePost>>
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertPost( posts: List<PostData>)
+    suspend fun insertPost(databasePosts: List<DatabasePost>)
 
     @Insert(onConflict = REPLACE)
     suspend fun insertComments(vararg comment: CommentData)
@@ -34,6 +32,6 @@ interface UserDao {
      fun getCommentsByPostId(postIdP:Int): Flow<List<CommentData>>
 
     @Update
-    suspend fun updatePost(post: PostData)
+    suspend fun updatePost(databasePost: DatabasePost)
 
 }

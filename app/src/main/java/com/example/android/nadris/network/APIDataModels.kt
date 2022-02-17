@@ -1,6 +1,6 @@
 package com.example.android.nadris.network
 
-import com.example.android.nadris.database.PostData
+import com.example.android.nadris.database.DatabasePost
 import com.example.android.nadris.database.UserData
 
 open class CreateAccountDataModel(
@@ -62,7 +62,7 @@ data class CreatePostModel(
     val body: String,
 )
 
-data class PostModel(
+data class NetworkPost(
     val id: Int,
     val subjectId: String,
     val content: String,
@@ -71,9 +71,8 @@ data class PostModel(
     val time:String,
     val email:String,
     val name:String
-
-
 )
+
 
 data class VoteModel(
     val email: String,

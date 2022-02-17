@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.loginActivity.signUpTeacher
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.fragment.app.viewModels
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.SignupTeacherFragmentBinding
+import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -142,14 +144,12 @@ class signupTeacherFragment : Fragment() {
             else
                 binding.spUnvistyTeacherSignup.error = null
         }
+
+
         viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
             if (it) {
-                //todo: navigate to home screen
-                Toast.makeText(
-                    context,
-                    "navigated to home screen after successful login",
-                    Toast.LENGTH_LONG
-                ).show()
+                startActivity(Intent(requireContext(), TeacherMainActivity::class.java))
+                this.activity?.finish()
             }
         }
     }

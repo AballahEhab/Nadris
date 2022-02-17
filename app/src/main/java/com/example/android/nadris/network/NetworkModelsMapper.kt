@@ -1,26 +1,22 @@
 package com.example.android.nadris.network
 
+import androidx.room.PrimaryKey
 import com.example.android.nadris.R
-import com.example.android.nadris.database.PostData
+import com.example.android.nadris.database.DatabasePost
 import com.example.android.nadris.database.UserData
-import com.example.android.nadris.domain.dataRvPost
 
 object NetworkModelsMapper {
-    fun postAsDatabaseModel(post:PostModel) =
-        PostData(
-            post.id ,
-            post.subjectId ,
-            post.content,
-            post.votes ,
-        )
-    fun postAsDomainModel(post:PostModel) =
-        dataRvPost(
+    fun postAsDatabaseModel(networkPost:NetworkPost) =
+        DatabasePost(
+            networkPost.id ,
             R.drawable.ic_google ,
-            post.name ,
-            post.subjectId,
-            post.content ,
+            networkPost.subjectId ,
+            networkPost.content ,
+            networkPost.votes ,
+            networkPost.time ,
+            networkPost.email ,
+            networkPost.name,
         )
-
 
     fun authModelAsDataBaseModel(model: AuthModel) = UserData(
         Email = model.email,
@@ -36,20 +32,6 @@ object NetworkModelsMapper {
         Token = model.token
     )
 
-    fun authModelAsDomainModel(model: AuthModel)  = com.example.android.nadris.domain.UserData(
-        Email = model.email,
-        firstName = model.email,
-        lastName = model.lastName,
-        PhoneNumber = model.phoneNumber,
-        Type = model.type,
-        Gender = model.gender,
-        Exp = model.exp,
-        Grade = model.gradeId,
-        University = model.university,
-        College = model.college,
-        Token = model.token,
-        ExpiresOn = model.expiresOn
-    )
 
 
 }
