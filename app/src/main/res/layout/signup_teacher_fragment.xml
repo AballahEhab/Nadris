@@ -1,15 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout            xmlns:android="http://schemas.android.com/apk/res/android"
+                   xmlns:tools="http://schemas.android.com/tools"
+                   xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="TeacherViewModel" type="com.example.android.nadris.ui.loginActivity.signUpTeacher.SignupTeacherViewModel"/>
+    </data>
 <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".signupTeacherFragment">
-    
-    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello"/>
+            tools:context=".ui.loginActivity.signUpTeacher.signupTeacherFragment">
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_back"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="@string/textView_back"
+                android:fontFamily="@font/cairo_light"
+                android:textStyle="bold"
+                android:textSize="34sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/textView_register_as_student"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toTopOf="@+id/edt_first_name_teacher" android:textColor="@color/black"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_register_as_student"
+                android:text="@string/textView_register_as_teacher"
+                android:layout_width="0dp"
+                android:textSize="34dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cairo_light"
+                app:layout_constraintStart_toEndOf="@+id/button_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBaseline_toBaselineOf="@+id/button_back"
+                android:textColor="@color/black"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edt_first_name_teacher"
+                app:endIconMode="clear_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/edt_first_name"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintTop_toBottomOf="@+id/button_back"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/cairo_light"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                android:layout_marginStart="8dp"
+                app:helperText="@string/Required1"
+                app:errorEnabled="@{TeacherViewModel.firstnameHaveError}"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/firstNameTextFiled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:text="@={TeacherViewModel.firstname}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validFirstName()}"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperText="@string/Required1"
+                app:endIconMode="clear_text"
+                android:id="@+id/edt_last_name_teacher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                android:hint="@string/edt_last_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:fontFamily="@font/cairo_light"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBaseline_toBaselineOf="@+id/edt_first_name_teacher"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:errorEnabled="@{TeacherViewModel.lastnameHaveError}"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lastNameTextFiled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:text="@={TeacherViewModel.lastname}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validLastName()}"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.constraintlayout.widget.Guideline
+                app:endIconMode="clear_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline2"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="205dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperText="@string/Required1"
+                android:id="@+id/edt_email_teacher_signup"
+                app:endIconMode="clear_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/edt_email_signup"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_first_name_teacher"
+                android:layout_marginTop="8dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                android:fontFamily="@font/cairo_light"
+                android:layout_marginEnd="8dp" android:layout_marginStart="8dp"
+                app:errorEnabled="@{TeacherViewModel.emailHaveError}"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailTextFiled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:text="@={TeacherViewModel.email}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validEmail()}"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperText="@string/Required1"
+                android:id="@+id/edt_phone_teacher_singup"
+                app:endIconMode="clear_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                android:hint="@string/edt_phone_signup"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_email_teacher_signup"
+                android:layout_marginTop="8dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                android:fontFamily="@font/cairo_light"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                app:errorEnabled="@{TeacherViewModel.phoneHaveError}"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:minHeight="48dp"
+                    android:text="@={TeacherViewModel.phone}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validPhone()}"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/edt_phone_teacher_singup"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                android:hint="@string/SP_Signup_teacher_collage"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/cairo_light"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                android:minHeight="48dp"
+                android:id="@+id/collage_teacher_singup"
+                android:layout_marginStart="8dp"
+                app:errorEnabled="@{TeacherViewModel.collageHaveError}"
+
+                >
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="@={TeacherViewModel.collage}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validateCollegeField()}"
+                    tools:ignore="LabelFor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:hint="@string/sp_university_teacher_signup"
+                android:fontFamily="@font/cairo_light"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:minHeight="48dp"
+                android:id="@+id/sp_unvisty_teacher_signup"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/collage_teacher_singup"
+                app:errorEnabled="@{TeacherViewModel.universityHaveError}"
+
+                >
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="@={TeacherViewModel.university}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validateUniversityFieldInput()}"
+
+                    tools:ignore="LabelFor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/collage_teacher_singup"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                android:hint="@string/sp_subject_teacher_signup"
+                android:fontFamily="@font/cairo_light"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                android:minHeight="48dp"
+                android:id="@+id/sp_subject_teacher_signup"
+                android:layout_marginTop="8dp" android:layout_marginStart="8dp"
+                app:errorEnabled="@{TeacherViewModel.collageHaveError}"
+
+                >
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="@={TeacherViewModel.subjects}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validateSubject()}"
+
+                    tools:ignore="LabelFor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:hint="@string/sp_gender_teacher_signup"
+                android:fontFamily="@font/cairo_light"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:layout_constraintStart_toEndOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:minHeight="48dp"
+                android:id="@+id/sp_grander_teacher_signup"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/sp_subject_teacher_signup"
+                app:errorEnabled="@{TeacherViewModel.ganderHaveError}"
+
+                >
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="@={TeacherViewModel.gender}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validateGender()}"
+
+                    tools:ignore="LabelFor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperText="@string/Required1"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                android:id="@+id/edt_password_1_teacher_signup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/edt_password_1_signup"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sp_subject_teacher_signup"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                android:fontFamily="@font/cairo_light"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                app:endIconMode="password_toggle"
+                android:layout_marginTop="8dp"
+                app:errorEnabled="@{TeacherViewModel.password1HaveError}"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:text="@={TeacherViewModel.password1}"
+                    android:afterTextChanged="@{()->TeacherViewModel.validPassword1()}"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                app:helperText="@string/Required1"
+                android:id="@+id/edt_password_2_teacher_signup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/edt_password_1_signup"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintTop_toBottomOf="@+id/edt_password_1_teacher_signup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                android:fontFamily="@font/cairo_light"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                app:endIconMode="password_toggle"
+                android:layout_marginTop="8dp"
+                app:errorEnabled="@{TeacherViewModel.passwordNotMatch}"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:text="@={TeacherViewModel.password2}"
+                    android:afterTextChanged="@{()->TeacherViewModel.matchPassword1ToPassword2()}"
+
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/login_error_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{TeacherViewModel.errorMessage}"
+                android:fontFamily="@font/cairo_light"
+                android:textColor="@android:color/holo_red_dark"
+                app:isVisible="@{TeacherViewModel.errorMessageVisibility}"
+                app:layout_constraintBottom_toTopOf="@+id/containedButton"
+                app:layout_constraintEnd_toEndOf="@id/edt_password_2_teacher_signup"
+                app:layout_constraintStart_toStartOf="@id/edt_password_2_teacher_signup"
+                app:layout_constraintTop_toBottomOf="@+id/edt_password_2_teacher_signup"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                />
+            <Button
+                android:id="@+id/containedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm"
+
+                app:layout_constraintTop_toBottomOf="@+id/edt_password_2_teacher_signup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:backgroundTint="@color/pink"
+                android:onClick="@{()->TeacherViewModel.onSignUpClicked()}"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7A787878"
+        android:translationZ="2dp"
+        app:isVisible="@{TeacherViewModel.showIndicator}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
 
 </FrameLayout>
-<!--TODO :سرحان-->
+</layout>

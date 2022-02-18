@@ -1,15 +1,322 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.nadris.ui.loginActivity.phoneVerification.PhoneViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/phone_verification_constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".PhoneFragment">
-    
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"/>
+        android:background="#FFFFFF">
 
-</FrameLayout>
- <!--TODO :السحيلي-->
+
+        <Button
+            android:id="@+id/back_btn"
+            style="@style/Material_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="@string/back_txt"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/verifying_phone_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_weight="1" />
+
+        <Button
+            android:id="@+id/next_btn"
+            style="@style/Material_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="@string/next_txt"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/verifying_phone_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_weight="1" />
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/verifying_phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/verifying_phone_text"
+            android:textSize="28sp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintBottom_toTopOf="@id/outlinedTextField1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_btn"
+            app:layout_constraintVertical_weight="2"
+
+            />
+
+        <TextView
+            android:id="@+id/outlinedTextField1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector"
+            android:enabled="@{viewModel.digit1FocusState}"
+            android:gravity="center"
+            android:hint="@string/num_zero"
+            android:minWidth="50dp"
+            android:padding="5dp"
+            android:text="@{viewModel.OTBdigit1}"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/didnt_receive_the_code_yet_txt"
+            app:layout_constraintEnd_toStartOf="@id/outlinedTextField2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/verifying_phone_text"
+            app:layout_constraintVertical_weight="1"
+
+
+            />
+
+        <TextView
+            android:id="@+id/outlinedTextField2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="50dp"
+            android:gravity="center"
+            android:text="@{viewModel.OTBdigit2}"
+            android:hint="@string/num_zero"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@id/outlinedTextField1"
+            app:layout_constraintEnd_toStartOf="@id/outlinedTextField3"
+            app:layout_constraintStart_toEndOf="@id/outlinedTextField1"
+            app:layout_constraintTop_toTopOf="@id/outlinedTextField1"
+            android:background="@drawable/selector"
+            android:enabled="@{viewModel.digit2FocusState}"
+            android:clickable="true"
+            android:focusable="true" />
+
+
+        <TextView
+            android:id="@+id/outlinedTextField3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="50dp"
+            android:gravity="center"
+            android:text="@{viewModel.OTBdigit3}"
+            android:hint="@string/num_zero"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@id/outlinedTextField1"
+            app:layout_constraintEnd_toStartOf="@id/outlinedTextField4"
+            app:layout_constraintStart_toEndOf="@id/outlinedTextField2"
+            app:layout_constraintTop_toTopOf="@id/outlinedTextField1"
+            android:background="@drawable/selector"
+            android:enabled="@{viewModel.digit3FocusState}"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/outlinedTextField4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:minWidth="50dp"
+            android:gravity="center"
+            android:text="@{viewModel.OTBdigit4}"
+            android:hint="@string/num_zero"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/outlinedTextField3"
+            app:layout_constraintBottom_toBottomOf="@id/outlinedTextField1"
+            app:layout_constraintTop_toTopOf="@id/outlinedTextField1"
+            android:background="@drawable/selector"
+            android:enabled="@{viewModel.digit4FocusState}"
+            android:clickable="true"
+            android:focusable="true" />
+
+
+        <TextView
+            android:id="@+id/didnt_receive_the_code_yet_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingTop="10dp"
+            android:text="@string/did_not_receive_the_code_yet_txt"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_constraintEnd_toEndOf="@id/outlinedTextField4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/outlinedTextField1"
+            app:layout_constraintVertical_weight="1"
+
+            />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#66484766"
+            app:layout_constraintBottom_toTopOf="@id/btn_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/didnt_receive_the_code_yet_txt">
+
+        </View>
+
+
+        <Button
+            android:id="@+id/btn_1"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(1)}"
+            android:text="@string/num_one"
+            app:layout_constraintBottom_toTopOf="@id/btn_4"
+            app:layout_constraintEnd_toStartOf="@id/btn_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+
+            />
+
+        <Button
+            android:id="@+id/btn_2"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(2)}"
+            android:text="@string/num_two"
+            app:layout_constraintBottom_toTopOf="@id/btn_5"
+            app:layout_constraintEnd_toStartOf="@id/btn_3"
+            app:layout_constraintStart_toEndOf="@id/btn_1"
+            app:layout_constraintTop_toBottomOf="@id/didnt_receive_the_code_yet_txt"
+
+
+            />
+
+        <Button
+            android:id="@+id/btn_3"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(3)}"
+            android:text="@string/num_three"
+            app:layout_constraintBottom_toTopOf="@id/btn_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_2"
+
+            app:layout_constraintTop_toBottomOf="@id/didnt_receive_the_code_yet_txt" />
+
+
+        <Button
+            android:id="@+id/btn_4"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(4)}"
+            android:text="@string/num_four"
+            app:layout_constraintBottom_toTopOf="@id/btn_7"
+            app:layout_constraintEnd_toStartOf="@id/btn_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_1" />
+
+        <Button
+            android:id="@+id/btn_5"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(5)}"
+            android:text="@string/num_five"
+            app:layout_constraintBottom_toTopOf="@id/btn_8"
+            app:layout_constraintEnd_toStartOf="@id/btn_6"
+            app:layout_constraintStart_toEndOf="@id/btn_4"
+            app:layout_constraintTop_toBottomOf="@id/btn_2" />
+
+        <Button
+            android:id="@+id/btn_6"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(6)}"
+            android:text="@string/num_six"
+            app:layout_constraintBottom_toTopOf="@id/btn_9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_5"
+            app:layout_constraintTop_toBottomOf="@id/btn_3"
+
+            />
+
+
+        <Button
+            android:id="@+id/btn_7"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(7)}"
+            android:text="@string/num_seven"
+            app:layout_constraintBottom_toTopOf="@id/btn_delete"
+            app:layout_constraintEnd_toStartOf="@id/btn_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_4" />
+
+        <Button
+            android:id="@+id/btn_8"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(8)}"
+            android:text="@string/num_eight"
+            app:layout_constraintBottom_toTopOf="@id/btn_0"
+            app:layout_constraintEnd_toStartOf="@id/btn_9"
+            app:layout_constraintStart_toEndOf="@id/btn_7"
+            app:layout_constraintTop_toBottomOf="@id/btn_5"
+
+            />
+
+        <Button
+            android:id="@+id/btn_9"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(9)}"
+            android:text="@string/num_nine"
+            app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_8"
+            app:layout_constraintTop_toBottomOf="@id/btn_6"
+
+            />
+
+
+        <Button
+            android:id="@+id/btn_delete"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:text="@string/delete_symbol"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_7"
+            android:onClick="@{() -> viewModel.onDelete()}"
+            />
+
+
+        <Button
+            android:id="@+id/btn_0"
+            style="@style/keyboard_OutlinedButton_Style"
+            android:onClick="@{() -> viewModel.onKeyboardButtonPressed(0)}"
+            android:text="@string/num_zero"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_confirm"
+            app:layout_constraintStart_toEndOf="@id/btn_delete"
+            app:layout_constraintTop_toBottomOf="@id/btn_8"
+
+
+            />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            style="@style/Widget.MaterialComponent.App.Button"
+            android:text="@string/confirm_txt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_0"
+            app:layout_constraintTop_toBottomOf="@id/btn_9"
+            android:onClick="@{() -> viewModel.onConfirm()}"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

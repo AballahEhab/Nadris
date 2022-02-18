@@ -1,15 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="viewModel"
+            type="com.example.android.nadris.ui.loginActivity.login.LoginViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_height="match_parent"
-        tools:context=".LoginFragment">
-    
-    <TextView
+         android:layout_width="match_parent">
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello"/>
+            android:fillViewport="true">
 
-</FrameLayout>
-<!--TODO :غراب-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".LoginFragment">
+
+                <ImageView
+                    android:id="@+id/logo_nadris_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_nadris_logo"
+                    app:layout_constraintBottom_toTopOf="@id/textView_Welcome_login"
+                    app:layout_constraintEnd_toEndOf="@id/textView_Welcome_login"
+                    app:layout_constraintHeight_max="96dp"
+                    app:layout_constraintStart_toStartOf="@id/textView_Welcome_login"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_Welcome_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:text="@string/textView_Welcome_in_nadris"
+                    android:textColor="@color/black"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/logo_nadris_login"
+                    app:layout_constraintBottom_toTopOf="@id/material_email_or_phone"
+                    android:layout_marginTop="8dp"
+
+                    />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/material_email_or_phone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_light"
+                    android:hint="@string/edt_E_mail_or_Phone_hint"
+                    android:minHeight="48dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="#FE6464"
+                    app:hintTextColor="#484766"
+                    app:layout_constraintBottom_toTopOf="@id/edt_password_login"
+                    app:layout_constraintEnd_toEndOf="@id/textView_Welcome_login"
+                    app:layout_constraintStart_toStartOf="@id/textView_Welcome_login"
+                    app:layout_constraintTop_toBottomOf="@id/textView_Welcome_login"
+                    android:layout_marginTop="16dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email_ed_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:minHeight="48dp"
+                        android:text="@={viewModel.email}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edt_password_login"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_light"
+                    android:hint="@string/edt_password_login"
+                    android:minHeight="48dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxStrokeColor="#FE6464"
+                    app:hintTextColor="#484766"
+                    app:layout_constraintBottom_toTopOf="@id/login_error_message"
+                    app:layout_constraintEnd_toEndOf="@id/material_email_or_phone"
+                    app:layout_constraintStart_toStartOf="@id/material_email_or_phone"
+                    app:layout_constraintTop_toBottomOf="@id/material_email_or_phone"
+                    android:layout_marginTop="8dp"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:minHeight="48dp"
+                        android:text="@={viewModel.password}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/login_error_message"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.loginRequestErrorMessage}"
+                    android:fontFamily="@font/cairo_light"
+                    android:textColor="@android:color/holo_red_dark"
+                    app:isVisible="@{viewModel.errorMessageVisibility}"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_sign_in"
+                    app:layout_constraintEnd_toEndOf="@id/edt_password_login"
+                    app:layout_constraintStart_toStartOf="@id/edt_password_login"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_sign_in"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_light"
+                    android:onClick="@{()-> viewModel.onLoginClicked()}"
+                    android:text="@string/btn_sign_in_login"
+                    android:textSize="24sp"
+                    app:backgroundTint="@color/pink"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintBottom_toTopOf="@id/img_google"
+                    app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
+                    app:layout_constraintStart_toStartOf="@+id/edt_password_login"
+                    app:layout_constraintTop_toBottomOf="@+id/login_error_message"
+                    android:layout_marginTop="8dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/img_google"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_google"
+                    android:onClick="@{()->viewModel.onLoginByGoogleClick()}"
+                    app:layout_constraintBottom_toTopOf="@id/VG_create_acc"
+                    app:layout_constraintStart_toStartOf="@id/btn_sign_in"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
+                    app:layout_constraintEnd_toStartOf="@id/img_facebook"
+                    android:contentDescription="TODO"
+                    android:layout_marginTop="16dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/img_facebook"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_facebook"
+                    android:onClick="@{()->viewModel.onLoginByFacebookClick()}"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+                    app:layout_constraintStart_toEndOf="@id/img_google"
+                    app:layout_constraintTop_toTopOf="@+id/img_google"
+                    app:layout_constraintBottom_toBottomOf="@id/img_google"
+                    android:contentDescription="TODO"/>
+
+                <LinearLayout
+                    android:id="@+id/VG_create_acc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+                    app:layout_constraintStart_toStartOf="@id/btn_sign_in"
+                    app:layout_constraintTop_toBottomOf="@+id/img_google">
+
+                    <TextView
+                        android:id="@+id/TextView_new_account_signup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:onClick="@{()->viewModel.onCreateAccountClicked()}"
+                        android:text="@string/btn_new_account_login"
+                        android:textColor="@drawable/create_account_txt_color_selector"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/textView_HaveAccount_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="@string/textView_HaveAccount_login"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#7A787878"
+            android:translationZ="2dp"
+            app:isVisible="@{viewModel.showIndicator}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBar"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                app:indicatorColor="#FE6464" />
+        </FrameLayout>
+    </FrameLayout>
+</layout>
