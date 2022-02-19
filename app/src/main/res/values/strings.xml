@@ -108,4 +108,32 @@
     <string name="title_activity_student_home">StudentHome</string>
     <string name="title_activity_studnet_main_acitivity">StudnetMainAcitivity</string>
     <string name="title_activity_teacher_main">TeacherMainActivity</string>
+    <string name="wron_cridentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
+    <string name="namesubjects">المواد الدراسيه</string>
+    <string name="TvChoseTeachers">إختار مدرس</string>
+    <string name="btn_joining">إنضمام</string>
+    <string name="tv_name_subject_phyiscs">الفيزياء</string>
+    <string name="tv_count_student_on_all_subjects">160 </string>
+    <string name="tv_count_teacher_on_all_subjects">15 </string>
+    <string name="tv_item_st_count">طالب</string>
+    <string name="tv_item_teach_count">مدرس</string>
+    <string name="tv_name_teachers">محمد مصطفي</string>
+    <string name="tv_content_description">شرح ومراجعه</string>
+    <string name="tv_add_teacher">إضافه</string>
+    <string name="tv_star">* * * </string>
+    <string name="tv_evaluation">4.8</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_course">"المواد الدراسيه "</string>
+    <string name="add_subject">إضافه ماده</string>
+    <string name="add_explain_subject">إضافه شرح ماده</string>
+    <string name="btn_modification">تعديل</string>
+    <string name="tv_semester">الفصل الدراسي الأول</string>
+    <string name="tv_class">الثالث الثانوي</string>
+    <string name="autoCompleteTV_choose_class">إختيار الصف الدراسي</string>
+    <string name="btn_add_new_subject">إضافة المادة</string>
+    <string name="autoCompleteTV_choose_subjects">إختيار المادة</string>
+    <string name="autoCompleteTV_choose_semester">إختيار الفصل الدراسي</string>
+
+    >
 </resources>
