@@ -198,8 +198,9 @@
                         android:onClick="@{()->viewModel.onCreateAccountClicked()}"
                         android:text="@string/btn_new_account_login"
                         android:textColor="@drawable/create_account_txt_color_selector"
-                        android:textSize="18sp" />
-
+                        android:textSize="18sp"
+                    style="@style/new_account"
+                    />
                     <TextView
                         android:id="@+id/textView_HaveAccount_login"
                         android:layout_width="wrap_content"

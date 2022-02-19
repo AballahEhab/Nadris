@@ -27,7 +27,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/textView_register_as_student"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintBottom_toTopOf="@+id/edt_first_name_teacher" android:textColor="@color/black"/>
+            app:layout_constraintBottom_toTopOf="@+id/edt_first_name_teacher"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_register_as_student"
@@ -40,7 +41,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintBaseline_toBaselineOf="@+id/button_back"
-                android:textColor="@color/black"/>
+            android:textColor="@color/black"/>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_first_name_teacher"
                 app:endIconMode="clear_text"
