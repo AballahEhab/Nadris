@@ -148,11 +148,11 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
     }
 
     fun onLoginByGoogleClick(){
-        _navigateToHomeScreen.value = true
+ //       _navigateToHomeScreen.value = true
     }
 
     fun onLoginByFacebookClick(){
-        _navigateToHomeScreen.value = true
+//        _navigateToHomeScreen.value = true
     }
 
 }

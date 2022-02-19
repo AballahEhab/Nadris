@@ -159,6 +159,7 @@
                     app:layout_constraintEnd_toStartOf="@id/img_facebook"
                     android:contentDescription="TODO"
                     android:layout_marginTop="16dp"
+                    android:clickable="false"
                     />
 
                 <ImageView
@@ -167,13 +168,15 @@
                     android:layout_height="50dp"
                     android:src="@drawable/ic_facebook"
                     android:onClick="@{()->viewModel.onLoginByFacebookClick()}"
-                    android:clickable="true"
+                    android:clickable="false"
                     android:focusable="true"
                     app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
                     app:layout_constraintStart_toEndOf="@id/img_google"
                     app:layout_constraintTop_toTopOf="@+id/img_google"
                     app:layout_constraintBottom_toBottomOf="@id/img_google"
-                    android:contentDescription="TODO"/>
+                    android:contentDescription="TODO"
+
+                />
 
                 <LinearLayout
                     android:id="@+id/VG_create_acc"
