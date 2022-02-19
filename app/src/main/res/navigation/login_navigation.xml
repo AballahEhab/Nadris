@@ -55,23 +55,37 @@
         tools:layout="@layout/phone_fragment"/>
     <fragment
         android:id="@+id/subjectsRvFragment"
-        android:name="com.example.android.nadris.SubjectsRvFragment"
-        android:label="SubjectsRvFragment" />
+        android:name="com.example.android.nadris.subject_student.SubjectsRvFragment"
+        android:label="SubjectsRvFragment" >
+        <action
+            android:id="@+id/action_subjectsRvFragment_to_teachers_RV_fragment"
+            app:destination="@id/teachers_RV_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/teachers_RV_fragment"
-        android:name="com.example.android.nadris.teachers_RV_fragment"
+        android:name="com.example.android.nadris.select_teacher.teachers_RV_fragment"
         android:label="teachers_RV_fragment" />
     <fragment
         android:id="@+id/sub_teacher_rv_Fragment"
-        android:name="com.example.android.nadris.sub_teacher_rv_Fragment"
+        android:name="com.example.android.nadris.subjects_teacher.sub_teacher_rv_Fragment"
         android:label="sub_teacher_rv_Fragment" >
         <action
             android:id="@+id/action_sub_teacher_rv_Fragment_to_choosing_new_subjects"
             app:destination="@id/choosing_new_subjects" />
+        <argument
+            android:name="select_class"
+            app:argType="string" />
+        <argument
+            android:name="select_subject"
+            app:argType="string" />
+        <argument
+            android:name="select_semester"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/choosing_new_subjects"
-        android:name="com.example.android.nadris.choosing_new_subjects"
+        android:name="com.example.android.nadris.subjects_teacher.choosing_new_subjects"
         android:label="choosing_new_subjects" >
         <action
             android:id="@+id/action_choosing_new_subjects_to_sub_teacher_rv_Fragment"

@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.select_teacher
 
 /**
  * @author mohammed sarhan
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.databinding.SubjectsRvFragmentBinding
+import com.example.android.nadris.R
+import com.example.android.nadris.customAdapterRVTeach
 import com.example.android.nadris.databinding.TeachersRVFragmentBinding
 
 class teachers_RV_fragment : Fragment() {
@@ -53,9 +53,10 @@ class teachers_RV_fragment : Fragment() {
         binding.RVTeachers.adapter = adapter
 
         activity?.let {
-            viewModel.getdata().observe(
+            viewModel.getdata().observe(//observe=>  acss on data return from getdata()
+                // LiveData a where Lifecyc
                 viewLifecycleOwner, {
-                    adapter.differ.submitList(it)
+                    adapter.differ.submitList(it) //pass data when change to diffutil
                 }
             )
 

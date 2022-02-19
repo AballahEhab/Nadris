@@ -9,7 +9,6 @@
     <string name="textView_HaveAccount_login">ليس لديك حساب بعد</string>
     <string name="btn_new_account_login">إنشاء حساب</string>
     <string name="textView_register_as_signup">التسجيل ك </string>
-
     <string name="textView_student_signup">الطالب</string>
     <string name="textView_parent">ولي الأمر</string>
     <string name="textView_other">غير ذلك</string>

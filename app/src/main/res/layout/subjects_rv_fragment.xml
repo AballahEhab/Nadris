@@ -6,13 +6,13 @@
 <data>
     <variable
         name="viewmodel"
-        type="com.example.android.nadris.SubjectsRvFragmentViewModel" />
+        type="com.example.android.nadris.subject_student.SubjectsRvFragmentViewModel" />
 </data>
 <FrameLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubjectsRvFragment">
+    tools:context=".subject_student.SubjectsRvFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

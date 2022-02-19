@@ -8,13 +8,13 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.TeachersRVFragmentViewModel" />
+            type="com.example.android.nadris.select_teacher.TeachersRVFragmentViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".teachers_RV_fragment">
+        tools:context=".select_teacher.teachers_RV_fragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
