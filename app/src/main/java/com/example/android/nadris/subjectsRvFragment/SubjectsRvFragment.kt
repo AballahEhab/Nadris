@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.subjectsRvFragment
 /**
  * @author mohammed M sarhan
  * **/
@@ -7,18 +7,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.R
+import com.example.android.nadris.customAdapterRVsub
 import com.example.android.nadris.databinding.SubjectsRvFragmentBinding
-import com.example.android.nadris.login.LoginViewModel
 
 class SubjectsRvFragment : Fragment() {
 
     private lateinit var viewModel: SubjectsRvFragmentViewModel
     private lateinit var binding:SubjectsRvFragmentBinding
-    private lateinit var adapter:customAdapterRVsub
+    private lateinit var adapter: customAdapterRVsub
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +35,7 @@ class SubjectsRvFragment : Fragment() {
         return binding.root
     }
     private fun setupRV(){
-        adapter=customAdapterRVsub()
+        adapter= customAdapterRVsub()
         binding.RVSubjects.layoutManager=
             LinearLayoutManager(requireContext(),
                 RecyclerView.VERTICAL,false)

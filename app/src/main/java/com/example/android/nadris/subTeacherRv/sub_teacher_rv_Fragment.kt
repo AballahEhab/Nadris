@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.subTeacherRv
 /**
  * @author mohammed M sarhan
  * **/
@@ -11,15 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.R
+import com.example.android.nadris.customAdapterRVsubTeacher
 import com.example.android.nadris.databinding.SubTeacherRvFragmentBinding
-import com.example.android.nadris.databinding.SubjectsRvFragmentBinding
 
 class sub_teacher_rv_Fragment : Fragment() {
 
 
 
     private lateinit var viewModel: SubTeacherRvViewModel
-    private lateinit var adapter:customAdapterRVsubTeacher
+    private lateinit var adapter: customAdapterRVsubTeacher
     private lateinit var binding:SubTeacherRvFragmentBinding
 
     override fun onCreateView(

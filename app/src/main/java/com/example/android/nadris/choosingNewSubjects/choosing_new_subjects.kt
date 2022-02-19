@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.choosingNewSubjects
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import com.example.android.nadris.R
 import com.example.android.nadris.databinding.ChoosingNewSubjectsFragmentBinding
-import com.example.android.nadris.databinding.SubTeacherRvFragmentBinding
 
 class choosing_new_subjects : Fragment() {
 
@@ -20,7 +20,7 @@ class choosing_new_subjects : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        inflater.inflate(R.layout.choosing_new_subjects_fragment , container,false)
+        inflater.inflate(R.layout.choosing_new_subjects_fragment, container,false)
         var binding =ChoosingNewSubjectsFragmentBinding.inflate(inflater)
         viewModel = ViewModelProvider(this).get(ChoosingNewSubjectsViewModel::class.java)
        binding.viewmodel = viewModel

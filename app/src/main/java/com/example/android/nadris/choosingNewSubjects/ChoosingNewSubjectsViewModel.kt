@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.choosingNewSubjects
 
 import android.view.MenuItem
 import android.widget.Switch

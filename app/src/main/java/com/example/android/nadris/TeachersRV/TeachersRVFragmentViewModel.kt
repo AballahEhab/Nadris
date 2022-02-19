@@ -1,10 +1,11 @@
-package com.example.android.nadris
+package com.example.android.nadris.TeachersRV
 /**
  * @author mohammed sarhan
  * **/
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.nadris.R
+import com.example.android.nadris.dataRvTeach
 
 class TeachersRVFragmentViewModel : ViewModel() {
    private var list=MutableLiveData<List<dataRvTeach>>();

@@ -1,4 +1,4 @@
-package com.example.android.nadris
+package com.example.android.nadris.TeachersRV
 
 /**
  * @author mohammed sarhan
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.databinding.SubjectsRvFragmentBinding
+import com.example.android.nadris.R
+import com.example.android.nadris.customAdapterRVTeach
 import com.example.android.nadris.databinding.TeachersRVFragmentBinding
 
 class teachers_RV_fragment : Fragment() {
