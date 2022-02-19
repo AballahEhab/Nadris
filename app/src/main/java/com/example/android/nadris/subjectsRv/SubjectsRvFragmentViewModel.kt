@@ -1,4 +1,4 @@
-package com.example.android.nadris.subjectsRvFragment
+package com.example.android.nadris.subjectsRv
 /**
  * @author mohammed sarhan
  * **/

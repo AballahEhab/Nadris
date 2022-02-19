@@ -74,7 +74,7 @@
         tools:layout="@layout/phone_fragment"/>
     <fragment
         android:id="@+id/subjectsRvFragment"
-        android:name="com.example.android.nadris.subjectsRvFragment.SubjectsRvFragment"
+        android:name="com.example.android.nadris.subjectsRv.SubjectsRvFragment"
         android:label="SubjectsRvFragment" />
     <fragment
         android:id="@+id/teachers_RV_fragment"
