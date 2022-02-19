@@ -12,27 +12,27 @@ class SubTeacherRvViewModel : ViewModel() {
         val subjects = mutableListOf<dataRvsubTeach>()
         subjects.add(
             dataRvsubTeach(1,"الفيزياء",160,"الثالث الثانوي","الفصل الدراسي الاول",
-                R.drawable.icon_physics)
+                R.drawable.icon_plus)
         )
         subjects.add(
             dataRvsubTeach(2,"الكيمياء",210,"الثاني الثانوي","الفصل الدراسي الثاني",
-                R.drawable.icon_physics)
+                R.drawable.icon_plus)
         )
         subjects.add(
             dataRvsubTeach(3,"الفيزياء",160,"الثالث الثانوي","الفصل الدراسي الاول",
-                R.drawable.icon_physics)
+                R.drawable.icon_plus)
         )
         subjects.add(
             dataRvsubTeach(4,"الكيمياء",210,"الثاني الثانوي","الفصل الدراسي الثاني",
-                R.drawable.icon_physics)
+                R.drawable.icon_plus)
         )
         subjects.add(
             dataRvsubTeach(5,"الفيزياء",160,"الثالث الثانوي","الفصل الدراسي الاول",
-                R.drawable.icon_physics)
+                R.drawable.icon_plus)
         )
         subjects.add(
             dataRvsubTeach(6,"الكيمياء",210,"الثاني الثانوي","الفصل الدراسي الثاني",
-                R.drawable.icon_physics)
+                R.drawable.icon_plus)
         )
 
         list.value=subjects

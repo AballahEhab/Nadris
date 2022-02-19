@@ -31,7 +31,7 @@ class teachers_RV_fragment : Fragment() {
         binding = TeachersRVFragmentBinding.inflate(inflater);
 
         viewModel = ViewModelProvider(this).get(TeachersRVFragmentViewModel::class.java)
-        binding.viewmodel = viewModel
+        binding.viewmodel = viewModel!!
 
         setupRV()
 //        binding.RVTeachers.layoutManager=
