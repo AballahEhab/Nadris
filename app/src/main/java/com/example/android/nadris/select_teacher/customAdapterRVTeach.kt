@@ -25,7 +25,7 @@ class customAdapterRVTeach()
             return oldItem == newItem
         }
     }
-//computing different bettween two
+//computing different bettween two list
     val differ =AsyncListDiffer(this,differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)

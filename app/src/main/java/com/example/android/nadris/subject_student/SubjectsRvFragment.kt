@@ -1,4 +1,4 @@
-package com.example.android.nadris.subjectsRv
+package com.example.android.nadris.subject_student
 /**
  * @author mohammed M sarhan
  * **/

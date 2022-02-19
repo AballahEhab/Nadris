@@ -1,4 +1,4 @@
-package com.example.android.nadris.TeachersRV
+package com.example.android.nadris.select_teacher
 
 /**
  * @author mohammed sarhan
@@ -31,7 +31,7 @@ class teachers_RV_fragment : Fragment() {
         binding = TeachersRVFragmentBinding.inflate(inflater);
 
         viewModel = ViewModelProvider(this).get(TeachersRVFragmentViewModel::class.java)
-        binding.viewmodel = viewModel!!
+        binding.viewmodel = viewModel
 
         setupRV()
 //        binding.RVTeachers.layoutManager=
@@ -53,9 +53,10 @@ class teachers_RV_fragment : Fragment() {
         binding.RVTeachers.adapter = adapter
 
         activity?.let {
-            viewModel.getdata().observe(
+            viewModel.getdata().observe(//observe=>  acss on data return from getdata()
+                // LiveData a where Lifecyc
                 viewLifecycleOwner, {
-                    adapter.differ.submitList(it)
+                    adapter.differ.submitList(it) //pass data when change to diffutil
                 }
             )
 

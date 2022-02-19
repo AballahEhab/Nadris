@@ -60,9 +60,9 @@
                     android:fontFamily="@font/cairo_light"
                     android:text="@string/tv_add_teacher"
                     app:backgroundTint="@color/bink"
+                    android:layout_marginStart="16dp"
                     app:cornerRadius="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_name_teachers"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

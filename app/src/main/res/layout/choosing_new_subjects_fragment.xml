@@ -35,9 +35,11 @@
                 android:id="@+id/autoCompleteTV_choose_class"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:layout_weight="1"
                 android:inputType="none"
-                android:text="@string/autoCompleteTV_choose_class" />
+                android:hint="@string/autoCompleteTV_choose_class"
+                android:text="@={viewmodel.Select_class}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,7 +48,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-android:layout_margin="20dp"
+            android:layout_margin="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +63,8 @@ android:layout_margin="20dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:inputType="none"
-                android:text="@string/autoCompleteTV_choose_subjects" />
+                android:hint="@string/autoCompleteTV_choose_subjects"
+                android:text="@={viewmodel.Select_subject}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +88,8 @@ android:layout_margin="20dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:inputType="none"
-                android:text="@string/autoCompleteTV_choose_semester" />
+                android:hint="@string/autoCompleteTV_choose_semester"
+                android:text="@={viewmodel.select_semester}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
