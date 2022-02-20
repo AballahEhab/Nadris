@@ -35,10 +35,12 @@ class sub_teacher_rv_Fragment : Fragment() {
         viewModel = ViewModelProvider(this).get(SubTeacherRvViewModel::class.java)
         binding.viewmodel = viewModel
 
+
+        //todo: commented this code as the page doesnot receive any arguments
         //retriv data frim choosing
-         viewModel.select_class=args.selectClass
-        viewModel.select_subject=args.selectSubject
-        viewModel.select_semester= args.selectSemester.toString()
+//         viewModel.select_class=args.selectClass
+//        viewModel.select_subject=args.selectSubject
+//        viewModel.select_semester= args.selectSemester.toString()
 
         setupRV();
         binding.fabAddSubject.setOnClickListener {
