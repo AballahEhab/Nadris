@@ -1,13 +1,8 @@
-package com.example.android.nadris
+package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
 
 
-    import android.content.Intent
     import android.view.LayoutInflater
-    import android.view.View
     import android.view.ViewGroup
-    import android.widget.ImageView
-    import android.widget.TextView
-    import android.widget.Toast
     import androidx.recyclerview.widget.AsyncListDiffer
     import androidx.recyclerview.widget.DiffUtil
     import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +22,7 @@ class customAdapterRVsubTeacher():
         val differ =AsyncListDiffer(this,differCalback)
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int
-        ): customAdapterRVsubTeacher.viweholder {
+        ): viweholder {
           val  v=ItemRvSubTeacherBinding.inflate(
               LayoutInflater.from(parent.context),
               parent,false)
@@ -36,8 +31,8 @@ class customAdapterRVsubTeacher():
         override fun getItemCount(): Int {
             return  differ.currentList.size
         }
-        override fun onBindViewHolder(holder: customAdapterRVsubTeacher.viweholder, position: Int) {
-            val data:dataRvsubTeach=differ.currentList[position]
+        override fun onBindViewHolder(holder: viweholder, position: Int) {
+            val data: dataRvsubTeach =differ.currentList[position]
             holder.binding.tvNameSubjectTeacher.text  =data.name_subject_teacher
             holder.binding.tvCountStudentTeach.text  =data.count_student_teach.toString()
             holder.binding.tvClass.text =data.class_

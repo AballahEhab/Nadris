@@ -1,4 +1,4 @@
-package com.example.android.nadris.choosingNewSubjects
+package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.ChoosingNewSubjectsFragmentBinding
 
@@ -39,6 +40,15 @@ class choosing_new_subjects : Fragment() {
         val adapter_semester=ArrayAdapter(requireContext(), R.layout.dropdown_item_choose_class,
             R.id.textView,viewModel.semester_)
         (binding.autoCompleteTVChooseSemester as? AutoCompleteTextView)?.setAdapter(adapter_semester);
+
+        binding.btnAddNewSubject.setOnClickListener {
+            var action=choosing_new_subjectsDirections.
+               actionChoosingNewSubjectsToSubTeacherRvFragment(selectClass = viewModel.select_class,
+                    selectSubject = viewModel.select_subject, selectSemester = viewModel.select_semester
+               )
+            findNavController().navigate(action)
+
+        }
 
         return binding.root
     }

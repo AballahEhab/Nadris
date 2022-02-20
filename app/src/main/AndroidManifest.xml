@@ -16,18 +16,29 @@
 
         <activity
             android:name=".ui.studentActivity.StudentMainActivity"
+            android:label="@string/title_activity_student_home"
             android:exported="false"
-
-            android:label="@string/title_activity_student_home">
-        </activity>
-
-        <activity android:name=".ui.loginActivity.MainActivity"
             >
+
+        </activity>
+        <activity
+            android:name=".ui.teacherActivity.TeacherMainActivity"
+
+            android:label="@string/title_activity_teacher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.loginActivity.MainActivity"
+            android:exported="false"
+
+            >
+
+
         </activity>
 
         <meta-data

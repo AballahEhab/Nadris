@@ -3,17 +3,13 @@ package com.example.android.nadris
  * @author mohammed sarhan
  * **/
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.ItemRvSubjectsBinding
-import com.example.android.nadris.subject_student.SubjectsRvFragmentDirections
+import com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragmentDirections
 
 class customAdapterRVsub()
     : RecyclerView.Adapter<customAdapterRVsub.ViewHolder>() {

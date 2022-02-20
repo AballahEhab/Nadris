@@ -1,4 +1,4 @@
-package com.example.android.nadris.select_teacher
+package com.example.android.nadris.ui.studentActivity.select_teacher
 /**
  * @author mohammed sarhan
  * **/
@@ -17,12 +17,12 @@ class TeachersRVFragmentViewModel : ViewModel() {
     //<List< =>set of data
     fun  getdata(): MutableLiveData<List<dataRvTeach>> {
         var teachers= mutableListOf<dataRvTeach>()
-        teachers.add(dataRvTeach(1,"محمد مصطفي", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(2,"شكري فضل", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(3,"عبدالله إيهاب", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(4,"عبدالله صلاح", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(5,"محمد مصطفي", 8, R.drawable.icon_parent))
-        teachers.add(dataRvTeach(6,"شكري فضل", 8, R.drawable.icon_parent))
+        teachers.add(dataRvTeach(1,"محمد مصطفي", 8, R.drawable.icon_physics))
+        teachers.add(dataRvTeach(2,"شكري فضل", 8, R.drawable.icon_physics))
+        teachers.add(dataRvTeach(3,"عبدالله إيهاب", 8, R.drawable.icon_physics))
+        teachers.add(dataRvTeach(4,"عبدالله صلاح", 8, R.drawable.icon_physics))
+        teachers.add(dataRvTeach(5,"محمد مصطفي", 8, R.drawable.icon_physics))
+        teachers.add(dataRvTeach(6,"شكري فضل", 8, R.drawable.icon_physics))
         list.value = teachers
      return list
     }

@@ -1,7 +1,5 @@
-package com.example.android.nadris.subjects_teacher
+package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
 
-import android.view.MenuItem
-import android.widget.Switch
 import androidx.lifecycle.ViewModel
 
 class ChoosingNewSubjectsViewModel : ViewModel() {

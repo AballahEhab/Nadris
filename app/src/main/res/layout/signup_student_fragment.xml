@@ -4,7 +4,9 @@
                    xmlns:app="http://schemas.android.com/apk/res-auto"
 >
     <data>
-        <variable name="StudentViewModel" type="com.example.android.nadris.ui.loginActivity.signUpStudent.SignupStudentViewModel"/>
+        <variable
+            name="StudentViewModel"
+            type="com.example.android.nadris.ui.loginActivity.signUpStudent.SignupStudentViewModel"/>
     </data>
     <FrameLayout
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.example.android.nadris.subjects_teacher
+package com.example.android.nadris.ui.teacherActivity.subjects_teacher
 /**
  * @author mohammed M sarhan
  * **/
@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
-import com.example.android.nadris.customAdapterRVsubTeacher
+import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.customAdapterRVsubTeacher
 import com.example.android.nadris.databinding.SubTeacherRvFragmentBinding
 
 class sub_teacher_rv_Fragment : Fragment() {

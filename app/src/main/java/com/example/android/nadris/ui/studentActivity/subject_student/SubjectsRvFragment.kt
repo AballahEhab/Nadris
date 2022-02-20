@@ -1,4 +1,4 @@
-package com.example.android.nadris.subject_student
+package com.example.android.nadris.ui.studentActivity.subject_student
 /**
  * @author mohammed M sarhan
  * **/

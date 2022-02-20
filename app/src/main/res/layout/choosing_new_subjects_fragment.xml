@@ -7,13 +7,13 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.choosingNewSubjects.ChoosingNewSubjectsViewModel" />
+            type="com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.ChoosingNewSubjectsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".choosingNewSubjects.choosing_new_subjects">
+        tools:context=".ui.teacherActivity.choosingNewSubjects.choosing_new_subjects">
         <!--Create a TextInputLayout and choose the style,
            for now we are choosing the OutlinedBox ExposedDropdownMenu   -->
 

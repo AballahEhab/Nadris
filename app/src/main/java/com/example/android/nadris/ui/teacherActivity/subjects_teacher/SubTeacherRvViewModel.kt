@@ -1,9 +1,9 @@
-package com.example.android.nadris.subjects_teacher
+package com.example.android.nadris.ui.teacherActivity.subjects_teacher
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.R
-import com.example.android.nadris.dataRvsubTeach
+import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.dataRvsubTeach
 
 class SubTeacherRvViewModel : ViewModel() {
     //retrive data from choosing new subject

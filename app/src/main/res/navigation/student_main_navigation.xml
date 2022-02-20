@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_dashboard">
+    app:startDestination="@+id/subjectsRvFragment">
 
     <fragment
         android:id="@+id/navigation_posts"
@@ -12,14 +12,25 @@
         tools:layout="@layout/post_page_fragment" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.android.nadris.ui.studentActivity.dashboard.DashboardFragment"
+        android:id="@+id/subjectsRvFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment"
         android:label="@string/student_subjects_title"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_subjectsRvFragment_to_teachers_RV_fragment"
+            app:destination="@id/teachers_RV_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.android.nadris.ui.studentActivity.notifications.NotificationsFragment"
         android:label="@string/student_schedual_title"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/teachers_RV_fragment"
+        android:name="com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragment"
+        android:label="teachers_RV_fragment" />
+
+
 </navigation>

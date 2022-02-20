@@ -9,7 +9,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.ActivityTeacherMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TeacherMainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTeacherMainBinding
@@ -27,7 +29,7 @@ class TeacherMainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home1, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home1, R.id.navigation_dashboard1, R.id.navigation_notifications1
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

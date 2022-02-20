@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.subTeacherRv.SubTeacherRvViewModel" />
+            type="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubTeacherRvViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

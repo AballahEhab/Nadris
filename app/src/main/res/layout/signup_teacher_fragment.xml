@@ -3,7 +3,9 @@
                    xmlns:tools="http://schemas.android.com/tools"
                    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="TeacherViewModel" type="com.example.android.nadris.ui.loginActivity.signUpTeacher.SignupTeacherViewModel"/>
+        <variable
+            name="TeacherViewModel"
+            type="com.example.android.nadris.ui.loginActivity.signUpTeacher.SignupTeacherViewModel"/>
     </data>
 <FrameLayout
     android:layout_width="match_parent"
