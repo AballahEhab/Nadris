@@ -14,17 +14,17 @@
             tools:context=".ui.loginActivity.signUp.SignupFragment">
         
         <ImageView
-                android:id="@+id/IV_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintHeight_max="96dp"
-                android:src="@drawable/ic_nadris_logo"
-                android:layout_marginTop="36dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="TODO"/>
-        
+            android:id="@+id/IV_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHeight_max="96dp"
+            app:srcCompat="@drawable/ic_nadris_logo"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO"/>
+
         <TextView
                 android:id="@+id/textView_register_as"
                 android:layout_width="wrap_content"
@@ -57,10 +57,10 @@
                 android:onClick="@{()->viewModle.navigate_to_teacher_signUp()}"
                 app:layout_constraintBottom_toTopOf="@+id/tv_login">
             <ImageView
-                    android:id="@+id/imageView_teacher"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/teacher" android:contentDescription="TODO"/>
+                android:id="@+id/imageView_teacher"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/teacher" android:contentDescription="TODO"/>
         </androidx.cardview.widget.CardView>
         
         <androidx.cardview.widget.CardView
@@ -76,10 +76,11 @@
                 android:onClick="@{()->viewModle.navigate_to_student_signUp()}">
             
             <ImageView
-                    android:id="@+id/imageView_student"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/student" android:contentDescription="TODO"/>
+                android:id="@+id/imageView_student"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                app:srcCompat="@drawable/student"
+                android:contentDescription="TODO"/>
         </androidx.cardview.widget.CardView>
         
         
