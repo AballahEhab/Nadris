@@ -4,6 +4,7 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
 import com.example.android.nadris.repository.Repository
@@ -33,13 +34,15 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     var password1:String = ""
     var password2:String = ""
     var phone:String = ""
+    var university:String = ""
+    var collage:String = ""
 
 
-    private var _university :MutableLiveData<String> =  MutableLiveData<String>("")
-    val university get() = _university
-
-    private var _collage :MutableLiveData<String> =  MutableLiveData<String>("")
-    val collage get() = _collage
+//    private var _university :MutableLiveData<String> =  MutableLiveData<String>("")
+//    val university get() = _university
+//
+//    private var _collage :MutableLiveData<String> =  MutableLiveData<String>("")
+//    val collage get() = _collage
 
     private var _subjects :MutableLiveData<String> =  MutableLiveData<String>("")
     val subjects get() = _subjects
@@ -140,10 +143,10 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
 
     }
     fun validateCollegeField(){
-        _collageHaveError.value = collage.value?.isEmpty()
+        _collageHaveError.value = collage.isEmpty()
     }
     fun validateUniversityFieldInput(){
-        _universityHaveError.value = university.value?.isEmpty()
+        _universityHaveError.value = university.isEmpty()
     }
     fun onSignUpClicked(){
         validFirstName()
@@ -174,7 +177,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
             viewModelScope.launch {
                 val response = repository.registerNewTeacherAccount(
                     CreateTeacherAccountDataModelModel(
-                    firstname,lastname,email,password1,phone, genderId,university.value,collage.value)
+                    firstname,lastname,email,password1,phone, genderId,university,collage)
                 )
                 response.collect{
 
@@ -187,6 +190,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
                         },
                         onSuccess= {
                             disableProgressBar()
+                            NadrisApplication.userData =it.data
                             navigateToHomeScreen()
                         },
                     )

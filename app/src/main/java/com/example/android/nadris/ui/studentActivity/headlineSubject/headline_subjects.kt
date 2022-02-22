@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.subject_student
+package com.example.android.nadris.ui.studentActivity.headlineSubject
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

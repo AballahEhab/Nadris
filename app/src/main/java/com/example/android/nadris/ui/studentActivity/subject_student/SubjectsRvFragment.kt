@@ -43,10 +43,10 @@ class SubjectsRvFragment : Fragment() {
 
         activity?.let {
             viewModel.getdata().observe(
-                viewLifecycleOwner, {
-                    adapter.differ.submitList(it)
-                }
-            )
+                viewLifecycleOwner
+            ) {
+                adapter.differ.submitList(it)
+            }
 
         }
 

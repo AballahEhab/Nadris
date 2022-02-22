@@ -29,8 +29,8 @@ data class CreateTeacherAccountDataModelModel(
     val password: String,
     val phoneNumber: String,
     val gender: Int,
-    val University: String?,
-    val College: String?,
+    val university: String,
+    val college: String,
 )
     :CreateAccountDataModel(firstName,lastName,email,password,phoneNumber,gender)
 

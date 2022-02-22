@@ -62,10 +62,10 @@ class sub_teacher_rv_Fragment : Fragment() {
 
         activity?.let {
             viewModel.getdata().observe(
-                viewLifecycleOwner, {
-                    adapter.differ.submitList(it)
-                }
-            )
+                viewLifecycleOwner
+            ) {
+                adapter.differ.submitList(it)
+            }
 
         }
 

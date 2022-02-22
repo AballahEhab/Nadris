@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.studentActivity.subject_student.headline_subjects">
+    tools:context=".ui.studentActivity.headlineSubject.headline_subjects">
 
 
     <androidx.recyclerview.widget.RecyclerView

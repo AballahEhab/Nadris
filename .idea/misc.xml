@@ -21,7 +21,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_teacher_main.xml" value="0.1927710843373494" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_teatcher.xml" value="0.2341485507246377" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/add_post_fragment.xml" value="0.38425925925925924" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/cardcell.xml" value="0.22056159420289856" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/cardcell.xml" value="0.536" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/choosing_new_subjects_fragment.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/dropdown_item_choose_class.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_dashboard.xml" value="0.13541666666666666" />
@@ -43,7 +43,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/progress_indicator_layout.xml" value="0.11980749746707194" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.2" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_student_fragment.xml" value="0.25165562913907286" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_teacher_fragment.xml" value="0.12379421221864952" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/signup_teacher_fragment.xml" value="0.176" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/sub_teacher_rv__fragment.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/subjects_rv_fragment.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/teachers__r_v_fragment.xml" value="0.21504916631038906" />

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.network.CreateStudentAccountDataModelModel
 import com.example.android.nadris.repository.Repository
@@ -145,7 +146,7 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
             enableProgressBar()
             viewModelScope.launch {
                 val response = repository.registerNewStudentAccount(CreateStudentAccountDataModelModel(
-                    firstname,lastname,email,password1,phone, genderId,gradeId))
+                    firstname,lastname,email,password1,phone, genderId,1))
                 response.collect {
                     it?.handleRepoResponse(
                         onLoading= {},
@@ -157,6 +158,7 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
                         },
                         onSuccess= {
                             disableProgressBar()
+                            NadrisApplication.userData =it.data
                             navigateToHomeScreen()
                         },
                     )

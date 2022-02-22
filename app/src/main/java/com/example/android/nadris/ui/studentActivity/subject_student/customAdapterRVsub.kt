@@ -8,18 +8,19 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.database.DatabaseSubject
 import com.example.android.nadris.databinding.ItemRvSubjectsBinding
 import com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragmentDirections
 
 class customAdapterRVsub()
     : RecyclerView.Adapter<customAdapterRVsub.ViewHolder>() {
 
-    private val differCallback=object : DiffUtil.ItemCallback<dataRVsubITEM>(){
-        override fun areItemsTheSame(oldItem: dataRVsubITEM, newItem: dataRVsubITEM): Boolean {
+    private val differCallback=object : DiffUtil.ItemCallback<DatabaseSubject>(){
+        override fun areItemsTheSame(oldItem: DatabaseSubject, newItem: DatabaseSubject): Boolean {
             return oldItem.id==newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: dataRVsubITEM, newItem: dataRVsubITEM): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseSubject, newItem: DatabaseSubject): Boolean {
             return oldItem==newItem
         }
 
@@ -35,7 +36,7 @@ class customAdapterRVsub()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data: dataRVsubITEM = differ.currentList[position]
+        val data: DatabaseSubject = differ.currentList[position]
 
         holder.binding.tvNameSubject.text = data.name_subject
         holder.binding.tvCountTeacher.text = data.count_teach.toString()
@@ -56,7 +57,7 @@ class customAdapterRVsub()
 
     }
 }
-data class dataRVsubITEM(var id:Int,
-                         var name_subject:String ,
-                         var count_teach:Int,
-                         var imv_subjects:Int )
+//data class DatabaseSubject(var id:Int,
+//                           var name_subject:String,
+//                           var count_teach:Int,
+//                           var imv_subjects:Int )

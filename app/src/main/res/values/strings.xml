@@ -97,7 +97,7 @@
         <item>الكيمياء</item>
         <item>الفيزياء</item>
     </string-array>
-    <string name="title_activity_teacher">MainActivity</string>
+    <string name="title_activity_teacher">TeacherActivity</string>
     <string name="student_home_title">الرئيسه</string>
     <string name="title_home">Home</string>
     <string name="student_subjects_title">المواد</string>
