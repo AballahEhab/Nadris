@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.database.DatabaseSubject
 import com.example.android.nadris.databinding.ItemRvSubjectsBinding
-import com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragmentDirections
 
 class customAdapterRVsub()
     : RecyclerView.Adapter<customAdapterRVsub.ViewHolder>() {
@@ -41,11 +40,11 @@ class customAdapterRVsub()
         holder.binding.tvNameSubject.text = data.name_subject
         holder.binding.tvCountTeacher.text = data.count_teach.toString()
         holder.binding.ivSubjects.setImageResource(data.imv_subjects)
-        holder.itemView.setOnClickListener {
-            var action = SubjectsRvFragmentDirections.actionSubjectsRvFragmentToTeachersRVFragment()
-            it.findNavController().navigate(action)
-
-        }
+//        holder.itemView.setOnClickListener {
+//            var action = SubjectsRvFragmentDirections.actionSubjectsRvFragmentToTeachersRVFragment()
+//            it.findNavController().navigate(action)
+//
+//        }
 
     }
 

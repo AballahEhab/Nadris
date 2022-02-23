@@ -51,9 +51,9 @@ class post_pageFragment : Fragment() {
 
         viewModel.navigate_to_add_post.observe(this.viewLifecycleOwner) {
             if (it) {
-                this.findNavController()
-                    .navigate(post_pageFragmentDirections.actionNavigationPostsToAddPostFragment())
-                viewModel.navigate_to_add_post_done()
+//                this.findNavController()
+//                    .navigate(post_pageFragmentDirections.actionNavigationPostsToAddPostFragment())
+//                viewModel.navigate_to_add_post_done()
             }
         }
 

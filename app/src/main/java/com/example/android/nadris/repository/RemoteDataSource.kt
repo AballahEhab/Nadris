@@ -1,15 +1,14 @@
 package com.example.android.nadris.repository
 
 import com.example.android.nadris.network.*
-import retrofit2.Response
-import retrofit2.http.*
 import javax.inject.Inject
 
 
 class RemoteDataSource @Inject
-constructor(private val usersService: NadrisAPIService,
+constructor(private val usersService: UserService,
             private val postsService: PostsService,
-            private val subjectsService: SubjectsService){
+            private val subjectsService: SubjectsService
+            ){
 
     suspend fun login(loginModel: LoginAccountModel) =
              usersService.login(loginModel)

@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 
-interface NadrisAPIService{
+interface UserService{
 
     @POST("api/Auth/Token")
     suspend fun login( @Body loginAccountData: LoginAccountModel): Response<AuthModel>  // send email and password and receive token as return string
