@@ -9,13 +9,17 @@
         android:id="@+id/navigation_posts"
         android:name="com.example.android.nadris.ui.studentActivity.posts.post_pageFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/post_page_fragment" />
+        tools:layout="@layout/post_page_fragment" >
+        <action
+            android:id="@+id/action_navigation_posts_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/subjectsRvFragment"
         android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment"
         android:label="@string/student_subjects_title"
-        tools:layout="@layout/fragment_dashboard" >
+         >
         <action
             android:id="@+id/action_subjectsRvFragment_to_teachers_RV_fragment"
             app:destination="@id/teachers_RV_fragment" />
@@ -31,6 +35,10 @@
         android:id="@+id/teachers_RV_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragment"
         android:label="teachers_RV_fragment" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.android.nadris.addPostFragment"
+        android:label="addPostFragment" />
 
 
 </navigation>

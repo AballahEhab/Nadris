@@ -7,37 +7,39 @@ import javax.inject.Inject
 
 
 class RemoteDataSource @Inject
-constructor(private val apiService: NadrisAPIService)  {
+constructor(private val usersService: NadrisAPIService,
+            private val postsService: PostsService,
+            private val subjectsService: SubjectsService){
 
     suspend fun login(loginModel: LoginAccountModel) =
-             apiService.login(loginModel)
+             usersService.login(loginModel)
 
     suspend fun createStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) =
-        apiService.createStudentAccount(accountDataModel)
+        usersService.createStudentAccount(accountDataModel)
 
     suspend fun createTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
-        apiService.createTeacherAccount(createTeacherAccountDataModelModel)
+        usersService.createTeacherAccount(createTeacherAccountDataModelModel)
 
     suspend fun getAllPosts(token:String) =
-        apiService.getAllPosts(token)
+        postsService.getAllPosts(token)
 
     suspend fun publishAPost(createPostModel: CreatePostModel,token:String) =
-        apiService.publishAPost(createPostModel,token)
+        postsService.publishAPost(createPostModel,token)
 
     suspend fun getAPostByPostId(postId:Int,token:String) =
-        apiService.getAPostByPostId(postId,token)
+        postsService.getAPostByPostId(postId,token)
 
     suspend fun getPostsByEmail(email:String,token:String) =
-        apiService.getPostsByEmail(email,token)
+        postsService.getPostsByEmail(email,token)
 
     suspend fun vote(voteModel: VoteModel,token:String) =
-        apiService.vote(voteModel,token)
+        postsService.vote(voteModel,token)
 
     suspend fun comment(commentModel: CommentModel,token:String) =
-        apiService.comment(commentModel,token)
+        postsService.comment(commentModel,token)
 
     suspend fun getCommentsByPostId(postId:Int,token:String) =
-        apiService.getCommentByPostId(postId,token)
+        postsService.getCommentByPostId(postId,token)
 
 
 
