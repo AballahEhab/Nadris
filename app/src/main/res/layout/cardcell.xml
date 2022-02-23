@@ -83,7 +83,8 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                                                                android:layout_height="match_parent">
                 <TextView
                         android:id="@+id/textViewPost"
@@ -103,13 +104,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <androidx.constraintlayout.widget.Guideline
-                        app:endIconMode="clear_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/guideline2"
-                        android:orientation="vertical"
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:endIconMode="clear_text"
 
-                        app:layout_constraintGuide_end="205dp"/>
+                    app:layout_constraintGuide_percent="0.47704083"/>
 
                 <ImageView
                         android:id="@+id/img_vote"

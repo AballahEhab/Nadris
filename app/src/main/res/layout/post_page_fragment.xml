@@ -27,12 +27,12 @@
               android:id="@+id/l2">
 
     <ImageView
-            android:src="@drawable/ic_facebook"
-            android:id="@+id/profileImage"
-            android:layout_width="60dp"
-            android:layout_height="70dp"
-            android:clickable="true"
-            android:focusable="true"/>
+        app:srcCompat="@drawable/ic_facebook"
+        android:id="@+id/profileImage"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <LinearLayout android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -74,21 +74,18 @@
                 app:layout_constraintEnd_toStartOf="@+id/notificationImage"
                 android:layout_marginTop="15dp"/>
         <ImageView
-                android:src="@drawable/ic_notification"
-                android:id="@+id/notificationImage"
-                android:layout_height="31dp"
-                android:layout_width="18dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewNumber" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintVertical_bias="0.32" android:layout_marginTop="12dp"/>
+            app:srcCompat="@drawable/ic_notification"
+            android:id="@+id/notificationImage"
+            android:layout_height="31dp"
+            android:layout_width="18dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNumber" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintVertical_bias="0.32" android:layout_marginTop="12dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </LinearLayout>
 
@@ -115,16 +112,16 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/pink"
-            android:id="@+id/fabBtnCreateNote"
-            android:tint="@color/white"
-            android:src="@drawable/ic_add"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="64dp"
-            android:onClick="@{()->postViewModle.navigate_to_add_post()}"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/pink"
+        android:id="@+id/fabBtnCreateNote"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_add"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/mid_margin"
+        android:layout_marginBottom="@dimen/mid_margin"
+        android:onClick="@{()->postViewModle.navigate_to_add_post()}"/>
     <FrameLayout
 
         android:layout_width="match_parent"

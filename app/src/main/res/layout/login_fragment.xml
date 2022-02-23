@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/ic_nadris_logo"
+                    app:srcCompat="@drawable/nadris_logo"
                     app:layout_constraintBottom_toTopOf="@id/textView_Welcome_login"
                     app:layout_constraintEnd_toEndOf="@id/textView_Welcome_login"
                     app:layout_constraintHeight_max="96dp"
@@ -40,34 +40,22 @@
                     android:id="@+id/textView_Welcome_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cairo"
                     android:text="@string/textView_Welcome_in_nadris"
-                    android:textColor="@color/black"
-                    android:textSize="34sp"
-                    android:textStyle="bold"
+                    style="@style/material_text_header"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/logo_nadris_login"
                     app:layout_constraintBottom_toTopOf="@id/material_email_or_phone"
                     android:layout_marginTop="8dp"
-
                     />
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/material_email_or_phone"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
+                         android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cairo_light"
+                    style="@style/material_text_input"
                     android:hint="@string/edt_E_mail_or_Phone_hint"
-                    android:minHeight="48dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxStrokeColor="#FE6464"
-                    app:hintTextColor="#484766"
                     app:layout_constraintBottom_toTopOf="@id/edt_password_login"
                     app:layout_constraintEnd_toEndOf="@id/textView_Welcome_login"
                     app:layout_constraintStart_toStartOf="@id/textView_Welcome_login"
@@ -80,25 +68,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:minHeight="48dp"
                         android:text="@={viewModel.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/edt_password_login"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/material_text_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cairo_light"
                     android:hint="@string/edt_password_login"
-                    android:minHeight="48dp"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxStrokeColor="#FE6464"
-                    app:hintTextColor="#484766"
                     app:layout_constraintBottom_toTopOf="@id/login_error_message"
                     app:layout_constraintEnd_toEndOf="@id/material_email_or_phone"
                     app:layout_constraintStart_toStartOf="@id/material_email_or_phone"
@@ -110,7 +90,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:minHeight="48dp"
                         android:text="@={viewModel.password}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -136,12 +115,10 @@
                     android:id="@+id/btn_sign_in"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/cairo_light"
                     android:onClick="@{()-> viewModel.onLoginClicked()}"
                     android:text="@string/btn_sign_in_login"
-                    android:textSize="24sp"
-                    app:backgroundTint="@color/pink"
-                    app:cornerRadius="12dp"
+
+               style="@style/material_btn"
                     app:layout_constraintBottom_toTopOf="@id/img_google"
                     app:layout_constraintEnd_toEndOf="@+id/edt_password_login"
                     app:layout_constraintStart_toStartOf="@+id/edt_password_login"
@@ -153,7 +130,7 @@
                     android:id="@+id/img_google"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_google"
+                    app:srcCompat="@drawable/ic_google"
                     android:onClick="@{()->viewModel.onLoginByGoogleClick()}"
                     app:layout_constraintBottom_toTopOf="@id/VG_create_acc"
                     app:layout_constraintStart_toStartOf="@id/btn_sign_in"
@@ -168,7 +145,7 @@
                     android:id="@+id/img_facebook"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_facebook"
+                    app:srcCompat="@drawable/ic_facebook"
                     android:onClick="@{()->viewModel.onLoginByFacebookClick()}"
                     android:clickable="false"
                     android:focusable="true"
@@ -190,7 +167,14 @@
                     app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
                     app:layout_constraintStart_toStartOf="@id/btn_sign_in"
                     app:layout_constraintTop_toBottomOf="@+id/img_google">
-
+                    <TextView
+                        android:id="@+id/textView_HaveAccount_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="@string/textView_HaveAccount_login"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/TextView_new_account_signup"
                         android:layout_width="wrap_content"
@@ -202,14 +186,7 @@
                         android:textSize="18sp"
                     style="@style/new_account"
                     />
-                    <TextView
-                        android:id="@+id/textView_HaveAccount_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/textView_HaveAccount_login"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+
 
                 </LinearLayout>
 

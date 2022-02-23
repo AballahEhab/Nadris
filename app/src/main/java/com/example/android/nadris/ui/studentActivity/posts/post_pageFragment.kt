@@ -1,13 +1,12 @@
 package com.example.android.nadris.ui.studentActivity.posts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
@@ -33,7 +32,7 @@ class post_pageFragment : Fragment() {
 
         val userData = NadrisApplication.userData
         userData?.Token?.let { it1 -> viewModel.getPosts(it1) }
-        lateinit var databasePosts : List<DatabasePost>
+        lateinit var databasePosts: List<DatabasePost>
 //        var posts=ArrayList<dataRvPost>()
 //        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
 //        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
@@ -44,9 +43,9 @@ class post_pageFragment : Fragment() {
 
         viewModel.postsList.observe(viewLifecycleOwner, Observer {
             databasePosts = it
-            bindigin.recyclerView.adapter= customAdapter(databasePosts)
+            bindigin.recyclerView.adapter = customAdapter(databasePosts)
         })
-        bindigin.recyclerView.layoutManager= LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+        bindigin.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
 
 
@@ -63,8 +62,8 @@ class post_pageFragment : Fragment() {
 //        user?.let { viewModel.getPosts(it.Token) }
 
 
-
-        return bindigin.root}
+        return bindigin.root
+    }
 
 
 }

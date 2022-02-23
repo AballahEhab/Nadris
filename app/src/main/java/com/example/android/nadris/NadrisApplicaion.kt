@@ -8,15 +8,14 @@ import com.example.android.nadris.database.UserData
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class NadrisApplication: Application()
-{
+class NadrisApplication : Application() {
 
     companion object {
-        var  instance:NadrisApplication? = null
+        var instance: NadrisApplication? = null
         var userData: UserData? = null
     }
 
-     var userData: UserData? = null
+    var userData: UserData? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -52,5 +51,5 @@ class NadrisApplication: Application()
             return nwInfo.isConnected
         }
 
-}
+    }
 }
