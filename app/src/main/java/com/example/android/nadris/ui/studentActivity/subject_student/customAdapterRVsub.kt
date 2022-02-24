@@ -4,11 +4,10 @@ package com.example.android.nadris
  * **/
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.database.DatabaseSubject
+import com.example.android.nadris.database.models.DatabaseSubject
 import com.example.android.nadris.databinding.ItemRvSubjectsBinding
 
 class customAdapterRVsub()

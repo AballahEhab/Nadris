@@ -7,6 +7,7 @@
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.25" />
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.33" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable-v24/rounded_corners.xml" value="0.267" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/boarder.xml" value="0.267" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/circular_button.xml" value="0.278125" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/circular_facebook_button.xml" value="0.278125" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/create_account_txt_color_selector.xml" value="0.278125" />
@@ -25,7 +26,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/cardcell.xml" value="0.536" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/choosing_new_subjects_fragment.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/dropdown_item_choose_class.xml" value="0.21504916631038906" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/expandable_unit_item.xml" value="0.264" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/expandable_unit_item.xml" value="0.4" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_dashboard.xml" value="0.13541666666666666" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_dashboard1.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_home.xml" value="0.2477355072463768" />
@@ -39,7 +40,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/item_rv_subjects.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/item_rv_teachers.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/item_unit_subjects.xml" value="0.21504916631038906" />
-        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/lesson_item.xml" value="0.21504916631038906" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/lesson_item.xml" value="0.4411764705882353" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/list_item.xml" value="0.2509057971014493" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.1" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.17857142857142858" />

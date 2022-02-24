@@ -5,7 +5,7 @@ package com.example.android.nadris.ui.studentActivity.subject_student
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.R
-import com.example.android.nadris.database.DatabaseSubject
+import com.example.android.nadris.database.models.DatabaseSubject
 
 
 class SubjectsRvFragmentViewModel : ViewModel() {

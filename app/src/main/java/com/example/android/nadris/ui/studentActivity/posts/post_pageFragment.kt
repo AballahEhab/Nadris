@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
-import com.example.android.nadris.database.DatabasePost
+import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.PostPageFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 

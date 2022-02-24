@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
-import com.example.android.nadris.database.DatabasePost
+import com.example.android.nadris.database.models.DatabasePost
 
 class customAdapter (val postList:List<DatabasePost>)
     :RecyclerView.Adapter<customAdapter.Viewholder>() {

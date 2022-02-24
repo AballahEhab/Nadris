@@ -1,4 +1,4 @@
-package com.example.android.nadris.database
+package com.example.android.nadris.database.models
 
 import androidx.room.Entity
 

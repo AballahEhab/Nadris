@@ -4,7 +4,7 @@ import android.app.Application
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.example.android.nadris.database.UserData
+import com.example.android.nadris.database.models.UserData
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

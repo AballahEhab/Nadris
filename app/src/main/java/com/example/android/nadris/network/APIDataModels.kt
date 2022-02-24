@@ -1,8 +1,5 @@
 package com.example.android.nadris.network
 
-import com.example.android.nadris.database.DatabasePost
-import com.example.android.nadris.database.UserData
-
 open class CreateAccountDataModel(
     val u_firstName: String,
     val u_lastName: String,

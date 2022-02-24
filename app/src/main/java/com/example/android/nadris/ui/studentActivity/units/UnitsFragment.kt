@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentUnitsBinding
-import com.example.android.nadris.domain.SubjectUnit
+import com.example.android.nadris.database.models.Lesson
+import com.example.android.nadris.database.models.SubjectUnit
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,10 +42,16 @@ class UnitsFragment : Fragment() {
 
 
         val dataList = listOf(
-            SubjectUnit("unit1",R.drawable.ic_launcher_background),
-            SubjectUnit("unit2",R.drawable.ic_launcher_background),
-            SubjectUnit("unit3",R.drawable.ic_launcher_background),
-            SubjectUnit("unit4",R.drawable.ic_launcher_background),
+            SubjectUnit("unit1",listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit2", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit3", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit4", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit5", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit6", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit7", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit8", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit9", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
+            SubjectUnit("unit10", listOf(Lesson("1.1","lesson1"),Lesson("2.1","lesson2"),Lesson("3.1","lesson3"),Lesson("4.1","lesson4")),R.drawable.ic_launcher_background),
         )
         var adapter = UnitItemAdapter(dataList)
         binding.unitsRv.adapter = adapter

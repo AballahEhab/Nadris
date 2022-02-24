@@ -1,4 +1,4 @@
-package com.example.android.nadris.database
+package com.example.android.nadris.database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserData(
-
+    @PrimaryKey val id:Int=1,
     val Email: String,
     val firstName: String,
     val lastName: String,
@@ -18,6 +18,5 @@ data class UserData(
     val University: String?,
     val College: String?,
     val Token: String,
-    @PrimaryKey val id:Int=1,
 )
 

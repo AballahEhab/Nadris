@@ -1,33 +1,34 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.database.CommentData
-import com.example.android.nadris.database.DatabasePost
-import com.example.android.nadris.database.UserData
+import com.example.android.nadris.database.models.CommentData
+import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.database.NadrisDatabase
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisDatabase) {
 
-    private val dao = nadrisDatabase.UserDao()
+    private val userDao = nadrisDatabase.UserDao()
+    private val postDao = nadrisDatabase.PostDao()
 
-     suspend fun addUserData(userData:UserData)=
-        dao.insertUser(userData)
+     suspend fun addUserData(userData: UserData)=
+        userDao.insertUser(userData)
 
-    fun getUserData() = dao.getUser()
+    fun getUserData() = userDao.getUser()
 
     suspend fun updateUserData(updatedUserData: UserData) =
-        dao.updateUser(updatedUserData)
+        userDao.updateUser(updatedUserData)
 
      fun getAllPosts() =
-        dao.getAllPosts()
+        postDao.getAllPosts()
 
     suspend fun insertPost(databasePost: List<DatabasePost>) =
-        dao.insertPost( databasePost )
+        postDao.insertPost( databasePost )
 
     suspend fun insertComments(vararg comment: CommentData) =
-        dao.insertComments(*comment)
+        postDao.insertComments(*comment)
 
      fun getCommentsByPostId(postIdP:Int) =
-        dao.getCommentsByPostId(postIdP)
+        postDao.getCommentsByPostId(postIdP)
 
 }
