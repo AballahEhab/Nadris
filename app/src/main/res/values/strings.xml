@@ -64,10 +64,10 @@
     <string name="yourQus">ما هو سؤالك......</string>
     <string name="addImage">+ إضافة صور او ملفات</string>
     <string name="PublisQus">نشر السؤال</string>
-    <string name="vote">تصويت</string>
-    <string name="reply">الرد</string>
+    <string name="vote">votes</string>
+    <string name="reply">replay</string>
     <string name="_1">(1)</string>
-    <string name="save">حفظ</string>
+    <string name="save">save</string>
     <string name="storage_permission_text">This app needs access to your storage.</string>
 
 
@@ -102,9 +102,9 @@
     <string name="title_home">Home</string>
     <string name="student_subjects_title">المواد</string>
     <string name="student_schedual_title">المواعيد</string>
-    <string name="name">عربى</string>
-    <string name="subject">انجليزى</string>
-    <string name="post">هذا بوست</string>
+    <string name="name">name</string>
+    <string name="subject">subject</string>
+    <string name="post">this is a post</string>
     <string name="title_activity_student_home">StudentHome</string>
     <string name="title_activity_studnet_main_acitivity">StudnetMainAcitivity</string>
     <string name="title_activity_teacher_main">TeacherMainActivity</string>
@@ -134,6 +134,7 @@
     <string name="btn_add_new_subject">إضافة المادة</string>
     <string name="autoCompleteTV_choose_subjects">إختيار المادة</string>
     <string name="autoCompleteTV_choose_semester">إختيار الفصل الدراسي</string>
+    <string name="add_comment">add comment</string>
 
 
 </resources>

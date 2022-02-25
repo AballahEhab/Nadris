@@ -135,5 +135,5 @@
     <string name="btn_add_new_subject">إضافة المادة</string>
     <string name="autoCompleteTV_choose_subjects">إختيار المادة</string>
     <string name="autoCompleteTV_choose_semester">إختيار الفصل الدراسي</string>
-
+    <string name="add_comment">أضف تعليقك</string>
 </resources>

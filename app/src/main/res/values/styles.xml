@@ -50,7 +50,27 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text_color</item>
     </style>
-
+    <style name="material_text_header_small" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+    <style name="material_text_body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+    <style name="material_text_body_small" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+    <style name="material_icon_small" parent="MaterialAlertDialog.MaterialComponents.Title.Icon">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+    <style name="material_card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">@dimen/mid_radius</item>
+        <item name="cardElevation">@dimen/card_elv</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/card_color</item>
+    </style>
     <style name="circleImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

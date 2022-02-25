@@ -5,6 +5,9 @@
     <dimen name="match_constrain">0dp</dimen>
     <dimen name="header_text_size">24sp</dimen>
     <dimen name="mid_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="tiny_margin">4dp</dimen>
     <dimen name="min_height">36dp</dimen>
     <dimen name="mid_radius">12dp</dimen>
+    <dimen name="card_elv">6dp</dimen>
 </resources>
