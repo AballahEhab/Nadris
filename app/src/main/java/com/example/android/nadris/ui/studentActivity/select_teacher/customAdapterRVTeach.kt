@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.ItemRvTeachersBinding
+import com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragmentDirections
+
 //var teacherList:ArrayList<dataRvTeach>
 class customAdapterRVTeach()
     :RecyclerView.Adapter<customAdapterRVTeach.Viewholder>() {
@@ -44,7 +47,10 @@ class customAdapterRVTeach()
         holder.binding.tvNameTeachers.text=data.name_teachers
         holder.binding.tvEvaluation.text=data.evaluation.toString()
         holder.binding.ivTeachers.setImageResource(data.iv_teachers_photo)
-         //holder.my_data=data  //to send the valu data to veiw holder
+        holder.itemView.setOnClickListener {
+            var action =teachers_RV_fragmentDirections.actionTeachersRVFragmentToHeadlineSubjects()
+            it.findNavController().navigate(action)
+        }
 
     }
 
@@ -53,28 +59,6 @@ class customAdapterRVTeach()
     }
 
 class Viewholder(var binding:ItemRvTeachersBinding):RecyclerView.ViewHolder(binding.root){
-//    init {
-//        itemView.setOnClickListener {
-//            //,var my_data:dataRvTeach?=null
-//           // Toast.makeText(itemView.context, my_data?.name_teachers, Toast.LENGTH_LONG).show()
-//        }
-//    }
-    /*
-    data binding in item
-    used in view holder
-    used in on bindingHolder
-    change onCreateViewHolder to use binding
-    difutil
-    AsyncListDiffer<data>
-    used differ in onBindViewHolder & getItemCount
-   */
-
-
-
-//         var my_name_teacher=itemViewt.findViewById(R.id.tv_name_teachers)  as TextView
-//         var my_content_description=itemViewt.findViewById(R.id.tv_content_description)  as TextView
-//         var my_evaluation=itemViewt.findViewById(R.id.tv_evaluation)  as TextView
-//         var my_teachers_photo=itemViewt.findViewById(R.id.iv_teachers)  as ImageView
 
 }
 
