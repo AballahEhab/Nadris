@@ -28,7 +28,7 @@ class AddCommentFragment : Fragment() {
 
 
 
-
+        setupRV()
 
 
         return binding.root
