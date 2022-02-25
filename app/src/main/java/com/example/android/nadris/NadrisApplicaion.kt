@@ -5,7 +5,13 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
+import javax.inject.Scope
+import kotlin.coroutines.coroutineContext
 
 @HiltAndroidApp
 class NadrisApplication : Application() {
@@ -13,7 +19,9 @@ class NadrisApplication : Application() {
     companion object {
         var instance: NadrisApplication? = null
         var userData: UserData? = null
+
     }
+    @Inject lateinit var repo : Repository
 
     var userData: UserData? = null
 
@@ -22,6 +30,14 @@ class NadrisApplication : Application() {
 
         if (instance == null)
             instance = this
+
+//        if(userData == null) {
+//            GlobalScope.launch  {
+//                repo.getUser().collect {
+//                    userData = it
+//                }
+//            }
+//        }
 
     }
 

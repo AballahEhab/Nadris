@@ -1,7 +1,13 @@
 package com.example.android.nadris.util
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.WindowManager
 import androidx.fragment.app.FragmentActivity
+import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.ui.studentActivity.StudentMainActivity
+import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import kotlinx.coroutines.flow.*
 import retrofit2.Response
 import java.net.HttpURLConnection
@@ -36,10 +42,10 @@ inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
 
 }
 
-inline fun <DatabaseModel, NetworkModel> postToApiHandler(
-    crossinline request: suspend () -> Response<NetworkModel>,
+inline fun <DatabaseModel, T> postToApiHandler(
+    crossinline request: suspend () -> Response<T>,
     crossinline saveFetchResult: suspend (DatabaseModel) -> Unit,
-    crossinline convertToDatabaseModel:  (NetworkModel) -> DatabaseModel,
+    crossinline convertToDatabaseModel:  (T) -> DatabaseModel,
     ) = flow {
 
     emit(Result.Loading<Nothing>())
@@ -76,6 +82,19 @@ fun disableUserInterAction(activity: FragmentActivity?) =
 
 fun enableUserInterAction(activity: FragmentActivity?)=
     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+ fun login(activity: Activity, context: Context) {
+    lateinit var directionClass:Class<*>
+    if (NadrisApplication.userData?.Type == "student")
+        directionClass = StudentMainActivity::class.java
+    else if(NadrisApplication.userData?.Type == "teacher")
+        directionClass = TeacherMainActivity::class.java
+
+    context.startActivity(Intent(context, directionClass))
+    activity.finish()
+}
+
+
 
 
 //class NetworkUtils @Inject constructor( private val context: Context) {

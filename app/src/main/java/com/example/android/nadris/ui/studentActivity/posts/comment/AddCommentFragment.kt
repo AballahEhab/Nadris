@@ -35,16 +35,18 @@ class AddCommentFragment : Fragment() {
     }
     public fun setupRV(){
         binding.RVComment.layoutManager= LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
-        binding.RVComment.adapter=CustomAdapterComment()
+        val adapter = CustomAdapterComment()
+
 
         activity?.let{
             viewModel.getData().observe(
                 viewLifecycleOwner
             ){
-                CustomAdapterComment().differ.submitList(it)
+                adapter.differ.submitList(it)
             }
 
         }
+        binding.RVComment.adapter=adapter
 
     }
 

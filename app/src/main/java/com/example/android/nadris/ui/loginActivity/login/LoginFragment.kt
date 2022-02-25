@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -33,15 +34,16 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
 ////inside Fragment
 //        val job = Job()
 //        val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-        viewModel.getUser()
+//        runBlocking{
+//            viewModel.getUser() }
 
-        NadrisApplication.userData?.let {
-            login()
-        }
+
+
 
         inflater.inflate(R.layout.fragment_login, container, false)
 
@@ -86,6 +88,13 @@ class LoginFragment : Fragment() {
 
         return binding.root
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        NadrisApplication.userData?.let {
+            login()
+        }
     }
 
     private fun login() {

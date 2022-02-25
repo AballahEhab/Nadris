@@ -2,7 +2,7 @@
     <string name="app_name">Nadris</string>
     <string name="login">login</string>
     <string name="password">password</string>
-    <string name="textView_register_as_student">التسجيل ك طالب</string>
+    <string name="textView_register_as_student">Register as student</string>
     <string name="textView_back"><![CDATA[<]]></string>
     <string name="edt_first_name">First Name</string>
     <string name="edt_last_name">Last Name</string>
@@ -21,8 +21,8 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
-    <string name="verifying_phone_text">التحقق من رقم الهاتف</string>
-    <string name="did_not_receive_the_code_yet_txt">ألم تستلم الرمز بعد؟</string>
+    <string name="verifying_phone_text">Validate mobile number</string>
+    <string name="did_not_receive_the_code_yet_txt">didn\'t receive the code yet?</string>
     <string name="textView_Welcome_in_nadris">Welcome To Nadris</string>
     <string name="edt_E_mail_or_Phone_hint">Email or Phone</string>
     <string name="edt_password_login">Password</string>
@@ -32,8 +32,8 @@
     <string name="textView_register_as_signup">Signup as</string>
 
     <string name="textView_student_signup">Student</string>
-    <string name="textView_parent">ولي الأمر</string>
-    <string name="textView_other">غير ذلك</string>
+    <string name="textView_parent">parent</string>
+    <string name="textView_other">other</string>
     <string name="textView_teacher_signup">Teacher</string>
     <string name="textView_HaveAccount_SignIn">Do you have account?</string>
     <string name="textView_account_login">
@@ -42,7 +42,7 @@
     <string name="wrong_OTB_text_dialog">الرقم السرى المؤقت الذى أدخلته غير صحيح</string>
     <string name="back_txt">السابق</string>
     <string name="next_txt">التالي</string>
-    <string name="num_zero">0</string>
+    <string name="num_zero" translatable="false">0</string>
     <string name="num_one">1</string>
     <string name="num_two">2</string>
     <string name="num_three">3</string>
@@ -54,16 +54,16 @@
     <string name="num_nine">9</string>
     <string name="delete_symbol">⌦</string>
     <string name="confirm_txt">تأكيد</string>
-    <string name="wrong_credentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
+    <string name="wrong_credentials">"worng email or password please "</string>
 
 
     <string name="Required1">" "</string>
     <string name="Required"> </string>
     <string name="search">Search</string>
-    <string name="welcome">صباح الخير</string>
-    <string name="yourQus">ما هو سؤالك......</string>
-    <string name="addImage">+ إضافة صور او ملفات</string>
-    <string name="PublisQus">نشر السؤال</string>
+    <string name="welcome">good morining</string>
+    <string name="yourQus">what\'s your question..?</string>
+    <string name="addImage">add image or file +</string>
+    <string name="PublisQus">publish question</string>
     <string name="vote">votes</string>
     <string name="reply">replay</string>
     <string name="_1">(1)</string>
@@ -98,10 +98,10 @@
         <item>الفيزياء</item>
     </string-array>
     <string name="title_activity_teacher">TeacherActivity</string>
-    <string name="student_home_title">الرئيسه</string>
+    <string name="student_home_title">home</string>
     <string name="title_home">Home</string>
-    <string name="student_subjects_title">المواد</string>
-    <string name="student_schedual_title">المواعيد</string>
+    <string name="student_subjects_title">subject</string>
+    <string name="student_schedual_title">schedual</string>
     <string name="name">name</string>
     <string name="subject">subject</string>
     <string name="post">this is a post</string>
@@ -137,6 +137,7 @@
     <string name="content_comment">أستاذ شاطر جدا ومجتهد ومهتم  بالطالب لأقصي درجه </string>
     <string name="name_acount_add_comment">محمد مصطفي </string>
     <string name="add_comment">add comment</string>
+    <string name="title_activity_login">Login activity</string>
 
 
 </resources>

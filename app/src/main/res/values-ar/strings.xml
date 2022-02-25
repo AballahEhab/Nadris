@@ -43,7 +43,6 @@
     <string name="wrong_OTB_text_dialog">الرقم السرى المؤقت الذى أدخلته غير صحيح</string>
     <string name="back_txt">السابق</string>
     <string name="next_txt">التالي</string>
-    <string name="num_zero">0</string>
     <string name="num_one">1</string>
     <string name="num_two">2</string>
     <string name="num_three">3</string>
@@ -60,7 +59,7 @@
 
     <string name="Required1">" "</string>
     <string name="Required"> </string>
-    <string name="search">Search</string>
+    <string name="search">بحث</string>
     <string name="welcome">صباح الخير</string>
     <string name="yourQus">ما هو سؤالك......</string>
     <string name="addImage">+ إضافة صور او ملفات</string>
@@ -100,13 +99,13 @@
     </string-array>
     <string name="title_activity_teacher">TeacherActivity</string>
     <string name="student_home_title">الرئيسه</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">الرئيسية</string>
     <string name="student_subjects_title">المواد</string>
     <string name="student_schedual_title">المواعيد</string>
     <string name="name">عربى</string>
     <string name="subject">انجليزى</string>
     <string name="post">هذا بوست</string>
-    <string name="title_activity_student_home">StudentHome</string>
+    <string name="title_activity_student_home">الطالب ئيسية</string>
     <string name="title_activity_studnet_main_acitivity">StudnetMainAcitivity</string>
     <string name="title_activity_teacher_main">TeacherMainActivity</string>
     <string name="wron_cridentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
@@ -139,4 +138,5 @@
     <string name="name_acount_add_comment">محمد مصطفي </string>
 
     <string name="add_comment">أضف تعليقك</string>
+    <string name="title_activity_login">صفحة تسجيل الدخول</string>
 </resources>
