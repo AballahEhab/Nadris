@@ -10,71 +10,76 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/small_margin"
         android:clickable="true"
-    >
+        android:focusable="true">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:layout_margin="@dimen/small_margin"
                       android:orientation="vertical"
                       android:weightSum="10">
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="0dp"
-                          android:layout_weight="3"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
-                          android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/profileImage"
-                    style="@style/material_icon_small"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:srcCompat="@drawable/ic_facebook"/>
 
                 <LinearLayout android:layout_width="wrap_content"
                               android:layout_height="match_parent"
-                              android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/textViewAccountName"
-                        style="@style/material_text_body_small"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name"
-                    />
-                    <TextView
-                        android:id="@+id/textSubjectName"
-                        style="@style/material_text_body_small" android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/subject"
-                    />
-                </LinearLayout>
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4">
+                              android:orientation="horizontal"
+                              app:layout_constraintStart_toStartOf="parent"
+                              app:layout_constraintTop_toTopOf="parent"
+                >
                     <ImageView
-                        android:id="@+id/bookmark"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/profileImage"
+                        style="@style/material_icon_small"
+                        android:layout_gravity="start"
                         android:clickable="true"
                         android:focusable="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textsave"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_bookmark"
-                    />
+                        app:srcCompat="@drawable/ic_facebook"/>
+                    <LinearLayout android:layout_width="wrap_content"
+                                  android:layout_height="match_parent"
+                                  android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textViewAccountName"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/name"
+                        />
+                        <TextView
+                            android:id="@+id/textSubjectName"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/subject"
+                        />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                >
                     <TextView android:id="@+id/textsave"
+                              style="@style/material_text_body_small"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
-                              android:layout_marginTop="12dp"
-                              android:layout_marginEnd="10dp"
-                              android:fontFamily="@font/cairo_light"
                               android:text="@string/save"
-                              android:textColor="@color/ColorGray"
-                              android:textSize="12dp"
-                              app:layout_constraintBottom_toBottomOf="@+id/bookmark"
-                              app:layout_constraintEnd_toEndOf="parent"
-                              app:layout_constraintTop_toTopOf="parent"/>
+                    />
+                    <ImageView
+                        android:id="@+id/bookmark"
+                        style="@style/material_icon_small"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:srcCompat="@drawable/ic_bookmark"
+                    />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
