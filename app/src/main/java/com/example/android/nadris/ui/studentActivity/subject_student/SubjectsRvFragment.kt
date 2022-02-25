@@ -47,7 +47,6 @@ class SubjectsRvFragment : Fragment() {
             ) {
                 adapter.differ.submitList(it)
             }
-
         }
 
 

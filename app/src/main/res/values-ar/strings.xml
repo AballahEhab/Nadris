@@ -135,5 +135,7 @@
     <string name="btn_add_new_subject">إضافة المادة</string>
     <string name="autoCompleteTV_choose_subjects">إختيار المادة</string>
     <string name="autoCompleteTV_choose_semester">إختيار الفصل الدراسي</string>
+    <string name="content_comment">أستاذ شاطر جدا ومجتهد ومهتم  بالطالب لأقصي درجه </string>
+    <string name="name_acount_add_comment">محمد مصطفي </string>
 
 </resources>
