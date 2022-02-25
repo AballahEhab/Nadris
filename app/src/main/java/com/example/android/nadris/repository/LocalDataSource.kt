@@ -14,7 +14,7 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
      suspend fun addUserData(userData: UserData)=
         userDao.insertUser(userData)
 
-    fun getUserData() = userDao.getUser()
+    suspend fun getUserData() = userDao.getUser()
 
     suspend fun updateUserData(updatedUserData: UserData) =
         userDao.updateUser(updatedUserData)

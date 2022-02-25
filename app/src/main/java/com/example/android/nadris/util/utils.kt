@@ -83,16 +83,7 @@ fun disableUserInterAction(activity: FragmentActivity?) =
 fun enableUserInterAction(activity: FragmentActivity?)=
     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
- fun login(activity: Activity, context: Context) {
-    lateinit var directionClass:Class<*>
-    if (NadrisApplication.userData?.Type == "student")
-        directionClass = StudentMainActivity::class.java
-    else if(NadrisApplication.userData?.Type == "teacher")
-        directionClass = TeacherMainActivity::class.java
 
-    context.startActivity(Intent(context, directionClass))
-    activity.finish()
-}
 
 
 

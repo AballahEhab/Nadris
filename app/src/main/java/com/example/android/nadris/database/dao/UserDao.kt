@@ -18,6 +18,6 @@ interface UserDao {
      suspend fun updateUser(user: UserData)
 
     @Query("SELECT * FROM UserData WHERE id = 1")
-     fun getUser(): Flow<UserData>
+     suspend fun getUser(): UserData
 
 }

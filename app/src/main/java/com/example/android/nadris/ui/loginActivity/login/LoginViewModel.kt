@@ -115,9 +115,9 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
     }
 
 
-    suspend fun getUser() = repository.getUser().collect {
-                NadrisApplication.userData = it
-            }
+//    suspend fun getUser() = repository.getUser().collect {
+//                NadrisApplication.userData = it
+//            }
 
 
 

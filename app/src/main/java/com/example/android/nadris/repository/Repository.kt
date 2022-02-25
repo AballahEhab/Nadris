@@ -45,7 +45,7 @@ class Repository @Inject constructor(
         saveFetchResult = { post -> localDataSource.insertPost(post) }
     )
 
-    fun getUser() = localDataSource.getUserData()
+    suspend fun getUser() = localDataSource.getUserData()
 }
 
 
