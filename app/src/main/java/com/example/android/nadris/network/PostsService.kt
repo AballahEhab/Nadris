@@ -8,7 +8,7 @@ interface PostsService {
     suspend fun getAllPosts(@Header("authorization") token: String): Response<List<NetworkPost>>
 
     @POST("api/Posts")
-    suspend fun publishAPost(@Body createPostModel: CreatePostModel, @Header("authorization") token: String): Response<AuthModel>
+    suspend fun publishAPost(@Body createPostModel: CreatePostModel, @Header("authorization") token: String): Response<NetworkPost>
 
     @GET("api/Posts/{postId}")
     suspend fun getAPostByPostId(@Path("postId") postId:Int, @Header("authorization") token: String): Response<CreatePostModel>

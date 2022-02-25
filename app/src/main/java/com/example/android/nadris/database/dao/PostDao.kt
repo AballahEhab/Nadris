@@ -11,7 +11,10 @@ interface PostDao {
     fun getAllPosts(): Flow<List<DatabasePost>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPost(databasePosts: List<DatabasePost>)
+    suspend fun insertPosts(databasePosts: List<DatabasePost>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPost(databasePost: DatabasePost)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertComments(vararg comment: CommentData)

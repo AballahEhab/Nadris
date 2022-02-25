@@ -9,7 +9,7 @@ object NetworkModelsMapper {
         DatabasePost(
             networkPost.id ,
             R.drawable.ic_google ,
-            networkPost.subjectId ,
+            networkPost.subject ,
             networkPost.content ,
             networkPost.votes ,
             networkPost.time ,

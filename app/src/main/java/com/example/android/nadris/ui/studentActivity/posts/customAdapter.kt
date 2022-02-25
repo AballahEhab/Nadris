@@ -24,7 +24,7 @@ class customAdapter (val postList:List<DatabasePost>)
         val data: DatabasePost =postList[position]
         holder.imageStudent.setImageResource(data.imageStudent)
         holder.studentName.text=data.name
-        holder.subjectName.text=data.subjectId
+        holder.subjectName.text=data.subject
         holder.post_text.text=data.content
         holder.my_data=data  //to send the valu data to veiw holder
         holder.comment_icon.setOnClickListener {

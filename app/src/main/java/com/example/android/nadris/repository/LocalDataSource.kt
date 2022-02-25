@@ -22,7 +22,9 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
      fun getAllPosts() =
         postDao.getAllPosts()
 
-    suspend fun insertPost(databasePost: List<DatabasePost>) =
+    suspend fun insertPosts(databasePosts: List<DatabasePost>) =
+        postDao.insertPosts( databasePosts )
+    suspend fun insertPost(databasePost: DatabasePost) =
         postDao.insertPost( databasePost )
 
     suspend fun insertComments(vararg comment: CommentData) =
