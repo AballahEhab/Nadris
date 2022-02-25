@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/unit_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="26dp"
-        app:layout_constraintEnd_toStartOf="@+id/unit_name"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/circleImageView"
-        tools:srcCompat="@drawable/ic_launcher_background" />
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/unit_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/unit_icon"
-        app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/lessons_list"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginStart="70dp"-->
-<!--        android:text="this is a test for lessons list"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="@id/unit_icon"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/unit_icon" />-->
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lessons_list"
-            android:layout_width="0dp"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/unit_icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/unit_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            tools:srcCompat="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/unit_name"
+            style="@style/material_text_header_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/unit_icon"
-            app:layout_constraintTop_toBottomOf="@+id/unit_icon" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toEndOf="@+id/unit_icon"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lessons_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/mid_margin"
+
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/unit_icon"
+        app:layout_constraintTop_toBottomOf="@+id/unit_icon"
+        tools:listitem="@layout/item_lesson"/>
+</androidx.cardview.widget.CardView>

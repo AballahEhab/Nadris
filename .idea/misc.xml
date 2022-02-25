@@ -62,9 +62,18 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/post_page_fragment.xml" value="0.25" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/activity_studnet_main_acitivity.xml" value="0.15896739130434784" />
-        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_add_comment.xml" value="0.4" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/activity_teacher_main.xml" value="0.22291666666666668" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_add_comment.xml" value="0.264" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_add_pos.xml" value="0.264" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_post_page.xml" value="0.22291666666666668" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_expandable_unit.xml" value="0.22291666666666668" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_gender_list.xml" value="0.22291666666666668" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_lesson.xml" value="0.4" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_lesson_subjects.xml" value="0.15896739130434784" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_post_card_cell.xml" value="0.4" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_rv_sub_teacher.xml" value="0.264" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_unit_subjects.xml" value="0.15896739130434784" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/youtube.xml" value="0.15896739130434784" />
       </map>
     </option>
   </component>

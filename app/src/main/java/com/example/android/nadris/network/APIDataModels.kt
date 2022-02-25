@@ -61,7 +61,7 @@ data class CreatePostModel(
 
 data class NetworkPost(
     val id: Int,
-    val subjectId: String,
+    val subject: String,
     val content: String,
     val votes:Int,
     val comments:List<CommentModel>,
