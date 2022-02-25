@@ -36,9 +36,7 @@
     <string name="textView_other">other</string>
     <string name="textView_teacher_signup">Teacher</string>
     <string name="textView_HaveAccount_SignIn">Do you have account?</string>
-    <string name="textView_account_login">
-        <u>Login</u>
-    </string>
+    <string name="textView_account_login"> <u>Login</u></string>
     <string name="wrong_OTB_text_dialog">الرقم السرى المؤقت الذى أدخلته غير صحيح</string>
     <string name="back_txt">السابق</string>
     <string name="next_txt">التالي</string>

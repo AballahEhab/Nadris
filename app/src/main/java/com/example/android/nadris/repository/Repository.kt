@@ -44,6 +44,8 @@ class Repository @Inject constructor(
         convertToDatabaseModel = { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) },
         saveFetchResult = { post -> localDataSource.insertPost(post) }
     )
+
+    fun getUser() = localDataSource.getUserData()
 }
 
 
