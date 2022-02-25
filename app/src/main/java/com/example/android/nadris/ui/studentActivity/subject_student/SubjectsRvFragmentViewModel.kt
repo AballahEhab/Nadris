@@ -11,6 +11,7 @@ import com.example.android.nadris.database.models.DatabaseSubject
 class SubjectsRvFragmentViewModel : ViewModel() {
 
     private var list=MutableLiveData<List<DatabaseSubject>>();
+
     fun  getdata(): MutableLiveData<List<DatabaseSubject>> {
         val subjects =mutableListOf<DatabaseSubject>()
         subjects.add(DatabaseSubject(1,"الفيزياء",15, R.drawable.icon_physics))

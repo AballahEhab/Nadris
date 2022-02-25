@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class CommentData(
 
     @PrimaryKey val email: String,
+    val name:String,
     val content: String,
     val postId:Int
-)
+)//ToDo add variable name as name acount will add coment

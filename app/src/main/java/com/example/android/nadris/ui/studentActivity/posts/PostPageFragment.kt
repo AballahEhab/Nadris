@@ -17,7 +17,7 @@ import com.example.android.nadris.databinding.FragmentPostPageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class post_pageFragment : Fragment() {
+class PostPageFragment : Fragment() {
 
 
     val viewModel: PostPageViewModel by viewModels()
@@ -53,7 +53,7 @@ class post_pageFragment : Fragment() {
         viewModel.navigate_to_add_post.observe(this.viewLifecycleOwner) {
             if (it) {
                 this.findNavController()
-                    .navigate(post_pageFragmentDirections.actionNavigationPostsToAddPostFragment())
+                    .navigate(PostPageFragmentDirections.actionNavigationPostsToAddPostFragment())
                 viewModel.navigate_to_add_post_done()
             }
         }

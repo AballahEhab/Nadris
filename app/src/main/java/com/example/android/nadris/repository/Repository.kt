@@ -36,6 +36,8 @@ class Repository @Inject constructor(
                 networkPost-> NetworkModelsMapper.postAsDatabaseModel(networkPost) } },
         saveFetchResult = {list_of_posts-> list_of_posts?.let { localDataSource.insertPost(it) } }
     )
+
+    fun getUser() = localDataSource.getUserData()
 }
 
 
