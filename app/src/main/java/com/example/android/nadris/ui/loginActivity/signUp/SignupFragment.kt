@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
-import com.example.android.nadris.databinding.SignupFragmentBinding
+import com.example.android.nadris.databinding.FragmentSignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,11 +20,11 @@ class SignupFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 
-         inflater.inflate(R.layout.signup_fragment, container, false)
+         inflater.inflate(R.layout.fragment_signup, container, false)
 
-        val binding = SignupFragmentBinding.inflate(inflater)
+        val binding = FragmentSignupBinding.inflate(inflater)
 
         binding.viewModle = viewModel
 

@@ -13,22 +13,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.customAdapterRVTeach
-import com.example.android.nadris.databinding.TeachersRVFragmentBinding
+import com.example.android.nadris.databinding.FragmentTeachersRVBinding
 
 class teachers_RV_fragment : Fragment() {
 
 
     private lateinit var viewModel: TeachersRVFragmentViewModel
     private lateinit var adapter: customAdapterRVTeach
-    private lateinit var binding: TeachersRVFragmentBinding
+    private lateinit var binding: FragmentTeachersRVBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        inflater.inflate(R.layout.teachers__r_v_fragment, container, false)
-        binding = TeachersRVFragmentBinding.inflate(inflater);
+        inflater.inflate(R.layout.fragment_teachers__r_v, container, false)
+        binding = FragmentTeachersRVBinding.inflate(inflater)
 
         viewModel = ViewModelProvider(this).get(TeachersRVFragmentViewModel::class.java)
         binding.viewmodel = viewModel

@@ -8,11 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
-import com.example.android.nadris.databinding.SignupTeacherFragmentBinding
+import com.example.android.nadris.databinding.FragmentSignupTeacherBinding
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class signupTeacherFragment : Fragment() {
 
     val viewModel: SignupTeacherViewModel by viewModels()
-    private lateinit var binding : SignupTeacherFragmentBinding
+    private lateinit var binding : FragmentSignupTeacherBinding
     private lateinit var gender : Array<String>
     private lateinit var collage: Array<String>
     private lateinit var university: Array<String>
@@ -33,11 +32,11 @@ class signupTeacherFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 
-        inflater.inflate(R.layout.signup_teacher_fragment, container, false)
+        inflater.inflate(R.layout.fragment_signup_teacher, container, false)
 
-        binding = SignupTeacherFragmentBinding.inflate(inflater)
+        binding = FragmentSignupTeacherBinding.inflate(inflater)
 
         initiate()
 
@@ -64,10 +63,10 @@ class signupTeacherFragment : Fragment() {
          collage = resources.getStringArray(R.array.collage)
          university = resources.getStringArray(R.array.university)
          subjects = resources.getStringArray(R.array.subject)
-         adapter1= ArrayAdapter(requireContext(), R.layout.list_item, gender)
-         adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, collage)
-         adapter3 = ArrayAdapter(requireContext(), R.layout.list_item, university)
-         adapter4 = ArrayAdapter(requireContext(), R.layout.list_item, subjects)
+         adapter1= ArrayAdapter(requireContext(), R.layout.item_gender_list, gender)
+         adapter2 = ArrayAdapter(requireContext(), R.layout.item_gender_list, collage)
+         adapter3 = ArrayAdapter(requireContext(), R.layout.item_gender_list, university)
+         adapter4 = ArrayAdapter(requireContext(), R.layout.item_gender_list, subjects)
     }
 
     fun registerObservers(){

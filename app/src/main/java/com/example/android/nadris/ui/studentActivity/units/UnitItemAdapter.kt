@@ -4,14 +4,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.databinding.ExpandableUnitItemBinding
+import com.example.android.nadris.databinding.ItemExpandableUnitBinding
 import com.example.android.nadris.database.models.SubjectUnit
 import com.example.android.nadris.util.isVisible
 
 class UnitItemAdapter (val unitsList:List<SubjectUnit>): RecyclerView.Adapter<UnitItemAdapter.UnitItemViewHolder>() {
     var expandedItemIndex:Int = -1
 
-    class UnitItemViewHolder(val binding: ExpandableUnitItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class UnitItemViewHolder(val binding: ItemExpandableUnitBinding) : RecyclerView.ViewHolder(binding.root) {
         val unitName = binding.unitName
         val unitImage = binding.unitIcon
         val unitLessonList = binding.lessonsList
@@ -20,7 +20,7 @@ class UnitItemAdapter (val unitsList:List<SubjectUnit>): RecyclerView.Adapter<Un
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UnitItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ExpandableUnitItemBinding.inflate(inflater,parent,false)
+        val binding = ItemExpandableUnitBinding.inflate(inflater,parent,false)
         return UnitItemViewHolder(binding)
     }
 

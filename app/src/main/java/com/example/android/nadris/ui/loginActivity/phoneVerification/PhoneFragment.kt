@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.android.nadris.R
-import com.example.android.nadris.databinding.PhoneFragmentBinding
+import com.example.android.nadris.databinding.FragmentPhoneBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +27,7 @@ class PhoneFragment : Fragment() {
     val viewModel: PhoneViewModel by viewModels()
 
     // initiating binding object for phone verification fragment
-    lateinit var binding : PhoneFragmentBinding
+    lateinit var binding : FragmentPhoneBinding
 
     private var OTB:String =""
     private var OTBdigitsText = mutableListOf<TextView>()
@@ -42,10 +42,10 @@ class PhoneFragment : Fragment() {
 //        viewModel = ViewModelProvider(this).get(PhoneViewModel::class.java)
 
         // inflating the fragment to show it in the run time
-        inflater.inflate(R.layout.phone_fragment,container,false)
+        inflater.inflate(R.layout.fragment_phone,container,false)
 
         //getting the binding object to interact with views in this layout by the binding obj
-        binding = PhoneFragmentBinding.inflate(inflater)
+        binding = FragmentPhoneBinding.inflate(inflater)
 //        val args: PhoneFragmentArgs by navArgs<PhoneFragmentArgs>()
 
 // Todo  1: uncomment this when navigating to this page to use the receved argument

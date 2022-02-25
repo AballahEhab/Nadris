@@ -10,7 +10,7 @@ import android.widget.*
 import androidx.fragment.app.viewModels
 import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
-import com.example.android.nadris.databinding.SignupStudentFragmentBinding
+import com.example.android.nadris.databinding.FragmentSignupStudentBinding
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class signupStudentFragment : Fragment() {
 
     val viewModel: SignupStudentViewModel by viewModels()
-    private lateinit var binding :SignupStudentFragmentBinding
+    private lateinit var binding :FragmentSignupStudentBinding
     private lateinit var gender : Array<String>
     private lateinit var grade:Array<String>
     private lateinit var adapter1:ArrayAdapter<String>
@@ -27,9 +27,9 @@ class signupStudentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        inflater.inflate(R.layout.signup_student_fragment, container, false)
-        binding = SignupStudentFragmentBinding.inflate(inflater)
+    ): View {
+        inflater.inflate(R.layout.fragment_signup_student, container, false)
+        binding = FragmentSignupStudentBinding.inflate(inflater)
 
 
         initiate()
@@ -63,8 +63,8 @@ class signupStudentFragment : Fragment() {
     private fun initiate() {
         gender = this.resources.getStringArray(R.array.GenderList)
         grade = resources.getStringArray(R.array.GradeList)
-        adapter1 = ArrayAdapter(requireContext(), R.layout.list_item, gender)
-        adapter2 = ArrayAdapter(requireContext(), R.layout.list_item, grade)
+        adapter1 = ArrayAdapter(requireContext(), R.layout.item_gender_list, gender)
+        adapter2 = ArrayAdapter(requireContext(), R.layout.item_gender_list, grade)
 
     }
 

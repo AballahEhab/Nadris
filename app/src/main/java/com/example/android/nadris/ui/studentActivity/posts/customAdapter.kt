@@ -13,7 +13,7 @@ class customAdapter (val postList:List<DatabasePost>)
     :RecyclerView.Adapter<customAdapter.Viewholder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.cardcell,parent,false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_post_card_cell,parent,false)
         return Viewholder(v)
     }
 

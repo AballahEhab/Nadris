@@ -10,7 +10,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.android.nadris.databinding.AddPostFragmentBinding
+import com.example.android.nadris.databinding.FragmentAddPosBinding
 import com.example.android.nadris.ui.studentActivity.addPosts.AddPostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,13 +26,13 @@ class addPostFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 //        viewModel = ViewModelProvider(this).get(AddPostViewModel::class.java)
-        inflater.inflate(R.layout.add_post_fragment, container, false)
-        val bindigin =AddPostFragmentBinding.inflate(inflater)
+        inflater.inflate(R.layout.fragment_add_pos, container, false)
+        val bindigin =FragmentAddPosBinding.inflate(inflater)
         bindigin.addPostViewModel = viewModel
         val subjects = resources.getStringArray(R.array.subject)
-        val adapter= ArrayAdapter(requireContext(), R.layout.list_item, subjects)
+        val adapter= ArrayAdapter(requireContext(), R.layout.item_gender_list, subjects)
         (bindigin.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
         bindigin.imageButton.setOnClickListener{
 
@@ -40,8 +40,8 @@ class addPostFragment : Fragment() {
 
  }
         bindigin.publicButton.setOnClickListener {
-           var str:String=""+viewModel.question.value+"\n"+viewModel.subjects.value+"\n"+viewModel.image;
-          Toast.makeText(requireContext(),str,Toast.LENGTH_LONG).show()
+           val str:String=""+viewModel.question.value+"\n"+viewModel.subjects.value+"\n"+viewModel.image
+            Toast.makeText(requireContext(),str,Toast.LENGTH_LONG).show()
        }
 
         return bindigin.root}
@@ -50,6 +50,7 @@ class addPostFragment : Fragment() {
      fun pickImageFromGallery() {
          val intent = Intent(Intent.ACTION_PICK)
        intent.type = "image/*"
+         //TODO: please check this deprecated function
          startActivityForResult(intent, viewModel.IMAGE_REQUEST_CODE) }
 
     // edit to imageview

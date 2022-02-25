@@ -2,30 +2,27 @@ package com.example.android.nadris.ui.loginActivity.login
 
 import android.app.Activity
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
-import com.example.android.nadris.databinding.LoginFragmentBinding
+import com.example.android.nadris.databinding.FragmentLoginBinding
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.disableUserInterAction
 import com.example.android.nadris.util.enableUserInterAction
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.reflect.KClass
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    lateinit var  binding: LoginFragmentBinding
+    lateinit var  binding: FragmentLoginBinding
 
      val viewModel: LoginViewModel by viewModels()
 
@@ -34,9 +31,9 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        inflater.inflate(R.layout.login_fragment, container, false)
+        inflater.inflate(R.layout.fragment_login, container, false)
 
-        binding = LoginFragmentBinding.inflate(inflater)
+        binding = FragmentLoginBinding.inflate(inflater)
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         //using view model to save UI state

@@ -12,22 +12,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.customAdapterRVsub
-import com.example.android.nadris.databinding.SubjectsRvFragmentBinding
+import com.example.android.nadris.databinding.FragmentSubjectsRvBinding
 
 class SubjectsRvFragment : Fragment() {
 
     private lateinit var viewModel: SubjectsRvFragmentViewModel
-    private lateinit var binding:SubjectsRvFragmentBinding
+    private lateinit var binding:FragmentSubjectsRvBinding
     private lateinit var adapter: customAdapterRVsub
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-     inflater.inflate(R.layout.subjects_rv_fragment, container, false)
-        binding=SubjectsRvFragmentBinding.inflate(inflater);
+     inflater.inflate(R.layout.fragment_subjects_rv, container, false)
+        binding=FragmentSubjectsRvBinding.inflate(inflater)
 
-       viewModel =ViewModelProvider(this).get(SubjectsRvFragmentViewModel::class.java)
+        viewModel =ViewModelProvider(this).get(SubjectsRvFragmentViewModel::class.java)
        binding.viewmodel = viewModel
 
         setupRV()

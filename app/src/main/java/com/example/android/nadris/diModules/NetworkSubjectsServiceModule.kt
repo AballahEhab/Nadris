@@ -15,12 +15,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkSubjectsServiceModule {
 
-    @Inject
-    lateinit var retrofitObj:Retrofit
-
     @Singleton
     @Provides
-    fun provideUserService() = retrofitObj.create( SubjectsService::class.java)
+    fun provideUserService(retrofitObj:Retrofit) = retrofitObj.create( SubjectsService::class.java)
 
 
 }

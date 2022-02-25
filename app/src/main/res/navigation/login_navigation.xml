@@ -8,7 +8,7 @@
         android:id="@+id/loginFragment"
         android:name="com.example.android.nadris.ui.loginActivity.login.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment"
+        tools:layout="@layout/fragment_login"
         >
         <action
             android:id="@+id/action_loginFragment_to_SignUpFragment"
@@ -23,7 +23,7 @@
         android:id="@+id/signupFragment"
         android:name="com.example.android.nadris.ui.loginActivity.signUp.SignupFragment"
         android:label="signup_fragment"
-        tools:layout="@layout/signup_fragment">
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signupFragment_to_signupTeacherFragment"
             app:destination="@id/signupTeacherFragment"
@@ -43,7 +43,7 @@
         android:id="@+id/signupTeacherFragment"
         android:name="com.example.android.nadris.ui.loginActivity.signUpTeacher.signupTeacherFragment"
         android:label="signup_teacher_fragment"
-        tools:layout="@layout/signup_teacher_fragment">
+        tools:layout="@layout/fragment_signup_teacher">
         <action android:id="@+id/action_signupTeacherFragment_to_signupFragment"
                 app:destination="@id/signupFragment"/>
         <action android:id="@+id/action_signupTeacherFragment_to_PhoneFragment"
@@ -54,7 +54,7 @@
         android:id="@+id/signupStudentFragment"
         android:name="com.example.android.nadris.ui.loginActivity.signUpStudent.signupStudentFragment"
         android:label="signup_student_fragment"
-        tools:layout="@layout/signup_student_fragment">
+        tools:layout="@layout/fragment_signup_student">
 
         <action android:id="@+id/action_signupStudentFragment_to_signupFragment"
                 app:destination="@id/signupFragment"/>
@@ -67,7 +67,7 @@
         android:id="@+id/phoneFragment"
         android:name="com.example.android.nadris.ui.loginActivity.phoneVerification.PhoneFragment"
         android:label="phone_fragment"
-        tools:layout="@layout/phone_fragment"/>
+        tools:layout="@layout/fragment_phone"/>
 
 
 

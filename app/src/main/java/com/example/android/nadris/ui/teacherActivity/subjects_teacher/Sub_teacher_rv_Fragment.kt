@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.customAdapterRVsubTeacher
-import com.example.android.nadris.databinding.SubTeacherRvFragmentBinding
+import com.example.android.nadris.databinding.FragmentSubTeacherRvBinding
 
 class sub_teacher_rv_Fragment : Fragment() {
 
@@ -22,15 +22,15 @@ class sub_teacher_rv_Fragment : Fragment() {
     private lateinit var args:sub_teacher_rv_FragmentArgs
     private lateinit var viewModel: SubTeacherRvViewModel
     private lateinit var adapter: customAdapterRVsubTeacher
-    private lateinit var binding:SubTeacherRvFragmentBinding
+    private lateinit var binding:FragmentSubTeacherRvBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        inflater.inflate(R.layout.sub_teacher_rv__fragment, container, false)
-         binding =SubTeacherRvFragmentBinding.inflate(inflater)
+        inflater.inflate(R.layout.fragment_sub_teacher_rv, container, false)
+         binding =FragmentSubTeacherRvBinding.inflate(inflater)
 
         viewModel = ViewModelProvider(this).get(SubTeacherRvViewModel::class.java)
         binding.viewmodel = viewModel
@@ -42,9 +42,9 @@ class sub_teacher_rv_Fragment : Fragment() {
 //        viewModel.select_subject=args.selectSubject
 //        viewModel.select_semester= args.selectSemester.toString()
 
-        setupRV();
+        setupRV()
         binding.fabAddSubject.setOnClickListener {
-            var action = sub_teacher_rv_FragmentDirections.actionSubTeacherRvFragmentToChoosingNewSubjects()
+            val action = sub_teacher_rv_FragmentDirections.actionSubTeacherRvFragmentToChoosingNewSubjects()
             findNavController().navigate(action)
         }
 

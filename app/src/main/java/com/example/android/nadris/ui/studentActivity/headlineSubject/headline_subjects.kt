@@ -20,13 +20,10 @@ class headline_subjects : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.headline_subjects_fragment, container, false)
+        viewModel = ViewModelProvider(this).get(HeadlineSubjectsViewModel::class.java)
+
+        return inflater.inflate(R.layout.fragment_headline_subjects, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HeadlineSubjectsViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
