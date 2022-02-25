@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home1"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.post_pageFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home1" />
 

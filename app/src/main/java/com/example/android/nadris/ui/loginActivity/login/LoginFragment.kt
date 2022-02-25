@@ -18,6 +18,9 @@ import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.disableUserInterAction
 import com.example.android.nadris.util.enableUserInterAction
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -30,6 +33,15 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+////inside Fragment
+//        val job = Job()
+//        val uiScope = CoroutineScope(Dispatchers.Main + job)
+
+        viewModel.getUser()
+
+        NadrisApplication.userData?.let {
+            login()
+        }
 
         inflater.inflate(R.layout.fragment_login, container, false)
 
@@ -39,18 +51,10 @@ class LoginFragment : Fragment() {
         //using view model to save UI state
         binding.viewModel = viewModel
 
-
         viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
             if (it) {
 
-                lateinit var directionClass:Class<*>
-                if (NadrisApplication.userData?.Type == "student")
-                    directionClass = StudentMainActivity::class.java
-                else if(NadrisApplication.userData?.Type == "teacher")
-                    directionClass = TeacherMainActivity::class.java
-
-                startActivity(Intent(requireContext(), directionClass))
-                this.activity?.finish()
+                login()
             }
         }
 
@@ -83,6 +87,18 @@ class LoginFragment : Fragment() {
         return binding.root
 
     }
+
+    private fun login() {
+        lateinit var directionClass:Class<*>
+        if (NadrisApplication.userData?.Type == "student")
+            directionClass = StudentMainActivity::class.java
+        else if(NadrisApplication.userData?.Type == "teacher")
+            directionClass = TeacherMainActivity::class.java
+
+        startActivity(Intent(requireContext(), directionClass))
+        this.activity?.finish()
+    }
+
     fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager =
             activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

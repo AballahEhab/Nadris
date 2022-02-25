@@ -115,6 +115,13 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
     }
 
 
+     fun getUser(){
+        viewModelScope.launch{
+            repository.getUser().collect {
+                NadrisApplication.userData = it
+            }
+        }
+    }
 
 
     private fun enableErrorMessage(){
