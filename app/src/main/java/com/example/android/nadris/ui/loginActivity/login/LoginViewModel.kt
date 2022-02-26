@@ -6,8 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.network.LoginAccountModel
-import com.example.android.nadris.network.NetworkModelsMapper
+import com.example.android.nadris.network.models.LoginAccountModel
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel

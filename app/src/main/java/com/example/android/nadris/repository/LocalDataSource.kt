@@ -1,6 +1,6 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.database.models.CommentData
+import com.example.android.nadris.domain.CommentData
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.database.NadrisDatabase
@@ -28,7 +28,5 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun insertComments(vararg comment: CommentData) =
         postDao.insertComments(*comment)
 
-     fun getCommentsByPostId(postIdP:Int) =
-        postDao.getCommentsByPostId(postIdP)
 
 }

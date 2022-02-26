@@ -1,12 +1,11 @@
 package com.example.android.nadris.diModules
 
-import com.example.android.nadris.network.PostsService
+import com.example.android.nadris.network.services.PostsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
