@@ -42,7 +42,7 @@ class Repository @Inject constructor(
         saveFetchResult = {list_of_posts-> list_of_posts?.let { localDataSource.insertPost(it) } }
     )
 
-    fun getUser() = localDataSource.getUserData()
+    suspend fun getUser() = localDataSource.getUserData()
 
     suspend fun publishComment(comment: CommentData, token: String) =
         remoteDataSource.publishComment(DomainMapper.commentDataAsNetworkComment(comment),token)

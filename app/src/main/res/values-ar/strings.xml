@@ -139,4 +139,5 @@
 
     <string name="add_comment">أضف تعليقك</string>
     <string name="title_activity_login">صفحة تسجيل الدخول</string>
+    <string name="btn_add_comment">إذهب</string>
 </resources>

@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewmodel"
+            type="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentViewModel" />
 
     </data>
 
@@ -22,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:weightSum="5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include">
@@ -31,6 +35,7 @@
             style="@style/material_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="4"
             android:layout_margin="@dimen/mid_margin"
             android:hint="@string/add_comment"
         >
@@ -38,17 +43,27 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.comment}"
+                android:onTextChanged="@{()->viewmodel.onClikVisable()}"
+
+                />
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-            <ImageView
-                android:id="@+id/imageView2"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_comment"
+                style="@style/material_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-            android:layout_weight="1"
-        />
+                android:layout_gravity="center"
+                android:onClick="@{()-> viewmodel.setComment()}"
+                app:isVisible="@{viewmodel.visabilty}"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:textStyle="normal"
+                android:textAppearance="@style/material_text_body_small"
+                android:layout_weight="1"
+                android:text="@string/btn_add_comment" />
 
     </LinearLayout>
 

@@ -15,4 +15,5 @@ abstract class NadrisDatabase : RoomDatabase() {
     abstract fun UserDao(): UserDao
     abstract fun PostDao(): PostDao
 
+
 }

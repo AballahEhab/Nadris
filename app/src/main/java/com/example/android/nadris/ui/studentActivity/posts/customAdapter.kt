@@ -22,13 +22,14 @@ class customAdapter (val postList:List<DatabasePost>)
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         
         val data: DatabasePost =postList[position]
+
         holder.imageStudent.setImageResource(data.imageStudent)
         holder.studentName.text=data.name
         holder.subjectName.text=data.subject
         holder.post_text.text=data.content
-        holder.my_data=data  //to send the valu data to veiw holder
+        holder.my_data = data  //to send the valu data to veiw holder
         holder.comment_icon.setOnClickListener {
-            holder.itemView.findNavController().navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment())
+            it.findNavController().navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data.postId))
         }
 
     }
@@ -37,7 +38,7 @@ class customAdapter (val postList:List<DatabasePost>)
         return postList.size
     }
 
-    class Viewholder(itemViewt :View,var my_data: DatabasePost?=null):RecyclerView.ViewHolder(itemViewt){
+    class Viewholder(itemViewt :View ,var my_data: DatabasePost?=null):RecyclerView.ViewHolder(itemViewt){
 //        init {
 //            Toast.makeText(itemView.context,my_data?.studentName, Toast.LENGTH_LONG).show()
 //
