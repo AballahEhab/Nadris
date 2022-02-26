@@ -19,3 +19,4 @@ enum class InputError   {
     NOT_VALID_MOBILE_NUMB
 }
 
+  const val TOKEN_PREFIX = "Bearer "
