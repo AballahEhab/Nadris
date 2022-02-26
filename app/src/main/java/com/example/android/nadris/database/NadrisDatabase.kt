@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.android.nadris.database.dao.PostDao
 import com.example.android.nadris.database.dao.UserDao
-import com.example.android.nadris.database.models.CommentData
+import com.example.android.nadris.domain.CommentData
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.UserData
 

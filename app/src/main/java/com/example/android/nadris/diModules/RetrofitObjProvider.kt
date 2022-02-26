@@ -1,6 +1,5 @@
 package com.example.android.nadris.diModules
 
-import com.example.android.nadris.network.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,13 +1,11 @@
 package com.example.android.nadris.diModules
 
-import com.example.android.nadris.network.UserService
+import com.example.android.nadris.network.services.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module

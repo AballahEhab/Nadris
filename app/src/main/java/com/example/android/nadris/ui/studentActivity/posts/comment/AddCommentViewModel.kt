@@ -2,7 +2,7 @@ package com.example.android.nadris.ui.studentActivity.posts.comment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.nadris.database.models.CommentData
+import com.example.android.nadris.domain.CommentData
 
 class AddCommentViewModel : ViewModel() {
     private var list=MutableLiveData<List<CommentData>>()

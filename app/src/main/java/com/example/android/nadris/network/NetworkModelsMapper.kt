@@ -3,9 +3,11 @@ package com.example.android.nadris.network
 import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.network.models.AuthModel
+import com.example.android.nadris.network.models.NetworkPost
 
 object NetworkModelsMapper {
-    fun postAsDatabaseModel(networkPost:NetworkPost) =
+    fun postAsDatabaseModel(networkPost: NetworkPost) =
         DatabasePost(
             networkPost.id ,
             R.drawable.ic_google ,
@@ -30,6 +32,8 @@ object NetworkModelsMapper {
         College = model.college,
         Token = model.token
     )
+
+
 
 
 

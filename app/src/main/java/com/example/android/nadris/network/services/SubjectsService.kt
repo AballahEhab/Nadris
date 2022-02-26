@@ -1,5 +1,6 @@
-package com.example.android.nadris.network
+package com.example.android.nadris.network.services
 
+import com.example.android.nadris.network.models.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -22,9 +23,9 @@ interface SubjectsService {
     suspend fun vote(@Body voteModel: VoteModel, @Header("authorization") token: String)
 
     @POST("api//Posts/comment")
-    suspend fun comment(@Body commentModel: CommentModel, @Header("authorization") token: String)
+    suspend fun comment(@Body publishCommentModel: PublishCommentModel, @Header("authorization") token: String)
 
     @GET("api/Posts/GetComment")
-    suspend fun getCommentByPostId(@Body postId:Int, @Header("authorization") token: String): Response<CommentModel>
+    suspend fun getCommentByPostId(@Body postId:Int, @Header("authorization") token: String): Response<PublishCommentModel>
     
 }
