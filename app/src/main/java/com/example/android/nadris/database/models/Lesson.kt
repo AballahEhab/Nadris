@@ -1,9 +1,10 @@
 package com.example.android.nadris.database.models
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 data class Lesson (
-    val lessonNum:String,
+    @PrimaryKey val lessonNum:String,
     val lessonName:String
     )

@@ -27,8 +27,6 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun insertPost(databasePost: DatabasePost) =
         postDao.insertPost( databasePost )
 
-    suspend fun insertComments(vararg comment: CommentData) =
-        postDao.insertComments(*comment)
 
 
 }
