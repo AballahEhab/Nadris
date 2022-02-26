@@ -8,7 +8,7 @@ import com.example.android.nadris.database.models.*
 import com.example.android.nadris.domain.CommentData
 
 
-@Database(entities = [UserData::class, DatabasePost::class, DatabaseSubject::class, Lesson::class, SubjectUnit::class], version = 1, exportSchema = false)
+@Database(entities = [UserData::class, DatabasePost::class, DatabaseSubject::class, Lesson::class, ], version = 1, exportSchema = false)
 abstract class NadrisDatabase : RoomDatabase() {
 
     abstract fun UserDao(): UserDao

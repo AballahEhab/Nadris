@@ -13,10 +13,6 @@ interface PostDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPost(databasePosts: List<DatabasePost>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertComments(vararg comment: CommentData)
-
-
     @Update
     suspend fun updatePost(databasePost: DatabasePost)
 }
