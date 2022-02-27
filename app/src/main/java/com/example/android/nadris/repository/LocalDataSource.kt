@@ -1,5 +1,6 @@
 package com.example.android.nadris.repository
 
+import com.example.android.nadris.database.models.CommentData
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.database.NadrisDatabase
@@ -9,13 +10,11 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
 
     private val userDao = nadrisDatabase.UserDao()
     private val postDao = nadrisDatabase.PostDao()
-    private val subjectDao = nadrisDatabase.SubjectDao()
 
      suspend fun addUserData(userData: UserData)=
         userDao.insertUser(userData)
 
-    suspend fun getUserData() =
-        userDao.getUser()
+    suspend fun getUserData() = userDao.getUser()
 
     suspend fun updateUserData(updatedUserData: UserData) =
         userDao.updateUser(updatedUserData)

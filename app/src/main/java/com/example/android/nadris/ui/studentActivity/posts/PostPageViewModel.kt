@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.TOKEN_PREFIX
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,14 +44,20 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
         disableErrorMessage()
         viewModelScope.launch {
             enableProgressBar()
-            val postsFlow = repository.getPosts("Bearer " + token)
-
+            val postsFlow = repository.getPosts( TOKEN_PREFIX + token)
+            enableProgressBar()
             postsFlow.collect {
                 it?.handleRepoResponse(
-                    onLoading= {},
+                    onLoading= {
+                              it.data?.let{
+                                  disableProgressBar()
+                                  postsList.value= it
+                              }
+                    },
                     onError= {
                         disableProgressBar()
                         enableErrorMessage()
+                        postsList.value= (it.data as List<DatabasePost>)
                         _loginRequestErrorMessage.value = it.error!!
                     },
                     onSuccess= {

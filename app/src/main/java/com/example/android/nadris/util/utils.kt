@@ -13,14 +13,14 @@ import retrofit2.Response
 import java.net.HttpURLConnection
 
 inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
-    crossinline query: () -> Flow<DatabaseModel>,
+    crossinline query: suspend () -> DatabaseModel,
     crossinline fetch: suspend () -> Response<NetworkModel>,
     crossinline saveFetchResult: suspend (DatabaseModel) -> Unit,
     crossinline convertToDatabaseModel:  (NetworkModel) -> DatabaseModel,
     crossinline shouldFetch: (DatabaseModel) -> Boolean = { true }
 ) = flow {
 
-    val data = query().first()
+    val data = query()
 
      if (shouldFetch(data)) {
 
@@ -32,12 +32,12 @@ inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
             emit(Result.Success(res))
 
         } catch (throwable: Throwable) {
-            emit(Result.Error(throwable.message.toString(),query()))
+            emit(Result.Error(throwable.message.toString(),data))
 
             }
 
     } else {
-         emit(Result.Success(query()))
+         emit(Result.Success(data))
     }
 
 }
