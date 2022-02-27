@@ -84,7 +84,11 @@ fun enableUserInterAction(activity: FragmentActivity?)=
     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
 
-
+fun getSubjectName(subjectId:String) =
+    when (subjectId){
+         "1" -> "Physics"
+        else -> "subject not recognized"
+    }
 
 
 

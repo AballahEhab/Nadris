@@ -10,29 +10,25 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class DataBaseModule() {
 
 
-    private lateinit var  INSTANCE: NadrisDatabase
-
+    @Singleton
     @Provides
-    fun provideDataBase(@ApplicationContext  applicationContext: Context): NadrisDatabase {
+    fun provideDataBase(@ApplicationContext applicationContext: Context): NadrisDatabase {
 
         synchronized(this) {
 
-            if (!::INSTANCE.isInitialized) {
-                INSTANCE = Room.databaseBuilder(
-                    applicationContext,
-                    NadrisDatabase::class.java,
-                    "user_data_database"
-                )
-                    .fallbackToDestructiveMigration()
-                    .build()
-            }
-            return INSTANCE
+            return Room.databaseBuilder(
+                applicationContext,
+                NadrisDatabase::class.java,
+                "user_data_database"
+            )
+                .fallbackToDestructiveMigration()
+                .build()
         }
+
     }
 }

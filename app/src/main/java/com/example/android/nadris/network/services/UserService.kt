@@ -1,9 +1,9 @@
 package com.example.android.nadris.network.services
 
-import com.example.android.nadris.network.models.AuthModel
-import com.example.android.nadris.network.models.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.models.CreateTeacherAccountDataModelModel
-import com.example.android.nadris.network.models.LoginAccountModel
+import com.example.android.nadris.network.dtos.AuthModel
+import com.example.android.nadris.network.dtos.CreateStudentAccountDataModelModel
+import com.example.android.nadris.network.dtos.CreateTeacherAccountDataModelModel
+import com.example.android.nadris.network.dtos.LoginAccountModel
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

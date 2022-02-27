@@ -1,11 +1,10 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.domain.CommentData
-import com.example.android.nadris.domain.DomainMapper
-import com.example.android.nadris.network.*
-import com.example.android.nadris.network.models.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.models.CreateTeacherAccountDataModelModel
-import com.example.android.nadris.network.models.LoginAccountModel
+import com.example.android.nadris.network.NetworkModelsMapper
+import com.example.android.nadris.network.dtos.CommentModel
+import com.example.android.nadris.network.dtos.CreateStudentAccountDataModelModel
+import com.example.android.nadris.network.dtos.CreateTeacherAccountDataModelModel
+import com.example.android.nadris.network.dtos.LoginAccountModel
 import com.example.android.nadris.util.postToApiHandler
 import com.example.android.nadris.util.requestDataFromAPI
 import javax.inject.Inject
@@ -44,8 +43,8 @@ class Repository @Inject constructor(
 
     suspend fun getUser() = localDataSource.getUserData()
 
-    suspend fun publishComment(comment: CommentData, token: String) =
-        remoteDataSource.publishComment(DomainMapper.commentDataAsNetworkComment(comment),token)
+    suspend fun publishComment(comment: CommentModel, token: String) =
+        remoteDataSource.publishComment(comment,token)
 }
 
 

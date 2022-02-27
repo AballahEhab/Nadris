@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.network.CreatePostModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,24 +22,24 @@ class AddPostViewModel @Inject constructor(val repository: Repository) : ViewMod
         NadrisApplication.userData?.Token
         viewModelScope.launch {
             //   enableProgressBar()
-            var res = repository.publishPost(
-                CreatePostModel(subjects.value.toString(), question.value!!), "Bearer " + token)
-
-            res.collect {
-                it?.handleRepoResponse(
-                    onLoading = {},
-                    onError = {
-//                        disableProgressBar()
-//                        enableErrorMessage()
-//                        _loginRequestErrorMessage.value = it.error!!
-                    },
-                    onSuccess = {
-                        // disableProgressBar()
-                        //   postsList.value= (it.data as List<DatabasePost>)
-                        Log.v("posts responce", it.data.toString())
-                    },
-                )
-            }
+//            var res = repository.publishPost(
+//                CreatePostModel(subjects.value.toString(), question.value!!), "Bearer " + token)
+//
+//            res.collect {
+//                it?.handleRepoResponse(
+//                    onLoading = {},
+//                    onError = {
+////                        disableProgressBar()
+////                        enableErrorMessage()
+////                        _loginRequestErrorMessage.value = it.error!!
+//                    },
+//                    onSuccess = {
+//                        // disableProgressBar()
+//                        //   postsList.value= (it.data as List<DatabasePost>)
+//                        Log.v("posts responce", it.data.toString())
+//                    },
+//                )
+//            }
         }
     }
 }

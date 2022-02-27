@@ -2,33 +2,23 @@ package com.example.android.nadris.ui.studentActivity.posts.comment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.domain.CommentData
-import com.example.android.nadris.repository.Repository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class AddCommentViewModel @Inject constructor (val repo:Repository): ViewModel() {
-
-
-
+class AddCommentViewModel : ViewModel() {
     private var list=MutableLiveData<List<CommentData>>()
 
-    fun getData():MutableLiveData<List<CommentData>>{
-        val comment = mutableListOf<CommentData>()
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",1))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",2))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",3))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",4))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",5))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",6))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",7))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",8))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",9))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",10))
+    fun getData():MutableLiveData<List<CommentModel>>{
+        val comment = mutableListOf<CommentModel>()
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",1))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",2))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",3))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",4))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",5))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",6))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",7))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",8))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",9))
+        comment.add(CommentModel("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",10))
 
         list.value=comment
         return list

@@ -3,17 +3,18 @@ package com.example.android.nadris.network
 import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.UserData
-import com.example.android.nadris.network.models.AuthModel
-import com.example.android.nadris.network.models.NetworkPost
+import com.example.android.nadris.network.dtos.AuthModel
+import com.example.android.nadris.network.dtos.NetworkPost
 
 object NetworkModelsMapper {
     fun postAsDatabaseModel(networkPost: NetworkPost) =
         DatabasePost(
             networkPost.id ,
             R.drawable.ic_google ,
-            networkPost.subject ,
+            networkPost.subjectId ,
             networkPost.content ,
             networkPost.votes ,
+            0, // TODO:  review post network model with @shokry
             networkPost.time ,
             networkPost.email ,
             networkPost.name,
@@ -32,6 +33,7 @@ object NetworkModelsMapper {
         College = model.college,
         Token = model.token
     )
+    
 
 
 

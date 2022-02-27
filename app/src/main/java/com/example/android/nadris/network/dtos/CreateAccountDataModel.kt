@@ -1,6 +1,6 @@
-package com.example.android.nadris.network.models
+package com.example.android.nadris.network.dtos
 
-open class CreateAccountDataModel(
+open  class CreateAccountDataModel(
     val u_firstName: String,
     val u_lastName: String,
     val u_email: String,

@@ -1,6 +1,6 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.network.models.*
+import com.example.android.nadris.network.dtos.*
 import com.example.android.nadris.network.services.PostsService
 import com.example.android.nadris.network.services.SubjectsService
 import com.example.android.nadris.network.services.UserService

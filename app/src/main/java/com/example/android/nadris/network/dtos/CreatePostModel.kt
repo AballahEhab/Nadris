@@ -1,4 +1,4 @@
-package com.example.android.nadris.network.models
+package com.example.android.nadris.network.dtos
 
 data class CreatePostModel(
     val subject: String,

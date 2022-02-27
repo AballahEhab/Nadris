@@ -8,9 +8,10 @@ data class DatabasePost(
 
     @PrimaryKey val postId: Int,
     var imageStudent : Int,
-    val subject: String,
+    val subjectId: String,
     val content: String,
-    val votes:Int,
+    val votesNum:Int,
+    val commentsNum:Int,
     val time:String,
     val email:String,
     val name:String
