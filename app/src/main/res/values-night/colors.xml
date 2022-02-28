@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="text_color">@color/colorAccent</color>
     <color name="card_color">@color/colorPrimary</color>
+    <color name="background_dark_color">#3F3E51</color>
+    <color name="container_card_color">@color/background_dark_color</color>
 </resources>

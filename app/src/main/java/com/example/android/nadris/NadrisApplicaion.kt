@@ -47,7 +47,7 @@ class NadrisApplication : Application() {
     }
 
 
-    fun isNetworkConnected(): Boolean {
+    private fun isNetworkConnected(): Boolean {
         val connectivityManager =
             getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

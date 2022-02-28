@@ -4,44 +4,49 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/mid_margin"
+    style="@style/material_card"
+    android:backgroundTint="@color/container_card_color"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/unit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/pink"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                tools:srcCompat="@drawable/ic_launcher_background"/>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/unit_icon"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/unit_name"
+                style="@style/material_text_header_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TextView"
+                android:layout_margin="@dimen/mid_margin"
+              />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lessons_list"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/unit_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/circleImageView"
-            tools:srcCompat="@drawable/ic_launcher_background"/>
+            android:layout_margin="@dimen/mid_margin"
 
-        <TextView
-            android:id="@+id/unit_name"
-            style="@style/material_text_header_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="TextView"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/unit_icon"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/unit_icon"
+            app:layout_constraintTop_toBottomOf="@+id/unit_icon"
+            tools:listitem="@layout/item_lesson"/>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lessons_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/mid_margin"
 
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/unit_icon"
-        app:layout_constraintTop_toBottomOf="@+id/unit_icon"
-        tools:listitem="@layout/item_lesson"/>
 </androidx.cardview.widget.CardView>

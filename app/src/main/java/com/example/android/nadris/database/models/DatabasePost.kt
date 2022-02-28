@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DatabasePost(
-
     @PrimaryKey val postId: Int,
-    var imageStudent : Int,
+    var hasImage :Boolean,
     val subject: String,
     val content: String,
     val votes:Int,

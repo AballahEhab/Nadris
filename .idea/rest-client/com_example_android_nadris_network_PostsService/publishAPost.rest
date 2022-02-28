@@ -1,0 +1,26 @@
+POST
+{BASE_URL}/api/Posts
+
+# Headers
+@authorization: {authorization}
+@Content-Type: application/json
+
+# Body
+{
+  "subject": "{subject}",
+  "body": "{body}"
+}
+
+%%%
+# POST
+# /api/Posts
+# Headers
+# @authorization: {authorization}
+# @Content-Type: application/json
+# Body
+# {
+#   "subject": "{subject}",
+#   "body": "{body}"
+# }
+
+# Error: java.lang.IllegalArgumentException: Expected URL scheme 'http' or 'https' but no colon was found

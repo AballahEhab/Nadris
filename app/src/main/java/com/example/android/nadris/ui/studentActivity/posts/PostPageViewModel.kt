@@ -28,7 +28,7 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
     val loginRequestErrorMessage get() = _loginRequestErrorMessage
     private var _errorMessageVisibility :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
-
+val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.lastName
 
     fun navigate_to_add_post(){
         _navigate_to_add_post.value = true

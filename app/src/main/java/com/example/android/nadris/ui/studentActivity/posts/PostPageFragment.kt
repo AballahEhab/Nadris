@@ -6,19 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
-import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.FragmentPostPageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PostPageFragment : Fragment() {
-
 
     val viewModel: PostPageViewModel by viewModels()
 
@@ -33,23 +30,13 @@ class PostPageFragment : Fragment() {
 
         val userData = NadrisApplication.userData
         userData?.Token?.let { it1 -> viewModel.getPosts(it1) }
-        lateinit var databasePosts: List<DatabasePost>
-//        var posts=ArrayList<dataRvPost>()
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
 
-        viewModel.postsList.observe(viewLifecycleOwner) {
-            databasePosts = it
-            bindigin.recyclerView.adapter = customAdapter(databasePosts)
-        }
         bindigin.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-
-
-
+        val adapter = customAdapter()
+        bindigin.recyclerView.adapter = adapter
+        viewModel.postsList.observe(viewLifecycleOwner) {
+            adapter.differ.submitList(it)
+        }
         viewModel.navigate_to_add_post.observe(this.viewLifecycleOwner) {
             if (it) {
                 this.findNavController()
@@ -57,11 +44,6 @@ class PostPageFragment : Fragment() {
                 viewModel.navigate_to_add_post_done()
             }
         }
-
-//        val user = NadrisApplication.instance!!.userData
-
-//        user?.let { viewModel.getPosts(it.Token) }
-
 
         return bindigin.root
     }

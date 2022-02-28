@@ -1,55 +1,65 @@
 package com.example.android.nadris.ui.studentActivity.posts
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.ui.studentActivity.units.UnitsFragmentDirections
+import com.example.android.nadris.databinding.ItemPostCardCellBinding
+import java.io.File
 
-class customAdapter (val postList:List<DatabasePost>)
-    :RecyclerView.Adapter<customAdapter.Viewholder>() {
+class customAdapter() : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_post_card_cell,parent,false)
-        return Viewholder(v)
+
+    private val differCallback = object : DiffUtil.ItemCallback<DatabasePost>() {
+        override fun areItemsTheSame(oldItem: DatabasePost, newItem: DatabasePost): Boolean {
+            return oldItem.postId == newItem.postId
+        }
+
+        override fun areContentsTheSame(oldItem: DatabasePost, newItem: DatabasePost): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
-    override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        
-        val data: DatabasePost =postList[position]
-        holder.imageStudent.setImageResource(data.imageStudent)
-        holder.studentName.text=data.name
-        holder.subjectName.text=data.subject
-        holder.post_text.text=data.content
-        holder.my_data=data  //to send the valu data to veiw holder
-        holder.comment_icon.setOnClickListener {
-            holder.itemView.findNavController().navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment())
+    val differ = AsyncListDiffer(this, differCallback)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+        return PostViewHolder(
+            ItemPostCardCellBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
+    }
+
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+        val data = differ.currentList[position]
+        var img: Bitmap? = null
+        if (data.hasImage) {
+            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir, data.postId.toString())
+            img = BitmapFactory.decodeFile(file.absolutePath)
+                    holder.binding.imgPost.setImageBitmap(img!!)
+        }
+
+        holder.binding.profileImage.setImageResource(R.drawable.ic_google)
+        holder.binding.accountName.text = data.name
+        holder.binding.subjectName.text = data.subject
+        holder.binding.postContent.text = data.content
+        holder.binding.imgReply.setOnClickListener {
+            holder.itemView.findNavController()
+                .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment())
         }
 
     }
 
     override fun getItemCount(): Int {
-        return postList.size
+        return differ.currentList.size
     }
 
-    class Viewholder(itemViewt :View,var my_data: DatabasePost?=null):RecyclerView.ViewHolder(itemViewt){
-//        init {
-//            Toast.makeText(itemView.context,my_data?.studentName, Toast.LENGTH_LONG).show()
-//
-//        }
-
-        var imageStudent=itemViewt.findViewById(R.id.profileImage)  as ImageView
-        var studentName=itemViewt.findViewById(R.id.textViewAccountName)  as TextView
-        var subjectName=itemViewt.findViewById(R.id.textSubjectName)  as TextView
-        var post_text=itemViewt.findViewById(R.id.textViewPost)  as TextView
-        var comment_icon=itemViewt.findViewById(R.id.img_reply)  as ImageView
-
-    }
-
+    class PostViewHolder(var binding: ItemPostCardCellBinding) : RecyclerView.ViewHolder(binding.root) {}
 
 }

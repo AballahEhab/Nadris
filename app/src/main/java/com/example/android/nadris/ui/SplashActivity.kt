@@ -26,8 +26,6 @@ class SplashActivity : AppCompatActivity() {
                 return@launch
             }
             login()
-
-
         }
 
     }

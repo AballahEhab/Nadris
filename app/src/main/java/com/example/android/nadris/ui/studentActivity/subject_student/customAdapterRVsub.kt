@@ -55,7 +55,3 @@ class customAdapterRVsub()
 
     }
 }
-//data class DatabaseSubject(var id:Int,
-//                           var name_subject:String,
-//                           var count_teach:Int,
-//                           var imv_subjects:Int )

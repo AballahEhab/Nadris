@@ -40,7 +40,7 @@ class Repository @Inject constructor(
     )
 
     fun publishPost(post: CreatePostModel, token: String) = postToApiHandler(
-        request = { remoteDataSource.publishAPost(post, token) },
+        request = { remoteDataSource.publishAPost(post,token) },
         convertToDatabaseModel = { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) },
         saveFetchResult = { post -> localDataSource.insertPost(post) }
     )
