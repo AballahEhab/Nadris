@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.PasswordError
-import com.example.android.nadris.network.CreateTeacherAccountDataModelModel
+import com.example.android.nadris.network.dtos.CreateTeacherAccountDataModelModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect

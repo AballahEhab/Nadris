@@ -14,7 +14,7 @@ import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
 import java.io.File
 
-class customAdapter() : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
+class customAdapter(val viewModel:PostPageViewModel) : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
 
 
     private val differCallback = object : DiffUtil.ItemCallback<DatabasePost>() {
@@ -46,6 +46,7 @@ class customAdapter() : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
                 holder.binding.imgPost.setImageBitmap(img!!)
             }
         }
+        val context = holder.itemView.context
 
         holder.binding.profileImage.setImageResource(R.drawable.ic_google)
         holder.binding.accountName.text = data.name
@@ -55,13 +56,46 @@ class customAdapter() : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
             holder.itemView.findNavController()
                 .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment())
         }
-
+        holder.voteUpIcon.setOnClickListener {
+            holder.toggleVoteIconStatus(data.getVoteStatus())
+            if(data.getVoteStatus()) data.votesNum-- else data.votesNum++
+            data.toggleVote()
+            viewModel.vote(position,data.getVoteStatus())
+                .let {
+                    postList[position] = it!!
+                }
+            notifyItemChanged(position)
+        }
+        holder.bookMarkIcon.setOnClickListener {
+            holder.toggleBookMerkleIconStatus(data.getVoteBookMark())
+            data.toggleBookMark()
+            viewModel.BookMark(data.postId,data.getVoteBookMark())
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
-    class PostViewHolder(var binding: ItemPostCardCellBinding) : RecyclerView.ViewHolder(binding.root) {}
+    class PostViewHolder(var binding: ItemPostCardCellBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun setDataBindingObj(post:DatabasePost){
+            binding.postData = post
+        }
+        fun toggleVoteIconStatus(state:Boolean) {
+            if (state){
+                // TODO: add voted style
+            }else{
+                // TODO: add unvoted style
+            }
+        }
+        fun toggleBookMerkleIconStatus(state:Boolean) {
+            if (state){
+                // TODO: add voted style
+            }else{
+                // TODO: add unvoted style
+            }
+        }
+    }
 
 }

@@ -1,27 +1,67 @@
 package com.example.android.nadris.ui.studentActivity.posts.comment
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.nadris.database.models.CommentData
+import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.TOKEN_PREFIX
+import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.network.dtos.CommentModel
+import com.example.android.nadris.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddCommentViewModel : ViewModel() {
-    private var list=MutableLiveData<List<CommentData>>()
+@HiltViewModel
+class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel() {
 
-    fun getData():MutableLiveData<List<CommentData>>{
-        val comment = mutableListOf<CommentData>()
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",1))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",2))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",3))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",4))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",5))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",6))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",7))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",8))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",9))
-        comment.add(CommentData("email@nadris.com","محمدمصطفي","المدرس شاطر جدا ",10))
+    lateinit var postLiveData : DatabasePost
+     var commentsList=MutableLiveData<List<CommentModel>>()
+    var comment = MutableLiveData<String>()
+    var sendButtonVisabilty =MutableLiveData (false)
 
-        list.value=comment
-        return list
+    //TODO:you should loading spinner and error message as a snack bar
+    fun getAllComments(){
+//    disableErrorMessage()
+//    enableProgressBar()
+    viewModelScope.launch {
+        val commentsFlow = repo.getAllComments( TOKEN_PREFIX + NadrisApplication.userData?.Token,postLiveData.postId)
+        commentsFlow.collect {
+            it.handleRepoResponse(
+                onLoading= {
+                    it.data?.let{
+//                        disableProgressBar()
+                    }
+                },
+                onError= {
+//                    disableProgressBar()
+//                    enableErrorMessage()
+//                    _loginRequestErrorMessage.value = it.error!!
+                },
+                onSuccess= {
+//                    disableProgressBar()
+                    commentsList.value= (it.data as List<CommentModel>)
+                    Log.v("comments responce", it.data.toString() )
+                },
+            )
+
+        }
     }
+    }
+
+    fun onClikVisable(){
+//        sendButtonVisabilty.value = comment.value?.isNotBlank()  // TODO:
+    }
+
+    fun sendComment(){ // TODO:
+//        viewModelScope.launch{
+//            repo.publishComment(CommentModel(NadrisApplication.userData?.Email!!,
+//                NadrisApplication.userData?.getFullName()!!, comment.value!!,
+//                post_id), NadrisApplication.userData?.Token!!)
+//        }
+    }
+
 
 }

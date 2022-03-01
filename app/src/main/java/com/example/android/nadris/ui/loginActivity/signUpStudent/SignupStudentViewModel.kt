@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.PasswordError
-import com.example.android.nadris.network.CreateStudentAccountDataModelModel
+import com.example.android.nadris.network.dtos.CreateStudentAccountDataModelModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -145,7 +145,8 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
         if (!isDataNotValid){
             enableProgressBar()
             viewModelScope.launch {
-                val response = repository.registerNewStudentAccount(CreateStudentAccountDataModelModel(
+                val response = repository.registerNewStudentAccount(
+                    CreateStudentAccountDataModelModel(
                     firstname,lastname,email,password1,phone, genderId,1))
                 response.collect {
                     it?.handleRepoResponse(

@@ -26,18 +26,25 @@ class Repository @Inject constructor(
 
     fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
         postToApiHandler(
-            request = { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) },
-            saveFetchResult = { user -> localDataSource.addUserData(user) },
-            convertToDatabaseModel = { networkModel -> NetworkModelsMapper.authModelAsDataBaseModel(networkModel) }
+        request= { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) }
+        ,saveFetchResult= {user-> localDataSource.addUserData(user)}
+        , convertToDatabaseModel = { networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel(networkModel)}
+    )
+
+    fun vote(voteModel: VoteModel, token:String) =
+        postToApiHandler(
+            request= { remoteDataSource.vote(voteModel, token) }
+            ,saveFetchResult= {post-> localDataSource.updatePost(post) }
+            , convertToDatabaseModel = { networkMPost ->  NetworkModelsMapper.postAsDatabaseModel(networkMPost)}
         )
 
-    fun getPosts(token: String) = requestDataFromAPI(
+    fun getPosts(token:String) = requestDataFromAPI(
         query = { localDataSource.getAllPosts() },
         fetch = { remoteDataSource.getAllPosts(token) },
         convertToDatabaseModel = { networkPostsList ->
             networkPostsList.map { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) }
         },
-        saveFetchResult = { list_of_posts -> list_of_posts?.let { localDataSource.insertPosts(it) } }
+        saveFetchResult = { list_of_posts -> list_of_posts?.let { localDataSource.insertPost(it) } }
     )
 
     fun publishPost(post: CreatePostModel, token: String) = postToApiHandler(
@@ -51,6 +58,12 @@ class Repository @Inject constructor(
     fun getGradeSubjects(gradeId: Long, token: String) = requestFromAPIOnly(
        fetch={ remoteDataSource.getGradeSubjects(gradeId, token)}
     )
+    //    suspend fun publishComment(comment: PublishCommentModel, token: String) =
+//        remoteDataSource.publishComment(comment,token)
+
+    fun getAllComments(token: String, postId: Long) = requestFromAPIOnly(
+        fetch = { remoteDataSource.getCommentsByPostId(postId,token) } )
+
 }
 
 

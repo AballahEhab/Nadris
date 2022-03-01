@@ -1,9 +1,8 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.database.models.CommentData
+import com.example.android.nadris.database.NadrisDatabase
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.UserData
-import com.example.android.nadris.database.NadrisDatabase
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisDatabase) {
@@ -22,15 +21,11 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun getAllPosts() =
         postDao.getAllPosts()
 
-    suspend fun insertPosts(databasePosts: List<DatabasePost>) =
+    suspend fun insertPost(databasePosts: List<DatabasePost>) =
         postDao.insertPosts( databasePosts )
-    suspend fun insertPost(databasePost: DatabasePost) =
-        postDao.insertPost( databasePost )
 
-    suspend fun insertComments(vararg comment: CommentData) =
-        postDao.insertComments(*comment)
+    suspend fun updatePost(databasePosts: DatabasePost) =
+        postDao.updatePost( databasePosts )
 
-    suspend fun getCommentsByPostId(postIdP:Int) =
-        postDao.getCommentsByPostId(postIdP)
 
 }

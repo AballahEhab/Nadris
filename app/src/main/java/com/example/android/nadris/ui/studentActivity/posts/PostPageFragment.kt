@@ -6,16 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
+import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.FragmentPostPageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PostPageFragment : Fragment() {
+
 
     val viewModel: PostPageViewModel by viewModels()
 
@@ -27,12 +30,14 @@ class PostPageFragment : Fragment() {
         val bindigin = FragmentPostPageBinding.inflate(inflater)
         bindigin.lifecycleOwner = this.viewLifecycleOwner
         bindigin.postViewModle = viewModel
+        bindigin.lifecycleOwner = this.viewLifecycleOwner
+        viewModel.getPosts()
 
         val userData = NadrisApplication.userData
         userData?.Token?.let { it1 -> viewModel.getPosts(it1) }
 
         bindigin.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = customAdapter()
+        val adapter = customAdapter(viewModel)
         bindigin.recyclerView.adapter = adapter
         viewModel.postsList.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it)
@@ -44,6 +49,7 @@ class PostPageFragment : Fragment() {
                 viewModel.navigate_to_add_post_done()
             }
         }
+
 
         return bindigin.root
     }

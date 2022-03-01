@@ -5,18 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.database.models.CommentData
-import com.example.android.nadris.databinding.FragmentAddCommentBinding
 import com.example.android.nadris.databinding.ItemAddComentBinding
+import com.example.android.nadris.network.dtos.CommentModel
 
 class CustomAdapterComment:RecyclerView.Adapter<CustomAdapterComment.ViewHolder>() {
 
-    private  val diferrCallback =object : DiffUtil.ItemCallback<CommentData>() {
-        override fun areItemsTheSame(oldItem: CommentData, newItem: CommentData): Boolean {
-            return oldItem.email==newItem.email
+    private  val diferrCallback =object : DiffUtil.ItemCallback<CommentModel>() {
+        override fun areItemsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
+            return oldItem.id==newItem.id
         }
-        override fun areContentsTheSame(oldItem: CommentData, newItem: CommentData): Boolean {
-            return oldItem==newItem
+        override fun areContentsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
+            return oldItem == newItem
         }
     }
     val differ =AsyncListDiffer(this,diferrCallback)

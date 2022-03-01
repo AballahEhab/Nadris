@@ -62,8 +62,8 @@
     <string name="yourQus">what\'s your question..?</string>
     <string name="addImage">add image or file +</string>
     <string name="PublisQus">publish question</string>
-    <string name="vote">votes</string>
-    <string name="reply">replay</string>
+    <string name="vote">%o votes</string>
+    <string name="reply">%o replay</string>
     <string name="_1">(1)</string>
     <string name="save">save</string>
     <string name="storage_permission_text">This app needs access to your storage.</string>
@@ -136,6 +136,7 @@
     <string name="name_acount_add_comment">محمد مصطفي </string>
     <string name="add_comment">add comment</string>
     <string name="title_activity_login">Login activity</string>
+    <string name="btn_add_comment">go</string>
 
 
     <string-array name="add_Photo">

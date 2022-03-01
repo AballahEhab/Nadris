@@ -16,12 +16,13 @@ inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
 
     val data = query()
 
-     if (shouldFetch(data)) {
+     if (shouldFetch(data!!)) {
 
         emit(Result.Loading(data))
 
         try {
-             val res=  convertToDatabaseModel(fetch().body()!!)
+            val response = fetch()
+             val res=  convertToDatabaseModel(response.body()!!)
              saveFetchResult(res)
             emit(Result.Success(res))
 
@@ -33,6 +34,24 @@ inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
     } else {
          emit(Result.Success(data))
     }
+
+}
+
+inline fun < NetworkModel> requestFromAPIOnly(
+    crossinline fetch: suspend () -> Response<NetworkModel>,
+) = flow {
+
+        emit(Result.Loading<Nothing>())
+
+        try {
+            val response = fetch()
+             val res=  response.body()!!
+            emit(Result.Success(res))
+
+        } catch (throwable: Throwable) {
+            emit(Result.Error(throwable.message.toString()))
+
+            }
 
 }
 
@@ -48,9 +67,9 @@ inline fun <DatabaseModel, T> postToApiHandler(
         val response = request()
         if (response.isSuccessful){
 
-            val result = convertToDatabaseModel(response.body()!!)
-            saveFetchResult(result)
-            emit(Result.Success(data = result))
+            val resultAsDatabaseModel = convertToDatabaseModel(response.body()!!)
+            saveFetchResult(resultAsDatabaseModel)
+            emit(Result.Success(data = resultAsDatabaseModel))
 
         }else{
             val errorMessage =when(response.code()){
@@ -77,24 +96,6 @@ fun disableUserInterAction(activity: FragmentActivity?) =
 fun enableUserInterAction(activity: FragmentActivity?)=
     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
-
-inline fun < NetworkModel> requestFromAPIOnly(
-    crossinline fetch: suspend () -> Response<NetworkModel>,
-) = flow {
-
-    emit(Result.Loading<Nothing>())
-
-    try {
-        val response = fetch()
-        val res=  response.body()!!
-        emit(Result.Success(res))
-
-    } catch (throwable: Throwable) {
-        emit(Result.Error(throwable.message.toString()))
-
-    }
-
-}
 
 
 

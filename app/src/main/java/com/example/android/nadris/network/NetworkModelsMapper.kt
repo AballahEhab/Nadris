@@ -21,9 +21,12 @@ object NetworkModelsMapper {
             networkPost.subject,
             networkPost.content,
             networkPost.votes,
+            networkPost.numOfComments,
             networkPost.time,
             networkPost.email,
             networkPost.name,
+            networkPost.isVoted,
+
         )
     }
 
@@ -40,6 +43,7 @@ object NetworkModelsMapper {
         College = model.college,
         Token = model.token
     )
+
 
 
 }

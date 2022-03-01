@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
+        <import type="com.example.android.nadris.R"/>
+        <variable name="postData"
+                  type="com.example.android.nadris.database.models.DatabasePost"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +16,7 @@
             android:layout_margin="@dimen/small_margin"
             android:clickable="true"
             android:focusable="true">
-            <LinearLayout android:layout_width="match_parent"
+        <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:layout_margin="@dimen/small_margin"
                           android:orientation="vertical"
@@ -26,20 +28,20 @@
                     android:orientation="horizontal">
 
 
-                    <LinearLayout android:layout_width="wrap_content"
+                <LinearLayout android:layout_width="wrap_content"
                                   android:layout_height="match_parent"
                                   android:orientation="horizontal"
                                   app:layout_constraintStart_toStartOf="parent"
-                                  app:layout_constraintTop_toTopOf="parent"
-                    >
+                              app:layout_constraintTop_toTopOf="parent"
+                >
                         <ImageView
                             android:id="@+id/profileImage"
                             style="@style/material_icon_small"
                             android:layout_gravity="start"
                             android:clickable="true"
                             android:focusable="true"
-                            app:srcCompat="@drawable/ic_facebook"/>
-                        <LinearLayout android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_facebook"/>
+                    <LinearLayout android:layout_width="wrap_content"
                                       android:layout_height="match_parent"
                                       android:orientation="vertical">
                             <TextView
@@ -47,14 +49,14 @@
                                 style="@style/material_text_body_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/name"
+                                app:text = "@{postData.name}"
                             />
                             <TextView
                                 android:id="@+id/subject_name"
                                 style="@style/material_text_body_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/subject"
+                                app:text = "@{postData.subjectName}"
                             />
                         </LinearLayout>
                     </LinearLayout>
@@ -68,15 +70,15 @@
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
                                   android:layout_gravity="center"
-                                  android:text="@string/save"
-                        />
+                              android:text="@string/save"
+                    />
                         <ImageView
                             android:id="@+id/bookmark"
                             style="@style/material_icon_small"
                             android:clickable="true"
                             android:focusable="true"
-                            app:srcCompat="@drawable/ic_bookmark"
-                        />
+                        app:srcCompat="@drawable/ic_bookmark"
+                    />
 
 
                     </LinearLayout>
@@ -92,8 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/tiny_margin"
-                        android:text="@string/post"
-                    />
+                        android:text="@{postData.content}"                    />
                     <ImageView
                         android:id="@+id/img_post"
                         android:layout_width="match_parent"
@@ -112,27 +113,28 @@
                         android:layout_weight="2"
                         android:clickable="true"
                         android:focusable="true"
-                        app:srcCompat="@drawable/ic_scroll1_up"
-                    />
-                    <LinearLayout
+                    app:srcCompat="@drawable/ic_scroll1_up"
+                />
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="2"
-                        android:orientation="horizontal">
+                    android:orientation="horizontal">
 
-                        <TextView android:id="@+id/textvote"
+                    <TextView android:id="@+id/textvote"
                                   style="@style/material_text_body_small"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:text="@string/vote"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              app:stringRecourse = "@{R.string.vote}"
+                              app:formatterInput ="@{postData.votesNum}"
                         />
-                        <TextView style="@style/material_text_body_small"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:text="@string/_1"/>
-                    </LinearLayout>
-                    <TextView android:id="@+id/textView"
+                    <TextView style="@style/material_text_body_small"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="@string/_1"/>
+                </LinearLayout>
+                <TextView android:id="@+id/textView"
                               style="@style/material_text_body"
                               android:layout_width="0dp"
                               android:layout_height="match_parent"
@@ -150,26 +152,27 @@
                         app:layout_constraintStart_toEndOf="@+id/textView"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_chat_room"/>
-                    <LinearLayout android:layout_width="0dp"
+                <LinearLayout android:layout_width="0dp"
                                   android:layout_height="wrap_content"
                                   android:layout_gravity="center"
                                   android:layout_weight="2"
-                                  android:orientation="horizontal"
-                    >
-                        <TextView android:id="@+id/textreply"
-                                  style="@style/material_text_body_small"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:text="@string/reply"
+                              android:orientation="horizontal"
+                >
+                    <TextView android:id="@+id/textreply"
+                              style="@style/material_text_body_small"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              app:stringRecourse = "@{R.string.reply}"
+                              app:formatterInput ="@{postData.commentsNum}"
                         />
-                        <TextView style="@style/material_text_body_small"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:text="@string/_1"
-                        />
+                    <TextView style="@style/material_text_body_small"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="@string/_1"
+                    />
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+        </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

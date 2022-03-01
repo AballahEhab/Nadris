@@ -7,10 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.TOKEN_PREFIX
 import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.network.dtos.VoteModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -30,6 +31,11 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
     val errorMessageVisibility get() = _errorMessageVisibility
 val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.lastName
 
+    // TODO: to be reactivated
+//    init {
+//        getPosts()
+//    }
+
     fun navigate_to_add_post(){
         _navigate_to_add_post.value = true
     }
@@ -39,20 +45,19 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
     }
 
 
-    fun getPosts(token:String) {
-        NadrisApplication.userData?.Token
+    fun getPosts() {
+
         disableErrorMessage()
+        enableProgressBar()
         viewModelScope.launch {
-            enableProgressBar()
-            val postsFlow = repository.getPosts( TOKEN_PREFIX + token)
-            enableProgressBar()
+            val postsFlow = repository.getPosts( TOKEN_PREFIX + NadrisApplication.userData?.Token)
             postsFlow.collect {
-                it?.handleRepoResponse(
+                it.handleRepoResponse(
                     onLoading= {
-                              it.data?.let{
-                                  disableProgressBar()
-                                  postsList.value= it
-                              }
+                        it.data?.let{
+                            disableProgressBar()
+                            postsList.value= it as List<DatabasePost>
+                        }
                     },
                     onError= {
                         disableProgressBar()
@@ -90,4 +95,38 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
         _showIndicator.value = false
     }
 
+    fun vote(postId: Int, voteStatus: Boolean): DatabasePost? = runBlocking {
+             async {
+                VoteToPost(voteStatus,
+                    postId)
+            }.await()
+        }
+
+
+    private suspend fun VoteToPost(voteStatus: Boolean, position: Int): DatabasePost? {
+        var updatePost = postsList?.value?.get(position)
+        val postsFlow = repository.vote(VoteModel(voteStatus, updatePost?.postId!!) ,TOKEN_PREFIX + NadrisApplication.userData?.Token)
+        postsFlow.collect {
+            it?.handleRepoResponse(
+                onLoading= {
+
+                },
+                onError= {
+                    it.data?.let{ post ->
+                        updatePost = post
+                    }
+                },
+                onSuccess= {
+                    it.data?.let{ post ->
+                        updatePost = post
+                    }
+                },
+            )
+        }
+        return updatePost
+    }
+
+    fun BookMark(postId: Long, voteBookMark: Boolean) {
+        TODO("Not yet implemented")
+    }
 }
