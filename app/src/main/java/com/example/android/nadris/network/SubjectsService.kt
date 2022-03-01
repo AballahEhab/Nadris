@@ -3,28 +3,8 @@ package com.example.android.nadris.network
 import retrofit2.Response
 import retrofit2.http.*
 
-
 interface SubjectsService {
-    // todo: add token as an input to the header of the request
-    @GET("api/Posts")
-    suspend fun getAllPosts(@Header("authorization") token: String): Response<List<NetworkPost>>
+    @GET("api/Subject/Grade/{id}")
+    suspend fun getGradeSubjects(@Path("id")id:Long , @Header("authorization") token: String): Response<List<SubjectDTO>>
 
-    @POST("api/Posts")
-    suspend fun publishAPost(@Body createPostModel: CreatePostModel, @Header("authorization") token: String): Response<AuthModel>
-
-    @GET("api/Posts/{postId}")
-    suspend fun getAPostByPostId(@Path("postId") postId:Int, @Header("authorization") token: String): Response<CreatePostModel>
-
-    @GET("api/Posts/email")
-    suspend fun getPostsByEmail(@Body email:String, @Header("authorization") token: String): Response<CreatePostModel>
-
-    @POST("api//Posts/Vote")
-    suspend fun vote(@Body voteModel: VoteModel, @Header("authorization") token: String)
-
-    @POST("api//Posts/comment")
-    suspend fun comment(@Body commentModel: CommentModel, @Header("authorization") token: String)
-
-    @GET("api/Posts/GetComment")
-    suspend fun getCommentByPostId(@Body postId:Int, @Header("authorization") token: String): Response<CommentModel>
-    
 }

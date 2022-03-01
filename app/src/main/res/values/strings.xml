@@ -99,9 +99,9 @@
     <string name="student_home_title">home</string>
     <string name="title_home">Home</string>
     <string name="student_subjects_title">subject</string>
-    <string name="student_schedual_title">schedual</string>
+    <string name="student_schedual_title">schedule</string>
     <string name="name">name</string>
-    <string name="subject">subject</string>
+    <string name="subject">select subject</string>
     <string name="post">this is a post</string>
     <string name="title_activity_student_home">StudentHome</string>
     <string name="title_activity_studnet_main_acitivity">StudnetMainAcitivity</string>
@@ -144,4 +144,11 @@
         <item>Cancel</item>
     </string-array>
     <string name="dlg_add_photo_title">Add Photo</string>
+    <string name="add_post_requirments">Subject and question are required</string>
+    <string name="permission_granted">permission Granted</string>
+    <string name="permission_denied">permission denied</string>
+    <string name="permission_needed">permission needed</string>
+    <string name="storage_permission_request">storage permission needed to use files</string>
+    <string name="cancel">cancel</string>
+    <string name="camera_permission_request">camera permission needed to pick image</string>
 </resources>

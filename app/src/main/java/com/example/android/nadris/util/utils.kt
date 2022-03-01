@@ -1,14 +1,8 @@
 package com.example.android.nadris.util
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.view.WindowManager
 import androidx.fragment.app.FragmentActivity
-import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.ui.studentActivity.StudentMainActivity
-import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.net.HttpURLConnection
 
@@ -83,6 +77,24 @@ fun disableUserInterAction(activity: FragmentActivity?) =
 fun enableUserInterAction(activity: FragmentActivity?)=
     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
+
+inline fun < NetworkModel> requestFromAPIOnly(
+    crossinline fetch: suspend () -> Response<NetworkModel>,
+) = flow {
+
+    emit(Result.Loading<Nothing>())
+
+    try {
+        val response = fetch()
+        val res=  response.body()!!
+        emit(Result.Success(res))
+
+    } catch (throwable: Throwable) {
+        emit(Result.Error(throwable.message.toString()))
+
+    }
+
+}
 
 
 

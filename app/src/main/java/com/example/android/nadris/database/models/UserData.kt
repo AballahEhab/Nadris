@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserData(
-    @PrimaryKey val id:Int=1,
+    @PrimaryKey val id: Int = 1,
     val Email: String,
     val firstName: String,
     val lastName: String,
@@ -14,7 +14,7 @@ data class UserData(
     val Type: String?,
     val Gender: Byte,
     val Exp: Long,
-    val GradeId: Int?,
+    val GradeId: Long?,
     val University: String?,
     val College: String?,
     val Token: String,

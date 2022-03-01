@@ -3,6 +3,7 @@ package com.example.android.nadris.repository
 import com.example.android.nadris.network.*
 import com.example.android.nadris.util.postToApiHandler
 import com.example.android.nadris.util.requestDataFromAPI
+import com.example.android.nadris.util.requestFromAPIOnly
 import javax.inject.Inject
 
 
@@ -40,15 +41,17 @@ class Repository @Inject constructor(
     )
 
     fun publishPost(post: CreatePostModel, token: String) = postToApiHandler(
-        request = { remoteDataSource.publishAPost(post,token) },
+        request = { remoteDataSource.publishAPost(post, token) },
         convertToDatabaseModel = { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) },
         saveFetchResult = { post -> localDataSource.insertPost(post) }
     )
 
     suspend fun getUser() = localDataSource.getUserData()
 
-
- }
+    fun getGradeSubjects(gradeId: Long, token: String) = requestFromAPIOnly(
+       fetch={ remoteDataSource.getGradeSubjects(gradeId, token)}
+    )
+}
 
 
 //fun <T, L> responseLiveData

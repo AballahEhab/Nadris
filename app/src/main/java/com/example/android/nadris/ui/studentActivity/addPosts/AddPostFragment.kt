@@ -37,7 +37,7 @@ class AddPostFragment : Fragment() {
     private val PHOTO_PICKER_REQUEST_CODE = 2
     private val CAMERA_PERMISSION_REQUEST_CODE = 3
     private val STORAGE_PERMISSION_REQUEST_CODE = 4
-private  var image: Bitmap?=null
+    private var image: Bitmap? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -47,21 +47,25 @@ private  var image: Bitmap?=null
         binding.addPostViewModel = viewModel
         //initialize converter
         converter = Converter(requireContext().applicationContext)
-
-        val subjects = resources.getStringArray(R.array.subject)
-        val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, subjects)
-        (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        viewModel.getSubjects()
+        // val subjects = resources.getStringArray(R.array.subject)
+        viewModel.subjects.observe(viewLifecycleOwner) { list ->
+            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
+            (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        }
 
         binding.imageButton.setOnClickListener {
             selectImage()
         }
 
         binding.publishButton.setOnClickListener {
-            if (binding.textViewAddQesition.text.toString().isNotEmpty()) {
+            if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
                 viewModel.addPost()
                 it.findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToNavigationPosts())
             } else {
-                Toast.makeText(requireContext().applicationContext, "test", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext().applicationContext,
+                    getString(R.string.add_post_requirments),
+                    Toast.LENGTH_SHORT).show()
             }
         }
         return binding.root
@@ -73,32 +77,33 @@ private  var image: Bitmap?=null
     ) {
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(requireContext(), "Granted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
             }
         } else if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(requireContext(), "Granted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(
-                activity!!, Manifest.permission.CAMERA)
+                activity!!, Manifest.permission.READ_EXTERNAL_STORAGE)
         ) {
-            AlertDialog.Builder(context).setTitle("permission needed").setMessage("this needed")
-                .setPositiveButton("Ok") { _, _ ->
+            AlertDialog.Builder(context).setTitle(getString(R.string.permission_needed))
+                .setMessage(getString(R.string.storage_permission_request))
+                .setPositiveButton(getString(R.string.confirm)) { _, _ ->
                     ActivityCompat.requestPermissions(activity!!,
                         arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                         STORAGE_PERMISSION_REQUEST_CODE)
                     selectImage()
                 }
                 .setNegativeButton(
-                    "cancel")
+                    getString(R.string.cancel))
                 { dialog, _ -> dialog.dismiss() }.create().show()
         } else {
             ActivityCompat.requestPermissions(activity!!,
@@ -111,15 +116,16 @@ private  var image: Bitmap?=null
         if (ActivityCompat.shouldShowRequestPermissionRationale(
                 activity!!, Manifest.permission.CAMERA)
         ) {
-            AlertDialog.Builder(context).setTitle("permission needed").setMessage("this needed")
-                .setPositiveButton("Ok") { _, _ ->
+            AlertDialog.Builder(context).setTitle(getString(R.string.permission_needed))
+                .setMessage(getString(R.string.camera_permission_request))
+                .setPositiveButton(getString(R.string.confirm)) { _, _ ->
                     ActivityCompat.requestPermissions(activity!!,
                         arrayOf(Manifest.permission.CAMERA),
                         CAMERA_PERMISSION_REQUEST_CODE)
                     selectImage()
                 }
                 .setNegativeButton(
-                    "cancel")
+                    getString(R.string.cancel))
                 { dialog, _ -> dialog.dismiss() }.create().show()
 
         } else {
@@ -173,9 +179,9 @@ private  var image: Bitmap?=null
         }
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
-                 image = data?.extras?.get("data") as Bitmap
+                image = data?.extras?.get("data") as Bitmap
                 try {
-                    viewModel.imageStrB64= converter.convertBitmapToBase64(image!!)
+                    viewModel.imageStrB64 = converter.convertBitmapToBase64(image!!)
                     binding.pickedImage.setImageBitmap(image)
                 } catch (e: Exception) {
                     Log.e("b64", e.message.toString())
@@ -190,8 +196,8 @@ private  var image: Bitmap?=null
                 val columnIndex = c.getColumnIndex(filePath[0])
                 val picturePath = c.getString(columnIndex)
                 c.close()
-                image= BitmapFactory.decodeFile(picturePath)
-                viewModel.imageStrB64= converter.convertBitmapToBase64(image!!)
+                image = BitmapFactory.decodeFile(picturePath)
+                viewModel.imageStrB64 = converter.convertBitmapToBase64(image!!)
                 binding.pickedImage.setImageBitmap(getResizedBitmap(image!!, 100))
                 return
             }

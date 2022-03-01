@@ -41,8 +41,10 @@ class customAdapter() : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
         var img: Bitmap? = null
         if (data.hasImage) {
             val file = File(NadrisApplication.instance?.applicationContext?.cacheDir, data.postId.toString())
-            img = BitmapFactory.decodeFile(file.absolutePath)
-                    holder.binding.imgPost.setImageBitmap(img!!)
+            if (file.exists()) {
+                img = BitmapFactory.decodeFile(file.absolutePath)
+                holder.binding.imgPost.setImageBitmap(img!!)
+            }
         }
 
         holder.binding.profileImage.setImageResource(R.drawable.ic_google)
