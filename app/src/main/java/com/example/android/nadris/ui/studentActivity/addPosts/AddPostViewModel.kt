@@ -18,28 +18,29 @@ class AddPostViewModel @Inject constructor(val repository: Repository) : ViewMod
     var IMAGE_REQUEST_CODE = 456
     var READ_STORAGE_PERM = 123
     var image: Int = 0
-    fun gaddPost(token: String) {
-        NadrisApplication.userData?.Token
-        viewModelScope.launch {
-            //   enableProgressBar()
-//            var res = repository.publishPost(
-//                CreatePostModel(subjects.value.toString(), question.value!!), "Bearer " + token)
-//
-//            res.collect {
-//                it?.handleRepoResponse(
-//                    onLoading = {},
-//                    onError = {
-////                        disableProgressBar()
-////                        enableErrorMessage()
-////                        _loginRequestErrorMessage.value = it.error!!
-//                    },
-//                    onSuccess = {
-//                        // disableProgressBar()
-//                        //   postsList.value= (it.data as List<DatabasePost>)
-//                        Log.v("posts responce", it.data.toString())
-//                    },
-//                )
-//            }
-        }
-    }
+
+//    fun gaddPost(token: String) {
+//        NadrisApplication.userData?.Token
+//        viewModelScope.launch {
+//            //   enableProgressBar()
+////            var res = repository.publishPost(
+////                CreatePostModel(subjects.value.toString(), question.value!!), "Bearer " + token)
+////
+////            res.collect {
+////                it?.handleRepoResponse(
+////                    onLoading = {},
+////                    onError = {
+//////                        disableProgressBar()
+//////                        enableErrorMessage()
+//////                        _loginRequestErrorMessage.value = it.error!!
+////                    },
+////                    onSuccess = {
+////                        // disableProgressBar()
+////                        //   postsList.value= (it.data as List<DatabasePost>)
+////                        Log.v("posts responce", it.data.toString())
+////                    },
+////                )
+////            }
+//        }
+//    }
 }

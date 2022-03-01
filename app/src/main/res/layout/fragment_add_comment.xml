@@ -16,8 +16,9 @@
         tools:context=".ui.studentActivity.posts.comment.AddCommentFragment">
 
         <include
-            android:id="@+id/include"
-        layout="@layout/item_post_card_cell" tools:layout_editor_absoluteX="0dp" tools:layout_editor_absoluteY="0dp"/>
+            android:id="@+id/included_post"
+            layout="@layout/item_post_card_cell"
+            />
 
 
         <LinearLayout
@@ -28,7 +29,7 @@
             android:weightSum="5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include">
+            app:layout_constraintTop_toBottomOf="@+id/included_post">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textField"
@@ -44,7 +45,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.comment}"
+                android:text="@={viewmodel.comment}"
                 android:onTextChanged="@{()->viewmodel.onClikVisable()}"
 
                 />
@@ -57,8 +58,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onClick="@{()-> viewmodel.setComment()}"
-                app:isVisible="@{viewmodel.visabilty}"
+                android:onClick="@{()-> viewmodel.sendComment()}"
+                app:isVisible="@{viewmodel.sendButtonVisabilty}"
                 android:layout_marginEnd="@dimen/small_margin"
                 android:textStyle="normal"
                 android:textAppearance="@style/material_text_body_small"

@@ -1,154 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
-    <com.google.android.material.card.MaterialCardView
-        style="@style/material_card"
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.android.nadris.R"/>
+        <variable name="postData"
+            type="com.example.android.nadris.database.models.DatabasePost"/>
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/small_margin"
-        android:clickable="true"
-        android:focusable="true">
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_margin="@dimen/small_margin"
-                      android:orientation="vertical"
-                      android:weightSum="10">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+        android:orientation="vertical">
 
+        <com.google.android.material.card.MaterialCardView
+            style="@style/material_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:clickable="true"
+            android:focusable="true">
 
-                <LinearLayout android:layout_width="wrap_content"
-                              android:layout_height="match_parent"
-                              android:orientation="horizontal"
-                              app:layout_constraintStart_toStartOf="parent"
-                              app:layout_constraintTop_toTopOf="parent"
-                >
-                    <ImageView
-                        android:id="@+id/profileImage"
-                        style="@style/material_icon_small"
-                        android:layout_gravity="start"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:srcCompat="@drawable/ic_facebook"/>
-                    <LinearLayout android:layout_width="wrap_content"
-                                  android:layout_height="match_parent"
-                                  android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/textViewAccountName"
-                            style="@style/material_text_body_small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/name"
-                        />
-                        <TextView
-                            android:id="@+id/textSubjectName"
-                            style="@style/material_text_body_small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/subject"
-                        />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                >
-                    <TextView android:id="@+id/textsave"
-                              style="@style/material_text_body_small"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_gravity="center"
-                              android:text="@string/save"
-                    />
-                    <ImageView
-                        android:id="@+id/bookmark"
-                        style="@style/material_icon_small"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:srcCompat="@drawable/ic_bookmark"
-                    />
-
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4">
-                <TextView
-                    android:id="@+id/textViewPost"
-                    style="@style/material_text_header_small"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/tiny_margin"
-                    android:text="@string/post"
-                />
-            </LinearLayout>
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:weightSum="10"
-            >
-                <ImageView
-                    android:id="@+id/img_vote"
-                    style="@style/material_icon_small"
-                    android:layout_weight="2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:srcCompat="@drawable/ic_scroll1_up"
-                />
 
-                    <TextView android:id="@+id/textvote"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/profileImage"
+                            style="@style/material_icon_small"
+                            android:layout_gravity="start"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:imageResource = "@{postData.imageStudent}"
+                             />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textViewAccountName"
+                                style="@style/material_text_body_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:text = "@{postData.name}"
+                                 />
+
+                            <TextView
+                                android:id="@+id/textSubjectName"
+                                style="@style/material_text_body_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:text = "@{postData.subjectName}"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        >
+
+                        <TextView
+                            android:id="@+id/textsave"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/save" />
+
+                        <ImageView
+                            android:id="@+id/bookmark"
+                            style="@style/material_icon_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:srcCompat="@drawable/ic_bookmark" />
+
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4">
+
+                    <TextView
+                        android:id="@+id/textViewPost"
+                        style="@style/material_text_header_small"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/tiny_margin"
+                        android:text="@{postData.content}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:id="@+id/img_vote"
+                        style="@style/material_icon_small"
+                        android:layout_weight="2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:srcCompat="@drawable/ic_scroll1_up" />
+
+                    <TextView
+                        android:id="@+id/textvote"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="2"
-                              style="@style/material_text_body_small"
-                              android:text="@string/vote"
-                    />
+                        style="@style/material_text_body_small"
+                        app:stringRecourse = "@{R.string.vote}"
+                        app:formatterInput ="@{postData.votesNum}"
+                         />
 
-                <TextView android:id="@+id/textView"
-                          style="@style/material_text_body"
-                          android:layout_width="0dp"
-                          android:layout_height="match_parent"
-                          android:layout_weight="1"
-                          android:text="|"
-                          android:textAlignment="center"
-                          android:textStyle="bold"/>
-                <ImageView
-                    android:id="@+id/img_reply"
-                    style="@style/material_icon_small"
-                    android:layout_weight="2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_chat_room"/>
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/material_text_body"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="|"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <TextView android:id="@+id/textreply"
+                    <ImageView
+                        android:id="@+id/img_reply"
+                        style="@style/material_icon_small"
+                        android:layout_weight="2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_chat_room" />
+
+                    <TextView
+                        android:id="@+id/textreply"
+                        style="@style/material_text_body_small"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="2"
-                              style="@style/material_text_body_small"
-                              android:text="@string/reply"
-                    />
+                        app:stringRecourse = "@{R.string.reply}"
+                        app:formatterInput ="@{postData.commentsNum}"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</layout>

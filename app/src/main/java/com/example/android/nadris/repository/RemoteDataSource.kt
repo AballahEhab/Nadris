@@ -40,10 +40,9 @@ constructor(private val usersService: UserService,
     suspend fun comment(publishCommentModel: PublishCommentModel, token:String) =
         postsService.comment(publishCommentModel,token)
 
-    suspend fun getCommentsByPostId(postId:Int,token:String) =
+    suspend fun getCommentsByPostId(postId:Long,token:String) =
         postsService.getCommentByPostId(postId,token)
 
-    suspend fun publishComment(publishComment: PublishCommentModel, token: String) = postsService.comment(publishComment,token)
 
 
 }

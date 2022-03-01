@@ -21,6 +21,7 @@ class PostPageFragment : Fragment() {
 
 
     val viewModel: PostPageViewModel by viewModels()
+    lateinit var postsAdapter : customAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,24 +29,16 @@ class PostPageFragment : Fragment() {
     ): View {
         inflater.inflate(R.layout.fragment_post_page, container, false)
         val bindigin = FragmentPostPageBinding.inflate(inflater)
-        bindigin.lifecycleOwner = this.viewLifecycleOwner
+        postsAdapter = customAdapter(viewModel)
         bindigin.postViewModle = viewModel
+        bindigin.lifecycleOwner = this.viewLifecycleOwner
 
-        val userData = NadrisApplication.userData
-        userData?.Token?.let { it1 -> viewModel.getPosts(it1) }
-        lateinit var databasePosts: List<DatabasePost>
-//        var posts=ArrayList<dataRvPost>()
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-//        posts.add(dataRvPost(R.drawable.ic_google, "عبدالله غراب", "الفيزياء", "إزاي اقدر اعرف المفعول لاجله"))
-
+        viewModel.getPosts()
         viewModel.postsList.observe(viewLifecycleOwner) {
-            databasePosts = it
-            bindigin.recyclerView.adapter = customAdapter(databasePosts)
+            postsAdapter.setPostsList(it)
+            bindigin.recyclerView.adapter = postsAdapter
         }
+
         bindigin.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
 
@@ -57,10 +50,6 @@ class PostPageFragment : Fragment() {
                 viewModel.navigate_to_add_post_done()
             }
         }
-
-//        val user = NadrisApplication.instance!!.userData
-
-//        user?.let { viewModel.getPosts(it.Token) }
 
 
         return bindigin.root

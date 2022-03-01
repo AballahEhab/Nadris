@@ -6,18 +6,22 @@ import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.network.dtos.AuthModel
 import com.example.android.nadris.network.dtos.NetworkPost
 
+
 object NetworkModelsMapper {
+
     fun postAsDatabaseModel(networkPost: NetworkPost) =
         DatabasePost(
             networkPost.id ,
             R.drawable.ic_google ,
-            networkPost.subjectId ,
+            networkPost.subject ,
             networkPost.content ,
             networkPost.votes ,
-            0, // TODO:  review post network model with @shokry
+            networkPost.numOfComments,
             networkPost.time ,
             networkPost.email ,
             networkPost.name,
+            networkPost.isVoted,
+
         )
 
     fun authModelAsDataBaseModel(model: AuthModel) = UserData(

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PostDao {
     @Query("SELECT * FROM DatabasePost")
-    fun getAllPosts(): Flow<List<DatabasePost>>
+    suspend fun getAllPosts(): List<DatabasePost>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPosts(databasePosts: List<DatabasePost>)

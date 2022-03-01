@@ -18,7 +18,4 @@ interface UserService{
 
     @POST("api/Auth/Register/Teacher")
     suspend fun createTeacherAccount(@Body TeacherAccountDataModel: CreateTeacherAccountDataModelModel): Response<AuthModel>
-
-
-
 }

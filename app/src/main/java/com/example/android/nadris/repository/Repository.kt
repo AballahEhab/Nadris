@@ -1,18 +1,17 @@
 package com.example.android.nadris.repository
 
 import com.example.android.nadris.network.NetworkModelsMapper
-import com.example.android.nadris.network.dtos.CommentModel
-import com.example.android.nadris.network.dtos.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.dtos.CreateTeacherAccountDataModelModel
-import com.example.android.nadris.network.dtos.LoginAccountModel
+import com.example.android.nadris.network.dtos.*
 import com.example.android.nadris.util.postToApiHandler
 import com.example.android.nadris.util.requestDataFromAPI
+import com.example.android.nadris.util.requestFromAPIOnly
 import javax.inject.Inject
 
 
 class Repository @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource) {
+
 
        fun login(loginAccountModel: LoginAccountModel)= postToApiHandler(
             request= { remoteDataSource.login(loginAccountModel) }
@@ -33,18 +32,28 @@ class Repository @Inject constructor(
         , convertToDatabaseModel = { networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel(networkModel)}
     )
 
+    fun vote(voteModel: VoteModel, token:String) =
+        postToApiHandler(
+            request= { remoteDataSource.vote(voteModel, token) }
+            ,saveFetchResult= {post-> localDataSource.updatePost(post) }
+            , convertToDatabaseModel = { networkMPost ->  NetworkModelsMapper.postAsDatabaseModel(networkMPost)}
+        )
+
     fun getPosts(token:String) = requestDataFromAPI(
         query = { localDataSource.getAllPosts() },
         fetch = { remoteDataSource.getAllPosts(token) },
         convertToDatabaseModel = { networkPostsList-> networkPostsList.map {
                 networkPost-> NetworkModelsMapper.postAsDatabaseModel(networkPost) } },
-        saveFetchResult = {list_of_posts-> list_of_posts?.let { localDataSource.insertPost(it) } }
+        saveFetchResult = { list_of_posts-> list_of_posts?.let { localDataSource.insertPost(it) } }
     )
 
     suspend fun getUser() = localDataSource.getUserData()
 
-    suspend fun publishComment(comment: CommentModel, token: String) =
-        remoteDataSource.publishComment(comment,token)
+//    suspend fun publishComment(comment: PublishCommentModel, token: String) =
+//        remoteDataSource.publishComment(comment,token)
+
+    fun getAllComments(token: String, postId: Long) = requestFromAPIOnly(
+    fetch = { remoteDataSource.getCommentsByPostId(postId,token) } )
 }
 
 

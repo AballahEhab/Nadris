@@ -17,41 +17,40 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class addPostFragment : Fragment() {
 
-//    companion object {
-//        fun newInstance() = addPostFragment()
-//    }
-
     val viewModel: AddPostViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-//        viewModel = ViewModelProvider(this).get(AddPostViewModel::class.java)
-        inflater.inflate(R.layout.fragment_add_pos, container, false)
-        val bindigin =FragmentAddPosBinding.inflate(inflater)
-        bindigin.addPostViewModel = viewModel
+
+        val binding =FragmentAddPosBinding.inflate(inflater, container, false)
+        binding.addPostViewModel = viewModel
+
+        //TODO: to be removed as data is from recourses
         val subjects = resources.getStringArray(R.array.subject)
+
         val adapter= ArrayAdapter(requireContext(), R.layout.item_gender_list, subjects)
-        (bindigin.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-        bindigin.imageButton.setOnClickListener{
+        (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        binding.imageButton.setOnClickListener{
 
             pickImageFromGallery()
 
  }
-        bindigin.publicButton.setOnClickListener {
+        binding.publicButton.setOnClickListener {
            val str:String=""+viewModel.question.value+"\n"+viewModel.subjects.value+"\n"+viewModel.image
             Toast.makeText(requireContext(),str,Toast.LENGTH_LONG).show()
        }
 
-        return bindigin.root}
+        return binding.root}
 
 
      fun pickImageFromGallery() {
          val intent = Intent(Intent.ACTION_PICK)
        intent.type = "image/*"
          //TODO: please check this deprecated function
-         startActivityForResult(intent, viewModel.IMAGE_REQUEST_CODE) }
+         startActivityForResult(intent, viewModel.IMAGE_REQUEST_CODE) //TODO: deprecaated:
+     }
 
     // edit to imageview
 

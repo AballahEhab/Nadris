@@ -1,12 +1,13 @@
 package com.example.android.nadris.network.dtos
 
 data class NetworkPost(
-    val id: Int,
-    val subjectId: String,
+    val id: Long,
+    val subject: String,
     val content: String,
     val votes:Int,
-    val publishComments:List<PublishCommentModel>,
+    val numOfComments:Int,
     val time:String,
     val email:String,
-    val name:String
+    val name:String,
+    val isVoted:Boolean
 )

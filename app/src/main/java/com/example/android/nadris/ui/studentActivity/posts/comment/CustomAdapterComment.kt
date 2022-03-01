@@ -12,7 +12,7 @@ class CustomAdapterComment:RecyclerView.Adapter<CustomAdapterComment.ViewHolder>
 
     private  val diferrCallback =object : DiffUtil.ItemCallback<CommentModel>() {
         override fun areItemsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
-            return oldItem.email==newItem.email
+            return oldItem.id==newItem.id
         }
         override fun areContentsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
             return oldItem == newItem
