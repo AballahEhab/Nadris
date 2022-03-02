@@ -10,7 +10,7 @@ data class AuthModel(
     val type: String?,
     val gender: Byte,
     val exp: Long,
-    val gradeId: Int?,
+    val gradeId: Long?,
     val university: String?,
     val college: String?,
     val roles:List<String>,

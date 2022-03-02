@@ -1,0 +1,14 @@
+GET
+{BASE_URL}/api/Subject/Grade/{id}
+
+# Headers
+@authorization: {authorization}
+
+
+%%%
+# GET
+# /api/Subject/Grade/{id}
+# Headers
+# @authorization: {authorization}
+
+# Error: java.lang.IllegalArgumentException: Expected URL scheme 'http' or 'https' but no colon was found

@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.TOKEN_PREFIX
-import com.example.android.nadris.network.CreatePostModel
 import com.example.android.nadris.network.SubjectDTO
+import com.example.android.nadris.network.dtos.CreatePostModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

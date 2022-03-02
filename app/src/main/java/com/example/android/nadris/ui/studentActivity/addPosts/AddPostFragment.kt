@@ -48,7 +48,7 @@ class AddPostFragment : Fragment() {
         //initialize converter
         converter = Converter(requireContext().applicationContext)
         viewModel.getSubjects()
-        // val subjects = resources.getStringArray(R.array.subject)
+
         viewModel.subjects.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
             (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!

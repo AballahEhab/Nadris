@@ -14,7 +14,7 @@ import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
 import java.io.File
 
-class customAdapter(val viewModel:PostPageViewModel) : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
+class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
 
 
     private val differCallback = object : DiffUtil.ItemCallback<DatabasePost>() {
@@ -46,30 +46,29 @@ class customAdapter(val viewModel:PostPageViewModel) : RecyclerView.Adapter<cust
                 holder.binding.imgPost.setImageBitmap(img!!)
             }
         }
-        val context = holder.itemView.context
-
+        holder.binding.postData=data
         holder.binding.profileImage.setImageResource(R.drawable.ic_google)
         holder.binding.accountName.text = data.name
         holder.binding.subjectName.text = data.subject
         holder.binding.postContent.text = data.content
         holder.binding.imgReply.setOnClickListener {
             holder.itemView.findNavController()
-                .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment())
+                .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data))
         }
-        holder.voteUpIcon.setOnClickListener {
+        holder.binding.imgVote.setOnClickListener {
             holder.toggleVoteIconStatus(data.getVoteStatus())
-            if(data.getVoteStatus()) data.votesNum-- else data.votesNum++
+            if (data.getVoteStatus()) data.votesNum-- else data.votesNum++
             data.toggleVote()
-            viewModel.vote(position,data.getVoteStatus())
+            viewModel.vote(position, data.getVoteStatus())
                 .let {
-                    postList[position] = it!!
+                    differ.currentList[position] = it!!
                 }
             notifyItemChanged(position)
         }
-        holder.bookMarkIcon.setOnClickListener {
+        holder.binding.bookmark.setOnClickListener {
             holder.toggleBookMerkleIconStatus(data.getVoteBookMark())
             data.toggleBookMark()
-            viewModel.BookMark(data.postId,data.getVoteBookMark())
+            viewModel.BookMark(data.postId, data.getVoteBookMark())
             notifyItemChanged(position)
         }
     }
@@ -79,20 +78,23 @@ class customAdapter(val viewModel:PostPageViewModel) : RecyclerView.Adapter<cust
     }
 
     class PostViewHolder(var binding: ItemPostCardCellBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setDataBindingObj(post:DatabasePost){
+
+        fun setDataBindingObj(post: DatabasePost) {
             binding.postData = post
         }
-        fun toggleVoteIconStatus(state:Boolean) {
-            if (state){
+
+        fun toggleVoteIconStatus(state: Boolean) {
+            if (state) {
                 // TODO: add voted style
-            }else{
+            } else {
                 // TODO: add unvoted style
             }
         }
-        fun toggleBookMerkleIconStatus(state:Boolean) {
-            if (state){
+
+        fun toggleBookMerkleIconStatus(state: Boolean) {
+            if (state) {
                 // TODO: add voted style
-            }else{
+            } else {
                 // TODO: add unvoted style
             }
         }

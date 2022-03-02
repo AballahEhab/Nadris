@@ -8,13 +8,12 @@ import kotlinx.parcelize.Parcelize
 @Parcelize // TODO: replace parcelize with id
 @Entity
 data class DatabasePost(
-
     @PrimaryKey val postId: Long,
     var hasImage :Boolean,
     val subject: String,
     val content: String,
-    var votesNum:Int,
-    val commentsNum:Int,
+    var votesNum:Long,
+    val commentsNum:Long,
     val time:String,
     val email:String,
     val name:String,
