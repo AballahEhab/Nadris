@@ -9,6 +9,9 @@ interface PostDao {
     @Query("SELECT * FROM DatabasePost")
     suspend fun getAllPosts(): List<DatabasePost>
 
+    @Query("SELECT * FROM DatabasePost WHERE postId = :postIdP ")
+    fun getPostByPostId(postIdP:Long): Flow<DatabasePost>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPosts(databasePosts: List<DatabasePost>)
 

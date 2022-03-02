@@ -16,10 +16,10 @@ import com.example.android.nadris.R
 import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.customAdapterRVsubTeacher
 import com.example.android.nadris.databinding.FragmentSubTeacherRvBinding
 
-class sub_teacher_rv_Fragment : Fragment() {
+class SubTeacherRVFragment : Fragment() {
 
 
-    private lateinit var args:sub_teacher_rv_FragmentArgs
+    private lateinit var args:SubTeacherRVFragmentArgs
     private lateinit var viewModel: SubTeacherRvViewModel
     private lateinit var adapter: customAdapterRVsubTeacher
     private lateinit var binding:FragmentSubTeacherRvBinding
@@ -44,7 +44,7 @@ class sub_teacher_rv_Fragment : Fragment() {
 
         setupRV()
         binding.fabAddSubject.setOnClickListener {
-            val action = sub_teacher_rv_FragmentDirections.actionSubTeacherRvFragmentToChoosingNewSubjects()
+            val action = SubTeacherRVFragmentDirections.actionSubTeacherRvFragmentToChoosingNewSubjects()
             findNavController().navigate(action)
         }
 

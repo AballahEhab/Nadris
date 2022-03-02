@@ -43,6 +43,8 @@ class Repository @Inject constructor(
         saveFetchResult = { list_of_posts -> list_of_posts?.let { localDataSource.insertPosts(it) } }
     )
 
+    suspend fun getPostById(postId:Long) = localDataSource.getPostById(postId)
+
     fun publishPost(post: CreatePostModel, token: String) = postToApiAndSaveToDatabase(
         request = { remoteDataSource.publishAPost(post, token) },
         convertToDatabaseModel = { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) },
@@ -63,7 +65,7 @@ class Repository @Inject constructor(
             , convertToDatabaseModel = { networkMPost ->  NetworkModelsMapper.postAsDatabaseModel(networkMPost)}
         )
 
-        suspend fun publishComment(comment: PublishCommentModel, token: String) = requestAPI (
+    suspend fun publishComment(comment: PublishCommentModel, token: String) = requestAPI (
             fetch = { remoteDataSource.comment(comment,token)}
             )
 

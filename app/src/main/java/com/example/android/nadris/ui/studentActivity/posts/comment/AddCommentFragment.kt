@@ -1,21 +1,15 @@
 package com.example.android.nadris.ui.studentActivity.posts.comment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentAddCommentBinding
-import com.example.android.nadris.ui.studentActivity.posts.PostPageFragmentDirections
-import com.example.android.nadris.ui.teacherActivity.subjects_teacher.sub_teacher_rv_FragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,9 +30,11 @@ class AddCommentFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        viewModel.postLiveData=args.post
+        viewModel.postId=args.postId
 
-        binding.includedPost.postData = viewModel.postLiveData
+        viewModel.getCurrentPost()
+
+        binding.includedPost.postData = viewModel.currentPostData
 
         viewModel.getAllComments()
 

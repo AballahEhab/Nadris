@@ -120,8 +120,6 @@
     <string name="tv_add_teacher">إضافه</string>
     <string name="tv_star">* * * </string>
     <string name="tv_evaluation">4.8</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="my_course">"المواد الدراسيه "</string>
     <string name="add_subject">إضافه ماده</string>
     <string name="add_explain_subject">إضافه شرح ماده</string>

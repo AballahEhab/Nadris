@@ -57,10 +57,9 @@
         android:id="@+id/addCommentFragment"
         android:name="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentFragment"
         android:label="AddCommentFragment" >
-
         <argument
-            android:name="post"
-            app:argType="com.example.android.nadris.database.models.DatabasePost" />
+            android:name="postId"
+            app:argType="long" />
     </fragment>
 
 

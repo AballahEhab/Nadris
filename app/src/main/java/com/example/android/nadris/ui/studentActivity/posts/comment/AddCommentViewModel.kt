@@ -18,48 +18,59 @@ import javax.inject.Inject
 @HiltViewModel
 class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel() {
 
-    lateinit var postLiveData : DatabasePost
-     var commentsList=MutableLiveData<List<CommentModel>>()
+    lateinit var currentPostData: DatabasePost
+    var postId: Long = 0
+    var commentsList = MutableLiveData<List<CommentModel>>()
     var comment = MutableLiveData<String>()
-    var sendButtonVisabilty =MutableLiveData (false)
+    var sendButtonVisabilty = MutableLiveData(false)
 
     //TODO:you should loading spinner and error message as a snack bar
-    fun getAllComments(){
+    fun getAllComments() {
 //    disableErrorMessage()
 //    enableProgressBar()
-    viewModelScope.launch {
-        val commentsFlow = repo.getAllComments( TOKEN_PREFIX + NadrisApplication.userData?.Token,postLiveData.postId)
-        commentsFlow.collect {
-            it.handleRepoResponse(
-                onLoading= {
-                    it.data?.let{
+        viewModelScope.launch {
+            val commentsFlow = repo.getAllComments(TOKEN_PREFIX + NadrisApplication.userData?.Token,
+                currentPostData.postId)
+            commentsFlow.collect {
+                it.handleRepoResponse(
+                    onLoading = {
+                        it.data?.let {
 //                        disableProgressBar()
-                    }
-                },
-                onError= {
+                        }
+                    },
+                    onError = {
 //                    disableProgressBar()
 //                    enableErrorMessage()
 //                    _loginRequestErrorMessage.value = it.error!!
-                },
-                onSuccess= {
+                    },
+                    onSuccess = {
 //                    disableProgressBar()
-                    commentsList.value= (it.data as List<CommentModel>)
-                    Log.v("comments responce", it.data.toString() )
-                },
-            )
+                        commentsList.value = (it.data as List<CommentModel>)
+                        Log.v("comments responce", it.data.toString())
+                    },
+                )
 
+            }
         }
     }
+
+
+    fun getCurrentPost() {
+//    disableErrorMessage()
+//    enableProgressBar()
+        viewModelScope.launch {
+            val postFlow = repo.getPostById(postId)
+            postFlow.collect {
+                currentPostData = it
+            }
+        }
     }
 
-    fun onClikVisable(){
-//        sendButtonVisabilty.value = comment.value?.isNotBlank()  // TODO:
-    }
 
-    fun sendComment(){ // TODO: please test adding comment fun
-        viewModelScope.launch{
-            repo.publishComment(PublishCommentModel( comment.value!!,
-                postLiveData.postId), NadrisApplication.userData?.Token!!)
+    fun sendComment() { // TODO: please test adding comment fun
+        viewModelScope.launch {
+            repo.publishComment(PublishCommentModel(comment.value!!,
+                currentPostData.postId), NadrisApplication.userData?.Token!!)
         }
     }
 

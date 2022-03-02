@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Parcelize // TODO: replace parcelize with id
+
 @Entity
 data class DatabasePost(
     @PrimaryKey val postId: Long,
@@ -18,7 +18,7 @@ data class DatabasePost(
     val email:String,
     val name:String,
     var isVoted:Boolean
-) : Parcelable {
+) {
      var isBookMarked = false
 
     fun toggleVote(){
