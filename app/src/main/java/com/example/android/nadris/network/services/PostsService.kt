@@ -21,7 +21,7 @@ interface PostsService {
     suspend fun vote(@Body voteModel: VoteModel, @Header("authorization") token: String) : Response<NetworkPost>
 
     @POST("api/Posts/comment")
-    suspend fun comment(@Body publishCommentModel: PublishCommentModel, @Header("authorization") token: String)
+    suspend fun comment(@Body publishCommentModel: PublishCommentModel, @Header("authorization") token: String) :Response<CommentModel>
 
     @GET("/api/Posts/{id}/comments")
     suspend fun getCommentByPostId(@Path("id") id:Long, @Header("authorization") token: String): Response<List<CommentModel>>

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.net.HttpURLConnection
 
-inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
+inline fun <DatabaseModel, NetworkModel> getFromApiAndSaveToDataBase(
     crossinline query: suspend () -> DatabaseModel,
     crossinline fetch: suspend () -> Response<NetworkModel>,
     crossinline saveFetchResult: suspend (DatabaseModel) -> Unit,
@@ -37,7 +37,7 @@ inline fun <DatabaseModel, NetworkModel> requestDataFromAPI(
 
 }
 
-inline fun < NetworkModel> requestFromAPIOnly(
+inline fun < NetworkModel> requestAPI(
     crossinline fetch: suspend () -> Response<NetworkModel>,
 ) = flow {
 
@@ -55,7 +55,7 @@ inline fun < NetworkModel> requestFromAPIOnly(
 
 }
 
-inline fun <DatabaseModel, T> postToApiHandler(
+inline fun <DatabaseModel, T> postToApiAndSaveToDatabase(
     crossinline request: suspend () -> Response<T>,
     crossinline saveFetchResult: suspend (DatabaseModel) -> Unit,
     crossinline convertToDatabaseModel:  (T) -> DatabaseModel,
@@ -87,6 +87,7 @@ inline fun <DatabaseModel, T> postToApiHandler(
         emit(errorMessage?.let { Result.Error<Nothing>(error = it) })
     }
 }
+
 
 fun disableUserInterAction(activity: FragmentActivity?) =
     activity?.window?.setFlags(

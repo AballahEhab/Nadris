@@ -8,6 +8,7 @@ import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.TOKEN_PREFIX
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.network.dtos.CommentModel
+import com.example.android.nadris.network.dtos.PublishCommentModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -55,12 +56,11 @@ class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel(
 //        sendButtonVisabilty.value = comment.value?.isNotBlank()  // TODO:
     }
 
-    fun sendComment(){ // TODO:
-//        viewModelScope.launch{
-//            repo.publishComment(CommentModel(NadrisApplication.userData?.Email!!,
-//                NadrisApplication.userData?.getFullName()!!, comment.value!!,
-//                post_id), NadrisApplication.userData?.Token!!)
-//        }
+    fun sendComment(){ // TODO: please test adding comment fun
+        viewModelScope.launch{
+            repo.publishComment(PublishCommentModel( comment.value!!,
+                postLiveData.postId), NadrisApplication.userData?.Token!!)
+        }
     }
 
 
