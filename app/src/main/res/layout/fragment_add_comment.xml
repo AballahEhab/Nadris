@@ -18,6 +18,7 @@
         <include
             android:id="@+id/included_post"
             layout="@layout/item_post_card_cell"
+            app:postData="@{viewmodel.currentPostData}"
             />
 
 

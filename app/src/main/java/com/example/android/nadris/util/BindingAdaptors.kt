@@ -1,8 +1,10 @@
 package com.example.android.nadris.util
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.android.nadris.R
 
 @BindingAdapter("isVisible")
 fun View.isVisible(visible:Boolean){
@@ -13,9 +15,19 @@ fun View.isVisible(visible:Boolean){
 }
 
 @BindingAdapter("stringRecourse", "formatterInput")
-fun TextView.TextWithFormat(stringRecourse:Int, /*vararg*/ formatterInput:Long){
+fun TextView.textWithFormat(stringRecourse:Int, /*vararg*/ formatterInput:Long){
     this.text = String.format(context.getString(stringRecourse),formatterInput)
 }
+
+@BindingAdapter("checked_image", "unchecked_image", "state")
+fun ImageView.setImageResourceAccordingToCheckState(checked_image:Int, unchecked_image:Int,state:Boolean){
+    if (state) {
+        this.setImageResource(checked_image)
+    } else {
+        this.setImageResource(unchecked_image)
+    }
+}
+
 //@BindingAdapter("imageUrl", "error")
 //fun loadImage(view: ImageView, url: String, error: Drawable) {
 //    Picasso.get().load(url).error(error).into(view)

@@ -33,11 +33,7 @@ class AddCommentFragment : Fragment() {
         viewModel.postId=args.postId
 
         viewModel.getCurrentPost()
-
-        binding.includedPost.postData = viewModel.currentPostData
-
-        viewModel.getAllComments()
-
+        viewModel. getAllComments()
 
         setupRV()
 

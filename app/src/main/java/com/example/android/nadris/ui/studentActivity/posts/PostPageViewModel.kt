@@ -12,6 +12,7 @@ import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 
@@ -30,11 +31,6 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
     private var _errorMessageVisibility :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
 val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.lastName
-
-    // TODO: to be reactivated
-//    init {
-//        getPosts()
-//    }
 
     fun navigate_to_add_post(){
         _navigate_to_add_post.value = true
@@ -95,18 +91,13 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
         _showIndicator.value = false
     }
 
-    fun vote(postId: Int, voteStatus: Boolean): DatabasePost? = runBlocking {
-             async {
-                VoteToPost(voteStatus,
-                    postId)
-            }.await()
-        }
+    fun vote( postId: Long): DatabasePost? = runBlocking { async { voteToPost(postId) }.await() }
 
 
-    private suspend fun VoteToPost(voteStatus: Boolean, position: Int): DatabasePost? {
-        var updatePost = postsList?.value?.get(position)
-        val postsFlow = repository.vote(VoteModel(voteStatus, updatePost?.postId!!) ,TOKEN_PREFIX + NadrisApplication.userData?.Token)
-        postsFlow.collect {
+    private suspend fun voteToPost(postId: Long): DatabasePost? {
+        var updatePost :DatabasePost? = null
+        val postsFlow = repository.vote(VoteModel(postId),TOKEN_PREFIX + NadrisApplication.userData?.Token)
+        postsFlow.collectLatest {
             it?.handleRepoResponse(
                 onLoading= {
 
@@ -126,7 +117,9 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
         return updatePost
     }
 
-    fun BookMark(postId: Long, voteBookMark: Boolean) {
-        TODO("Not yet implemented")
+    fun BookMark(post:DatabasePost) {
+        viewModelScope.launch {
+            repository.updatePostById(post )
+        }
     }
 }

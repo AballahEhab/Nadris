@@ -10,13 +10,13 @@ import kotlinx.parcelize.Parcelize
 data class DatabasePost(
     @PrimaryKey val postId: Long,
     var hasImage :Boolean,
-    val subject: String,
-    val content: String,
+    var subject: String,
+    var content: String,
     var votesNum:Long,
-    val commentsNum:Long,
-    val time:String,
-    val email:String,
-    val name:String,
+    var commentsNum:Long,
+    var time:String,
+    var email:String,
+    var name:String,
     var isVoted:Boolean
 ) {
      var isBookMarked = false
@@ -25,7 +25,7 @@ data class DatabasePost(
         isVoted = !isVoted
     }
 
-    fun getVoteBookMark() = isBookMarked
+    fun getBookMarkStatus() = isBookMarked
 
 
     fun toggleBookMark(){
@@ -33,4 +33,17 @@ data class DatabasePost(
     }
 
     fun getVoteStatus() = isVoted
+
+    fun updatePost(updatedPost:DatabasePost){
+        this.hasImage =updatedPost.hasImage
+        this.subject =updatedPost.subject
+        this.content =updatedPost.content
+        this.votesNum =updatedPost.votesNum
+        this.commentsNum =updatedPost.commentsNum
+        this.time =updatedPost.time
+        this.email =updatedPost.email
+        this.name =updatedPost.name
+        this.isVoted =updatedPost.isVoted
+
+    }
 }

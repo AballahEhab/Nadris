@@ -1,5 +1,6 @@
 package com.example.android.nadris.repository
 
+import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.network.*
 import com.example.android.nadris.network.dtos.*
 import com.example.android.nadris.util.postToApiAndSaveToDatabase
@@ -42,6 +43,8 @@ class Repository @Inject constructor(
         },
         saveFetchResult = { list_of_posts -> list_of_posts?.let { localDataSource.insertPosts(it) } }
     )
+
+    suspend fun updatePostById(post:DatabasePost) = localDataSource.updatePost(post)
 
     suspend fun getPostById(postId:Long) = localDataSource.getPostById(postId)
 

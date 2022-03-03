@@ -13,24 +13,26 @@ import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
 class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel() {
 
-    lateinit var currentPostData: DatabasePost
+    val currentPostData = MutableLiveData<DatabasePost>()
     var postId: Long = 0
     var commentsList = MutableLiveData<List<CommentModel>>()
     var comment = MutableLiveData<String>()
     var sendButtonVisabilty = MutableLiveData(false)
 
     //TODO:you should loading spinner and error message as a snack bar
-    fun getAllComments() {
+     fun getAllComments() {
 //    disableErrorMessage()
 //    enableProgressBar()
-        viewModelScope.launch {
+
+        viewModelScope.launch{
             val commentsFlow = repo.getAllComments(TOKEN_PREFIX + NadrisApplication.userData?.Token,
-                currentPostData.postId)
+                postId)
             commentsFlow.collect {
                 it.handleRepoResponse(
                     onLoading = {
@@ -52,6 +54,7 @@ class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel(
 
             }
         }
+
     }
 
 
@@ -61,16 +64,16 @@ class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel(
         viewModelScope.launch {
             val postFlow = repo.getPostById(postId)
             postFlow.collect {
-                currentPostData = it
+                currentPostData.value = it
             }
         }
     }
 
 
     fun sendComment() { // TODO: please test adding comment fun
-        viewModelScope.launch {
+        runBlocking{
             repo.publishComment(PublishCommentModel(comment.value!!,
-                currentPostData.postId), NadrisApplication.userData?.Token!!)
+                currentPostData.value?.postId!!), NadrisApplication.userData?.Token!!)
         }
     }
 

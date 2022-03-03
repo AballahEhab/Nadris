@@ -6,13 +6,17 @@
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/drawable/ic_icons8_human_head.xml" value="0.15462962962962962" />
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/login_fragment.xml" value="0.25" />
         <entry key="..\:/Cs_Project/Nadris/app/src/main/res/layout/signup_fragment.xml" value="0.33" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/checked_bookmark_icon.xml" value="0.2" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/circular_button.xml" value="0.278125" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/circular_facebook_button.xml" value="0.278125" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/create_account_txt_color_selector.xml" value="0.278125" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.115" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/ic_bookmark.xml" value="0.2045" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/ic_chat_room.xml" value="0.115" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/ic_notification.xml" value="0.2045" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1285" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/ic_scroll1_up.xml" value="0.115" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/drawable/unchecked_vote_icon.xml" value="0.1545" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/font/cairo_light.xml" value="0.1703125" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout-v21/login_fragment.xml" value="0.38125" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/activity_home_screen.xml" value="0.25181159420289856" />
@@ -27,6 +31,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/cardcell.xml" value="0.22056159420289856" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/choosing_new_subjects_fragment.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/dropdown_item_choose_class.xml" value="0.21504916631038906" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_add_comment.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_dashboard.xml" value="0.13541666666666666" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_dashboard1.xml" value="0.21504916631038906" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/layout/fragment_home.xml" value="0.2477355072463768" />

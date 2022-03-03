@@ -10,27 +10,21 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     private val userDao = nadrisDatabase.UserDao()
     private val postDao = nadrisDatabase.PostDao()
 
-     suspend fun addUserData(userData: UserData)=
-        userDao.insertUser(userData)
+     suspend fun addUserData(userData: UserData)= userDao.insertUser(userData)
 
     suspend fun getUserData() = userDao.getUser()
 
-    suspend fun updateUserData(updatedUserData: UserData) =
-        userDao.updateUser(updatedUserData)
+    suspend fun updateUserData(updatedUserData: UserData) = userDao.updateUser(updatedUserData)
 
-    suspend fun getAllPosts() =
-        postDao.getAllPosts()
-    suspend fun getPostById(postId:Long) =
-        postDao.getPostByPostId(postId)
+    suspend fun getAllPosts() =  postDao.getAllPosts()
 
-    suspend fun insertPosts(databasePosts: List<DatabasePost>) =
-        postDao.insertPosts( databasePosts )
+    suspend fun getPostById(postId:Long) = postDao.getPostByPostId(postId)
 
-    suspend fun insertPost(databasePosts: DatabasePost) =
-        postDao.insertPost( databasePosts )
+    suspend fun insertPosts(databasePosts: List<DatabasePost>) = postDao.insertPosts( databasePosts )
 
-    suspend fun updatePost(databasePosts: DatabasePost) =
-        postDao.updatePost( databasePosts )
+    suspend fun insertPost(databasePosts: DatabasePost) = postDao.insertPost( databasePosts )
+
+    suspend fun updatePost(databasePosts: DatabasePost) = postDao.updatePost( databasePosts )
 
 
 }

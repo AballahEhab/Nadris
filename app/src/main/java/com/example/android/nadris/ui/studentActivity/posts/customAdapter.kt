@@ -46,28 +46,31 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
                 holder.binding.imgPost.setImageBitmap(img!!)
             }
         }
-        holder.binding.postData=data
-        holder.binding.profileImage.setImageResource(R.drawable.ic_google)
-        holder.binding.accountName.text = data.name
-        holder.binding.subjectName.text = data.subject
-        holder.binding.postContent.text = data.content
+        holder.setDataBindingObj(data)
+//        holder.binding.postData=data
+//        holder.binding.profileImage.setImageResource(R.drawable.ic_google)
+//        holder.binding.accountName.text = data.name
+//        holder.binding.subjectName.text = data.subject
+//        holder.binding.postContent.text = data.content
+//        holder.setVoteIcon(data.getVoteStatus())
+//        holder.setBookMerkeIcon(data.getBookMarkStatus())
+
         holder.binding.imgReply.setOnClickListener {
             holder.itemView.findNavController()
                 .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data.postId))
         }
         holder.binding.imgVote.setOnClickListener {
-            if (data.getVoteStatus()) data.votesNum-- else data.votesNum++
             data.toggleVote()
-            viewModel.vote(position, data.getVoteStatus())
-                .let {
-                    differ.currentList[position] = it!!
-                }
             notifyItemChanged(position)
+
+            viewModel.vote(data.postId)
+                .let {
+                    data.updatePost(it!!)
+                }
         }
         holder.binding.bookmark.setOnClickListener {
-            holder.toggleBookMerkleIconStatus(data.getVoteBookMark())
             data.toggleBookMark()
-            viewModel.BookMark(data.postId, data.getVoteBookMark())
+            viewModel.BookMark(data)
             notifyItemChanged(position)
         }
     }
@@ -82,21 +85,21 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
             binding.postData = post
         }
 
-        fun toggleVoteIconStatus(state: Boolean) {
-            if (state) {
-                // TODO: add voted style
-            } else {
-                // TODO: add unvoted style
-            }
-        }
-
-        fun toggleBookMerkleIconStatus(state: Boolean) {
-            if (state) {
-                // TODO: add voted style
-            } else {
-                // TODO: add unvoted style
-            }
-        }
+//        fun setVoteIcon(state: Boolean) {
+//            if (state) {
+//                binding.imgVote.setImageResource(R.drawable.checked_vote_icon)
+//            } else {
+//                binding.imgVote.setImageResource(R.drawable.unchecked_vote_icon)
+//            }
+//        }
+//
+//        fun setBookMerkeIcon(state: Boolean) {
+//            if (state) {
+//                binding.bookmark.setImageResource(R.drawable.checked_bookmark_icon)
+//            } else {
+//                binding.bookmark.setImageResource(R.drawable.unchecked_bookmark_icon)
+//            }
+//        }
     }
 
 }
