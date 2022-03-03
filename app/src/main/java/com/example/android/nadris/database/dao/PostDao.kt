@@ -12,12 +12,13 @@ interface PostDao {
     @Query("SELECT * FROM DatabasePost WHERE postId = :postIdP ")
     fun getPostByPostId(postIdP:Long): Flow<DatabasePost>
 
+    @Update
+    suspend fun updatePost(databasePost: DatabasePost)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPosts(databasePosts: List<DatabasePost>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPost(databasePost: DatabasePost)
 
-    @Update
-    suspend fun updatePost(databasePost: DatabasePost)
 }

@@ -27,15 +27,3 @@ fun ImageView.setImageResourceAccordingToCheckState(checked_image:Int, unchecked
         this.setImageResource(unchecked_image)
     }
 }
-
-//@BindingAdapter("imageUrl", "error")
-//fun loadImage(view: ImageView, url: String, error: Drawable) {
-//    Picasso.get().load(url).error(error).into(view)
-//}
-//
-//<ImageView app:imageUrl="@{venue.imageUrl}" app:error="@{@drawable/venueError}" />
-
-//@BindingAdapter("image_resource")
-//fun  ImageView.imageResource(imageRecourse:Int){
-//    this.setImageResource(imageRecourse)
-//}

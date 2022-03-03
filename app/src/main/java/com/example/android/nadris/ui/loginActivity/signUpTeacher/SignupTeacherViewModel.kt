@@ -17,17 +17,6 @@ import javax.inject.Inject
 class SignupTeacherViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
 
-//    var firstname : MutableLiveData<String> = MutableLiveData<String>()
-//    var lastname : MutableLiveData<String> = MutableLiveData<String>()
-//    var email : MutableLiveData<String> = MutableLiveData<String>()
-//    var password1: MutableLiveData<String> = MutableLiveData<String>()
-//    var password2: MutableLiveData<String> = MutableLiveData<String>()
-//    var phone: MutableLiveData<String> = MutableLiveData<String>()
-//    var gander: MutableLiveData<String> = MutableLiveData<String>()
-//    var subjects : MutableLiveData<String> = MutableLiveData<String>()
-//    var collage : MutableLiveData<String> = MutableLiveData<String>()
-//    var university : MutableLiveData<String> = MutableLiveData<String>()
-
     var firstname:String = ""
     var lastname:String = ""
     var email:String = ""
@@ -38,11 +27,6 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     var collage:String = ""
 
 
-//    private var _university :MutableLiveData<String> =  MutableLiveData<String>("")
-//    val university get() = _university
-//
-//    private var _collage :MutableLiveData<String> =  MutableLiveData<String>("")
-//    val collage get() = _collage
 
     private var _subjects :MutableLiveData<String> =  MutableLiveData<String>("")
     val subjects get() = _subjects

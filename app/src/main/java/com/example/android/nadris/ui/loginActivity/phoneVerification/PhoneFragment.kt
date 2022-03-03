@@ -18,10 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PhoneFragment : Fragment() {
-//
-//    companion object {
-//        fun newInstance() = PhoneFragment()
-//    }
+
 
     //initiating viewModel variable
     val viewModel: PhoneViewModel by viewModels()
@@ -38,8 +35,6 @@ class PhoneFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        //initializing viewModel with by viewModel provider to get the current viewModel object with the viewModel class name
-//        viewModel = ViewModelProvider(this).get(PhoneViewModel::class.java)
 
         // inflating the fragment to show it in the run time
         inflater.inflate(R.layout.fragment_phone,container,false)
@@ -51,8 +46,6 @@ class PhoneFragment : Fragment() {
 // Todo  1: uncomment this when navigating to this page to use the receved argument
 //        val args =PhoneFragmentArgs.fromBundle(requireArguments())
 //                val viewModelFactory = PhoneViewModelFactory(args.receivedOTBarg)
-
-
 //        val args = "1234"
 //        val viewModelFactory = PhoneViewModelFactory(args)
 //
@@ -63,11 +56,11 @@ class PhoneFragment : Fragment() {
         binding.viewModel = viewModel
 
 
-        viewModel.isOTBMatched.observe(this.viewLifecycleOwner, {
-            if (it){
+        viewModel.isOTBMatched.observe(this.viewLifecycleOwner) {
+            if (it) {
                 //Todo2: set navigation code here
                 Toast.makeText(context, "OTB confirmed", Toast.LENGTH_LONG).show()
-            }else{
+            } else {
                 val dialog = MaterialAlertDialogBuilder(requireContext())
                     .setCancelable(false)
                     .setTitle(R.string.wrong_OTB_text_dialog)
@@ -76,9 +69,10 @@ class PhoneFragment : Fragment() {
                         dialog.cancel()
                     }.show()
 
-                    val button = dialog.findViewById<Button>(android.R.id.button1)
-                    val layoutParams:LinearLayout.LayoutParams = button!!.layoutParams as LinearLayout.LayoutParams
-                    layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+                val button = dialog.findViewById<Button>(android.R.id.button1)
+                val layoutParams: LinearLayout.LayoutParams =
+                    button!!.layoutParams as LinearLayout.LayoutParams
+                layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
                 button.layoutParams = layoutParams
 
                 //another solution to center the button
@@ -89,7 +83,7 @@ class PhoneFragment : Fragment() {
 
 
             }
-        })
+        }
 
 
 

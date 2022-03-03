@@ -1,6 +1,6 @@
 package com.example.android.nadris.network.services
 
-import com.example.android.nadris.network.SubjectDTO
+import com.example.android.nadris.network.dtos.SubjectDTO
 import retrofit2.Response
 import retrofit2.http.*
 

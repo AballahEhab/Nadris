@@ -34,11 +34,6 @@ class teachers_RV_fragment : Fragment() {
         binding.viewmodel = viewModel
 
         setupRV()
-//        binding.RVTeachers.layoutManager=
-//            LinearLayoutManager(requireContext(),
-//            RecyclerView.VERTICAL,false)
-//        binding.RVTeachers.adapter= customAdapterRVTeach()
-
         return binding.root
     }
 
@@ -55,10 +50,10 @@ class teachers_RV_fragment : Fragment() {
         activity?.let {
             viewModel.getdata().observe(//observe=>  acss on data return from getdata()
                 // LiveData a where Lifecyc
-                viewLifecycleOwner, {
-                    adapter.differ.submitList(it) //pass data when change to diffutil
-                }
-            )
+                viewLifecycleOwner
+            ) {
+                adapter.differ.submitList(it) //pass data when change to diffutil
+            }
 
         }
     }

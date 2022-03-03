@@ -8,6 +8,7 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisDatabase) {
 
     private val userDao = nadrisDatabase.UserDao()
+
     private val postDao = nadrisDatabase.PostDao()
 
      suspend fun addUserData(userData: UserData)= userDao.insertUser(userData)
@@ -18,7 +19,7 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
 
     suspend fun getAllPosts() =  postDao.getAllPosts()
 
-    suspend fun getPostById(postId:Long) = postDao.getPostByPostId(postId)
+    fun getPostById(postId:Long) = postDao.getPostByPostId(postId)
 
     suspend fun insertPosts(databasePosts: List<DatabasePost>) = postDao.insertPosts( databasePosts )
 

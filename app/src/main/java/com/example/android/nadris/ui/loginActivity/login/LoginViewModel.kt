@@ -27,8 +27,6 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
 
 
 
-
-
     private var _showIndicator :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val showIndicator get() = _showIndicator
     private var _loginRequestErrorMessage :MutableLiveData<String> =  MutableLiveData<String>("")
@@ -42,9 +40,6 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
 
     private var _navigateToCreateAccount:MutableLiveData<Boolean> = MutableLiveData( false)
     val navigateToCreateAccount :LiveData<Boolean> get() = _navigateToCreateAccount
-
-
-
 
 
 
@@ -103,8 +98,6 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
                             NadrisApplication.userData =it.data
                             navigateToHomeScreen()
 
-//                            val user = NadrisApplication.instance!!.userData
-//                            user?.Token?.let { it1 -> getPosts(it1) }
                         },
                     )
 
@@ -113,10 +106,6 @@ class LoginViewModel @Inject constructor( val repository:Repository) : ViewModel
         }
     }
 
-
-//    suspend fun getUser() = repository.getUser().collect {
-//                NadrisApplication.userData = it
-//            }
 
 
 

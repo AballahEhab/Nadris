@@ -35,16 +35,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-////inside Fragment
-//        val job = Job()
-//        val uiScope = CoroutineScope(Dispatchers.Main + job)
-
-//        runBlocking{
-//            viewModel.getUser() }
-
-
-
-
         inflater.inflate(R.layout.fragment_login, container, false)
 
         binding = FragmentLoginBinding.inflate(inflater)

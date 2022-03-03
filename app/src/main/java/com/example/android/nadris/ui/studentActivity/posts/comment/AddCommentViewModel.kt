@@ -70,11 +70,13 @@ class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel(
     }
 
 
-    fun sendComment() { // TODO: please test adding comment fun
-        runBlocking{
+    fun sendComment() {
+        viewModelScope.launch {
             repo.publishComment(PublishCommentModel(comment.value!!,
-                currentPostData.value?.postId!!), NadrisApplication.userData?.Token!!)
+                currentPostData.value?.postId!!),TOKEN_PREFIX + NadrisApplication.userData?.Token).collect()
+            getAllComments()
         }
+        comment.value = ""
     }
 
 

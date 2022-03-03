@@ -1,8 +1,8 @@
 package com.example.android.nadris.network.dtos
 
-data class SubjectDTO(
+data class CommentModel(
     val id: Long,
+    val content: String,
     val name: String,
-    val section: String,
-    val grade: String,
-    )
+    val time:String,
+)

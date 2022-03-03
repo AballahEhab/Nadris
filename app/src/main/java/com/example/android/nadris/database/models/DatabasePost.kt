@@ -17,22 +17,17 @@ data class DatabasePost(
     var time:String,
     var email:String,
     var name:String,
-    var isVoted:Boolean
+    var isVoted:Boolean,
+    var isBookMarked:Boolean = false
 ) {
-     var isBookMarked = false
 
     fun toggleVote(){
         isVoted = !isVoted
     }
 
-    fun getBookMarkStatus() = isBookMarked
-
-
     fun toggleBookMark(){
-        isBookMarked = !isBookMarked
+        isBookMarked = !isBookMarked!!
     }
-
-    fun getVoteStatus() = isVoted
 
     fun updatePost(updatedPost:DatabasePost){
         this.hasImage =updatedPost.hasImage
