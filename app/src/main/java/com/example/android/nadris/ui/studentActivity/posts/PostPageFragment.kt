@@ -24,16 +24,16 @@ class PostPageFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         inflater.inflate(R.layout.fragment_post_page, container, false)
-        val bindigin = FragmentPostPageBinding.inflate(inflater)
-        bindigin.lifecycleOwner = this.viewLifecycleOwner
-        bindigin.postViewModle = viewModel
-        bindigin.lifecycleOwner = this.viewLifecycleOwner
+        val binding = FragmentPostPageBinding.inflate(inflater)
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        binding.postViewModle = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
 
         viewModel.getPosts()
 
-        bindigin.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         val adapter = customAdapter(viewModel)
-        bindigin.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
         viewModel.postsList.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it)
         }
@@ -46,7 +46,7 @@ class PostPageFragment : Fragment() {
         }
 
 
-        return bindigin.root
+        return binding.root
     }
 
 

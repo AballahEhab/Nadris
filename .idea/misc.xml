@@ -74,11 +74,16 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/list_item.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/phone_fragment.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/post_page_fragment.xml" value="0.25" />
-        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/activity_studnet_main_acitivity.xml" value="0.18432971014492755" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/drawable/ic_user.xml" value="0.24375" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/drawable/ic_vertical_line.xml" value="0.24375" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/activity_main.xml" value="0.2234375" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/activity_studnet_main_acitivity.xml" value="0.4" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/activity_teacher_main.xml" value="0.2234375" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_add_pos.xml" value="0.22291666666666668" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_headline_subjects.xml" value="0.22291666666666668" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_home1.xml" value="0.2234375" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_login.xml" value="0.18432971014492755" />
-        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_post_page.xml" value="0.1" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_post_page.xml" value="0.37271937445699393" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_subjects_rv.xml" value="0.22291666666666668" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_units.xml" value="0.176" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_add_coment.xml" value="0.22291666666666668" />
@@ -87,10 +92,11 @@
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_gender_list.xml" value="0.22291666666666668" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_lesson.xml" value="0.22291666666666668" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_lesson_subjects.xml" value="0.22291666666666668" />
-        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_post_card_cell.xml" value="0.1" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_post_card_cell.xml" value="0.386986301369863" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_rv_sub_teacher.xml" value="0.22291666666666668" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_rv_subjects.xml" value="0.22291666666666668" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_unit_subjects.xml" value="0.2" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/menu/student_bottom_navigation_menu.xml" value="0.24166666666666667" />
       </map>
     </option>
   </component>

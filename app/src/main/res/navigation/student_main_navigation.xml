@@ -51,7 +51,8 @@
         android:id="@+id/addPostFragment"
         android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
         android:label="addPostFragment" >
-        <action android:id="@+id/action_addPostFragment_to_navigation_posts" app:destination="@id/navigation_posts"/>
+        <action android:id="@+id/action_addPostFragment_to_navigation_posts"
+                app:destination="@id/navigation_posts"/>
     </fragment>
     <fragment
         android:id="@+id/addCommentFragment"

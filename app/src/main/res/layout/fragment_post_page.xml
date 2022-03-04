@@ -12,111 +12,108 @@
                  android:layout_height="match_parent">
 
 
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
-            <androidx.constraintlayout.widget.ConstraintLayout
+            tools:context=".ui.studentActivity.posts.PostPageFragment">
+
+            <LinearLayout
+                android:id="@+id/l1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:context=".ui.studentActivity.posts.PostPageFragment">
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/recycler_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout android:id="@+id/l2"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/l1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <LinearLayout android:id="@+id/l2"
-                                  android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        style="@style/material_icon_small"
+                        android:layout_margin="@dimen/small_margin"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:srcCompat="@drawable/ic_user"/>
+
+                    <LinearLayout android:id="@+id/l3"
+                                  android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
-                                  android:orientation="horizontal">
+                                  android:layout_margin="@dimen/small_margin"
+                                  android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textViewWelcome"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/welcome"
+                        />
+                        <TextView
+                            android:id="@+id/account_name"
+                            style="@style/material_text_body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{postViewModle.name}"
+                            android:textStyle="bold"
+                        />
+                    </LinearLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/textViewNumber"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/mid_margin"
+                            android:fontFamily="@font/cairo_light"
+                            android:text="@string/_1"
 
+                            app:layout_constraintEnd_toStartOf="@+id/notificationImage"
+                            app:layout_constraintTop_toTopOf="parent"/>
                         <ImageView
-                            android:id="@+id/profileImage"
-                            style="@style/material_icon_small"
+                            android:id="@+id/notificationImage"
+                            android:layout_width="18dp"
+                            android:layout_height="31dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="12dp"
                             android:clickable="true"
                             android:focusable="true"
-                            android:layout_margin="@dimen/small_margin"
-                            app:srcCompat="@drawable/ic_facebook"/>
+                            app:layout_constraintBottom_toBottomOf="@+id/textViewNumber"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.32" app:srcCompat="@drawable/ic_notification"/>
 
-                        <LinearLayout android:id="@+id/l3"
-                                      android:layout_margin="@dimen/small_margin"
-                                      android:layout_width="wrap_content"
-                                      android:layout_height="wrap_content"
-                                      android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/textViewWelcome"
-                                style="@style/material_text_body_small"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/welcome"
-                            />
-                            <TextView
-                                android:id="@+id/account_name"
-                                style="@style/material_text_body"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@{postViewModle.name}"
-                           />
-                        </LinearLayout>
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-                            <TextView
-                                android:id="@+id/textViewNumber"
-                                style="@style/material_text_body_small"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/mid_margin"
-                                android:fontFamily="@font/cairo_light"
-                                android:text="@string/_1"
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                                app:layout_constraintEnd_toStartOf="@+id/notificationImage"
-                                app:layout_constraintTop_toTopOf="parent"/>
-                            <ImageView
-                                android:id="@+id/notificationImage"
-                                android:layout_width="18dp"
-                                android:layout_height="31dp"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginEnd="12dp"
-                                android:clickable="true"
-                                android:focusable="true"
-                                app:layout_constraintBottom_toBottomOf="@+id/textViewNumber"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.32" app:srcCompat="@drawable/ic_notification"/>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </LinearLayout>
-
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_margin="@dimen/small_margin"
-                        android:background="@color/container_card_color"
-                        android:iconifiedByDefault="false"
-                        android:queryHint="@string/search"
-                        android:searchIcon="@drawable/ic_search"/>
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10sp"
-                    android:layout_marginTop="100dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/l1"
-                    tools:listitem="@layout/item_post_card_cell"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_margin="@dimen/small_margin"
+                    android:background="@color/container_card_color"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="@string/search"
+                    android:searchIcon="@drawable/ic_search"/>
+            </LinearLayout>
 
-        </ScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/match_constrain"
+                app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/l1"
+                tools:listitem="@layout/item_post_card_cell"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabBtnCreateNote"
             android:layout_width="wrap_content"
