@@ -153,4 +153,13 @@
     <string name="storage_permission_request">الوصول إلى الملفات مطلوب لاستخدام الملفات</string>
     <string name="cancel">إلغاء</string>
     <string name="camera_permission_request">بحاجة إلى الوصول للكاميرا</string>
+    <string name="last_activities">أخر النشاطات</string>
+    <string name="tv_posts">Posts</string>
+    <string name="tv_num_posts">147</string>
+    <string name="tv_name_profile">محمد مصطفي</string>
+    <string name="specialty_profile">طالب بالصف الثالث الثانوي</string>
+    <string name="tv_followers">followers</string>
+    <string name="tv_following">following</string>
+    <string name="tv_num_followers">255</string>
+    <string name="tv_num_folloing">175</string>
 </resources>

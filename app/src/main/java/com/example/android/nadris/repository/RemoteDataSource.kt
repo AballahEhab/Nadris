@@ -2,6 +2,7 @@ package com.example.android.nadris.repository
 
 import com.example.android.nadris.network.dtos.*
 import com.example.android.nadris.network.services.PostsService
+import com.example.android.nadris.network.services.ProfileService
 import com.example.android.nadris.network.services.SubjectsService
 import com.example.android.nadris.network.services.UserService
 import javax.inject.Inject
@@ -10,7 +11,8 @@ import javax.inject.Inject
 class RemoteDataSource @Inject
 constructor(private val usersService: UserService,
             private val postsService: PostsService,
-            private val subjectsService: SubjectsService
+            private val subjectsService: SubjectsService,
+            private val profileService:ProfileService
             ){
 
     suspend fun login(loginModel: LoginAccountModel) =
@@ -47,4 +49,6 @@ constructor(private val usersService: UserService,
         subjectsService.getGradeSubjects(gradeId, token)
 
 
+    suspend fun getProfileInfo(token:String)=
+        profileService.getProfileInfo(token)
 }

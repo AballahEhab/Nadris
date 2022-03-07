@@ -67,6 +67,11 @@ class Repository @Inject constructor(
             fetch = { remoteDataSource.comment(comment,token)}
             )
 
+     fun getProfileInfo(token:String)= requestAPI  (
+         fetch = {remoteDataSource.getProfileInfo(token)}
+
+             )
+
 
 
 

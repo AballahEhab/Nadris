@@ -29,10 +29,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.android.nadris.ui.studentActivity.notifications.NotificationsFragment"
+        android:id="@+id/profile"
+        android:name="com.example.android.nadris.ui.studentActivity.profile.profile"
         android:label="@string/student_schedual_title"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/teachers_RV_fragment"
@@ -62,6 +62,7 @@
             android:name="post"
             app:argType="com.example.android.nadris.database.models.DatabasePost" />
     </fragment>
+
 
 
 </navigation>
