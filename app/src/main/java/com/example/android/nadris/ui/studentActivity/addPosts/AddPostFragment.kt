@@ -47,8 +47,15 @@ class AddPostFragment : Fragment() {
         binding.addPostViewModel = viewModel
         //initialize converter
         converter = Converter(requireContext().applicationContext)
-        viewModel.getSubjects()
+        if (viewModel.isTeacher)
+            viewModel.getGrades()
+        else viewModel.getSubjects()
 
+
+        viewModel.grades.observe(viewLifecycleOwner) { list ->
+            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
+            (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        }
         viewModel.subjects.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
             (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!

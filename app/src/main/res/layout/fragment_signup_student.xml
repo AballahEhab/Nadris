@@ -22,10 +22,10 @@
 
                 <TextView
                     android:id="@+id/textView_register_as_teacher"
+                    style="@style/material_text_header"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/textView_register_as_student"
-                    style="@style/material_text_header"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:afterTextChanged="@{()->StudentViewModel.validateGrade()}"
                         android:inputType="none"
-                        android:text="@={StudentViewModel.grade}"
+                        android:text="@={StudentViewModel.selectedSection}"
 
                         tools:ignore="LabelFor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -172,7 +172,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/sp_gender_student_signup"
                     style="@style/material_drop_menu"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
@@ -187,7 +187,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:afterTextChanged="@{()->StudentViewModel.validateGender()}"
-
                         android:inputType="none"
                         android:text="@={StudentViewModel.gender}"
                         tools:ignore="LabelFor"/>

@@ -3,13 +3,30 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="AddPostViewModel"
+    <variable name="AddPostViewModel"
                   type="com.example.android.nadris.ui.studentActivity.addPosts.AddPostViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.studentActivity.posts.addPostFragment">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spGrades"
+            style="@style/material_drop_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:hint="@string/select_grade"
+            app:isVisible="@{AddPostViewModel.isTeacher()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text="@={AddPostViewModel.selectedGrade}"/>
+        </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/spAddSubject"
             style="@style/material_drop_menu"
@@ -19,7 +36,7 @@
             android:hint="@string/subject"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/spGrades">
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextView"
                 android:layout_width="match_parent"
@@ -34,8 +51,8 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/mid_margin"
             android:gravity="start|top"
-            android:inputType="textMultiLine"
             android:hint="@string/yourQus"
+            android:inputType="textMultiLine"
             android:text="@={AddPostViewModel.question}"
             android:textAppearance="@style/material_text_body"
             app:layout_constraintBottom_toTopOf="@id/picked_image"
@@ -46,13 +63,13 @@
         <ImageView
             android:id="@+id/picked_image"
             android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:maxWidth="@dimen/match_constrain"
-                   android:maxHeight="@dimen/match_constrain"
-                   app:layout_constraintBottom_toTopOf="@id/imageButton"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/textViewAddQesition"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/match_constrain"
+            android:maxHeight="@dimen/match_constrain"
+            app:layout_constraintBottom_toTopOf="@id/imageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewAddQesition"
         />
         <Button
             android:id="@+id/imageButton"

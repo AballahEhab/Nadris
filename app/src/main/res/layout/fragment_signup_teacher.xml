@@ -170,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:afterTextChanged="@{()->TeacherViewModel.validateCollegeField()}"
                         android:inputType="none"
-                        android:text="@={TeacherViewModel.collage}"
+                        android:text="@={TeacherViewModel.selectedCollege}"
                         tools:ignore="LabelFor"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,8 +193,7 @@
                         android:layout_height="wrap_content"
                         android:afterTextChanged="@{()->TeacherViewModel.validateUniversityFieldInput()}"
                         android:inputType="none"
-                        android:text="@={TeacherViewModel.university}"
-
+                        android:text="@={TeacherViewModel.selectedUniversity}"
                         tools:ignore="LabelFor"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout

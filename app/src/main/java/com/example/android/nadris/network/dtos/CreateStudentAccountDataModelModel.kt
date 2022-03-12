@@ -1,12 +1,11 @@
 package com.example.android.nadris.network.dtos
 
- class CreateStudentAccountDataModelModel(
-     firstName: String,
-     lastName: String,
-     email: String,
-     password: String,
-     phoneNumber: String,
-     gender: Int,
-    val sectionId: Int = 1
+data class CreateStudentAccountDataModelModel(
+    val firstName: String,
+    val lastName: String,
+    val email: String,
+    val password: String,
+    val phoneNumber: String,
+    val gender: Int,
+    val sectionId: Int
 )
-    : CreateAccountDataModel(firstName,lastName,email,password,phoneNumber,gender)

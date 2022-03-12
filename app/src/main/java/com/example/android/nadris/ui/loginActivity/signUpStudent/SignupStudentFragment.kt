@@ -2,27 +2,26 @@ package com.example.android.nadris.ui.loginActivity.signUpStudent
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.android.nadris.PasswordError
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSignupStudentBinding
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
+import com.example.android.nadris.util.getErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class signupStudentFragment : Fragment() {
 
     val viewModel: SignupStudentViewModel by viewModels()
-    private lateinit var binding :FragmentSignupStudentBinding
-    private lateinit var gender : Array<String>
-    private lateinit var grade:Array<String>
-    private lateinit var adapter1:ArrayAdapter<String>
-    private lateinit var adapter2 :ArrayAdapter<String>
+    private lateinit var binding: FragmentSignupStudentBinding
+    private lateinit var grade: Array<String>
+    private lateinit var adapter1: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,45 +29,31 @@ class signupStudentFragment : Fragment() {
     ): View {
         inflater.inflate(R.layout.fragment_signup_student, container, false)
         binding = FragmentSignupStudentBinding.inflate(inflater)
-
-
         initiate()
-
         binding.studentViewModel = viewModel
-
+        viewModel.getSections()
         binding.lifecycleOwner = this
-
         setAdapterForSpinners()
-
         registerObservers()
 
-        viewModel.grade.observe(this.viewLifecycleOwner){
-            viewModel.gradeId = grade.indexOf(it)
-        }
-        viewModel.gender.observe(this.viewLifecycleOwner){
-            viewModel.genderId = gender.indexOf(it)
-        }
-
         return binding.root
-
-
     }
 
-    private fun setAdapterForSpinners()
-    {
+    private fun setAdapterForSpinners() {
         (binding.spGenderStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter1)!!
-        (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter2)!!
-
     }
+
     private fun initiate() {
-        gender = this.resources.getStringArray(R.array.GenderList)
+        viewModel.genderList.addAll(resources.getStringArray(R.array.GenderList))
         grade = resources.getStringArray(R.array.GradeList)
-        adapter1 = ArrayAdapter(requireContext(), R.layout.item_gender_list, gender)
-        adapter2 = ArrayAdapter(requireContext(), R.layout.item_gender_list, grade)
-
+        adapter1 = ArrayAdapter(requireContext(), R.layout.item_gender_list, viewModel.genderList)
+        viewModel.sections.observe(viewLifecycleOwner){list->
+          val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list,list.map { it.name } )
+            (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        }
     }
 
-    fun registerObservers(){
+    fun registerObservers() {
         this.viewModel.firstnameHaveError.observe(viewLifecycleOwner) {
             if (it)
                 binding.edtFirstNameStudent.error = "مطلوب"
@@ -78,7 +63,7 @@ class signupStudentFragment : Fragment() {
         }
         this.viewModel.lastnameHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.edtLastNameStudent.error = "مطلوب"
+                binding.edtLastNameStudent. error = "مطلوب"
             else
                 binding.edtLastNameStudent.error = null
         }
@@ -89,20 +74,8 @@ class signupStudentFragment : Fragment() {
                 binding.edtEmailStudentSignup.error = null
         }
         this.viewModel.password1HaveError.observe(viewLifecycleOwner) {
-            var errorMessage :String? = null
-            if (it)
-                when(viewModel.passwordErrorType){
-                    PasswordError.SHORT_PASSWORD->
-                        errorMessage = "Minimum 8 Character password"
-                    PasswordError.NOT_CONTAIN_UPPERCASE->
-                        errorMessage = "Must Contain 1 Upper-case Characters"
-                    PasswordError.NOT_CONTAIN_LOWER_CASE->
-                        errorMessage = "Must Contain 1 Lower-case Characters"
-                    PasswordError.NOT_CONTAIN_SPECIAL_CHARACTER->
-                        errorMessage = "Must Contain 1 Special Characters(@#\$%^&+=)"
-                    null -> errorMessage = null // impossible case
-                }
-
+            var errorMessage: String? = null
+            errorMessage= getErrorMessage(viewModel.passwordErrorType)
             binding.edtPassword1StudentSignup.error = errorMessage
         }
         viewModel.passwordNotMatch.observe(viewLifecycleOwner) {
@@ -119,9 +92,9 @@ class signupStudentFragment : Fragment() {
         }
         viewModel.ganderHaveError.observe(viewLifecycleOwner) {
             if (it)
-            binding.spGenderStudentSignup.error = "please set the gender"
+                binding.spGenderStudentSignup.error = "please set the gender"
             else
-            binding.spGenderStudentSignup.error = null
+                binding.spGenderStudentSignup.error = null
 
         }
         viewModel.gradeHaveError.observe(viewLifecycleOwner) {

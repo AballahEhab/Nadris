@@ -150,4 +150,6 @@
     <string name="storage_permission_request">storage permission needed to use files</string>
     <string name="cancel">cancel</string>
     <string name="camera_permission_request">camera permission needed to pick image</string>
+    <string name="select_grade">select grade</string>
+
 </resources>

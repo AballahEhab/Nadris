@@ -1,10 +1,10 @@
 package com.example.android.nadris.repository
 
 import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.network.*
+import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.network.dtos.*
-import com.example.android.nadris.util.postToApiAndSaveToDatabase
 import com.example.android.nadris.util.getFromApiAndSaveToDataBase
+import com.example.android.nadris.util.postToApiAndSaveToDatabase
 import com.example.android.nadris.util.requestAPI
 import javax.inject.Inject
 
@@ -28,14 +28,14 @@ class Repository @Inject constructor(
 
     fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
         postToApiAndSaveToDatabase(
-        request= { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) }
-        ,saveFetchResult= {user-> localDataSource.addUserData(user)}
-        , convertToDatabaseModel = { networkModel ->  NetworkModelsMapper.authModelAsDataBaseModel(networkModel)}
-    )
+            request = { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) },
+            saveFetchResult = { user -> localDataSource.addUserData(user) },
+            convertToDatabaseModel = { networkModel -> NetworkModelsMapper.authModelAsDataBaseModel(networkModel) }
+        )
 
     suspend fun getUser() = localDataSource.getUserData()
 
-    fun getPosts(token:String) = getFromApiAndSaveToDataBase(
+    fun getPosts(token: String) = getFromApiAndSaveToDataBase(
         query = { localDataSource.getAllPosts() },
         fetch = { remoteDataSource.getAllPosts(token) },
         convertToDatabaseModel = { networkPostsList ->
@@ -44,9 +44,9 @@ class Repository @Inject constructor(
         saveFetchResult = { list_of_posts -> list_of_posts?.let { localDataSource.insertPosts(it) } }
     )
 
-    suspend fun updatePostById(post:DatabasePost) = localDataSource.updatePost(post)
+    suspend fun updatePostById(post: DatabasePost) = localDataSource.updatePost(post)
 
-    suspend fun getPostById(postId:Long) = localDataSource.getPostById(postId)
+    suspend fun getPostById(postId: Long) = localDataSource.getPostById(postId)
 
     fun publishPost(post: CreatePostModel, token: String) = postToApiAndSaveToDatabase(
         request = { remoteDataSource.publishAPost(post, token) },
@@ -55,24 +55,32 @@ class Repository @Inject constructor(
     )
 
     fun getGradeSubjects(gradeId: Long, token: String) = requestAPI(
-        fetch={ remoteDataSource.getGradeSubjects(gradeId, token)}
+        fetch = { remoteDataSource.getGradeSubjects(gradeId, token) }
     )
 
     fun getAllComments(token: String, postId: Long) = requestAPI(
-        fetch = { remoteDataSource.getCommentsByPostId(postId,token) } )
+        fetch = { remoteDataSource.getCommentsByPostId(postId, token) })
 
-    fun vote(voteModel: VoteModel, token:String) =
+    fun vote(voteModel: VoteModel, token: String) =
         postToApiAndSaveToDatabase(
-            request= { remoteDataSource.vote(voteModel, token) }
-            ,saveFetchResult= {post-> localDataSource.updatePost(post) }
-            , convertToDatabaseModel = { networkMPost ->  NetworkModelsMapper.postAsDatabaseModel(networkMPost)}
+            request = { remoteDataSource.vote(voteModel, token) },
+            saveFetchResult = { post -> localDataSource.updatePost(post) },
+            convertToDatabaseModel = { networkMPost -> NetworkModelsMapper.postAsDatabaseModel(networkMPost) }
         )
 
-    suspend fun publishComment(comment: PublishCommentModel, token: String) = requestAPI (
-            fetch = { remoteDataSource.comment(comment,token)}
-            )
+    suspend fun publishComment(comment: PublishCommentModel, token: String) = requestAPI(
+        fetch = { remoteDataSource.comment(comment, token) }
+    )
 
+    fun getUniversities() = requestAPI(
+        fetch = { remoteDataSource.getUniversities() })
 
+    fun getColleges(id: Int) = requestAPI(
+        fetch = { remoteDataSource.getColleges(id) })
 
+    fun getSections() = requestAPI(
+        fetch = { remoteDataSource.getSections() })
 
+    fun getGrades() = requestAPI(
+        fetch = { remoteDataSource.getGrades() })
 }

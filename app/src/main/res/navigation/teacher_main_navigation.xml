@@ -7,9 +7,17 @@
 
     <fragment
         android:id="@+id/navigation_home1"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home1" />
+        android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
+        tools:layout="@layout/fragment_post_page" >
+
+        <action
+            android:id="@+id/action_navigation_posts_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+        <action
+            android:id="@+id/action_navigation_posts_to_addCommentFragment"
+            app:destination="@id/addCommentFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/sub_teacher_rv_Fragment"
@@ -46,5 +54,19 @@
             android:id="@+id/action_choosing_new_subjects_to_sub_teacher_rv_Fragment"
             app:destination="@id/sub_teacher_rv_Fragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
+        android:label="addPostFragment" >
+        <action android:id="@+id/action_addPostFragment_to_navigation_posts"
+                app:destination="@id/navigation_home1"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addCommentFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentFragment"
+        android:label="AddCommentFragment" >
+        <argument
+            android:name="postId"
+            app:argType="long" />
+    </fragment>
 </navigation>

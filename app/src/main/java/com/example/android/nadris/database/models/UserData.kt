@@ -18,7 +18,9 @@ data class UserData(
     val University: String?,
     val College: String?,
     val Token: String,
-){
-    fun getFullName() = firstName+lastName
+) {
+    fun getFullName() = firstName + lastName
+    fun isTeacher(): Boolean = Type == "teacher"
+
 }
 
