@@ -25,4 +25,9 @@ interface PostsService {
 
     @GET("/api/Posts/{id}/comments")
     suspend fun getCommentByPostId(@Path("id") id:Long, @Header("authorization") token: String): Response<List<CommentModel>>
+
+    @GET("api/Posts/MyPosts")
+    suspend fun getLastActivity(@Header("authorization") token: String):Response<List<NetworkPost>>
+
+
 }

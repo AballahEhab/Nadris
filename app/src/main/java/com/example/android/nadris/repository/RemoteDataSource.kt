@@ -1,10 +1,7 @@
 package com.example.android.nadris.repository
 
 import com.example.android.nadris.network.dtos.*
-import com.example.android.nadris.network.services.PostsService
-import com.example.android.nadris.network.services.ProfileService
-import com.example.android.nadris.network.services.SubjectsService
-import com.example.android.nadris.network.services.UserService
+import com.example.android.nadris.network.services.*
 import javax.inject.Inject
 
 
@@ -51,4 +48,9 @@ constructor(private val usersService: UserService,
 
     suspend fun getProfileInfo(token:String)=
         profileService.getProfileInfo(token)
+
+    suspend fun getLastActivity(token:String)=
+        postsService.getLastActivity(token)
+
+
 }

@@ -59,10 +59,10 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
             holder.toggleVoteIconStatus(data.getVoteStatus())
             if (data.getVoteStatus()) data.votesNum-- else data.votesNum++
             data.toggleVote()
-            viewModel.vote(position, data.getVoteStatus())
-                .let {
-                    differ.currentList[position] = it!!
-                }
+//            viewModel.vote(position, data.getVoteStatus())
+//                .let {
+//                    differ.currentList[position] = it!!
+//                }
             notifyItemChanged(position)
         }
         holder.binding.bookmark.setOnClickListener {

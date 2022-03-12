@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.TOKEN_PREFIX
 import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.network.NetworkModelsMapper
+import com.example.android.nadris.network.NetworkModelsMapper.postAsDatabaseModel
+import com.example.android.nadris.network.dtos.NetworkPost
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -19,14 +22,14 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
     var imgProfile: MutableLiveData<Int> = MutableLiveData<Int>();
     var nameProfile: MutableLiveData<String> = MutableLiveData<String>("Name Profile");
 
-    var profileType: MutableLiveData<String> = MutableLiveData("Student");
+    var profileType: MutableLiveData<String> = MutableLiveData("Student or teacher");
 
-    var numPosts: MutableLiveData<Long>  = MutableLiveData();
-    var numFollowers:MutableLiveData<Long>  = MutableLiveData();
-    var numFolling: MutableLiveData<Long>  = MutableLiveData();
+    var numPosts: MutableLiveData<Long> = MutableLiveData(0);
+    var numFollowers: MutableLiveData<Long> = MutableLiveData(0);
+    var numFolling: MutableLiveData<Long> = MutableLiveData(0);
 
-    var postsProfileList: MutableLiveData<List<DatabasePost>> =
-        MutableLiveData<List<DatabasePost>>()
+    var postsProfileList = MutableLiveData(mutableListOf<DatabasePost>())
+    //var List : MutableLiveData<MutableList<DatabasePost>>  =MutableLiveData<MutableList<DatabasePost>>(mutableListOf<DatabasePost>())
 
 
     fun getProfileInfo_from_api() {
@@ -34,32 +37,47 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
         viewModelScope.launch {
             var result = repository.getProfileInfo(TOKEN_PREFIX + token)
 
-
             result.collect {
                 it.handleRepoResponse(
                     onLoading = {
-                        //Log.i("profile_api", "onLoading")
+
                     }, onError = {
-                          nameProfile.value = NadrisApplication.userData?.getFullName()
-                          profileType.value = NadrisApplication.userData?.Type
+                        nameProfile.value = NadrisApplication.userData?.getFullName()
+                        profileType.value = NadrisApplication.userData?.Type
                         //  numFollowers.value=NadrisApplication.userData?.
-                         // numFolling.value = NadrisApplication.userData?.
-
+                        // numFolling.value = NadrisApplication.userData?.
                     }, onSuccess = {
-                        //Log.i("profile_api", it.data?.firstName.toString())
-
                         nameProfile.value = it.data!!.firstName + " " + it.data.lastName
                         //numPosts.value = (it.data)?.numOfPosts
                         numFollowers.value = it.data?.numOfFollowers
                         numFolling.value = it.data?.numOfFollowing
                         profileType.value = it.data?.type
-
-
                     }
                 )
             }
+        }
+    }
 
+    fun getLastActivity() {
+        viewModelScope.launch {
+            val token = NadrisApplication.userData?.Token
+            var result = repository.getLastActivity(TOKEN_PREFIX + token)
+            result.collect {
+                it.handleRepoResponse(
+                    onLoading = {
 
+                    }, onError = {
+                        Log.i("post",it.error.toString())
+
+                    }, onSuccess = {
+                        postsProfileList.value = it.data?.map { postAsDatabaseModel(it) }?.toMutableList()
+//                        it.data!!.forEach {  post ->
+////                            postsProfileList.value!!.add(NetworkModelsMapper.postAsDatabaseModel(post) )
+//                            Log.i("post",postsProfileList.toString())
+//                        }
+                    }
+                )
+            }
         }
     }
 
