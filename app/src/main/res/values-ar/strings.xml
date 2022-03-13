@@ -154,19 +154,19 @@
     <string name="cancel">إلغاء</string>
     <string name="camera_permission_request">بحاجة إلى الوصول للكاميرا</string>
     <string name="last_activities">أخر النشاطات</string>
-    <string name="tv_posts">Posts</string>
+    <string name="tv_posts">المنشورات</string>
     <string name="tv_num_posts">147</string>
     <string name="tv_name_profile">محمد مصطفي</string>
     <string name="specialty_profile">طالب بالصف الثالث الثانوي</string>
-    <string name="tv_followers">followers</string>
-    <string name="tv_following">following</string>
-    <string name="Settings">Settings</string>
-    <string name="tv_edit_profile">Edit Profile</string>
-    <string name="tv_change_password">Change Password</string>
-    <string name="tv_change_class">Change Class</string>
-    <string name="tv_night_mode">Night Mode</string>
-    <string name="tv_change_language">Change Language</string>
-    <string name="tv_help">Help</string>
-    <string name="tv_sign_out">Sign Out</string>
+    <string name="tv_followers">المتابعون</string>
+    <string name="tv_following">تتابع</string>
+    <string name="Settings">الإعدادات</string>
+    <string name="tv_edit_profile">تعديل الملف الشخصي</string>
+    <string name="tv_change_password">تغيير كلمه المرور</string>
+    <string name="tv_change_class">"تغيير الصف الدراسي "</string>
+    <string name="tv_night_mode">الوضع الليلي</string>
+    <string name="tv_change_language">تغيير اللغة</string>
+    <string name="tv_help">المساعدة</string>
+    <string name="tv_sign_out">تسجيل الخروج</string>
 
 </resources>

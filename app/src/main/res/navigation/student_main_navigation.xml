@@ -80,6 +80,17 @@
         <action
             android:id="@+id/action_settingsFragment_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_settingsFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.Settings.Help.HelpFragment"
+        android:label="HelpFragment" >
+        <action
+            android:id="@+id/action_helpFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
 

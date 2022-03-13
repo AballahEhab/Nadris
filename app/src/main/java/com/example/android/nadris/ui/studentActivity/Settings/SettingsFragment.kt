@@ -17,8 +17,6 @@ class SettingsFragment : Fragment() {
     private lateinit var binding:FragmentSettingsBinding
     val viewModel: SettingsViewModel by viewModels()
 
-//    private lateinit var viewModel: SettingsViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -27,7 +25,8 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater)
 
         binding.imagBackProfile.setOnClickListener {
-            this.findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToProfile())
+            this.findNavController()
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToProfile())
         }
 
         binding.tvEditProfile.setOnClickListener {
@@ -51,6 +50,8 @@ class SettingsFragment : Fragment() {
         }
 
         binding.tvHelp.setOnClickListener {
+            this.findNavController()
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToHelpFragment())
 
         }
 
