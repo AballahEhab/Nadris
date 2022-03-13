@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_posts_to_addCommentFragment"
             app:destination="@id/addCommentFragment" />
+        <action
+            android:id="@+id/action_navigation_posts_to_profile"
+            app:destination="@id/profile" />
     </fragment>
 
     <fragment
@@ -32,7 +35,11 @@
         android:id="@+id/profile"
         android:name="com.example.android.nadris.ui.studentActivity.profile.profile"
         android:label="@string/student_schedual_title"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/teachers_RV_fragment"
@@ -41,6 +48,9 @@
         <action
             android:id="@+id/action_teachers_RV_fragment_to_headline_subjects"
             app:destination="@id/headline_subjects" />
+        <action
+            android:id="@+id/action_teachers_RV_fragment_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/headline_subjects"
@@ -62,7 +72,15 @@
             android:name="post"
             app:argType="com.example.android.nadris.database.models.DatabasePost" />
     </fragment>
-
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.Settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
 
 
 </navigation>

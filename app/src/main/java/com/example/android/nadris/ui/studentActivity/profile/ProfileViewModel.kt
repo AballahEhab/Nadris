@@ -29,7 +29,6 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
     var numFolling: MutableLiveData<Long> = MutableLiveData(0);
 
     var postsProfileList = MutableLiveData(mutableListOf<DatabasePost>())
-    //var List : MutableLiveData<MutableList<DatabasePost>>  =MutableLiveData<MutableList<DatabasePost>>(mutableListOf<DatabasePost>())
 
 
     fun getProfileInfo_from_api() {

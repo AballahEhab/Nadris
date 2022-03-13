@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
@@ -44,12 +45,11 @@ class profile : Fragment() {
 
         viewModel.postsProfileList.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it.toList())
-            Log.i("length", it.size.toString())
+           // Log.i("length", it.size.toString())
         }
 
         binding.imagSetting.setOnClickListener {
-
-            // todo navigate to setting page
+            this.findNavController().navigate(profileDirections.actionProfileToSettingsFragment())
         }
 
         return binding.root;

@@ -159,5 +159,13 @@
     <string name="specialty_profile">طالب بالصف الثالث الثانوي</string>
     <string name="tv_followers">followers</string>
     <string name="tv_following">following</string>
+    <string name="Settings">Settings</string>
+    <string name="tv_edit_profile">Edit Profile</string>
+    <string name="tv_change_password">Change Password</string>
+    <string name="tv_change_class">Change Class</string>
+    <string name="tv_night_mode">Night Mode</string>
+    <string name="tv_change_language">Change Language</string>
+    <string name="tv_help">Help</string>
+    <string name="tv_sign_out">Sign Out</string>
 
 </resources>

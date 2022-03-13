@@ -55,6 +55,7 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
             holder.itemView.findNavController()
                 .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data))
         }
+
         holder.binding.imgVote.setOnClickListener {
             holder.toggleVoteIconStatus(data.getVoteStatus())
             if (data.getVoteStatus()) data.votesNum-- else data.votesNum++
