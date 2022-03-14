@@ -9,7 +9,7 @@ import com.example.android.nadris.database.dao.UserDao
 import com.example.android.nadris.database.models.*
 
 
-@Database(entities = [UserData::class, DatabasePost::class, DatabaseSubject::class, Lesson::class], version = 1, exportSchema = false)
+@Database(entities = [UserData::class, DatabasePost::class, DatabaseSubject::class, Lesson::class,TeacherSubject::class], version = 1, exportSchema = false)
 
 abstract class NadrisDatabase : RoomDatabase() {
 

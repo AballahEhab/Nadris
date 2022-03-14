@@ -3,9 +3,11 @@ package com.example.android.nadris.network
 import android.util.Log
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.TeacherSubject
 import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.network.dtos.AuthModel
 import com.example.android.nadris.network.dtos.NetworkPost
+import com.example.android.nadris.network.dtos.TeacherSubjectDTO
 import com.example.android.nadris.services.Converter
 
 object NetworkModelsMapper {
@@ -51,5 +53,13 @@ object NetworkModelsMapper {
         Token = model.token
     )
 
+    fun subjectDTOtoModel(dto: TeacherSubjectDTO) = TeacherSubject(
+        dto.id,
+        dto.name,
+        dto.section,
+        dto.term,
+        dto.grade,
+        dto.teacherName
+    )
 
 }

@@ -15,92 +15,88 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
             <ImageView
                 android:id="@+id/img_sub_teach"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/match_constrain"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.355"
-                app:srcCompat="@drawable/icon_plus"/>
+                android:layout_margin="@dimen/mid_margin"
+                app:layout_constraintEnd_toStartOf="@id/tv_name_subject_teacher"
+                app:srcCompat="@drawable/ic_google"/>
 
             <TextView
                 android:id="@+id/tv_name_subject_teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/cairo_light"
+                style="@style/material_text_header_small"
                 android:text="@string/tv_name_subject_phyiscs"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/img_sub_teach"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toStartOf="@id/tv_count_student_teach"
+                app:layout_constraintTop_toTopOf="@id/img_sub_teach"
+                app:layout_constraintBottom_toTopOf="@id/tv_count_student_teach"
+
+            />
 
             <TextView
                 android:id="@+id/tv_count_student_teach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
+                style="@style/material_text_body_small"
                 android:text="@string/tv_count_student_on_all_subjects"
-                app:layout_constraintBottom_toTopOf="@+id/tv_class"
-                app:layout_constraintEnd_toStartOf="@+id/img_sub_teach"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name_subject_teacher"
-                app:layout_constraintVertical_bias="0.0"/>
+                android:layout_margin="@dimen/mid_margin"
+                app:layout_constraintBottom_toTopOf="@id/tv_class"
+                app:layout_constraintStart_toEndOf="@id/img_sub_teach"
+                app:layout_constraintTop_toBottomOf="@id/tv_name_subject_teacher"
+            />
 
             <TextView
                 android:id="@+id/tv_item_st_count_teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                style="@style/material_text_body_small"
                 android:text="@string/tv_item_st_count"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_count_student_teach"
-                app:layout_constraintEnd_toStartOf="@+id/tv_count_student_teach"
-                app:layout_constraintStart_toStartOf="@+id/tv_name_subject_teacher"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name_subject_teacher"
-                app:layout_constraintVertical_bias="1.0"/>
+                app:layout_constraintBottom_toBottomOf="@id/tv_count_student_teach"
+                app:layout_constraintStart_toEndOf="@+id/tv_count_student_teach"
+                app:layout_constraintTop_toTopOf="@+id/tv_count_student_teach"
+            />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_modification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/cairo_light"
-                android:text="@string/btn_modification"
-                android:textSize="24sp"
-                app:backgroundTint="@color/bink"
-                app:cornerRadius="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.372"/>
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/btn_modification"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="16dp"-->
+            <!--                android:fontFamily="@font/cairo_light"-->
+            <!--                android:text="@string/btn_modification"-->
+            <!--                android:textSize="24sp"-->
+            <!--                app:backgroundTint="@color/bink"-->
+            <!--                app:cornerRadius="15dp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintVertical_bias="0.372"/>-->
 
             <TextView
                 android:id="@+id/tv_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="5dp"
+                style="@style/material_text_body"
                 android:text="@string/tv_class"
+                android:layout_margin="@dimen/mid_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/img_sub_teach"/>
+                app:layout_constraintStart_toEndOf="@id/img_sub_teach"/>
 
             <TextView
                 android:id="@+id/tv_semester"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="5dp"
                 android:text="@string/tv_semester"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_class"
-                app:layout_constraintTop_toBottomOf="@+id/tv_count_student_teach"
-                app:layout_constraintVertical_bias="1.0"/>
+                style="@style/material_text_body"
+                android:layout_margin="@dimen/mid_margin"
+                app:layout_constraintBottom_toBottomOf="@id/tv_class"
+                app:layout_constraintStart_toEndOf="@+id/tv_class"
+                app:layout_constraintTop_toTopOf="@+id/tv_class"
+            />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

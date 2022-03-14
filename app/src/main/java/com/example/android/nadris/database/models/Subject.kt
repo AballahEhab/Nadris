@@ -15,3 +15,14 @@ data class SubjectUnit (
         lessonsVisibility = !lessonsVisibility
     }
 }
+
+
+@Entity
+data class TeacherSubject(
+    @PrimaryKey val id: Long,
+    val  name: String,
+    val section :String,
+    val term : String,
+    val grade: String,
+    val teacherName : String
+)

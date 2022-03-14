@@ -110,11 +110,11 @@
     <string name="namesubjects">المواد الدراسيه</string>
     <string name="TvChoseTeachers">إختار مدرس</string>
     <string name="btn_joining">إنضمام</string>
-    <string name="tv_name_subject_phyiscs">الفيزياء</string>
+    <string name="tv_name_subject_phyiscs">physics</string>
     <string name="tv_count_student_on_all_subjects">160 </string>
     <string name="tv_count_teacher_on_all_subjects">15 </string>
-    <string name="tv_item_st_count">طالب</string>
-    <string name="tv_item_teach_count">مدرس</string>
+    <string name="tv_item_st_count">student</string>
+    <string name="tv_item_teach_count">teacher</string>
     <string name="tv_name_teachers">محمد مصطفي</string>
     <string name="tv_content_description">شرح ومراجعه</string>
     <string name="tv_add_teacher">إضافه</string>
@@ -124,8 +124,8 @@
     <string name="add_subject">إضافه ماده</string>
     <string name="add_explain_subject">إضافه شرح ماده</string>
     <string name="btn_modification">تعديل</string>
-    <string name="tv_semester">الفصل الدراسي الأول</string>
-    <string name="tv_class">الثالث الثانوي</string>
+    <string name="tv_semester">first term</string>
+    <string name="tv_class">Third Grade</string>
     <string name="autoCompleteTV_choose_class">إختيار الصف الدراسي</string>
     <string name="btn_add_new_subject">إضافة المادة</string>
     <string name="autoCompleteTV_choose_subjects">إختيار المادة</string>
@@ -136,7 +136,10 @@
     <string name="title_activity_login">Login activity</string>
     <string name="btn_add_comment">go</string>
 
-
+<string-array name="term_list">
+    <item>first term</item>
+    <item>second term</item>
+</string-array>
     <string-array name="add_Photo">
         <item>Take photo</item>
         <item>Choose from gallery</item>

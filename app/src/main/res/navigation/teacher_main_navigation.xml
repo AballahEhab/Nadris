@@ -26,16 +26,6 @@
         <action
             android:id="@+id/action_sub_teacher_rv_Fragment_to_choosing_new_subjects"
             app:destination="@id/choosing_new_subjects" />
-        <argument
-            android:name="select_class"
-            app:argType="string" />
-        <argument
-            android:name="select_subject"
-            app:argType="string" />
-        <argument
-            android:name="select_semester"
-            app:argType="string"
-            app:nullable="true" />
     </fragment>
 
     <fragment

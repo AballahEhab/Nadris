@@ -2,6 +2,7 @@ package com.example.android.nadris.repository
 
 import com.example.android.nadris.database.NadrisDatabase
 import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.TeacherSubject
 import com.example.android.nadris.database.models.UserData
 import javax.inject.Inject
 
@@ -10,6 +11,7 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     private val userDao = nadrisDatabase.UserDao()
 
     private val postDao = nadrisDatabase.PostDao()
+    private val subjectDao = nadrisDatabase.SubjectDao()
 
      suspend fun addUserData(userData: UserData)= userDao.insertUser(userData)
 
@@ -27,5 +29,9 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
 
     suspend fun updatePost(databasePosts: DatabasePost) = postDao.updatePost( databasePosts )
 
+    suspend fun insertSubjects(list : List<TeacherSubject>)= subjectDao.insertSubjects(list)
+    suspend fun insertSubject(item : TeacherSubject)= subjectDao.insertSubject(item)
+    suspend fun getSubjects()= subjectDao.getSubjects()
+    suspend fun  getSubjectById(subjectId:Long)=subjectDao.getSubject(subjectId)
 
 }

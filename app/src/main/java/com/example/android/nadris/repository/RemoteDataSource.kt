@@ -44,6 +44,9 @@ constructor(
     suspend fun getCommentsByPostId(postId: Long, token: String) =
         postsService.getCommentByPostId(postId, token)
 
+    suspend fun getTeacherSubjects(token: String)=
+        subjectsService.getTeacherSubjects(token)
+
     suspend fun getGradeSubjects(gradeId: Long, token: String) =
         subjectsService.getGradeSubjects(gradeId, token)
 
@@ -55,4 +58,5 @@ constructor(
 
     suspend fun getSections() = gradesService.getSections()
     suspend fun getGrades() = gradesService.getGrades()
+    suspend fun addSubject(token: String,addSubjectDTO: AddSubjectDTO)=subjectsService.addTeacherSubject(addSubjectDTO,token)
 }

@@ -39,7 +39,7 @@
                 android:layout_weight="1"
                 android:inputType="none"
                 android:hint="@string/autoCompleteTV_choose_class"
-                android:text="@={viewmodel.Select_class}" />
+                android:text="@={viewmodel.selectedGrade}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,12 +64,12 @@
                 android:layout_weight="1"
                 android:inputType="none"
                 android:hint="@string/autoCompleteTV_choose_subjects"
-                android:text="@={viewmodel.Select_subject}" />
+                android:text="@={viewmodel.selectedSubject}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
+            android:id="@+id/term_menu"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 android:layout_weight="1"
                 android:inputType="none"
                 android:hint="@string/autoCompleteTV_choose_semester"
-                android:text="@={viewmodel.select_semester}" />
+                android:text="@={viewmodel.selectedTerm}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +105,7 @@
             app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/term_menu" />
 
         <TextView
             android:id="@+id/tv_back_to_sub_teacher"

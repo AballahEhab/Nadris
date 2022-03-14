@@ -6,17 +6,19 @@ package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
     import androidx.recyclerview.widget.AsyncListDiffer
     import androidx.recyclerview.widget.DiffUtil
     import androidx.recyclerview.widget.RecyclerView
+    import com.example.android.nadris.database.models.TeacherSubject
     import com.example.android.nadris.databinding.ItemRvSubTeacherBinding
+    import com.example.android.nadris.network.dtos.TeacherSubjectDTO
     import dataRvsubTeach
 
 class customAdapterRVsubTeacher():
         RecyclerView.Adapter<customAdapterRVsubTeacher.viweholder>() {
 
-    private val differCalback=object :DiffUtil.ItemCallback<dataRvsubTeach>(){
-        override fun areItemsTheSame(oldItem: dataRvsubTeach, newItem: dataRvsubTeach): Boolean {
+    private val differCalback=object :DiffUtil.ItemCallback<TeacherSubject>(){
+        override fun areItemsTheSame(oldItem: TeacherSubject, newItem: TeacherSubject): Boolean {
          return oldItem.id==newItem.id
         }
-        override fun areContentsTheSame(oldItem: dataRvsubTeach, newItem: dataRvsubTeach): Boolean {
+        override fun areContentsTheSame(oldItem: TeacherSubject, newItem: TeacherSubject): Boolean {
             return oldItem==newItem
         }
     }
@@ -33,12 +35,12 @@ class customAdapterRVsubTeacher():
             return  differ.currentList.size
         }
         override fun onBindViewHolder(holder: viweholder, position: Int) {
-            val data: dataRvsubTeach =differ.currentList[position]
-            holder.binding.tvNameSubjectTeacher.text  =data.name_subject_teacher
-            holder.binding.tvCountStudentTeach.text  =data.count_student_teach.toString()
-            holder.binding.tvClass.text =data.class_
-            holder.binding.tvSemester.text =data.semester
-            holder.binding.imgSubTeach.setImageResource(data.imag)
+            val data =differ.currentList[position]
+            holder.binding.tvNameSubjectTeacher.text  =data.name
+            holder.binding.tvCountStudentTeach.text  =""
+            holder.binding.tvClass.text =data.grade
+            holder.binding.tvSemester.text =data.term
+          //  holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
         }
         class viweholder (var binding:ItemRvSubTeacherBinding):RecyclerView.ViewHolder(binding.root){
          }

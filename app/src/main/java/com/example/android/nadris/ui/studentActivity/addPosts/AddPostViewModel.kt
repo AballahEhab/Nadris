@@ -67,7 +67,7 @@ class AddPostViewModel @Inject constructor(val repository: Repository, @Applicat
                         onError = {
                         },
                         onSuccess = {
-                            grades.value = it.data
+                            grades.value = it.data!!
                         },
                     )
                 }
@@ -87,7 +87,7 @@ class AddPostViewModel @Inject constructor(val repository: Repository, @Applicat
                     onError = {
                     },
                     onSuccess = {
-                        subjects.value = it.data
+                        subjects.value = it.data!!
                     },
                 )
 
