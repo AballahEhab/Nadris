@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.Settings
+package com.example.android.nadris.ui.studentActivity.settings
 
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.repository.Repository

@@ -18,8 +18,6 @@ import com.example.android.nadris.databinding.FragmentSubTeacherRvBinding
 
 class sub_teacher_rv_Fragment : Fragment() {
 
-
-    private lateinit var args:sub_teacher_rv_FragmentArgs
     private lateinit var viewModel: SubTeacherRvViewModel
     private lateinit var adapter: customAdapterRVsubTeacher
     private lateinit var binding:FragmentSubTeacherRvBinding

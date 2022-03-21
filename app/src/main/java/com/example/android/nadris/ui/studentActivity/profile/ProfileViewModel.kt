@@ -20,9 +20,9 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     var imgProfile: MutableLiveData<Int> = MutableLiveData<Int>();
-    var nameProfile: MutableLiveData<String> = MutableLiveData<String>("Name Profile");
+    var nameProfile: MutableLiveData<String> = MutableLiveData<String>(NadrisApplication.userData?.getFullName());
 
-    var profileType: MutableLiveData<String> = MutableLiveData("Student or teacher");
+    var profileType: MutableLiveData<String> = MutableLiveData(NadrisApplication.userData?.Type);
 
     var numPosts: MutableLiveData<Long> = MutableLiveData(0);
     var numFollowers: MutableLiveData<Long> = MutableLiveData(0);

@@ -1,21 +1,15 @@
 package com.example.android.nadris.ui.studentActivity.posts.comment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentAddCommentBinding
-import com.example.android.nadris.ui.studentActivity.posts.PostPageFragmentDirections
-import com.example.android.nadris.ui.teacherActivity.subjects_teacher.sub_teacher_rv_FragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,35 +59,4 @@ class AddCommentFragment : Fragment() {
         binding.RVComment.adapter=adapter
 
     }
-
-    //TODO: delete of the data binding succeed
-//    fun bindPost(){
-//        binding.include.profileImage.setImageResource(data.imageStudent)
-//        binding.include.textViewAccountName.text=data.name
-//        binding.include.textSubjectName.text= data.subjectName
-//        binding.include.textViewPost.text=data.content
-//
-//        binding.include.textvote.text = String.format(context.getString(R.string.vote), data.votesNum)
-//        binding.include.textreply.text = String.format(context.getString(R.string.reply), data.commentsNum)
-//        binding.include.imgVote.setOnClickListener {
-//            binding.include.toggleVoteIconStatus(data.getVoteStatus())
-//            if(data.getVoteStatus()) data.votesNum-- else data.votesNum++
-//            data.toggleVote()
-//            viewModel.vote(position,data.getVoteStatus())
-//                .let {
-//                    postList[position] = it!!
-//                }
-//            notifyItemChanged(position)
-//        }
-//
-//        binding.include.bookMarkIcon.setOnClickListener {
-//            binding.include.toggleBookMerkleIconStatus(data.getVoteBookMark())
-//            data.toggleBookMark()
-//            viewModel.BookMark(data.postId,data.getVoteBookMark())
-//            notifyItemChanged(position)
-//        }
-//    }
-
-
-
 }

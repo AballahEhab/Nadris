@@ -1,13 +1,10 @@
-package com.example.android.nadris.ui.studentActivity.Settings.Help
+package com.example.android.nadris.ui.studentActivity.settings.help
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.TOKEN_PREFIX
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
