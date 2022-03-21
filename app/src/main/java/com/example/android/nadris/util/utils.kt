@@ -49,7 +49,7 @@ inline fun < NetworkModel> requestAPI(
             emit(Result.Success(res))
 
         } catch (throwable: Throwable) {
-            emit(Result.Error(throwable.message.toString()))
+            emit(Result.Error(throwable.message.toString(),null))
 
             }
 

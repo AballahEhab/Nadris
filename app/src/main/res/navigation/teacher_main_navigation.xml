@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation2"
-    app:startDestination="@+id/sub_teacher_rv_Fragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation2"
+            app:startDestination="@+id/sub_teacher_rv_Fragment">
 
     <fragment
         android:id="@+id/navigation_home1"
-        android:label="@string/title_home"
         android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
-        tools:layout="@layout/fragment_post_page" >
-
-        <action
-            android:id="@+id/action_navigation_posts_to_addPostFragment"
-            app:destination="@id/addPostFragment" />
-        <action
-            android:id="@+id/action_navigation_posts_to_addCommentFragment"
-            app:destination="@id/addCommentFragment" />
-    </fragment>
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_post_page"/>
 
     <fragment
         android:id="@+id/sub_teacher_rv_Fragment"
         android:name="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubTeacherRVFragment"
-        android:label="sub_teacher_rv_Fragment" >
+        android:label="sub_teacher_rv_Fragment"
+        tools:layout="@layout/fragment_sub_teacher_rv">
         <action
             android:id="@+id/action_sub_teacher_rv_Fragment_to_choosing_new_subjects"
-            app:destination="@id/choosing_new_subjects" />
+            app:destination="@id/choosing_new_subjects"/>
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications1"
-        android:name="com.example.android.nadris.ui.teacherActivity.notifications.NotificationsFragment"
-        android:label="@string/student_schedual_title"
-        tools:layout="@layout/fragment_notifications1" />
-
+        android:id="@+id/navigation_profile"
+        android:name="com.example.android.nadris.ui.studentActivity.profile.profile"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile"/>
 
 
     <fragment
         android:id="@+id/choosing_new_subjects"
         android:name="com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.choosing_new_subjects"
-        android:label="choosing_new_subjects" >
+        android:label="choosing_new_subjects"
+        tools:layout="@layout/fragment_choosing_new_subjects">
         <action
             android:id="@+id/action_choosing_new_subjects_to_sub_teacher_rv_Fragment"
-            app:destination="@id/sub_teacher_rv_Fragment" />
+            app:destination="@id/sub_teacher_rv_Fragment"/>
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"

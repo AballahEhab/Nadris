@@ -3,13 +3,13 @@ package com.example.android.nadris.ui.studentActivity.posts
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
 import java.io.File
@@ -45,8 +45,7 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
                 img = BitmapFactory.decodeFile(file.absolutePath)
                 holder.binding.imgPost.setImageBitmap(img!!)
                 holder.binding.imgPost.visibility = View.VISIBLE
-            }
-        } else {
+            }         else {
             holder.binding.imgPost.visibility = View.GONE
         }
         holder.setDataBindingObj(data)
@@ -82,6 +81,21 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
             binding.postData = post
         }
 
+        fun toggleVoteIconStatus(state: Boolean) {
+            if (state) {
+                // TODO: add voted style
+            } else {
+                // TODO: add unvoted style
+            }
+        }
+
+        fun toggleBookMerkleIconStatus(state: Boolean) {
+            if (state) {
+                // TODO: add voted style
+            } else {
+                // TODO: add unvoted style
+            }
+        }
     }
 
 }

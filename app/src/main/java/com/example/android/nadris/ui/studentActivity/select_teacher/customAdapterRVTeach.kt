@@ -47,10 +47,14 @@ class customAdapterRVTeach()
         holder.binding.tvNameTeachers.text=data.name_teachers
         holder.binding.tvEvaluation.text=data.evaluation.toString()
         holder.binding.ivTeachers.setImageResource(data.iv_teachers_photo)
-        holder.itemView.setOnClickListener {
+
+        holder.binding.tvNameTeachers.setOnClickListener {
             var action =teachers_RV_fragmentDirections.actionTeachersRVFragmentToHeadlineSubjects()
             it.findNavController().navigate(action)
         }
+
+
+
 
     }
 
