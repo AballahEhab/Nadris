@@ -16,15 +16,13 @@
         <action
             android:id="@+id/action_navigation_posts_to_addCommentFragment"
             app:destination="@id/addCommentFragment"/>
-        <action
-            android:id="@+id/action_navigation_posts_to_profile"
-            app:destination="@id/profile"/>
     </fragment>
 
     <fragment
         android:id="@+id/subjectsRvFragment"
-        android:name="com.example.android.nadris.ui.studentActivity.units.UnitsFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment"
         android:label="@string/student_subjects_title"
+        tools:layout="@layout/fragment_subjects_rv"
          >
         <action
             android:id="@+id/action_subjectsRvFragment_to_teachers_RV_fragment"
@@ -32,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.android.nadris.ui.studentActivity.profile.profile"
+        android:name="com.example.android.nadris.ui.studentActivity.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile">
         <action

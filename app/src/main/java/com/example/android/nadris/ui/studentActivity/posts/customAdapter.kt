@@ -3,13 +3,13 @@ package com.example.android.nadris.ui.studentActivity.posts
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
 import java.io.File
@@ -45,35 +45,38 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
                 img = BitmapFactory.decodeFile(file.absolutePath)
                 holder.binding.imgPost.setImageBitmap(img!!)
                 holder.binding.imgPost.visibility = View.VISIBLE
-            }         else {
-            holder.binding.imgPost.visibility = View.GONE
-        }
-        holder.setDataBindingObj(data)
+            } else {
+                holder.binding.imgPost.visibility = View.GONE
+            }
+            holder.setDataBindingObj(data)
 
 
-        holder.binding.imgReply.setOnClickListener {
-            holder.itemView.findNavController()
-                .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data.postId))
-        }
-        holder.binding.imgVote.setOnClickListener {
-            data.toggleVote()
-            notifyItemChanged(position)
+            holder.binding.imgReply.setOnClickListener {
+                holder.itemView.findNavController()
+                    .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data.postId))
+            }
+            holder.binding.imgVote.setOnClickListener {
+                data.toggleVote()
+                notifyItemChanged(position)
 
-            viewModel.vote(data.postId)
-                .let {
-                    data.updatePost(it!!)
-                }
+                viewModel.vote(data.postId)
+                    .let {
+                        data.updatePost(it!!)
+                    }
+            }
+            holder.binding.bookmark.setOnClickListener {
+                data.toggleBookMark()
+                viewModel.BookMark(data)
+                notifyItemChanged(position)
+            }
         }
-        holder.binding.bookmark.setOnClickListener {
-            data.toggleBookMark()
-            viewModel.BookMark(data)
-            notifyItemChanged(position)
-        }
+
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
 
     class PostViewHolder(var binding: ItemPostCardCellBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -97,5 +100,6 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
             }
         }
     }
+
 
 }

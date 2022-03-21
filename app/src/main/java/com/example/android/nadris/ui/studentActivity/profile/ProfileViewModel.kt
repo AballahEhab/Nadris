@@ -30,32 +30,32 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
 
     var postsProfileList = MutableLiveData(mutableListOf<DatabasePost>())
 
-
-    fun getProfileInfo_from_api() {
-        val token = NadrisApplication.userData?.Token
-        viewModelScope.launch {
-            var result = repository.getProfileInfo(TOKEN_PREFIX + token)
-
-            result.collect {
-                it.handleRepoResponse(
-                    onLoading = {
-
-                    }, onError = {
-                        nameProfile.value = NadrisApplication.userData?.getFullName()
-                        profileType.value = NadrisApplication.userData?.Type
-                        //  numFollowers.value=NadrisApplication.userData?.
-                        // numFolling.value = NadrisApplication.userData?.
-                    }, onSuccess = {
-                        nameProfile.value = it.data!!.firstName + " " + it.data.lastName
-                        //numPosts.value = (it.data)?.numOfPosts
-                        numFollowers.value = it.data?.numOfFollowers
-                        numFolling.value = it.data?.numOfFollowing
-                        profileType.value = it.data?.type
-                    }
-                )
-            }
-        }
-    }
+//
+//    fun getProfileInfo_from_api() {
+//        val token = NadrisApplication.userData?.Token
+//        viewModelScope.launch {
+//            var result = repository.getProfileInfo(TOKEN_PREFIX + token)
+//
+//            result.collect {
+//                it.handleRepoResponse(
+//                    onLoading = {
+//
+//                    }, onError = {
+//                        nameProfile.value = NadrisApplication.userData?.getFullName()
+//                        profileType.value = NadrisApplication.userData?.Type
+//                        //  numFollowers.value=NadrisApplication.userData?.
+//                        // numFolling.value = NadrisApplication.userData?.
+//                    }, onSuccess = {
+//                        nameProfile.value = it.data!!.firstName + " " + it.data.lastName
+//                        //numPosts.value = (it.data)?.numOfPosts
+//                        numFollowers.value = it.data?.numOfFollowers
+//                        numFolling.value = it.data?.numOfFollowing
+//                        profileType.value = it.data?.type
+//                    }
+//                )
+//            }
+//        }
+//    }
 
     fun getLastActivity() {
         viewModelScope.launch {

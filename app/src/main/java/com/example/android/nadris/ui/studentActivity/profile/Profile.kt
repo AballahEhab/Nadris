@@ -1,8 +1,6 @@
 package com.example.android.nadris.ui.studentActivity.profile
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +16,7 @@ import com.example.android.nadris.ui.studentActivity.posts.customAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class profile : Fragment() {
+class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     val viewModel: ProfileViewModel by viewModels()
@@ -33,7 +31,7 @@ class profile : Fragment() {
         binding.viewmodel = viewModel
 
         binding.lifecycleOwner = this
-        viewModel.getProfileInfo_from_api()
+      //  viewModel.getProfileInfo_from_api()
         viewModel.getLastActivity()
 
         binding.rvPostsProfile.layoutManager =
@@ -49,7 +47,8 @@ class profile : Fragment() {
         }
 
         binding.imagSetting.setOnClickListener {
-            this.findNavController().navigate(profileDirections.actionProfileToSettingsFragment())
+            this.findNavController()
+                .navigate(ProfileFragmentDirections.actionProfileToSettingsFragment())
         }
 
         return binding.root;

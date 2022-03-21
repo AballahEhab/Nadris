@@ -6,9 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabaseSubject
+import com.example.android.nadris.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-class SubjectsRvFragmentViewModel : ViewModel() {
+@HiltViewModel
+class SubjectsRvFragmentViewModel @Inject constructor(val repository: Repository): ViewModel() {
 
     private var list=MutableLiveData<List<DatabaseSubject>>();
 

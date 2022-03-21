@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.studentActivity.profile.profile">
+        tools:context=".ui.studentActivity.profile.ProfileFragment">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_profile"

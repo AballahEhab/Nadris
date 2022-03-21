@@ -22,7 +22,7 @@ class SettingsFragment : Fragment() {
         inflater.inflate(R.layout.fragment_settings, container, false)
         binding = FragmentSettingsBinding.inflate(inflater)
 
-        binding.imagBackProfile.setOnClickListener {
+        binding.backProfile.setOnClickListener {
             this.findNavController()
                 .navigate(SettingsFragmentDirections.actionSettingsFragmentToProfile())
         }

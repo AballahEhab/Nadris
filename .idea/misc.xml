@@ -85,10 +85,12 @@
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_home1.xml" value="0.2234375" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_post_page.xml" value="0.37271937445699393" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_profile.xml" value="0.10822401614530777" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_settings.xml" value="0.48807339449541287" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_signup_student.xml" value="0.2" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_signup_teacher.xml" value="0.264" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_sub_teacher_rv.xml" value="0.1" />
-        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_subjects_rv.xml" value="0.22291666666666668" />
+        <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_subjects_rv.xml" value="0.176" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/fragment_units.xml" value="0.176" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_add_coment.xml" value="0.22291666666666668" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_dropdown_choose_class.xml" value="0.22291666666666668" />
