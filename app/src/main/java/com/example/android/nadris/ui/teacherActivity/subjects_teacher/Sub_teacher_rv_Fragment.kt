@@ -1,7 +1,5 @@
 package com.example.android.nadris.ui.teacherActivity.subjects_teacher
-/**
- * @author mohammed M sarhan
- * **/
+
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,28 +12,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSubTeacherRvBinding
-import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.customAdapterRVsubTeacher
+import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.SubjectAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SubTeacherRVFragment : Fragment() {
+class SubjectFragment : Fragment() {
 
-    private val viewModel: SubTeacherRvViewModel by viewModels()
-    private lateinit var adapter: customAdapterRVsubTeacher
-    private lateinit var binding:FragmentSubTeacherRvBinding
+    private val viewModel: SubjectViewModel by viewModels()
+    private lateinit var adapter: SubjectAdapter
+    private lateinit var binding: FragmentSubTeacherRvBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         inflater.inflate(R.layout.fragment_sub_teacher_rv, container, false)
-        binding =FragmentSubTeacherRvBinding.inflate(inflater)
+        binding = FragmentSubTeacherRvBinding.inflate(inflater)
 
         binding.viewmodel = viewModel
         viewModel.getdata()
         setupRV()
         binding.fabAddSubject.setOnClickListener {
-            val action = SubTeacherRVFragmentDirections.actionSubTeacherRvFragmentToChoosingNewSubjects()
+            val action = SubjectFragmentDirections.actionSubjectFragmentToAddNewSubject()
             findNavController().navigate(action)
         }
 
@@ -44,11 +42,11 @@ class SubTeacherRVFragment : Fragment() {
 
 
     private fun setupRV(){
-        adapter= customAdapterRVsubTeacher()
-        binding.rvSubjectTeacher.layoutManager=
+        adapter = SubjectAdapter()
+        binding.rvSubjectTeacher.layoutManager =
             LinearLayoutManager(
                 requireContext(),
-                RecyclerView.VERTICAL,false)
+                RecyclerView.VERTICAL, false)
         binding.rvSubjectTeacher.adapter= adapter
 
         activity?.let {

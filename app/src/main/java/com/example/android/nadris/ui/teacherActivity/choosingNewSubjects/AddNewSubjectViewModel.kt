@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ChoosingNewSubjectsViewModel @Inject constructor(
+class AddNewSubjectViewModel @Inject constructor(
     val repository: Repository,
     @ApplicationContext val context: Context,
 ) : ViewModel() {

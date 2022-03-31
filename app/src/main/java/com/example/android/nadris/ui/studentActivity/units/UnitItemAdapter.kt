@@ -3,13 +3,30 @@ package com.example.android.nadris.ui.studentActivity.units
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.databinding.ItemExpandableUnitBinding
 import com.example.android.nadris.database.models.SubjectUnit
+import com.example.android.nadris.databinding.ItemExpandableUnitBinding
+import com.example.android.nadris.repository.LocalDataSource
 import com.example.android.nadris.util.isVisible
+import javax.inject.Inject
 
-class UnitItemAdapter (val unitsList:List<SubjectUnit>): RecyclerView.Adapter<UnitItemAdapter.UnitItemViewHolder>() {
-    var expandedItemIndex:Int = -1
+
+class UnitItemAdapter @Inject constructor(val viewModel: UnitsViewModel) :
+    RecyclerView.Adapter<UnitItemAdapter.UnitItemViewHolder>() {
+    var expandedItemIndex: Int = -1
+
+    private val differCalback = object : DiffUtil.ItemCallback<SubjectUnit>() {
+        override fun areItemsTheSame(oldItem: SubjectUnit, newItem: SubjectUnit): Boolean {
+            return oldItem.unitId == newItem.unitId
+        }
+
+        override fun areContentsTheSame(oldItem: SubjectUnit, newItem: SubjectUnit): Boolean {
+            return oldItem == newItem
+        }
+    }
+    val differ = AsyncListDiffer(this, differCalback)
 
     class UnitItemViewHolder(val binding: ItemExpandableUnitBinding) : RecyclerView.ViewHolder(binding.root) {
         val unitName = binding.unitName
@@ -25,7 +42,7 @@ class UnitItemAdapter (val unitsList:List<SubjectUnit>): RecyclerView.Adapter<Un
     }
 
     override fun onBindViewHolder(holder: UnitItemViewHolder, position: Int) {
-        val unitData = unitsList[position]
+        val unitData = differ.currentList[position]
         holder.unitName.text = unitData.name
         holder.unitImage.setImageResource(unitData.icon)
         holder.unitLessonList.isVisible(unitData.lessonsVisibility)
@@ -33,10 +50,10 @@ class UnitItemAdapter (val unitsList:List<SubjectUnit>): RecyclerView.Adapter<Un
         Log.v("vsg",holder.toString())
         // set adapter to lessons recycler view if the lessons is visible and the adapter is null
         if(unitData.lessonsVisibility && holder.unitLessonList.adapter == null){
-            val adapter = LessonItemAdapter(unitData.lessons)
+            viewModel.getLessons(unitData.unitId)
+            val adapter = LessonItemAdapter(viewModel.lessons)
             holder.unitLessonList.adapter = adapter
         }
-
 
         holder.binding.root.setOnClickListener {
             if (expandedItemIndex == -1){
@@ -50,18 +67,13 @@ class UnitItemAdapter (val unitsList:List<SubjectUnit>): RecyclerView.Adapter<Un
                 expandedItemIndex = position
                 toggleUnitExpansion()
             }
-
-
         }
-
-
     }
 
     private fun toggleUnitExpansion(){
-        unitsList[expandedItemIndex].toggleExpandUnit()
+        differ.currentList[expandedItemIndex].toggleExpandUnit()
         notifyItemChanged(expandedItemIndex)
-
     }
 
-    override fun getItemCount() = unitsList.size
+    override fun getItemCount() = differ.currentList.size
 }

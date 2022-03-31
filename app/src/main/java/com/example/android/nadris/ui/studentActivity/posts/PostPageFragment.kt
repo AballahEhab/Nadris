@@ -32,7 +32,7 @@ class PostPageFragment : Fragment() {
         viewModel.getPosts()
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = customAdapter(viewModel)
+        val adapter = PostsAdapter(viewModel)
         binding.recyclerView.adapter = adapter
         viewModel.postsList.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it)

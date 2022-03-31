@@ -14,7 +14,7 @@ import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
 import java.io.File
 
-class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
+class PostsAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
 
     private val differCallback = object : DiffUtil.ItemCallback<DatabasePost>() {

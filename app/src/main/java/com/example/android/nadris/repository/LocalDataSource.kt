@@ -1,9 +1,7 @@
 package com.example.android.nadris.repository
 
 import com.example.android.nadris.database.NadrisDatabase
-import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.database.models.TeacherSubject
-import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.database.models.*
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisDatabase) {
@@ -19,19 +17,31 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
 
     suspend fun updateUserData(updatedUserData: UserData) = userDao.updateUser(updatedUserData)
 
-    suspend fun getAllPosts() =  postDao.getAllPosts()
+    suspend fun getAllPosts() = postDao.getAllPosts()
 
-    fun getPostById(postId:Long) = postDao.getPostByPostId(postId)
+    fun getPostById(postId: Long) = postDao.getPostByPostId(postId)
 
-    suspend fun insertPosts(databasePosts: List<DatabasePost>) = postDao.insertPosts( databasePosts )
+    suspend fun insertPosts(databasePosts: List<DatabasePost>) = postDao.insertPosts(databasePosts)
 
-    suspend fun insertPost(databasePosts: DatabasePost) = postDao.insertPost( databasePosts )
+    suspend fun insertPost(databasePosts: DatabasePost) = postDao.insertPost(databasePosts)
 
-    suspend fun updatePost(databasePosts: DatabasePost) = postDao.updatePost( databasePosts )
+    suspend fun updatePost(databasePosts: DatabasePost) = postDao.updatePost(databasePosts)
 
-    suspend fun insertSubjects(list : List<TeacherSubject>)= subjectDao.insertSubjects(list)
-    suspend fun insertSubject(item : TeacherSubject)= subjectDao.insertSubject(item)
-    suspend fun getSubjects()= subjectDao.getSubjects()
-    suspend fun  getSubjectById(subjectId:Long)=subjectDao.getSubject(subjectId)
+    suspend fun insertSubjects(list: List<TeacherSubject>) = subjectDao.insertSubjects(list)
 
+    suspend fun insertSubject(item: TeacherSubject) = subjectDao.insertSubject(item)
+
+    suspend fun getSubjects() = subjectDao.getSubjects()
+
+    suspend fun getSubjectById(subjectId: Long) = subjectDao.getSubject(subjectId)
+
+    suspend fun insertSubjectUnits(list: List<SubjectUnit>) = subjectDao.insertSubjectUnits(list)
+
+    suspend fun insertUnitLessons(list: List<Lesson>) = subjectDao.insertUnitLessons(list)
+
+    suspend fun insertSubjectUnit(unit: SubjectUnit) = subjectDao.insertSubjectUnit(unit)
+
+    suspend fun getSubjectUnits() = subjectDao.getSubjectUnits()
+
+    fun getUnitLessons(id: Long) = subjectDao.getUnitLessons(id)
 }

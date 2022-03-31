@@ -3,7 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation2"
-            app:startDestination="@+id/sub_teacher_rv_Fragment">
+            app:startDestination="@id/subject_fragment">
 
     <fragment
         android:id="@+id/navigation_home1"
@@ -12,24 +12,32 @@
         tools:layout="@layout/fragment_post_page"/>
 
     <fragment
-        android:id="@+id/sub_teacher_rv_Fragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubTeacherRVFragment"
+        android:id="@+id/subject_fragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectFragment"
         android:label="sub_teacher_rv_Fragment"
         tools:layout="@layout/fragment_sub_teacher_rv">
         <action
-            android:id="@+id/action_sub_teacher_rv_Fragment_to_choosing_new_subjects"
-            app:destination="@id/choosing_new_subjects"/>
+            android:id="@+id/action_subject_fragment_to_add_new_subject"
+            app:destination="@id/add_new_subject"/>
+        <action android:id="@+id/action_subject_fragment_to_subject_Units" app:destination="@id/subject_Units"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/subject_Units"
+        android:name="com.example.android.nadris.ui.studentActivity.units.UnitsFragment"
+        tools:layout="@layout/fragment_units">
+        <argument android:name="subjectId"
+                  app:argType="long"/>
+    </fragment>
 
     <fragment
-        android:id="@+id/choosing_new_subjects"
-        android:name="com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.choosing_new_subjects"
+        android:id="@+id/add_new_subject"
+        android:name="com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.AddNewSubjectFragment"
         android:label="choosing_new_subjects"
-        tools:layout="@layout/fragment_choosing_new_subjects">
+        tools:layout="@layout/fragment_add_new_subject">
         <action
-            android:id="@+id/action_choosing_new_subjects_to_sub_teacher_rv_Fragment"
-            app:destination="@id/sub_teacher_rv_Fragment"/>
+            android:id="@+id/action_add_new_subjects_to_subject_fragment"
+            app:destination="@id/subject_fragment"/>
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"

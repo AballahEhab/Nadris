@@ -5,96 +5,62 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentUnitsBinding
-import com.example.android.nadris.database.models.Lesson
-import com.example.android.nadris.database.models.SubjectUnit
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class UnitsFragment : Fragment() {
+    val args: UnitsFragmentArgs by navArgs()
+    val viewModel : UnitsViewModel by  viewModels()
+    private lateinit var binding: FragmentUnitsBinding
+    private lateinit var adapter: UnitItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        val binding = FragmentUnitsBinding.inflate(inflater, container, false)
+        inflater.inflate(R.layout.fragment_units, container, false)
+        binding = FragmentUnitsBinding.inflate(inflater)
+        viewModel.subjectId= args.subjectId
+        binding.viewmodel = viewModel
+        viewModel.getdata()
+        setupRV()
 
-        val dataList = listOf(
-            SubjectUnit(1,
-                "unit1",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(2,
-                "unit2",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(3,
-                "unit3",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(4,
-                "unit4",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(5,
-                "unit5",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(6,
-                "unit6",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(6,
-                "unit7",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(7,
-                "unit8",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(8,
-                "unit9",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-            SubjectUnit(9,
-                "unit10",
-                listOf(Lesson("1.1", "lesson1"),
-                    Lesson("2.1", "lesson2"),
-                    Lesson("3.1", "lesson3"),
-                    Lesson("4.1", "lesson4")),
-                R.drawable.ic_launcher_background),
-        )
-        var adapter = UnitItemAdapter(dataList)
-        binding.unitsRv.adapter = adapter
+
+//        val dataList = listOf(
+//            SubjectUnit(1,
+//                "unit1",
+//                listOf(Lesson(1, "lesson1"),
+//                    Lesson(2, "lesson2"),
+//                    Lesson(3, "lesson3"),
+//                    Lesson(4, "lesson4")),
+//                R.drawable.ic_launcher_background),
+//        )
+
+
 
         return binding.root
+    }
+    private fun setupRV(){
+        adapter= UnitItemAdapter(viewModel)
+        binding.unitsRv.layoutManager=
+            LinearLayoutManager(
+                requireContext(),
+                RecyclerView.VERTICAL,false)
+        binding.unitsRv.adapter= adapter
+
+        activity?.let {
+            viewModel.list.observe(viewLifecycleOwner) {
+                adapter.differ.submitList(it)
+            }
+
+        }
+
     }
 }

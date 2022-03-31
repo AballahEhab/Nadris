@@ -2,12 +2,9 @@ package com.example.android.nadris.network
 
 import android.util.Log
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.database.models.TeacherSubject
-import com.example.android.nadris.database.models.UserData
-import com.example.android.nadris.network.dtos.AuthModel
-import com.example.android.nadris.network.dtos.NetworkPost
-import com.example.android.nadris.network.dtos.TeacherSubjectDTO
+import com.example.android.nadris.R
+import com.example.android.nadris.database.models.*
+import com.example.android.nadris.network.dtos.*
 import com.example.android.nadris.services.Converter
 
 object NetworkModelsMapper {
@@ -61,5 +58,18 @@ object NetworkModelsMapper {
         dto.grade,
         dto.teacherName
     )
+data class mapper(val unit:SubjectUnit,val lessons: List<Lesson>)
+    fun subjectUnitsDTOtoModel(dto: SubjectUnitDTO): mapper {
 
+      var unit=  SubjectUnit(
+            dto.unitId,
+            dto.name,
+            R.drawable.ic_launcher_background,
+            false,
+        )
+       var list= dto.lessons.map {
+            Lesson(it.lessonId,it.name,dto.unitId)
+        }
+        return mapper(unit,list);
+    }
 }

@@ -45,6 +45,24 @@ class Repository @Inject constructor(
         saveFetchResult = { list_of_posts -> list_of_posts?.let { localDataSource.insertPosts(it) } }
     )
 
+    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
+
+        query = { localDataSource.getSubjectUnits() },
+        fetch = { remoteDataSource.getSubjectUnit(subjectID, token) },
+        convertToDatabaseModel = { list ->
+            list.map { item ->
+                NetworkModelsMapper.subjectUnitsDTOtoModel(item)
+            }
+        },
+        saveFetchResult = { list ->
+            list.map {
+                localDataSource.insertSubjectUnit((it as NetworkModelsMapper.mapper).unit)
+                localDataSource.insertUnitLessons(it.lessons)
+            }
+        }
+
+    )
+
     suspend fun updatePostById(post: DatabasePost) = localDataSource.updatePost(post)
 
     suspend fun getPostById(postId: Long) = localDataSource.getPostById(postId)
@@ -104,5 +122,8 @@ class Repository @Inject constructor(
         request = {remoteDataSource.addSubject(token,addSubjectDTO)},
         saveFetchResult = {item-> localDataSource.insertSubject(item)},
         convertToDatabaseModel = {item->NetworkModelsMapper.subjectDTOtoModel(item)}
+
+
     )
+   fun getUnitLessons(unitId:Long)=localDataSource.getUnitLessons(unitId)
 }

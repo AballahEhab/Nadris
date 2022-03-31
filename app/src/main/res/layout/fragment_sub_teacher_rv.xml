@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubTeacherRvViewModel" />
+            type="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -25,6 +25,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_subject_teacher"
         android:layout_width="match_parent"
+        tools:listitem="@layout/item_rv_sub_teacher"
         android:layout_height="@dimen/match_constrain"
         android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/mid_margin"
+        isVisible="@{viewmodel.isTeacher()}"
         android:contentDescription="@string/add_explain_subject"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

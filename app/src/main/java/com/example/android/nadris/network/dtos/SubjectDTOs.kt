@@ -18,3 +18,13 @@ data class AddSubjectDTO(
     val subjectId: Long,
     val term: Int,
 )
+data class SubjectUnitDTO(
+    val unitId:  Long,
+    val name: String,
+    val term : String,
+    val lessons : List<UnitLessonsDTO>,
+)
+data class UnitLessonsDTO(
+    val lessonId:Long,
+    val name: String,
+)

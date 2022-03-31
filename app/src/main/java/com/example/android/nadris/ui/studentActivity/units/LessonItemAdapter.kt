@@ -11,7 +11,7 @@ class LessonItemAdapter(val lessonList: List<Lesson>) :
 
     class LessonItemViewHolder(val binding: ItemLessonBinding) : RecyclerView.ViewHolder(binding.root){
         val lessonTitle = binding.lessonTitle
-        val lessonNum = binding.lessonNum
+     //   val lessonNum = binding.lessonNum
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonItemViewHolder {
@@ -23,7 +23,8 @@ class LessonItemAdapter(val lessonList: List<Lesson>) :
     override fun onBindViewHolder(holder: LessonItemViewHolder, position: Int) {
         val lessonData = lessonList[position]
         holder.lessonTitle.text = lessonData.lessonName
-        holder.lessonNum.text = lessonData.lessonNum
+      //  holder.lessonNum.text = lessonData.lessonID.toString()
+
     }
 
     override fun getItemCount() = lessonList.size

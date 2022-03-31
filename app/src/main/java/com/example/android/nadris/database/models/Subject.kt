@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class SubjectUnit (
-    @PrimaryKey val id:Long,
+    @PrimaryKey val unitId:Long,
     val name:String,
-    val lessons:List<Lesson>,
     val icon:Int,
     var lessonsVisibility:Boolean = false // true = visible = unit expanded
     ){

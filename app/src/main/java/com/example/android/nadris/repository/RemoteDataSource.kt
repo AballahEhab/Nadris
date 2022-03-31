@@ -68,5 +68,6 @@ constructor(
     suspend fun getLastActivity(token: String) =
         postsService.getLastActivity(token)
 
-
+    suspend fun getSubjectUnit(id: Long , token: String)=
+        subjectsService.getSubjectUnit(id, token)
 }
