@@ -1,5 +1,6 @@
 package com.example.android.nadris.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.android.nadris.database.models.Lesson
 import com.example.android.nadris.database.models.SubjectUnit
@@ -23,8 +24,8 @@ interface SubjectDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUnitLessons(list: List<Lesson>)
 
-    @Query("SELECT * FROM lesson where unitId=:id")
-     fun getUnitLessons(id:Long): List<Lesson>
+    @Query("SELECT * FROM lesson where FKUnitId=:id")
+     suspend fun getUnitLessons(id:Long):  List<Lesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSubjectUnits(list: List<SubjectUnit>)

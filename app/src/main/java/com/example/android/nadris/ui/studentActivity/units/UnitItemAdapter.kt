@@ -10,7 +10,10 @@ import com.example.android.nadris.database.models.SubjectUnit
 import com.example.android.nadris.databinding.ItemExpandableUnitBinding
 import com.example.android.nadris.repository.LocalDataSource
 import com.example.android.nadris.util.isVisible
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Scope
 
 
 class UnitItemAdapter @Inject constructor(val viewModel: UnitsViewModel) :
@@ -50,8 +53,10 @@ class UnitItemAdapter @Inject constructor(val viewModel: UnitsViewModel) :
         Log.v("vsg",holder.toString())
         // set adapter to lessons recycler view if the lessons is visible and the adapter is null
         if(unitData.lessonsVisibility && holder.unitLessonList.adapter == null){
-            viewModel.getLessons(unitData.unitId)
-            val adapter = LessonItemAdapter(viewModel.lessons)
+            GlobalScope.launch {
+                viewModel.getLessons(unitData.unitId) }
+
+            val adapter = LessonItemAdapter(viewModel.lessons.value!!)
             holder.unitLessonList.adapter = adapter
         }
 

@@ -43,5 +43,5 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
 
     suspend fun getSubjectUnits() = subjectDao.getSubjectUnits()
 
-    fun getUnitLessons(id: Long) = subjectDao.getUnitLessons(id)
+    suspend fun getUnitLessons(id: Long) = subjectDao.getUnitLessons(id)
 }
