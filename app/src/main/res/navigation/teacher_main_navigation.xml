@@ -3,12 +3,18 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation2"
-            app:startDestination="@+id/sub_teacher_rv_Fragment">
+            app:startDestination="@+id/adding_sections_fragment">
 
     <fragment
-        android:id="@+id/navigation_home1"
+        android:id="@+id/teacher_home"
         android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
         android:label="@string/title_home"
+        tools:layout="@layout/fragment_post_page"/>
+
+    <fragment
+        android:id="@+id/TextEditor"
+        android:name="com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragment"
+        android:label="@string/text_editor_label"
         tools:layout="@layout/fragment_post_page"/>
 
     <fragment
@@ -19,8 +25,12 @@
         <action
             android:id="@+id/action_sub_teacher_rv_Fragment_to_choosing_new_subjects"
             app:destination="@id/choosing_new_subjects"/>
-    </fragment>
 
+        <action
+            android:id="@+id/action_sub_teacher_rv_Fragmetn_to_adding_sections_Frgament"
+            app:destination="@id/adding_sections_fragment"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/choosing_new_subjects"
@@ -31,13 +41,15 @@
             android:id="@+id/action_choosing_new_subjects_to_sub_teacher_rv_Fragment"
             app:destination="@id/sub_teacher_rv_Fragment"/>
     </fragment>
+
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
         android:label="addPostFragment" tools:layout="@layout/fragment_add_pos">
         <action android:id="@+id/action_addPostFragment_to_navigation_posts"
-                app:destination="@id/navigation_home1"/>
+                app:destination="@id/teacher_home"/>
     </fragment>
+
     <fragment
         android:id="@+id/addCommentFragment"
         android:name="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentFragment"
@@ -46,6 +58,7 @@
             android:name="postId"
             app:argType="long"/>
     </fragment>
+
     <fragment
         android:id="@+id/profile"
         android:name="com.example.android.nadris.ui.studentActivity.profile.ProfileFragment"
@@ -67,6 +80,7 @@
             android:id="@+id/action_settingsFragment_to_helpFragment"
             app:destination="@id/helpFragment"/>
     </fragment>
+
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.example.android.nadris.ui.studentActivity.settings.help.HelpFragment"
@@ -76,5 +90,11 @@
             android:id="@+id/action_helpFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/adding_sections_fragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
+        android:label="@string/adding_subject_sections_label"
+        tools:layout="@layout/fragment_adding_subject_sections"/>
 
 </navigation>

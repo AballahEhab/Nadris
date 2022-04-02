@@ -17,30 +17,36 @@ import javax.inject.Inject
 
 @HiltViewModel
 
-class SubTeacherRvViewModel  @Inject constructor(val repository: Repository): ViewModel() {
+class SubTeacherRvViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-
-
-
-      var list= MutableLiveData<List<TeacherSubject>>()
+    val navigateToAddingSectionFragmentEvent = MutableLiveData(false)
+    var list = MutableLiveData<List<TeacherSubject>>()
 
     fun getdata() {
         viewModelScope.launch {
-            val subjectFlow = repository.getTeacherSubject(TOKEN_PREFIX + NadrisApplication.userData?.Token)
+            val subjectFlow =
+                repository.getTeacherSubject(TOKEN_PREFIX + NadrisApplication.userData?.Token)
 
             subjectFlow.collect {
                 it.handleRepoResponse(
                     onLoading = {},
                     onError = {
-                        list.value=it.data!!
+                        list.value = it.data!!
                     },
                     onSuccess = {
-                        list.value=it.data!!
+                        list.value = it.data!!
                     }
                 )
             }
-            }
         }
-
-
     }
+
+    fun navigateToAddingSectionFragment() {
+        navigateToAddingSectionFragmentEvent.value = true
+    }
+
+    fun navigateToAddingSectionFragmentDone() {
+        navigateToAddingSectionFragmentEvent.value = false
+    }
+
+}

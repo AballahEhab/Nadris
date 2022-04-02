@@ -1,5 +1,6 @@
 package com.example.android.nadris.util
 
+import android.graphics.Bitmap
 import android.view.WindowManager
 import androidx.fragment.app.FragmentActivity
 import kotlinx.coroutines.flow.flow
@@ -97,31 +98,18 @@ fun disableUserInterAction(activity: FragmentActivity?) =
 fun enableUserInterAction(activity: FragmentActivity?)=
     activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
+fun getResizedBitmap(image: Bitmap, maxSize: Int): Bitmap? {
+    var width = image.width
+    var height = image.height
+    val bitmapRatio = width.toFloat() / height.toFloat()
+    if (bitmapRatio > 1) {
+        width = maxSize
+        height = (width / bitmapRatio).toInt()
+    } else {
+        height = maxSize
+        width = (height * bitmapRatio).toInt()
+    }
+    return Bitmap.createScaledBitmap(image, width, height, true)
+}
 
-
-
-
-
-//class NetworkUtils @Inject constructor( private val context: Context) {
-//
-//    fun isNetworkAvailable(): Boolean {
-//        val connectivityManager =
-//            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            val nw = connectivityManager.activeNetwork ?: return false
-//            val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
-//            return when {
-//                actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-//                actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-//                //for other device how are able to connect with Ethernet
-//                actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-//                //for check internet over Bluetooth
-//                actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
-//                else -> false
-//            }
-//        } else {
-//            val nwInfo = connectivityManager.activeNetworkInfo ?: return false
-//            return nwInfo.isConnected
-//        }
-//    }
-//}
+  
