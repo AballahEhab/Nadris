@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/mid_margin"
-            android:onClick="@{()->postViewModle.navigate_to_add_post()}"
+            android:onClick="@{()->postViewModle.navigateToAddPost()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_add"/>

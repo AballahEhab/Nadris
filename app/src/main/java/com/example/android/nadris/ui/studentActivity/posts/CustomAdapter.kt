@@ -14,7 +14,7 @@ import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
 import java.io.File
 
-class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
+class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<CustomAdapter.PostViewHolder>() {
 
 
     private val differCallback = object : DiffUtil.ItemCallback<DatabasePost>() {
@@ -69,6 +69,10 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
                 viewModel.BookMark(data)
                 notifyItemChanged(position)
             }
+
+            holder.binding.profileImage.setOnClickListener {
+                viewModel.navigateToPublicProfilePage(data.email)
+            }
         }
 
     }
@@ -82,22 +86,6 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
 
         fun setDataBindingObj(post: DatabasePost) {
             binding.postData = post
-        }
-
-        fun toggleVoteIconStatus(state: Boolean) {
-            if (state) {
-                // TODO: add voted style
-            } else {
-                // TODO: add unvoted style
-            }
-        }
-
-        fun toggleBookMerkleIconStatus(state: Boolean) {
-            if (state) {
-                // TODO: add voted style
-            } else {
-                // TODO: add unvoted style
-            }
         }
     }
 

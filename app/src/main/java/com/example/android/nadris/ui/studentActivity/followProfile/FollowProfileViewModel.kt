@@ -27,6 +27,10 @@ class FollowProfileViewModel @Inject constructor(val repository:Repository) : Vi
 
     var postsProfileList = MutableLiveData(mutableListOf<DatabasePost>())
 
+
+
+    lateinit var profileEmail : String
+
     fun getLastActivity() {
         viewModelScope.launch {
             val token = NadrisApplication.userData?.Token //replace by id

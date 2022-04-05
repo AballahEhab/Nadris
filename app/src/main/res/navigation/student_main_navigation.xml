@@ -3,7 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation"
-            app:startDestination="@id/navigation_posts">
+            app:startDestination="@id/followProfileFragment">
 
     <fragment
         android:id="@+id/navigation_posts"
@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_posts_to_addCommentFragment"
             app:destination="@id/addCommentFragment"/>
+        <action
+            android:id="@+id/action_navigation_posts_to_followProfileFragment"
+            app:destination="@id/followProfileFragment" />
     </fragment>
 
     <fragment
@@ -93,6 +96,14 @@
         <action
             android:id="@+id/action_helpFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/followProfileFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.followProfile.FollowProfileFragment"
+        android:label="FollowProfileFragment" >
+        <argument
+            android:name="profie_email"
+            app:argType="string" />
     </fragment>
 
 

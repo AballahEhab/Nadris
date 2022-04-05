@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentProfileBinding
 import com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel
-import com.example.android.nadris.ui.studentActivity.posts.customAdapter
+import com.example.android.nadris.ui.studentActivity.posts.CustomAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +37,7 @@ class ProfileFragment : Fragment() {
         binding.rvPostsProfile.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-        val adapter = customAdapter(postsViewModel)
+        val adapter = CustomAdapter(postsViewModel)
 
         binding.rvPostsProfile.adapter = adapter
 

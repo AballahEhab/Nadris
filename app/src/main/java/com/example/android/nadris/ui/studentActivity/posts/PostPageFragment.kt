@@ -32,7 +32,7 @@ class PostPageFragment : Fragment() {
         viewModel.getPosts()
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = customAdapter(viewModel)
+        val adapter = CustomAdapter(viewModel)
         binding.recyclerView.adapter = adapter
         viewModel.postsList.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it)
@@ -41,7 +41,16 @@ class PostPageFragment : Fragment() {
             if (it) {
                 this.findNavController()
                     .navigate(PostPageFragmentDirections.actionNavigationPostsToAddPostFragment())
-                viewModel.navigate_to_add_post_done()
+                viewModel.navigateToAddPostDone()
+            }
+        }
+
+        viewModel.destinationProfileEmail.observe(this.viewLifecycleOwner) {
+            it?.let{ destinationProfileEmail ->
+                this.findNavController()
+                    .navigate(PostPageFragmentDirections
+                        .actionNavigationPostsToFollowProfileFragment(destinationProfileEmail))
+                viewModel.navigationToPublicProfileDone()
             }
         }
 
