@@ -8,7 +8,7 @@ import com.example.android.nadris.R
 import com.example.android.nadris.dataRvTeach
 
 class TeachersRVFragmentViewModel : ViewModel() {
-   private var list=MutableLiveData<List<dataRvTeach>>();
+   private var list=MutableLiveData<List<dataRvTeach>>()
     //LiveData =>add all list when chnge the list
     //used when the list constant
     // MutableLiveData=>add new object at lest and add data outsid view model

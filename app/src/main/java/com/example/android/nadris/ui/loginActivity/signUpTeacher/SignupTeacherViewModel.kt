@@ -92,7 +92,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     }
 
     fun getSelectedUniversity(): String? {
-        return selectedUniversity.value;
+        return selectedUniversity.value
     }
 
     fun validFirstName() {

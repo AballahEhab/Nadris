@@ -26,7 +26,7 @@ data class DatabasePost(
     }
 
     fun toggleBookMark(){
-        isBookMarked = !isBookMarked!!
+        isBookMarked = !isBookMarked
     }
 
     fun updatePost(updatedPost:DatabasePost){

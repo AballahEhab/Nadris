@@ -5,8 +5,4 @@ import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 @HiltViewModel
-class SettingsViewModel  @Inject constructor(val repository: Repository): ViewModel() {
-
-
-
-}
+class SettingsViewModel  @Inject constructor(val repository: Repository): ViewModel()

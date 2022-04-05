@@ -95,6 +95,20 @@
         android:id="@+id/adding_sections_fragment"
         android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
         android:label="@string/adding_subject_sections_label"
-        tools:layout="@layout/fragment_adding_subject_sections"/>
+        tools:layout="@layout/fragment_adding_subject_sections">
+        <argument
+            android:name="num_of_sections"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="unit_num"
+            app:argType="integer" />
+        <argument
+            android:name="lesson_num"
+            app:argType="integer" />
+        <argument
+            android:name="lesson_name"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

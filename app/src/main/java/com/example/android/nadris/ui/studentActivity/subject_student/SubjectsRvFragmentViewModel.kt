@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SubjectsRvFragmentViewModel @Inject constructor(val repository: Repository): ViewModel() {
 
-    private var list=MutableLiveData<List<DatabaseSubject>>();
+    private var list=MutableLiveData<List<DatabaseSubject>>()
 
     fun  getdata(): MutableLiveData<List<DatabaseSubject>> {
         val subjects =mutableListOf<DatabaseSubject>()

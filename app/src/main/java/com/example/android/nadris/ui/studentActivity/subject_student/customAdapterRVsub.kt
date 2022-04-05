@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.database.models.DatabaseSubject
 import com.example.android.nadris.databinding.ItemRvSubjectsBinding
 
-class customAdapterRVsub()
+class customAdapterRVsub
     : RecyclerView.Adapter<customAdapterRVsub.ViewHolder>() {
 
     private val differCallback=object : DiffUtil.ItemCallback<DatabaseSubject>(){
@@ -30,7 +30,7 @@ class customAdapterRVsub()
         parent: ViewGroup, viewType: Int
     ): ViewHolder {
         var v = ItemRvSubjectsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(v);
+        return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -51,7 +51,5 @@ class customAdapterRVsub()
         return differ.currentList.size
     }
 
-    class ViewHolder(var binding: ItemRvSubjectsBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class ViewHolder(var binding: ItemRvSubjectsBinding) : RecyclerView.ViewHolder(binding.root)
 }

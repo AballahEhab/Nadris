@@ -19,14 +19,14 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    var imgProfile: MutableLiveData<Int> = MutableLiveData<Int>();
-    var nameProfile: MutableLiveData<String> = MutableLiveData<String>(NadrisApplication.userData?.getFullName());
+    var imgProfile: MutableLiveData<Int> = MutableLiveData<Int>()
+    var nameProfile: MutableLiveData<String> = MutableLiveData<String>(NadrisApplication.userData?.getFullName())
 
-    var profileType: MutableLiveData<String> = MutableLiveData(NadrisApplication.userData?.Type);
+    var profileType: MutableLiveData<String> = MutableLiveData(NadrisApplication.userData?.Type)
 
-    var numPosts: MutableLiveData<Long> = MutableLiveData(0);
-    var numFollowers: MutableLiveData<Long> = MutableLiveData(0);
-    var numFolling: MutableLiveData<Long> = MutableLiveData(0);
+    var numPosts: MutableLiveData<Long> = MutableLiveData(0)
+    var numFollowers: MutableLiveData<Long> = MutableLiveData(0)
+    var numFolling: MutableLiveData<Long> = MutableLiveData(0)
 
     var postsProfileList = MutableLiveData(mutableListOf<DatabasePost>())
 

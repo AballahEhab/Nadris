@@ -5,6 +5,4 @@ package com.example.android.nadris.ui.studentActivity.subject_student
 //by shokri
 import androidx.lifecycle.ViewModel
 
-class subject_item_vm: ViewModel()  {
-
-}
+class subject_item_vm: ViewModel()

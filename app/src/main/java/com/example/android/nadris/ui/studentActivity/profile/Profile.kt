@@ -51,7 +51,7 @@ class ProfileFragment : Fragment() {
                 .navigate(ProfileFragmentDirections.actionProfileToSettingsFragment())
         }
 
-        return binding.root;
+        return binding.root
     }
 
 

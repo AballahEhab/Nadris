@@ -11,7 +11,7 @@ package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
     import com.example.android.nadris.network.dtos.TeacherSubjectDTO
     import dataRvsubTeach
 
-class customAdapterRVsubTeacher():
+class customAdapterRVsubTeacher :
         RecyclerView.Adapter<customAdapterRVsubTeacher.viweholder>() {
 
     private val differCalback=object :DiffUtil.ItemCallback<TeacherSubject>(){
@@ -42,6 +42,5 @@ class customAdapterRVsubTeacher():
             holder.binding.tvSemester.text =data.term
           //  holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
         }
-        class viweholder (var binding:ItemRvSubTeacherBinding):RecyclerView.ViewHolder(binding.root){
-         }
-    }
+        class viweholder (var binding:ItemRvSubTeacherBinding):RecyclerView.ViewHolder(binding.root)
+}

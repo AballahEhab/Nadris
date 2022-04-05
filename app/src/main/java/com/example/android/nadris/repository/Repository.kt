@@ -42,7 +42,7 @@ class Repository @Inject constructor(
         convertToDatabaseModel = { networkPostsList ->
             networkPostsList.map { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) }
         },
-        saveFetchResult = { list_of_posts -> list_of_posts?.let { localDataSource.insertPosts(it) } }
+        saveFetchResult = { list_of_posts -> list_of_posts.let { localDataSource.insertPosts(it) } }
     )
 
     suspend fun updatePostById(post: DatabasePost) = localDataSource.updatePost(post)
@@ -98,7 +98,7 @@ class Repository @Inject constructor(
         query = { localDataSource.getSubjects() },
         fetch = { remoteDataSource.getTeacherSubjects(token) },
         convertToDatabaseModel = { list -> list.map { dto -> NetworkModelsMapper.subjectDTOtoModel(dto) } },
-        saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it as List<TeacherSubject>) } }
+        saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it) } }
     )
     fun addTeacherSubject(token: String,addSubjectDTO: AddSubjectDTO)= postToApiAndSaveToDatabase(
         request = {remoteDataSource.addSubject(token,addSubjectDTO)},

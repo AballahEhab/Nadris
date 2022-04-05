@@ -18,10 +18,6 @@ data class ProfileInfoDTO (val firstName:String,
 )
 //exp ==>  experince of Student
 
-{
-
-}
-
 
 //data transfer object
 //used when model return from api dont same module Storage in data base

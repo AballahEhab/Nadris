@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.findFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentAddingSubjectSectionsBinding
 import com.example.android.nadris.ui.loginActivity.login.LoginViewModel
@@ -17,6 +18,7 @@ import com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragme
 class AddingSubjectSectionsFragment : Fragment() {
 
     val viewModel: AddingSectionsViewModel by activityViewModels()
+    val args: AddingSubjectSectionsFragmentArgs by navArgs()
     lateinit var binding:FragmentAddingSubjectSectionsBinding
 
     override fun onCreateView(
@@ -30,9 +32,28 @@ class AddingSubjectSectionsFragment : Fragment() {
 
          binding = FragmentAddingSubjectSectionsBinding.inflate(layoutInflater, container, false)
 
+//        val numOfSections = args.numOfSections
+//        val unitNum = args.unitNum
+//        val lessonNum = args.lessonNum
+//        val lessonName = args.lessonName
+//
+        val numOfSections = 5
+        val unitNum = 4
+        val lessonNum = 3
+        val lessonName = "lesson title"
+
+        binding.sectionUnitAndLessonTitle.text = String.format(resources.getString(R.string.adding_sections_title), unitNum, lessonNum,lessonName)
+
+
+        viewModel.setNumOfSections(numOfSections)
+
         viewModel.SectionAsHtml.observe(viewLifecycleOwner){
             Log.v("htmlFromTheparent",it)
         }
+
+        val adapter = SectionNumAdapter (numOfSections,viewModel)
+        binding.recyclerView.adapter = adapter
+
     /**
             binding.button.setOnClickListener {
                 (binding.textEditorFragment. as TextEditorFragment ).mEditor?.setOnTextChangeListener {
@@ -41,6 +62,8 @@ class AddingSubjectSectionsFragment : Fragment() {
             }
 
      **/
+
+
 
         return binding.root
     }
@@ -51,6 +74,6 @@ class AddingSubjectSectionsFragment : Fragment() {
      **/
     override fun onDestroy() {
         super.onDestroy()
-        activity?.viewModelStore?.clear();
+        activity?.viewModelStore?.clear()
     }
 }

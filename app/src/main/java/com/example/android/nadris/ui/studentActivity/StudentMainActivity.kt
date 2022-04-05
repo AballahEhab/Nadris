@@ -27,8 +27,4 @@ class StudentMainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
 }

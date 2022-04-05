@@ -16,7 +16,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.android.nadris.*
 import com.example.android.nadris.databinding.FragmentTextEditorBinding
 import com.example.android.nadris.services.Converter
@@ -38,8 +37,7 @@ class TextEditorFragment : Fragment() {
 
     var mEditor: RichEditor? = null
     private var mPreview: TextView? = null
-    private var imgagebase64 = """iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
-        //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -94,21 +92,22 @@ class TextEditorFragment : Fragment() {
             mEditor!!.setHeading(2)
         }
 
-        binding.actionHeading3.setOnClickListener {
-            mEditor!!.setHeading(3)
-        }
-
-        binding.actionHeading4.setOnClickListener {
-            mEditor!!.setHeading(4)
-        }
-
-        binding.actionHeading5.setOnClickListener {
-            mEditor!!.setHeading(5)
-        }
-
-        binding.actionHeading6.setOnClickListener {
-            mEditor!!.setHeading(6)
-        }
+        //todo: please uncomment this code
+//        binding.actionHeading3.setOnClickListener {
+//            mEditor!!.setHeading(3)
+//        }
+//
+//        binding.actionHeading4.setOnClickListener {
+//            mEditor!!.setHeading(4)
+//        }
+//
+//        binding.actionHeading5.setOnClickListener {
+//            mEditor!!.setHeading(5)
+//        }
+//
+//        binding.actionHeading6.setOnClickListener {
+//            mEditor!!.setHeading(6)
+//        }
 
         binding.actionTxtColor.setOnClickListener(object : View.OnClickListener {
             private var isChanged = false
@@ -168,8 +167,13 @@ class TextEditorFragment : Fragment() {
 
         mEditor!!.setOnTextChangeListener {
             Log.v("htmlstring",it)
-            viewModel.SectionAsHtml.value = it
+            viewModel.sectionsList.value?.set(viewModel.selectedSectionNum.value!!, it)
         }
+
+        viewModel.selectedSectionNum.observe(viewLifecycleOwner){
+            mEditor!!.html = viewModel.sectionsList.value?.get(it)
+        }
+
         return binding.root
     }
 

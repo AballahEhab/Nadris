@@ -16,7 +16,7 @@ import com.example.android.nadris.databinding.ItemRvTeachersBinding
 import com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragmentDirections
 
 //var teacherList:ArrayList<dataRvTeach>
-class customAdapterRVTeach()
+class customAdapterRVTeach
     :RecyclerView.Adapter<customAdapterRVTeach.Viewholder>() {
 
     private val differCallback=object :DiffUtil.ItemCallback<dataRvTeach>(){
@@ -62,9 +62,7 @@ class customAdapterRVTeach()
         return differ.currentList.size
     }
 
-class Viewholder(var binding:ItemRvTeachersBinding):RecyclerView.ViewHolder(binding.root){
-
-}
+class Viewholder(var binding:ItemRvTeachersBinding):RecyclerView.ViewHolder(binding.root)
 
 
 }

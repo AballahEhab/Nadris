@@ -52,7 +52,7 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
                     onLoading= {
                         it.data?.let{
                             disableProgressBar()
-                            postsList.value= it as List<DatabasePost>
+                            postsList.value= it
                         }
                     },
                     onError= {

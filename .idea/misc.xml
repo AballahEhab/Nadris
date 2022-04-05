@@ -62,19 +62,59 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/menu/student_bottom_navigation_menu.xml" value="0.21232587589700294" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/menu/teacher_bottom_navigation_menu.xml" value="0.20350577169730655" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/Nadris/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.24814814814814815" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable-ar-night/nadris_logo.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable-night/nadris_logo.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable-notnight/nadris_logo.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable-v24/ic_add.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable-v24/rounded_corners.xml" value="0.152" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/background.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/background1.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/boarder.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/checked_bookmark_icon.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/checked_vote_icon.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/create_account_txt_color_selector.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_arrow_drop_up_24.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_face_24.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_chat_room.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_facebook.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_h1.xml" value="0.267" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/section_num_background.xml" value="0.1745" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/selector.xml" value="0.152" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/unchecked_bookmark_icon.xml" value="0.1305" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/activity_main.xml" value="0.26197916666666665" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/activity_splash.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/activity_teacher_main.xml" value="0.1" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_add_pos.xml" value="0.26197916666666665" />
-        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_adding_subject_sections.xml" value="0.1" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_adding_subject_sections.xml" value="0.4" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_choosing_new_subjects.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_headline_subjects.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_help.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_home1.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_login.xml" value="0.14635416666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_notifications.xml" value="0.18177083333333333" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_notifications1.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_phone.xml" value="0.1" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_setting_the_num_of_sections.xml" value="0.264" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_signup.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_signup_teacher.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_sub_teacher_rv.xml" value="0.26197916666666665" />
-        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_text_editor.xml" value="0.28888888888888886" />
-        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_section_num.xml" value="0.2" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_teachers__r_v.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_text_editor.xml" value="0.10458015267175573" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_units.xml" value="0.16944444444444445" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_add_coment.xml" value="0.16944444444444445" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_dropdown_choose_class.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_expandable_unit.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_gender_list.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_lesson.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_lesson_subjects.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_rv_sub_teacher.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_rv_subjects.xml" value="0.11979166666666667" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_section_num.xml" value="0.536" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_unit_subjects.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/layout_input.xml" value="0.1" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/add_post_fragment.xml" value="0.22083333333333333" />
