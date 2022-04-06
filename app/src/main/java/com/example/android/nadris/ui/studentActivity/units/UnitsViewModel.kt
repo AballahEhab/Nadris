@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.studentActivity.units
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,10 +18,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UnitsViewModel @Inject constructor(val repository: Repository) : ViewModel() {
-    var list = MutableLiveData<List<SubjectUnit>>()
+    var list = MutableLiveData<MutableList<SubjectUnit>>()
     var unitLessons = MutableLiveData<MutableList<Lesson>>()
     var subjectId: Long = 0
-   lateinit var lessons:MutableLiveData<List<Lesson>>
     fun getdata() {
         viewModelScope.launch {
             val unitFlow = repository.getSubjectUnit(subjectId, TOKEN_PREFIX + NadrisApplication.userData?.Token)
@@ -29,13 +29,15 @@ class UnitsViewModel @Inject constructor(val repository: Repository) : ViewModel
                 it.handleRepoResponse(
                     onLoading = {},
                     onError = {
+                         (it.data )?.forEach{ list.value?.add(it.unit)
+                         unitLessons.value?.addAll(it.lessons) }
+                        Log.v("lessons1",unitLessons.toString())
 
                     },
                     onSuccess = {
-                        list.value = (it.data as List<NetworkModelsMapper.mapper>?)?.map { mapper -> mapper.unit
-
-                        }
-                        unitLessons.value?.addAll( (it.data )?.map { mapper -> mapper.lessons[0] } as Collection<Lesson>)
+                        (it.data )?.forEach{ list.value?.add(it.unit)
+                            unitLessons.value?.addAll(it.lessons) }
+                        Log.v("lessons1",unitLessons.toString())
 
                     }
                 )
@@ -44,5 +46,4 @@ class UnitsViewModel @Inject constructor(val repository: Repository) : ViewModel
     }
 
 
-  suspend  fun getLessons(unitId: Long) = viewModelScope.launch {lessons.value=  repository.getUnitLessons(unitId)}
 }

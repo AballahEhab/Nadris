@@ -56,7 +56,7 @@ class Repository @Inject constructor(
         },
         saveFetchResult = { list ->
             list.map {
-                localDataSource.insertSubjectUnit((it as NetworkModelsMapper.mapper).unit)
+                localDataSource.insertSubjectUnit(it.unit)
                 localDataSource.insertUnitLessons(it.lessons)
             }
         }
@@ -125,5 +125,5 @@ class Repository @Inject constructor(
 
 
     )
-   fun getUnitLessons(unitId:Long)=localDataSource.getUnitLessons(unitId)
+   suspend fun getUnitLessons(unitId:Long)=localDataSource.getUnitLessons(unitId)
 }

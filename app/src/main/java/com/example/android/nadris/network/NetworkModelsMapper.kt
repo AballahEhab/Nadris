@@ -58,8 +58,7 @@ object NetworkModelsMapper {
         dto.grade,
         dto.teacherName
     )
-data class mapper(val unit:SubjectUnit,val lessons: List<Lesson>)
-    fun subjectUnitsDTOtoModel(dto: SubjectUnitDTO): mapper {
+    fun subjectUnitsDTOtoModel(dto: SubjectUnitDTO):  UnitLessons{
 
       var unit=  SubjectUnit(
             dto.unitId,
@@ -70,6 +69,6 @@ data class mapper(val unit:SubjectUnit,val lessons: List<Lesson>)
        var list= dto.lessons.map {
             Lesson(it.lessonId,it.name,dto.unitId)
         }
-        return mapper(unit,list);
+        return UnitLessons(unit , list);
     }
 }

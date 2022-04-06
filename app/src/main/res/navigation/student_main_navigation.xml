@@ -19,7 +19,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/subject_fragment"
+        android:id="@+id/subject_fragment1"
         android:name="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectFragment"
         android:label="sub_teacher_rv_Fragment"
         tools:layout="@layout/fragment_sub_teacher_rv">
@@ -107,6 +107,14 @@
         <action
             android:id="@+id/action_helpFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/subject_fragment"
+        android:name="com.example.android.nadris.ui.studentActivity.units.SubjectFragment"
+        android:label="SubjectFragment"
+        tools:layout="@layout/fragment_subject">
+
     </fragment>
 
 

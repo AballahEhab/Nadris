@@ -85,4 +85,6 @@
             app:destination="@id/settingsFragment"/>
     </fragment>
 
+
+
 </navigation>

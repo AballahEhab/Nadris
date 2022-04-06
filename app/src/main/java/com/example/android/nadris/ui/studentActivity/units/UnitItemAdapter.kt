@@ -53,10 +53,11 @@ class UnitItemAdapter @Inject constructor(val viewModel: UnitsViewModel) :
         Log.v("vsg",holder.toString())
         // set adapter to lessons recycler view if the lessons is visible and the adapter is null
         if(unitData.lessonsVisibility && holder.unitLessonList.adapter == null){
-            GlobalScope.launch {
-                viewModel.getLessons(unitData.unitId) }
-
-            val adapter = LessonItemAdapter(viewModel.lessons.value!!)
+            val list = viewModel.unitLessons.value!!.filter {
+                it.FKUnitId == unitData.unitId
+            }
+            Log.v("lessons",list.toString())
+            val adapter = LessonItemAdapter(list)
             holder.unitLessonList.adapter = adapter
         }
 
