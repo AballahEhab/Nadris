@@ -65,6 +65,9 @@ constructor(
     suspend fun getProfileInfo(token: String) =
         profileService.getProfileInfo(token)
 
+    suspend fun getPublicProfileInfo(token: String,email:String) =
+        profileService.getPublicProfileInfo(token,email)
+
     suspend fun getLastActivity(token: String) =
         postsService.getLastActivity(token)
 

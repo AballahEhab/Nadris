@@ -1,6 +1,7 @@
 package com.example.android.nadris.ui.studentActivity.followProfile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,7 @@ class FollowProfileFragment : Fragment() {
 
         viewModel.profileEmail = "test@test.com"
 
+        viewModel.getPublicProfileData()
         binding.rvPostsFollowProfile.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
@@ -50,22 +52,23 @@ class FollowProfileFragment : Fragment() {
 
         binding.rvPostsFollowProfile.adapter = adapter
 
+        //TODO:set the posts recycler view data
+        /**
         viewModel.postsProfileList.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it.toList())
         }
+**/
 
-        /**todo: uncomment this code when needed
+        /**todo: uncomment this code when needed**/
         binding.tgbtnAddFrind.setOnCheckedChangeListener { _, isChecked ->
 
+            Log.v("toggleButotn",isChecked.toString())
             if(isChecked){
-                
 
             }else{
 
-
             }
         }
-        **/
 
         return binding.root
     }
