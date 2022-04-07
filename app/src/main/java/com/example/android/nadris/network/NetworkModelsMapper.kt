@@ -1,6 +1,5 @@
 package com.example.android.nadris.network
 
-import android.util.Log
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.database.models.*
@@ -13,12 +12,10 @@ import com.example.android.nadris.services.Converter
 object NetworkModelsMapper {
     fun postAsDatabaseModel(networkPost: NetworkPost): DatabasePost {
         var hasImage = false
-        Log.i("post", networkPost.toString())
         if (!networkPost.imgStrB64.isNullOrEmpty()) {
             NadrisApplication.instance?.let {
-                var res = Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.imgStrB64,
+              Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.imgStrB64,
                     networkPost.id.toString())
-                Log.i("img", res.byteCount.toString())
             }
 
             hasImage = true
