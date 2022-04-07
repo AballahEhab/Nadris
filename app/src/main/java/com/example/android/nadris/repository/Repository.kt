@@ -47,7 +47,7 @@ class Repository @Inject constructor(
 
     suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
 
-        query = { localDataSource.getSubjectUnits() },
+        query = { localDataSource.getSubjectUnits(subjectID) },
         fetch = { remoteDataSource.getSubjectUnit(subjectID, token) },
         convertToDatabaseModel = { list ->
             list.map { item ->

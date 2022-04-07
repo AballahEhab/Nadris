@@ -1,6 +1,6 @@
 package com.example.android.nadris.ui.studentActivity.posts
 
-import android.util.Log
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -50,10 +50,9 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
             postsFlow.collect {
                 it.handleRepoResponse(
                     onLoading= {
-                        it.data?.let{
+                        it.data?.let{posts->
                             disableProgressBar()
-                            postsList.value= it as List<DatabasePost>
-                        }
+                            postsList.value= posts                         }
                     },
                     onError= {
                         disableProgressBar()
@@ -64,7 +63,6 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
                     onSuccess= {
                         disableProgressBar()
                         postsList.value= (it.data as List<DatabasePost>)
-                        Log.v("posts responce", it.data.toString() )
                     },
                 )
 

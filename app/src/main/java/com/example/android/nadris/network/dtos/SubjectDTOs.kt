@@ -22,6 +22,7 @@ data class SubjectUnitDTO(
     val unitId:  Long,
     val name: String,
     val term : String,
+    val subjectId: Long,
     val lessons : List<UnitLessonsDTO>,
 )
 data class UnitLessonsDTO(

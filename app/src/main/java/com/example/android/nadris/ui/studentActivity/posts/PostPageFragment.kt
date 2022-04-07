@@ -15,8 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PostPageFragment : Fragment() {
-
-
     val viewModel: PostPageViewModel by viewModels()
 
     override fun onCreateView(
@@ -27,11 +25,10 @@ class PostPageFragment : Fragment() {
         val binding = FragmentPostPageBinding.inflate(inflater)
         binding.lifecycleOwner = this.viewLifecycleOwner
         binding.postViewModle = viewModel
-        binding.lifecycleOwner = this.viewLifecycleOwner
-
         viewModel.getPosts()
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(),
+            RecyclerView.VERTICAL, false)
         val adapter = PostsAdapter(viewModel)
         binding.recyclerView.adapter = adapter
         viewModel.postsList.observe(viewLifecycleOwner) {
@@ -44,7 +41,6 @@ class PostPageFragment : Fragment() {
                 viewModel.navigate_to_add_post_done()
             }
         }
-
 
         return binding.root
     }
