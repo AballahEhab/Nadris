@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_teacher_my_subjects_fragment_to_teacher_add_new_subject_fragment"
             app:destination="@id/teacher_add_new_subject_fragment" />
+        <action
+            android:id="@+id/action_teacher_my_subjects_fragment_to_adding_sections_fragment"
+            app:destination="@id/adding_sections_fragment" />
     </fragment>
 
     <fragment

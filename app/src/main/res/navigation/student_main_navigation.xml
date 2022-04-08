@@ -3,7 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation"
-            app:startDestination="@id/posts_fragment">
+            app:startDestination="@id/addingSubjectSectionsFragment">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -57,7 +57,11 @@
     <fragment
         android:id="@+id/student_subject_units_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.headlineSubject.headline_subjects"
-        tools:layout="@layout/fragment_headline_subjects"/>
+        tools:layout="@layout/fragment_headline_subjects">
+        <action
+            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"
+            app:destination="@id/addingSubjectSectionsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/add_post_fragment"
@@ -117,6 +121,11 @@
             android:id="@+id/action_change_password_to_settings_fragment"
             app:destination="@id/settings_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addingSubjectSectionsFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
+        android:label="fragment_adding_subject_sections"
+        tools:layout="@layout/fragment_adding_subject_sections" />
 
 
 </navigation>
