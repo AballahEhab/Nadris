@@ -33,7 +33,7 @@ object NetworkModelsMapper {
             networkPost.votes,
             networkPost.numOfComments,
             networkPost.time,
-            networkPost.email,
+            networkPost.userId,
             networkPost.name,
             networkPost.isVoted,
         )

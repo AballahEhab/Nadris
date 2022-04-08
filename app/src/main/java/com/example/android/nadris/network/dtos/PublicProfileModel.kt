@@ -1,10 +1,16 @@
 package com.example.android.nadris.network.dtos
 
 data class PublicProfileModel(
-    val imgProfile:String,
-    val name:String,
+    val exp:Int,
+    val grade:String,
+    val firstName:String,
+    val lastName:String,
+    val email:String,
+    val phoneNumber:String,
     val type:String,
-    val numOfPosts:Int,
+    val gender:String,
+    val profilePicStrB64:String,
     val numOfFollowers:Int,
     val numOfFollowing:Int,
-    val postsProfileList:List<NetworkPost>)
+    )
+

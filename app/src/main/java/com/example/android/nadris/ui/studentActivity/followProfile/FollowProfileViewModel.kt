@@ -1,13 +1,10 @@
 package com.example.android.nadris.ui.studentActivity.followProfile
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.TOKEN_PREFIX
-import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.network.dtos.PublicProfileModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,13 +30,12 @@ class FollowProfileViewModel @Inject constructor(val repository: Repository) : V
     var postsProfileList = MutableLiveData(mutableListOf<DatabasePost>())
      **/
 
-    val profileData: MutableLiveData<PublicProfileModel> = MutableLiveData(PublicProfileModel("ja;sdfjad","mohamed","student",10,10,10,
-        listOf()))
+    val profileData: MutableLiveData<PublicProfileModel> = MutableLiveData()
 
 
     val isLoading = MutableLiveData(true)
 
-    lateinit var profileEmail: String
+    lateinit var publicProfileEmail: String
 
     fun getLastActivity() {
         5.toString()
@@ -65,7 +61,29 @@ class FollowProfileViewModel @Inject constructor(val repository: Repository) : V
         //todo: get data assotiated with email from api and set it to
         val resultFlow =
             repository.getPublicProfileInfo((TOKEN_PREFIX + NadrisApplication.userData?.Token),
-                profileEmail)
+                publicProfileEmail)
+        viewModelScope.launch {
+            resultFlow.collect { result ->
+                result.handleRepoResponse(
+                    onLoading = {
+
+                    }, onError = {
+
+                    }, onSuccess = {
+                        profileData.value  = result.data
+                        isLoading.value = false
+                    }
+                )
+
+            }
+        }
+    }
+
+    fun toggleFlowPublicProfile(profileId:Int ){
+//todo: get data assotiated with email from api and set it to
+        val resultFlow =
+            repository.getPublicProfileInfo((TOKEN_PREFIX + NadrisApplication.userData?.Token),
+                publicProfileEmail)
         viewModelScope.launch {
             resultFlow.collect { result ->
                 result.handleRepoResponse(

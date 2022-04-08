@@ -6,6 +6,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 
 interface ProfileService {
 
@@ -13,9 +14,10 @@ interface ProfileService {
     suspend fun  getProfileInfo( @Header("authorization") token: String ): Response<ProfileInfoDTO>
 
 
+
     //TODO: please change the end point path
-    @GET("api/Profile/info")
-    suspend fun  getPublicProfileInfo( @Header("authorization") token: String ,@Body email:String): Response<PublicProfileModel>
+    @GET("api/Users/{id}")
+    suspend fun  getPublicProfileInfo( @Header("authorization") token: String ,@Path("id") userId:String): Response<PublicProfileModel>
 
     //Response hold return from api
 

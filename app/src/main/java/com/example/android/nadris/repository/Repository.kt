@@ -79,8 +79,8 @@ class Repository @Inject constructor(
     fun getProfileInfo(token:String)= requestAPI  (
          fetch = {remoteDataSource.getProfileInfo(token)})
 
-    fun getPublicProfileInfo(token:String,email:String)= requestAPI  (
-         fetch = {remoteDataSource.getPublicProfileInfo(token,email)})
+    fun getPublicProfileInfo(token:String,userId:String)= requestAPI  (
+         fetch = {remoteDataSource.getPublicProfileInfo(token,userId)})
 
     fun getLastActivity(token:String)= requestAPI  (
         fetch = {remoteDataSource.getLastActivity(token)})

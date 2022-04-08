@@ -40,7 +40,8 @@ class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<Cus
         val data = differ.currentList[position]
         var img: Bitmap? = null
         if (data.hasImage) {
-            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir, data.postId.toString())
+            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
+                data.postId.toString())
             if (file.exists()) {
                 img = BitmapFactory.decodeFile(file.absolutePath)
                 holder.binding.imgPost.setImageBitmap(img!!)
@@ -48,9 +49,8 @@ class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<Cus
             } else {
                 holder.binding.imgPost.visibility = View.GONE
             }
+        }
             holder.setDataBindingObj(data)
-
-
             holder.binding.imgReply.setOnClickListener {
                 holder.itemView.findNavController()
                     .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data.postId))
@@ -73,7 +73,6 @@ class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<Cus
             holder.binding.profileImage.setOnClickListener {
                 viewModel.navigateToPublicProfilePage(data.email)
             }
-        }
 
     }
 

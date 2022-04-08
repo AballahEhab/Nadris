@@ -7,9 +7,11 @@ data class NetworkPost(
     val votes: Long,
     val numOfComments: Long,
     val time: String,
-    val email: String,
+    val userId: String,
     val name: String,
     val imgStrB64: String?,
     val isVoted: Boolean,
-    val ProfilePicBase64: String,
+    val ProfilePicBase64: String?,
 )
+
+
