@@ -1,0 +1,20 @@
+
+=	java:S131›""Add a default case to this switch.(±èÄßÿÿÿÿÿ
+D
+java:S1185â"(Remove this method to simply inherit it.(’Ì¹ªûÿÿÿÿ
+f
+java:S1874î"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(µÛÎ°üÿÿÿÿ
+W
+java:S1874ù"@Remove this use of "shouldOverrideUrlLoading"; it is deprecated.(ñéÌ
+H
+java:S3398†",Move this method into "EditorWebViewClient".(–èˆ²ıÿÿÿÿ
+G
+java:S3398",Move this method into "EditorWebViewClient".(Ó§èƒÿÿÿÿÿ
+w
+java:S1192º"`Define a constant instead of duplicating this literal "javascript:RE.prepareInsert();" 14 times.(¾–œ
+b
+java:S1192Í"FDefine a constant instead of duplicating this literal "px');" 4 times.(È¹­»ûÿÿÿÿ
+c
+java:S1192Ó"GDefine a constant instead of duplicating this literal "px', '" 3 times.( ®‰ñüÿÿÿÿ
+?
+java:S1604Ó"(Make this anonymous inner class a lambda(¶¶’¾

@@ -10,23 +10,41 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkServicesModule {
-    @Singleton
-    @Provides
-    fun provideSubjectsService(retrofitObj:Retrofit) = retrofitObj.create( SubjectsService::class.java)
 
     @Singleton
     @Provides
-    fun provideUniversityService(retrofitObj:Retrofit) = retrofitObj.create( UniversityService::class.java)
+    fun provideAuthService(retrofitObj:Retrofit) = retrofitObj.create(AuthService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideCoursesService(retrofitObj:Retrofit) = retrofitObj.create(CoursesService::class.java)
+
     @Singleton
     @Provides
     fun provideGradesService(retrofitObj:Retrofit) = retrofitObj.create( GradesService::class.java)
 
-    @Singleton
-    @Provides
-    fun provideUserService( retrofitObj:Retrofit) = retrofitObj.create(UserService::class.java)
 
     @Singleton
     @Provides
     fun providePostsService(retrofitObj:Retrofit) = retrofitObj.create(PostsService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideProfileService(retrofitObj: Retrofit) = retrofitObj.create(ProfileService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideSubjectsService(retrofitObj:Retrofit) = retrofitObj.create( SubjectsService::class.java)
+
+
+    @Singleton
+    @Provides
+    fun provideUniversityService(retrofitObj:Retrofit) = retrofitObj.create( UniversityService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideUserService(retrofitObj:Retrofit) = retrofitObj.create( UserService::class.java)
+
+
 
 }

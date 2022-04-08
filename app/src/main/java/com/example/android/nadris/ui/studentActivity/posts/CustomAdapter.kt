@@ -14,7 +14,7 @@ import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
 import java.io.File
 
-class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<customAdapter.PostViewHolder>() {
+class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<CustomAdapter.PostViewHolder>() {
 
 
     private val differCallback = object : DiffUtil.ItemCallback<DatabasePost>() {
@@ -40,7 +40,8 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
         val data = differ.currentList[position]
         var img: Bitmap? = null
         if (data.hasImage) {
-            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir, data.postId.toString())
+            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
+                data.postId.toString())
             if (file.exists()) {
                 img = BitmapFactory.decodeFile(file.absolutePath)
                 holder.binding.imgPost.setImageBitmap(img!!)
@@ -48,12 +49,11 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
             } else {
                 holder.binding.imgPost.visibility = View.GONE
             }
+        }
             holder.setDataBindingObj(data)
-
-
             holder.binding.imgReply.setOnClickListener {
                 holder.itemView.findNavController()
-                    .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data.postId))
+                    .navigate(PostPageFragmentDirections.actionPostsFragmentToAddCommentFragment(data.postId))
             }
             holder.binding.imgVote.setOnClickListener {
                 data.toggleVote()
@@ -69,7 +69,10 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
                 viewModel.BookMark(data)
                 notifyItemChanged(position)
             }
-        }
+
+            holder.binding.profileImage.setOnClickListener {
+                viewModel.navigateToPublicProfilePage(data.userId)
+            }
 
     }
 
@@ -82,22 +85,6 @@ class customAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<cus
 
         fun setDataBindingObj(post: DatabasePost) {
             binding.postData = post
-        }
-
-        fun toggleVoteIconStatus(state: Boolean) {
-            if (state) {
-                // TODO: add voted style
-            } else {
-                // TODO: add unvoted style
-            }
-        }
-
-        fun toggleBookMerkleIconStatus(state: Boolean) {
-            if (state) {
-                // TODO: add voted style
-            } else {
-                // TODO: add unvoted style
-            }
         }
     }
 

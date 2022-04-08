@@ -24,6 +24,10 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
 
      var postsList =MutableLiveData< List<DatabasePost>>()
 
+
+    private var _destinationProfileEmail = MutableLiveData<String?>(null)
+    val destinationProfileEmail: MutableLiveData<String?> get() = _destinationProfileEmail
+
     private var _showIndicator :MutableLiveData<Boolean> =  MutableLiveData<Boolean>(false)
     val showIndicator get() = _showIndicator
     private var _loginRequestErrorMessage :MutableLiveData<String> =  MutableLiveData<String>("")
@@ -32,11 +36,11 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
     val errorMessageVisibility get() = _errorMessageVisibility
 val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.lastName
 
-    fun navigate_to_add_post(){
+    fun navigateToAddPost(){
         _navigate_to_add_post.value = true
     }
 
-    fun navigate_to_add_post_done(){
+    fun navigateToAddPostDone(){
         _navigate_to_add_post.value = false
     }
 
@@ -121,5 +125,13 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
         viewModelScope.launch {
             repository.updatePostById(post )
         }
+    }
+
+    fun navigateToPublicProfilePage(email: String) {
+        _destinationProfileEmail.value = email
+    }
+
+    fun navigationToPublicProfileDone() {
+        _destinationProfileEmail.value = null
     }
 }

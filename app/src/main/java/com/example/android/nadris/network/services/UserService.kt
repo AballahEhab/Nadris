@@ -1,21 +1,23 @@
 package com.example.android.nadris.network.services
 
-import com.example.android.nadris.network.dtos.AuthModel
-import com.example.android.nadris.network.dtos.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.dtos.CreateTeacherAccountDataModelModel
-import com.example.android.nadris.network.dtos.LoginAccountModel
+import com.example.android.nadris.network.dtos.CreatePostModel
+import com.example.android.nadris.network.dtos.NetworkPost
+import com.example.android.nadris.network.dtos.ProfileInfoDTO
 import retrofit2.Response
-import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
-interface UserService{
+interface UserService {
 
-    @POST("api/Auth/Token")
-    suspend fun login( @Body loginAccountData: LoginAccountModel): Response<AuthModel>  // send email and password and receive token as return string
+    @GET("api/Users/{id}")
+    suspend fun getPublicProfileInfoById(@Path("id") id:String, @Header("authorization") token: String): Response<ProfileInfoDTO>
 
-    @POST("api/Auth/Register/Student")
-    suspend fun createStudentAccount(@Body studentAccountDataModel: CreateStudentAccountDataModelModel): Response<AuthModel>
+    @POST("api/Users/{id}/Follow")
+    suspend fun followUser(@Path("id") userId:String, @Header("authorization") token: String): Response<Boolean>
 
-    @POST("api/Auth/Register/Teacher")
-    suspend fun createTeacherAccount(@Body TeacherAccountDataModel: CreateTeacherAccountDataModelModel): Response<AuthModel>
+    @GET("api/Users/{id}/posts")
+    suspend fun getPostsByUserId(@Path("id") id:String, @Header("authorization") token: String): Response<List<NetworkPost>>
+
 }

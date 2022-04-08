@@ -40,7 +40,7 @@ class SubTeacherRVFragment : Fragment() {
         viewModel.getdata()
         setupRV()
         binding.fabAddSubject.setOnClickListener {
-            val action = SubTeacherRVFragmentDirections.actionSubTeacherRvFragmentToChoosingNewSubjects()
+            val action = SubTeacherRVFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment()
             findNavController().navigate(action)
         }
 

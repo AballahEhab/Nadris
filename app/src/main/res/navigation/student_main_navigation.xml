@@ -3,96 +3,119 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/mobile_navigation"
-            app:startDestination="@id/navigation_posts">
+            app:startDestination="@id/posts_fragment">
 
     <fragment
-        android:id="@+id/navigation_posts"
+        android:id="@+id/posts_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
-        android:label="@string/title_home"
+        android:label="@string/posts_fragment_label"
         tools:layout="@layout/fragment_post_page">
         <action
-            android:id="@+id/action_navigation_posts_to_addPostFragment"
-            app:destination="@id/addPostFragment"/>
+            android:id="@+id/action_posts_fragment_to_add_post_fragment"
+            app:destination="@id/add_post_fragment"/>
         <action
-            android:id="@+id/action_navigation_posts_to_addCommentFragment"
-            app:destination="@id/addCommentFragment"/>
+            android:id="@+id/action_posts_fragment_to_add_comment_fragment"
+            app:destination="@id/add_comment_fragment"/>
+        <action
+            android:id="@+id/action_posts_fragment_to_public_profile_fragment"
+            app:destination="@id/public_profile_fragment" />
+        <action
+            android:id="@+id/action_posts_fragment_to_private_profile_fragment"
+            app:destination="@id/private_profile_fragment" />
+
     </fragment>
 
     <fragment
-        android:id="@+id/subjectsRvFragment"
+        android:id="@+id/student_all_subjects_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment"
         android:label="@string/student_subjects_title"
-        tools:layout="@layout/fragment_subjects_rv"
-         >
+        tools:layout="@layout/fragment_subjects_rv">
         <action
-            android:id="@+id/action_subjectsRvFragment_to_teachers_RV_fragment"
-            app:destination="@id/teachers_RV_fragment" />
+            android:id="@+id/action_student_all_subjects_fragment_to_student_teachers_for_a_subject_fragment"
+            app:destination="@id/student_teachers_for_a_subject_fragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/profile"
+        android:id="@+id/private_profile_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profile_to_settingsFragment"
-            app:destination="@id/settingsFragment"/>
+            android:id="@+id/action_private_profile_fragment_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/teachers_RV_fragment"
+        android:id="@+id/student_teachers_for_a_subject_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragment"
-        android:label="teachers_RV_fragment"
-    tools:layout="@layout/fragment_teachers__r_v"
-    >
+        tools:layout="@layout/fragment_teachers__r_v">
         <action
-            android:id="@+id/action_teachers_RV_fragment_to_headline_subjects"
-            app:destination="@id/headline_subjects"/>
+            android:id="@+id/action_student_teachers_for_a_subject_fragment_to_student_subject_units_fragment"
+            app:destination="@id/student_subject_units_fragment" />
+    </fragment>
 
-    </fragment>
     <fragment
-        android:id="@+id/headline_subjects"
+        android:id="@+id/student_subject_units_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.headlineSubject.headline_subjects"
-        android:label="headline_subjects_fragment"
         tools:layout="@layout/fragment_headline_subjects"/>
+
     <fragment
-        android:id="@+id/addPostFragment"
+        android:id="@+id/add_post_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
-        android:label="addPostFragment"
-        tools:layout="@layout/fragment_add_pos"
-    >
-        <action android:id="@+id/action_addPostFragment_to_navigation_posts"
-                app:destination="@id/navigation_posts"/>
+        tools:layout="@layout/fragment_add_pos">
+        <action android:id="@+id/action_add_post_fragment_to_posts_fragment"
+                app:destination="@id/posts_fragment"/>
     </fragment>
+
     <fragment
-        android:id="@+id/addCommentFragment"
+        android:id="@+id/add_comment_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentFragment"
-        android:label="AddCommentFragment"
         tools:layout="@layout/fragment_add_comment"
     >
         <argument
             android:name="postId"
             app:argType="long" />
     </fragment>
+
     <fragment
-        android:id="@+id/settingsFragment"
+        android:id="@id/settings_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.settings.SettingsFragment"
-        android:label="fragment_settings"
         tools:layout="@layout/fragment_settings">
         <action
-            android:id="@+id/action_settingsFragment_to_profile"
-            app:destination="@id/profile"/>
+            android:id="@+id/action_settings_fragment_to_help_fragment"
+            app:destination="@id/help_fragment" />
         <action
-            android:id="@+id/action_settingsFragment_to_helpFragment"
-            app:destination="@id/helpFragment"/>
+            android:id="@+id/action_settings_fragment_to_private_profile_fragment"
+            app:destination="@id/private_profile_fragment" />
+        <action
+            android:id="@+id/action_settings_fragment_to_change_password"
+            app:destination="@id/change_password" />
     </fragment>
+
     <fragment
-        android:id="@+id/helpFragment"
+        android:id="@+id/help_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.settings.help.HelpFragment"
-        android:label="HelpFragment"
         tools:layout="@layout/fragment_help">
         <action
-            android:id="@+id/action_helpFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment"/>
+            android:id="@+id/action_help_fragment_to_settings_fragment"
+            app:destination="@id/settings_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/public_profile_fragment"
+        android:name="com.example.android.nadris.ui.studentActivity.followProfile.FollowProfileFragment"
+         tools:layout="@layout/follow_profile_fragment">
+        <argument
+            android:name="user_profile_id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/change_password"
+        android:name="com.example.android.nadris.Change_password"
+        android:label="Change_password" >
+        <action
+            android:id="@+id/action_change_password_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
     </fragment>
 
 
