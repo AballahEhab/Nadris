@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject
 constructor(
+    private val coursesService: CoursesService,
     private val usersService: UserService,
     private val postsService: PostsService,
     private val subjectsService: SubjectsService,
@@ -45,11 +46,14 @@ constructor(
     suspend fun getCommentsByPostId(postId: Long, token: String) =
         postsService.getCommentByPostId(postId, token)
 
-    suspend fun getTeacherSubjects(token: String) =
-        subjectsService.getTeacherSubjects(token)
+    suspend fun getTeacherCourses(token: String) =
+        coursesService.getTeacherCourses(token)
 
-    suspend fun getGradeSubjects(gradeId: Long, token: String) =
-        subjectsService.getGradeSubjects(gradeId, token)
+    suspend fun getRegisteredCoursesForAStudent(token: String)=
+        coursesService.getRegisteredCoursesForAStudent(token)
+
+    suspend fun getSubjectsWithGradeId(gradeId: Long, token: String) =
+        subjectsService.getSubjectsWithGradeId(gradeId, token)
 
     suspend fun getUniversities() =
         universityService.getUniversities()
@@ -60,7 +64,7 @@ constructor(
     suspend fun getSections() = gradesService.getSections()
     suspend fun getGrades() = gradesService.getGrades()
     suspend fun addSubject(token: String, addSubjectDTO: AddSubjectDTO) =
-        subjectsService.addTeacherSubject(addSubjectDTO, token)
+        coursesService.addSubjectForATeacher(addSubjectDTO, token)
 
     suspend fun getProfileInfo(token: String) =
         profileService.getProfileInfo(token)

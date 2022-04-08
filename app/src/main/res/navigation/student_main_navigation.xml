@@ -18,16 +18,16 @@
             app:destination="@id/addCommentFragment"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/subject_fragment1"
-        android:name="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectFragment"
-        android:label="sub_teacher_rv_Fragment"
-        tools:layout="@layout/fragment_sub_teacher_rv">
-        <action
-            android:id="@+id/action_subject_fragment_to_add_new_subject"
-            app:destination="@id/add_new_subject"/>
-        <action android:id="@+id/action_subject_fragment_to_subject_Units" app:destination="@id/subject_Units"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/subject_fragment1"-->
+<!--        android:name="com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectFragment"-->
+<!--        android:label="sub_teacher_rv_Fragment"-->
+<!--        tools:layout="@layout/fragment_sub_teacher_rv">-->
+<!--        <action-->
+<!--            android:id="@+id/action_subject_fragment_to_add_new_subject"-->
+<!--            app:destination="@id/add_new_subject"/>-->
+<!--        <action android:id="@+id/action_subject_fragment_to_subject_Units" app:destination="@id/subject_Units"/>-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/subject_Units"
@@ -36,16 +36,16 @@
         <argument android:name="subjectId"
                   app:argType="long"/>
     </fragment>
-    <fragment
-        android:id="@+id/subjectsRvFragment"
-        android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment"
-        android:label="@string/student_subjects_title"
-        tools:layout="@layout/fragment_subjects_rv"
-    >
-        <action
-            android:id="@+id/action_subjectsRvFragment_to_teachers_RV_fragment"
-            app:destination="@id/teachers_RV_fragment"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/subjectsRvFragment"-->
+<!--        android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment"-->
+<!--        android:label="@string/student_subjects_title"-->
+<!--        tools:layout="@layout/fragment_subjects_rv"-->
+<!--    >-->
+<!--        <action-->
+<!--            android:id="@+id/action_subjectsRvFragment_to_teachers_RV_fragment"-->
+<!--            app:destination="@id/teachers_RV_fragment"/>-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/profile"
         android:name="com.example.android.nadris.ui.studentActivity.profile.ProfileFragment"
@@ -56,17 +56,17 @@
             app:destination="@id/settingsFragment"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/teachers_RV_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragment"
-        android:label="teachers_RV_fragment"
-    tools:layout="@layout/fragment_teachers__r_v"
-    >
-        <action
-            android:id="@+id/action_teachers_RV_fragment_to_headline_subjects"
-            app:destination="@id/subject_Units"/>
+<!--    <fragment-->
+<!--        android:id="@+id/teachers_RV_fragment"-->
+<!--        android:name="com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragment"-->
+<!--        android:label="teachers_RV_fragment"-->
+<!--        tools:layout="@layout/fragment_teachers__r_v"-->
+<!--    >-->
+<!--        <action-->
+<!--            android:id="@+id/action_teachers_RV_fragment_to_headline_subjects"-->
+<!--            app:destination="@id/subject_Units"/>-->
 
-    </fragment>
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/addPostFragment"
@@ -85,7 +85,7 @@
     >
         <argument
             android:name="postId"
-            app:argType="long" />
+            app:argType="long"/>
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -114,7 +114,8 @@
         android:name="com.example.android.nadris.ui.studentActivity.units.SubjectFragment"
         android:label="SubjectFragment"
         tools:layout="@layout/fragment_subject">
-
+        <action android:id="@+id/action_subject_fragment_to_subject_Units"
+                app:destination="@id/subject_Units"/>
     </fragment>
 
 

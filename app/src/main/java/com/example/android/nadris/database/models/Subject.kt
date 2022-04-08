@@ -26,3 +26,14 @@ data class TeacherSubject(
     val grade: String,
     val teacherName: String,
 )
+@Entity
+data class StudentSubject(
+    @PrimaryKey  val id: Long,
+    val name: String,
+    val grade: String,
+    val section: String,
+    val term: String,
+    val teacherName: String,
+    val progress: Long,
+    val rate: Long,
+)

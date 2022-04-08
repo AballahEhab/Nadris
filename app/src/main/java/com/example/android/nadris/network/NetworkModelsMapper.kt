@@ -3,10 +3,7 @@ package com.example.android.nadris.network
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.database.models.*
-import com.example.android.nadris.network.dtos.AuthModel
-import com.example.android.nadris.network.dtos.NetworkPost
-import com.example.android.nadris.network.dtos.SubjectUnitDTO
-import com.example.android.nadris.network.dtos.TeacherSubjectDTO
+import com.example.android.nadris.network.dtos.*
 import com.example.android.nadris.services.Converter
 
 object NetworkModelsMapper {
@@ -57,6 +54,17 @@ object NetworkModelsMapper {
         dto.term,
         dto.grade,
         dto.teacherName
+    )
+
+    fun studentCourseDTOtoModel(dto: StudentSubjectDTO) = StudentSubject(
+        dto.id,
+        dto.name,
+        dto.grade,
+        dto.section,
+        dto.term,
+        dto.teacherName,
+        dto.progress,
+        dto.rate,
     )
 
     fun subjectUnitsDTOtoModel(dto: SubjectUnitDTO): UnitLessons {

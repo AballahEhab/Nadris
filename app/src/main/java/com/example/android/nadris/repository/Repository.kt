@@ -1,6 +1,7 @@
 package com.example.android.nadris.repository
 
 import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.StudentSubject
 import com.example.android.nadris.database.models.TeacherSubject
 import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.network.dtos.*
@@ -74,7 +75,7 @@ class Repository @Inject constructor(
     )
 
     fun getGradeSubjects(gradeId: Long, token: String) = requestAPI(
-        fetch = { remoteDataSource.getGradeSubjects(gradeId, token) }
+        fetch = { remoteDataSource.getSubjectsWithGradeId(gradeId, token) }
     )
 
     fun getAllComments(token: String, postId: Long) = requestAPI(
@@ -114,10 +115,20 @@ class Repository @Inject constructor(
 
     fun getTeacherSubject(token: String) = getFromApiAndSaveToDataBase(
         query = { localDataSource.getSubjects() },
-        fetch = { remoteDataSource.getTeacherSubjects(token) },
+        fetch = { remoteDataSource.getTeacherCourses(token) },
         convertToDatabaseModel = { list -> list.map { dto -> NetworkModelsMapper.subjectDTOtoModel(dto) } },
         saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it as List<TeacherSubject>) } }
     )
+
+    fun getRegisteredCoursesForAStudent(token: String) = getFromApiAndSaveToDataBase(
+        query = { localDataSource.getRegisteredCoursesForAStudent() },
+        fetch = { remoteDataSource.getRegisteredCoursesForAStudent(token) },
+        convertToDatabaseModel = { list -> list.map { dto -> NetworkModelsMapper.studentCourseDTOtoModel(dto) } },
+        saveFetchResult = { list -> list.let { localDataSource.addRegisteredCoursesForAStudent(it as List<StudentSubject>) } }
+    )
+
+
+
     fun addTeacherSubject(token: String,addSubjectDTO: AddSubjectDTO)= postToApiAndSaveToDatabase(
         request = {remoteDataSource.addSubject(token,addSubjectDTO)},
         saveFetchResult = {item-> localDataSource.insertSubject(item)},

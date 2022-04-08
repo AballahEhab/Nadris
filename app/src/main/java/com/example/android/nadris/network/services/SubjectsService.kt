@@ -6,15 +6,16 @@ import retrofit2.http.*
 
 interface SubjectsService {
     @GET("api/Subject/Grade/{id}")
-    suspend fun getGradeSubjects(@Path("id")id:Long , @Header("authorization") token: String): Response<List<SubjectDTO>>
-
-    @GET("api/Courses/Teacher")
-    suspend fun getTeacherSubjects(@Header("authorization") token: String):Response<List<TeacherSubjectDTO>>
-
-    @POST("api/Courses/Teacher")
-    suspend fun addTeacherSubject(@Body addSubjectDTO: AddSubjectDTO ,@Header("authorization") token: String):Response<TeacherSubjectDTO>
-
+    suspend fun getSubjectsWithGradeId(@Path("id")id:Long, @Header("authorization") token: String): Response<List<SubjectDTO>>
 
     @GET("api/Subject/{id}/units")
     suspend fun  getSubjectUnit(@Path("id")id: Long , @Header("authorization") token: String):Response<List<SubjectUnitDTO>>
-}
+
+
+    @GET("api/Subject/Section/{id}")
+    suspend fun getSubjectsWithSectionId(@Path("id")id:Long, @Header("authorization") token: String): Response<List<SubjectDTO>>
+
+    @GET("api/Subject/{id}")
+    suspend fun getSubjectWithId(@Path("id")id:Long, @Header("authorization") token: String): Response<SubjectDTO>
+
+    }

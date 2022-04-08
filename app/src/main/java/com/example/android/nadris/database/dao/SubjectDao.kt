@@ -1,18 +1,19 @@
 package com.example.android.nadris.database.dao
 
 import androidx.room.*
-import com.example.android.nadris.database.models.Lesson
-import com.example.android.nadris.database.models.SubjectUnit
-import com.example.android.nadris.database.models.TeacherSubject
-import com.example.android.nadris.database.models.UnitLessons
+import com.example.android.nadris.database.models.*
 
 @Dao
 interface SubjectDao {
     @Query("SELECT * FROM TeacherSubject")
     suspend fun getSubjects(): List<TeacherSubject>
-
+    @Query("SELECT * FROM StudentSubject")
+    suspend fun getRegisteredCoursesForAStudent():List<StudentSubject>
     @Query("SELECT * FROM TeacherSubject where id=:id")
     suspend fun getSubject(id: Long): TeacherSubject
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addRegisteredCoursesForAStudent(list: List<StudentSubject>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSubjects(list: List<TeacherSubject>)
