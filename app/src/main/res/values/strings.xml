@@ -173,6 +173,13 @@
     <string name="profile">profile</string>
     <string name="tgbtn_add_frind">add friend</string>
     <string name="my_subjects_fragment_label">My Subjects</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="video_link_input_hint">video link</string>
+    <string name="please_enter_num_of_sections_hin">please enter the num of the sections</string>
+    <string name="proceed">procceed</string>
+    <string name="text_editor_label">Text Editor</string>
+    <string name="adding_subject_sections_label">Adding Subject Sections</string>
+    <string name="adding_sections_title">Unit %o : lesson %o ( %s )</string>
+
 
 </resources>

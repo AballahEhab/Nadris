@@ -34,7 +34,7 @@ class TeacherMainActivity : AppCompatActivity() {
     private fun visibilityNavElements(navController: NavController) {
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.TextEditor,R.id.adding_sections_fragment->binding.navView.visibility = View.GONE
+                R.id.frafragTextEditor,R.id.adding_sections_fragment->binding.navView.visibility = View.GONE
                 else -> binding.navView.visibility = View.VISIBLE
             }
         }

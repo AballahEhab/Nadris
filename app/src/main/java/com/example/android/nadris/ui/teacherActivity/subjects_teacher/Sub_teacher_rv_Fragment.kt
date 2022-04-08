@@ -78,7 +78,7 @@ class SubTeacherRVFragment : Fragment() {
         viewModel.navigateToAddingSectionFragmentEvent.observe(viewLifecycleOwner){
             if(it) {
 
-                findNavController().navigate(SubTeacherRVFragmentDirections.actionSubTeacherRvFragmetnToAddingSectionsFrgament(17,6,3,"lesson Title"))
+                findNavController().navigate(SubTeacherRVFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment())
                 viewModel.navigateToAddingSectionFragmentDone()
             }
         }
