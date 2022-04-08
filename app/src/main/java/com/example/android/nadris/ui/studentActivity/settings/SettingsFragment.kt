@@ -39,7 +39,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding.tvChangeClass.setOnClickListener {
-            showAlertDailog()
+            showAlertDailog("ChangeClass","هل تريد تغيير الصف الدراسي")
         }
 
         binding.tvNightMode.setOnClickListener {
@@ -57,24 +57,22 @@ class SettingsFragment : Fragment() {
         }
 
         binding.tvSignOut.setOnClickListener {
-
+            showAlertDailog("SignOut","هل تريد تسجيل الدخول")
         }
 
 
 
         return binding.root
     }
-    fun showAlertDailog(){
+    fun showAlertDailog(Alert :String,message:String){
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Alert")
-            .setMessage("message ")
-            .setNeutralButton("letar"){dialog,which ->
-
+            .setTitle(Alert)
+            .setMessage(message)
+            .setNegativeButton("no"){dialog,which ->
+                dialog.dismiss()
             }
-            .setNegativeButton("close"){dialog,which ->
-
-            }
-            .setPositiveButton("save"){dialog ,which ->
+            .setPositiveButton("yes"){dialog ,which ->
+                // code log out
 
             }.show()
     }
