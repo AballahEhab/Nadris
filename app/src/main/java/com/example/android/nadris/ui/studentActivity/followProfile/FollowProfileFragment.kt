@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FollowProfileFragmentBinding
+import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel
 import com.example.android.nadris.ui.studentActivity.posts.CustomAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,23 +52,21 @@ class FollowProfileFragment : Fragment() {
 
         binding.rvPostsFollowProfile.adapter = adapter
 
-        //TODO:set the posts recycler view data
-/**
-        viewModel.profileData.observe(viewLifecycleOwner) {
-            adapter.differ.submitList(it.postsProfileList.toMutableList().map { posts -> NetworkModelsMapper.postAsDatabaseModel(posts)})
+        viewModel.postsProfileList.observe(viewLifecycleOwner) {
+            adapter.differ.submitList(it)
         }
-**/
 
-        /**todo: uncomment this code when needed**/
-        binding.tgbtnAddFrind.setOnCheckedChangeListener { _, isChecked ->
 
-            Log.v("toggleButotn",isChecked.toString())
-            if(isChecked){
-        viewModel.toggleFlowPublicProfile(NadrisApplication.userData?.id!!)
-            }else{
-
-            }
-        }
+//        /**todo: uncomment this code when needed**/
+//        binding.tgbtnAddFrind.setOnCheckedChangeListener { _, isChecked ->
+//
+//            Log.v("toggleButotn",isChecked.toString())
+//            if(isChecked){
+//        viewModel.toggleFlowPublicProfile()
+//            }else{
+//
+//            }
+//        }
 
 
 

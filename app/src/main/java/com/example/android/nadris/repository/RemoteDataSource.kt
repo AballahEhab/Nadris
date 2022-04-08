@@ -7,22 +7,26 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject
 constructor(
-    private val usersService: UserService,
+    private val authService: AuthService,
+    private val coursesService: CoursesService,
+    private val gradesService: GradesService,
     private val postsService: PostsService,
+    private val profileService: ProfileService,
     private val subjectsService: SubjectsService,
     private val universityService: UniversityService,
-    private val gradesService: GradesService,
-    private val profileService: ProfileService,
-) {
+    private val usersService: UserService
+
+    ) {
 
     suspend fun login(loginModel: LoginAccountModel) =
-        usersService.login(loginModel)
+        authService.login(loginModel)
 
     suspend fun createStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) =
-        usersService.createStudentAccount(accountDataModel)
+        authService.createStudentAccount(accountDataModel)
 
     suspend fun createTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
-        usersService.createTeacherAccount(createTeacherAccountDataModelModel)
+        authService.createTeacherAccount(createTeacherAccountDataModelModel)
+
 
     suspend fun getAllPosts(token: String) =
         postsService.getAllPosts(token)
@@ -30,46 +34,52 @@ constructor(
     suspend fun publishAPost(createPostModel: CreatePostModel, token: String) =
         postsService.publishAPost(createPostModel, token)
 
-    suspend fun getAPostByPostId(postId: Int, token: String) =
-        postsService.getAPostByPostId(postId, token)
 
     suspend fun getPostsByEmail(email: String, token: String) =
-        postsService.getPostsByEmail(email, token)
+        postsService.getPostsByUserId(email, token)
 
     suspend fun vote(voteModel: VoteModel, token: String) =
         postsService.vote(voteModel, token)
 
     suspend fun comment(publishCommentModel: PublishCommentModel, token: String) =
-        postsService.comment(publishCommentModel, token)
+        postsService.addCommentToAPost(publishCommentModel, token)
 
     suspend fun getCommentsByPostId(postId: Long, token: String) =
-        postsService.getCommentByPostId(postId, token)
+        postsService.getCommentsByPostId(postId, token)
+
+    suspend fun getPostsByUserId( userId: String, token: String) =
+        usersService.getPostsByUserId(userId, token)
+
+    suspend fun getPublicProfileInfo(token: String,userId:String) =
+        usersService.getPublicProfileInfoById(userId,token)
+
+    suspend fun followProfile(token: String,userId:String) =
+        usersService.followUser(userId,token)
+
+    suspend fun addSubject(token: String, addSubjectDTO: AddSubjectDTO) =
+        coursesService.addSubjectForATeacher(addSubjectDTO, token)
 
     suspend fun getTeacherSubjects(token: String) =
-        subjectsService.getTeacherSubjects(token)
+        coursesService.getTeacherCourses(token)
 
     suspend fun getGradeSubjects(gradeId: Long, token: String) =
-        subjectsService.getGradeSubjects(gradeId, token)
+        subjectsService.getSubjectsWithGradeId(gradeId, token)
 
     suspend fun getUniversities() =
         universityService.getUniversities()
 
     suspend fun getColleges(id: Int) =
-        universityService.getColleges(id)
+        universityService.getCollegesWithUniversityId(id)
 
-    suspend fun getSections() = gradesService.getSections()
-    suspend fun getGrades() = gradesService.getGrades()
-    suspend fun addSubject(token: String, addSubjectDTO: AddSubjectDTO) =
-        subjectsService.addTeacherSubject(addSubjectDTO, token)
+    suspend fun getSections() = gradesService.getAllGradesWithSections()
+
+    suspend fun getGrades() = gradesService.getAllGrades()
 
     suspend fun getProfileInfo(token: String) =
-        profileService.getProfileInfo(token)
-
-    suspend fun getPublicProfileInfo(token: String,userId:String) =
-        profileService.getPublicProfileInfo(token,userId)
+        profileService.getCurrentUserProfileInfo(token)
 
     suspend fun getLastActivity(token: String) =
-        postsService.getLastActivity(token)
+        profileService.getCurrentUserPosts(token)
 
 
 }

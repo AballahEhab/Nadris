@@ -55,6 +55,10 @@ class Repository @Inject constructor(
         saveFetchResult = { post -> localDataSource.insertPost(post) }
     )
 
+    fun getPostsByUserId(userID: String, token: String) = requestAPI(
+        fetch = { remoteDataSource.getPostsByUserId(userID, token) }
+    )
+
     fun getGradeSubjects(gradeId: Long, token: String) = requestAPI(
         fetch = { remoteDataSource.getGradeSubjects(gradeId, token) }
     )
@@ -78,6 +82,9 @@ class Repository @Inject constructor(
 
     fun getProfileInfo(token:String)= requestAPI  (
          fetch = {remoteDataSource.getProfileInfo(token)})
+
+    fun flowProfile(userID:String, token:String)= requestAPI  (
+         fetch = {remoteDataSource.followProfile(userID,token)})
 
     fun getPublicProfileInfo(token:String,userId:String)= requestAPI  (
          fetch = {remoteDataSource.getPublicProfileInfo(token,userId)})

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.ItemRvTeachersBinding
 import com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragmentDirections
+import com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubTeacherRVFragmentDirections
 
 //var teacherList:ArrayList<dataRvTeach>
 class customAdapterRVTeach()
@@ -49,7 +50,8 @@ class customAdapterRVTeach()
         holder.binding.ivTeachers.setImageResource(data.iv_teachers_photo)
 
         holder.binding.tvNameTeachers.setOnClickListener {
-            var action =teachers_RV_fragmentDirections.actionTeachersRVFragmentToHeadlineSubjects()
+            //todo: important
+            var action =teachers_RV_fragmentDirections.actionStudentTeachersForASubjectFragmentToStudentSubjectUnitsFragment()
             it.findNavController().navigate(action)
         }
 

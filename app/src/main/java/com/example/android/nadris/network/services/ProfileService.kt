@@ -1,25 +1,24 @@
 package com.example.android.nadris.network.services
 
-import com.example.android.nadris.network.dtos.ProfileInfoDTO
-import com.example.android.nadris.network.dtos.PublicProfileModel
+import com.example.android.nadris.network.dtos.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ProfileService {
 
     @GET("api/Profile/info")
-    suspend fun  getProfileInfo( @Header("authorization") token: String ): Response<ProfileInfoDTO>
+    suspend fun  getCurrentUserProfileInfo(@Header("authorization") token: String ): Response<ProfileInfoDTO>
+
+    @GET("api/Profile/Posts")
+    suspend fun getCurrentUserPosts(@Header("authorization") token: String):Response<List<NetworkPost>>
+
+    @POST("api/Profile/profilePic")
+    suspend fun addProfilePic( @Header("authorization") token: String)
+
+    @PUT("api/Profile/EditPassword")
+    suspend fun editPassword(@Header("authorization") token: String,@Body editPassword:EditPasswordModel)
 
 
-
-    //TODO: please change the end point path
-    @GET("api/Users/{id}")
-    suspend fun  getPublicProfileInfo( @Header("authorization") token: String ,@Path("id") userId:String): Response<PublicProfileModel>
-
-    //Response hold return from api
 
 
 }

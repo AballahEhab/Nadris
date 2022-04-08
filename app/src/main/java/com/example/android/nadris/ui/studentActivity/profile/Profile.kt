@@ -1,6 +1,7 @@
 package com.example.android.nadris.ui.studentActivity.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,11 +28,10 @@ class ProfileFragment : Fragment() {
     ): View? {
         inflater.inflate(R.layout.fragment_profile, container, false)
         binding = FragmentProfileBinding.inflate(layoutInflater)
-        //viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         binding.viewmodel = viewModel
 
         binding.lifecycleOwner = this
-      //  viewModel.getProfileInfo_from_api()
+        viewModel.getProfileInfo_from_api()
         viewModel.getLastActivity()
 
         binding.rvPostsProfile.layoutManager =
@@ -43,7 +43,7 @@ class ProfileFragment : Fragment() {
 
         viewModel.postsProfileList.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it.toList())
-           // Log.i("length", it.size.toString())
+            Log.i("length", it.size.toString())
         }
 
         binding.imagSetting.setOnClickListener {
