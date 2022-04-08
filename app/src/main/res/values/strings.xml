@@ -160,7 +160,7 @@
     <string name="tv_num_posts">147</string>
     <string name="tv_name_profile">Mohamed Mostafa</string>
     <string name="specialty_profile">3rd grade high school student</string>
-    <string name="tv_followers">followers</string>
+    <string name="tv_followers">followers:</string>
     <string name="tv_following">following</string>
     <string name="Settings">Settings</string>
     <string name="tv_edit_profile">Edit Profile</string>

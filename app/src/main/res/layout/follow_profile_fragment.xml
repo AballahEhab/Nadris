@@ -48,7 +48,7 @@
                 style="@style/material_text_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.profileData.firstName + viewmodel.profileData.firstName }"
+                android:text="@{viewmodel.profileData.firstName + viewmodel.profileData.lastName }"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/img_profile"
                 app:layout_constraintStart_toStartOf="@+id/img_profile"
@@ -75,15 +75,15 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_num_posts"
                 app:layout_constraintTop_toTopOf="@+id/tv_followers" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_num_posts"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="60dp"-->
-<!--                android:text="@{Integer.toString(viewmodel.profileData.numOfPosts)}"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />-->
+            <TextView
+                android:id="@+id/tv_num_posts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:text="000"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
 
             <TextView
                 android:id="@+id/tv_followers"

@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            android:text="@{viewmodel.numPosts.toString()}"
+            android:text="@{Integer.toString(viewmodel.numPosts)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:text="@{viewmodel.numFollowers.toString()}"
+            android:text="@{Integer.toString(viewmodel.numFollowers)}"
             app:layout_constraintEnd_toStartOf="@+id/tv_num_folloing"
             app:layout_constraintStart_toEndOf="@+id/tv_num_posts"
             app:layout_constraintTop_toBottomOf="@+id/specialty_profile"
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="60dp"
-            android:text="@{viewmodel.numFolling.toString()}"
+            android:text="@{Integer.toString(viewmodel.numFolling)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />

@@ -35,7 +35,7 @@ class FollowProfileViewModel @Inject constructor(val repository: Repository) : V
 
     val isLoading = MutableLiveData(true)
 
-    lateinit var publicProfileEmail: String
+    lateinit var publicProfileId: String
 
     fun getLastActivity() {
         5.toString()
@@ -61,7 +61,7 @@ class FollowProfileViewModel @Inject constructor(val repository: Repository) : V
         //todo: get data assotiated with email from api and set it to
         val resultFlow = repository.getPublicProfileInfo(
             (TOKEN_PREFIX + NadrisApplication.userData?.Token),
-            publicProfileEmail)
+            publicProfileId)
         viewModelScope.launch {
             resultFlow.collect { result ->
                 result.handleRepoResponse(
@@ -77,7 +77,6 @@ class FollowProfileViewModel @Inject constructor(val repository: Repository) : V
                         isLoading.value = false
                     }
                 )
-
             }
         }
     }
@@ -86,7 +85,7 @@ class FollowProfileViewModel @Inject constructor(val repository: Repository) : V
 //todo: get data assotiated with email from api and set it to
         val resultFlow =
             repository.getPublicProfileInfo((TOKEN_PREFIX + NadrisApplication.userData?.Token),
-                publicProfileEmail)
+                publicProfileId)
         viewModelScope.launch {
             resultFlow.collect { result ->
                 result.handleRepoResponse(

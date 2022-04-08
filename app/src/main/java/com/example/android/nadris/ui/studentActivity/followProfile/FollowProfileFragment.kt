@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FollowProfileFragmentBinding
-import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel
 import com.example.android.nadris.ui.studentActivity.posts.CustomAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,15 +36,14 @@ class FollowProfileFragment : Fragment() {
         binding.viewmodel = viewModel
 
         binding.lifecycleOwner = this
-//        viewModel.getLastActivity()
 
 
-        viewModel.publicProfileEmail = args.userProfileId
-
-
-        viewModel.publicProfileEmail = "test@test.com"
+        viewModel.publicProfileId = args.userProfileId
 
         viewModel.getPublicProfileData()
+
+        viewModel.getLastActivity()
+
         binding.rvPostsFollowProfile.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
