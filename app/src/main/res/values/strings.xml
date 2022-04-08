@@ -180,6 +180,7 @@
     <string name="text_editor_label">Text Editor</string>
     <string name="adding_subject_sections_label">Adding Subject Sections</string>
     <string name="adding_sections_title">Unit %o : lesson %o ( %s )</string>
+    <string name="btn_close">Close</string>
 
 
 </resources>

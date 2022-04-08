@@ -32,14 +32,14 @@ class Change_password : Fragment() {
 
         binding.btnSave.setOnClickListener {
             //check old password true and save new passowrd
-            if(binding.edtNewPassowrd.text.toString() == binding.edtRetypeNewPassowrd.text.toString()&&
-                binding.edtNewPassowrd.text.toString().isNotEmpty() &&
-                binding.edtOldPassword.text.toString().isNotEmpty()){
-                //send old password to api to cheeck on true or false
-
-            }else{
-                Toast.makeText(requireContext(),"الباسورد غير متساوي",Toast.LENGTH_SHORT).show()
-            }
+//            if(binding.edtNewPassowrd.text.toString() == binding.edtRetypeNewPassowrd.text.toString()&&
+//                binding.edtNewPassowrd.text.toString().isNotEmpty() &&
+//                binding.edtOldPassword.text.toString().isNotEmpty()){
+//                //send old password to api to cheeck on true or false
+//
+//            }else{
+//                Toast.makeText(requireContext(),"الباسورد غير متساوي",Toast.LENGTH_SHORT).show()
+//            }
 
 
         }
