@@ -1,8 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-  compileSdkVersion 28
+  compileSdkVersion 30
+
+  defaultConfig {
+    minSdkVersion 19
+    targetSdkVersion 30
+  }
 }
+
 
 dependencies {
   testImplementation "junit:junit:4.13"
@@ -20,7 +26,7 @@ ext {
   siteUrl = 'https://github.com/richeditor-android'
   gitUrl = 'https://github.com/richeditor-android.git'
   issueUrl = 'https://github.com/richeditor-android/issues'
-  libraryVersion = "2.0.0"
+  libraryVersion = "1.0"
   developerId = 'wasabeef'
   developerName = 'Wasabeef'
   developerEmail = 'dadadada.chop@gmail.com'

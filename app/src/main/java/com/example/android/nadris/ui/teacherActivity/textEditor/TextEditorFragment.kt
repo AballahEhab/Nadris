@@ -84,13 +84,13 @@ class TextEditorFragment : Fragment() {
 
         binding.actionUnderline.setOnClickListener { mEditor!!.setUnderline() }
 
-        binding.actionHeading1.setOnClickListener {
-            mEditor!!.setHeading(1)
-        }
-
-        binding.actionHeading2.setOnClickListener {
-            mEditor!!.setHeading(2)
-        }
+//        binding.actionHeading1.setOnClickListener {
+//            mEditor!!.setHeading(1)
+//        }
+//
+//        binding.actionHeading2.setOnClickListener {
+//            mEditor!!.setHeading(2)
+//        }
 
         //todo: please uncomment this code
 //        binding.actionHeading3.setOnClickListener {
@@ -117,13 +117,13 @@ class TextEditorFragment : Fragment() {
             }
         })
 
-        binding.actionBgColor.setOnClickListener(object : View.OnClickListener {
-            private var isChanged = false
-            override fun onClick(v: View) {
-                mEditor!!.setTextBackgroundColor(if (isChanged) Color.TRANSPARENT else Color.YELLOW)
-                isChanged = !isChanged
-            }
-        })
+//        binding.actionBgColor.setOnClickListener(object : View.OnClickListener {
+//            private var isChanged = false
+//            override fun onClick(v: View) {
+//                mEditor!!.setTextBackgroundColor(if (isChanged) Color.TRANSPARENT else Color.YELLOW)
+//                isChanged = !isChanged
+//            }
+//        })
 
         binding.actionIndent.setOnClickListener { mEditor!!.setIndent() }
 
@@ -135,7 +135,7 @@ class TextEditorFragment : Fragment() {
 
         binding.actionAlignRight.setOnClickListener { mEditor!!.setAlignRight() }
 
-        binding.actionBlockquote.setOnClickListener { mEditor!!.setBlockquote() }
+//        binding.actionBlockquote.setOnClickListener { mEditor!!.setBlockquote() }
 
         binding.actionInsertBullets.setOnClickListener { v: View? -> mEditor!!.setBullets() }
 

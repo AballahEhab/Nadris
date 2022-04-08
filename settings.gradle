@@ -2,3 +2,4 @@
 rootProject.name = "Nadris"
 include ':app'
 include ':richeditor'
+include ':richeditor'
