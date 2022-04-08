@@ -40,7 +40,7 @@ class PostPageFragment : Fragment() {
         viewModel.navigate_to_add_post.observe(this.viewLifecycleOwner) {
             if (it) {
                 this.findNavController()
-                    .navigate(PostPageFragmentDirections.actionNavigationPostsToAddPostFragment())
+                    .navigate(PostPageFragmentDirections.actionPostsFragmentToAddPostFragment())
                 viewModel.navigateToAddPostDone()
             }
         }
@@ -49,11 +49,10 @@ class PostPageFragment : Fragment() {
             it?.let{ destinationProfileEmail ->
                 this.findNavController()
                     .navigate(PostPageFragmentDirections
-                        .actionNavigationPostsToFollowProfileFragment(destinationProfileEmail))
+                        .actionPostsFragmentToPrivateProfileFragment())
                 viewModel.navigationToPublicProfileDone()
             }
         }
-
 
         return binding.root
     }

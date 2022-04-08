@@ -99,7 +99,7 @@
     </string-array>
     <string name="title_activity_teacher">TeacherActivity</string>
     <string name="student_home_title">الرئيسه</string>
-    <string name="title_home">الرئيسية</string>
+    <string name="posts_fragment_label">الرئيسية</string>
     <string name="student_subjects_title">المواد</string>
     <string name="student_schedual_title">المواعيد</string>
     <string name="name">عربى</string>
@@ -169,5 +169,6 @@
     <string name="tv_sign_out">تسجيل الخروج</string>
     <string name="profile">profile</string>
     <string name="tgbtn_add_frind">إضافه صديق</string>
+    <string name="my_subjects_fragment_label">موادى</string>
 
 </resources>

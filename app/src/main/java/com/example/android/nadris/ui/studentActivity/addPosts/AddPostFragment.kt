@@ -68,7 +68,7 @@ class AddPostFragment : Fragment() {
         binding.publishButton.setOnClickListener {
             if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
                 viewModel.addPost()
-                it.findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToNavigationPosts())
+                it.findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToPostsFragment())
             } else {
                 Toast.makeText(requireContext().applicationContext,
                     getString(R.string.add_post_requirments),
@@ -99,12 +99,12 @@ class AddPostFragment : Fragment() {
 
     private fun requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(
-                activity!!, Manifest.permission.READ_EXTERNAL_STORAGE)
+                requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
         ) {
             AlertDialog.Builder(context).setTitle(getString(R.string.permission_needed))
                 .setMessage(getString(R.string.storage_permission_request))
                 .setPositiveButton(getString(R.string.confirm)) { _, _ ->
-                    ActivityCompat.requestPermissions(activity!!,
+                    ActivityCompat.requestPermissions(requireActivity(),
                         arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                         STORAGE_PERMISSION_REQUEST_CODE)
                     selectImage()
@@ -113,7 +113,7 @@ class AddPostFragment : Fragment() {
                     getString(R.string.cancel))
                 { dialog, _ -> dialog.dismiss() }.create().show()
         } else {
-            ActivityCompat.requestPermissions(activity!!,
+            ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 STORAGE_PERMISSION_REQUEST_CODE)
         }
@@ -121,12 +121,12 @@ class AddPostFragment : Fragment() {
 
     private fun requestCameraPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(
-                activity!!, Manifest.permission.CAMERA)
+                requireActivity(), Manifest.permission.CAMERA)
         ) {
             AlertDialog.Builder(context).setTitle(getString(R.string.permission_needed))
                 .setMessage(getString(R.string.camera_permission_request))
                 .setPositiveButton(getString(R.string.confirm)) { _, _ ->
-                    ActivityCompat.requestPermissions(activity!!,
+                    ActivityCompat.requestPermissions(requireActivity(),
                         arrayOf(Manifest.permission.CAMERA),
                         CAMERA_PERMISSION_REQUEST_CODE)
                     selectImage()
@@ -136,7 +136,7 @@ class AddPostFragment : Fragment() {
                 { dialog, _ -> dialog.dismiss() }.create().show()
 
         } else {
-            ActivityCompat.requestPermissions(activity!!,
+            ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(Manifest.permission.CAMERA),
                 CAMERA_PERMISSION_REQUEST_CODE)
         }

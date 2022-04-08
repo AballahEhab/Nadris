@@ -53,7 +53,7 @@ class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<Cus
             holder.setDataBindingObj(data)
             holder.binding.imgReply.setOnClickListener {
                 holder.itemView.findNavController()
-                    .navigate(PostPageFragmentDirections.actionNavigationPostsToAddCommentFragment(data.postId))
+                    .navigate(PostPageFragmentDirections.actionPostsFragmentToAddCommentFragment(data.postId))
             }
             holder.binding.imgVote.setOnClickListener {
                 data.toggleVote()

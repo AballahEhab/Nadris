@@ -26,7 +26,7 @@ class SettingsFragment : Fragment() {
 
         binding.backProfile.setOnClickListener {
             this.findNavController()
-                .navigate(SettingsFragmentDirections.actionSettingsFragmentToProfile())
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToPrivateProfileFragment())
         }
 
         binding.tvEditProfile.setOnClickListener {

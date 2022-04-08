@@ -49,7 +49,7 @@ class choosing_new_subjects : Fragment() {
             viewModel.addSubject()
 
             val action =
-                choosing_new_subjectsDirections.actionChoosingNewSubjectsToSubTeacherRvFragment()
+                choosing_new_subjectsDirections.actionTeacherAddNewSubjectFragmentToTeacherMySubjectsFragment()
             findNavController().navigate(action)
 
         }

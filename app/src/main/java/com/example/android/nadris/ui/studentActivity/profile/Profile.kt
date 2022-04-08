@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
 
         binding.imagSetting.setOnClickListener {
             this.findNavController()
-                .navigate(ProfileFragmentDirections.actionProfileToSettingsFragment())
+                .navigate(ProfileFragmentDirections.actionPrivateProfileFragmentToSettingsFragment())
         }
 
         return binding.root;
