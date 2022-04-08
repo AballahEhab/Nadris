@@ -173,5 +173,6 @@
     <string name="profile">profile</string>
     <string name="tgbtn_add_frind">add friend</string>
     <string name="my_subjects_fragment_label">My Subjects</string>
+    <string name="video_link_input_hint">video link</string>
 
 </resources>

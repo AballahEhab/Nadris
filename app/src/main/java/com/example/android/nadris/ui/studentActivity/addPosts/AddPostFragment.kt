@@ -66,7 +66,7 @@ class AddPostFragment : Fragment() {
         binding.publishButton.setOnClickListener {
             if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
                 viewModel.addPost()
-                it.findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToNavigationPosts())
+                it.findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToPostsFragment())
             } else {
                 Toast.makeText(requireContext().applicationContext,
                     getString(R.string.add_post_requirments),
