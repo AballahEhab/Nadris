@@ -104,22 +104,22 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_underline" />
 
-            <ImageButton
-                android:id="@+id/action_heading1"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_h1" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/action_heading1"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:background="@null"-->
+<!--                android:contentDescription="@null"-->
+<!--                android:src="@drawable/ic_h1" />-->
 
-            <ImageButton
-                android:id="@+id/action_heading2"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_h2" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/action_heading2"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:background="@null"-->
+<!--                android:contentDescription="@null"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/ic_h2" />-->
 
 <!--            <ImageButton-->
 <!--                android:id="@+id/action_heading3"-->
@@ -164,13 +164,13 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_text_color" />
 
-            <ImageButton
-                android:id="@+id/action_bg_color"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="@null"
-                android:src="@drawable/bg_color" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/action_bg_color"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:background="@null"-->
+<!--                android:contentDescription="@null"-->
+<!--                android:src="@drawable/bg_color" />-->
 
 
             <ImageButton
@@ -236,14 +236,14 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_numbered_list" />
 
-            <ImageButton
-                android:id="@+id/action_blockquote"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/blockquote" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/action_blockquote"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:background="@null"-->
+<!--                android:contentDescription="@null"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/blockquote" />-->
 
             <ImageButton
                 android:id="@+id/action_insert_image"
