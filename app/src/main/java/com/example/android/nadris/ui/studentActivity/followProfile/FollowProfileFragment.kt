@@ -40,8 +40,7 @@ class FollowProfileFragment : Fragment() {
 //        viewModel.getLastActivity()
 
 
-        // todo: commented to be tested without api
-//        viewModel.profileEmail = args.profieEmail
+        viewModel.publicProfileEmail = args.userProfileId
 
 
         viewModel.publicProfileEmail = "test@test.com"

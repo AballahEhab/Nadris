@@ -59,15 +59,18 @@ class FollowProfileViewModel @Inject constructor(val repository: Repository) : V
 
     fun getPublicProfileData() {
         //todo: get data assotiated with email from api and set it to
-        val resultFlow =
-            repository.getPublicProfileInfo((TOKEN_PREFIX + NadrisApplication.userData?.Token),
-                publicProfileEmail)
+        val resultFlow = repository.getPublicProfileInfo(
+            (TOKEN_PREFIX + NadrisApplication.userData?.Token),
+            publicProfileEmail)
         viewModelScope.launch {
             resultFlow.collect { result ->
                 result.handleRepoResponse(
                     onLoading = {
 
+
                     }, onError = {
+
+                        isLoading.value = false
 
                     }, onSuccess = {
                         profileData.value  = result.data

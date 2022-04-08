@@ -71,7 +71,7 @@ class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<Cus
             }
 
             holder.binding.profileImage.setOnClickListener {
-                viewModel.navigateToPublicProfilePage(data.email)
+                viewModel.navigateToPublicProfilePage(data.userId)
             }
 
     }

@@ -1,9 +1,7 @@
 package com.example.android.nadris.database.models
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
 
 @Entity
@@ -15,7 +13,7 @@ data class DatabasePost(
     var votesNum:Long,
     var commentsNum:Long,
     var time:String,
-    var email:String,
+    var userId:String,
     var name:String,
     var isVoted:Boolean,
     var isBookMarked:Boolean = false
@@ -36,7 +34,7 @@ data class DatabasePost(
         this.votesNum =updatedPost.votesNum
         this.commentsNum =updatedPost.commentsNum
         this.time =updatedPost.time
-        this.email =updatedPost.email
+        this.userId =updatedPost.userId
         this.name =updatedPost.name
         this.isVoted =updatedPost.isVoted
 

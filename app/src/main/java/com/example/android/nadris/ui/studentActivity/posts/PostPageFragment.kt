@@ -49,9 +49,16 @@ class PostPageFragment : Fragment() {
             it?.let{ destinationProfileEmail ->
                 this.findNavController()
                     .navigate(PostPageFragmentDirections
-                        .actionPostsFragmentToPrivateProfileFragment())
+                        .actionPostsFragmentToPublicProfileFragment(destinationProfileEmail))
                 viewModel.navigationToPublicProfileDone()
             }
+        }
+
+        binding.profileImage.setOnClickListener {
+            this.findNavController()
+                .navigate(PostPageFragmentDirections
+                    .actionPostsFragmentToPrivateProfileFragment())
+
         }
 
         return binding.root
