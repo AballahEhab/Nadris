@@ -17,6 +17,11 @@ class NetworkServicesModule {
 
     @Singleton
     @Provides
+    fun provideCoursesService(retrofitObj:Retrofit) = retrofitObj.create( CoursesService::class.java)
+
+
+    @Singleton
+    @Provides
     fun provideUniversityService(retrofitObj:Retrofit) = retrofitObj.create( UniversityService::class.java)
     @Singleton
     @Provides
