@@ -87,6 +87,9 @@
         <action
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
             app:destination="@id/private_profile_fragment" />
+        <action
+            android:id="@+id/action_settings_fragment_to_change_password"
+            app:destination="@id/change_password" />
     </fragment>
 
     <fragment
@@ -105,6 +108,14 @@
         <argument
             android:name="user_profile_id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/change_password"
+        android:name="com.example.android.nadris.Change_password"
+        android:label="Change_password" >
+        <action
+            android:id="@+id/action_change_password_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
     </fragment>
 
 

@@ -34,11 +34,12 @@ class SettingsFragment : Fragment() {
         }
 
         binding.tvChangePassword.setOnClickListener {
-            showAlertDailog()
+            this.findNavController()
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToHelpFragment())
         }
 
         binding.tvChangeClass.setOnClickListener {
-
+            showAlertDailog()
         }
 
         binding.tvNightMode.setOnClickListener {
