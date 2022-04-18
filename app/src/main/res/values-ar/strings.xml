@@ -170,5 +170,6 @@
     <string name="profile">profile</string>
     <string name="tgbtn_add_frind">إضافه صديق</string>
     <string name="my_subjects_fragment_label">موادى</string>
+    <string name="btn_close">إلغاء</string>
 
 </resources>
