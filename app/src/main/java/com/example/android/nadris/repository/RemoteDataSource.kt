@@ -81,5 +81,9 @@ constructor(
     suspend fun getLastActivity(token: String) =
         profileService.getCurrentUserPosts(token)
 
+    fun revokeToken(token:String) {
+        authService.revokeToken(token)
+    }
+
 
 }

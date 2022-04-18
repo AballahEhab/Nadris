@@ -33,6 +33,8 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
 
     var profileData = MutableLiveData<ProfileInfoDTO>()
 
+    val navigateToLoginPage = MutableLiveData(false)
+
     fun getProfileInfo_from_api() {
         val token = NadrisApplication.userData?.Token
         viewModelScope.launch {
@@ -82,6 +84,13 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
                 )
             }
         }
+    }
+
+    fun logOut() {
+        viewModelScope.launch{
+        NadrisApplication.userData?.let { repository.logOut(it) }
+    }
+        navigateToLoginPage.value = true
     }
 
 

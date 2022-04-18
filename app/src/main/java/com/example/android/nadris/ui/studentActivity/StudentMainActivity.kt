@@ -1,7 +1,9 @@
 package com.example.android.nadris.ui.studentActivity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.nadris.R
@@ -23,8 +25,17 @@ class StudentMainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_studnet_main_acitivity)
-
+        visibilityNavElements(navController)
         navView.setupWithNavController(navController)
+    }
+
+    private fun visibilityNavElements(navController: NavController) {
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.adding_sections_fragment->binding.navView.visibility = View.GONE
+                else -> binding.navView.visibility = View.VISIBLE
+            }
+        }
     }
 
 }

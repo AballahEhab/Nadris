@@ -91,26 +91,34 @@
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_margin="@dimen/small_margin"
-                    android:background="@color/container_card_color"
-                    android:iconifiedByDefault="false"
-                    android:queryHint="@string/search"
-                    android:searchIcon="@drawable/ic_search"/>
+<!--                <androidx.appcompat.widget.SearchView-->
+<!--                    android:id="@+id/search_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_25sdp"-->
+<!--                    android:layout_margin="@dimen/small_margin"-->
+<!--                    android:background="@color/container_card_color"-->
+<!--                    android:iconifiedByDefault="false"-->
+<!--                    android:queryHint="@string/search"-->
+<!--                    android:searchIcon="@drawable/ic_search"/>-->
             </LinearLayout>
-
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/swiperefresh"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/l1"
+                >
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/match_constrain"
+                android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/l1"
+
                 tools:listitem="@layout/item_post_card_cell"/>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

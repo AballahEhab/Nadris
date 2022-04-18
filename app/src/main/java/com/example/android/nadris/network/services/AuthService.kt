@@ -15,4 +15,9 @@ interface AuthService{
     @POST("api/Auth/Register/Teacher")
     suspend fun createTeacherAccount(@Body TeacherAccountDataModel: CreateTeacherAccountDataModelModel): Response<AuthModel>
 
+    @POST("api/Auth/Register/Teacher")
+    fun revokeToken(token: String) {
+        TODO("Not yet implemented")
+    }
+
 }

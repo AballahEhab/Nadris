@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.studentActivity.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,8 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentProfileBinding
+import com.example.android.nadris.ui.SplashActivity
+import com.example.android.nadris.ui.loginActivity.MainActivity
 import com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel
 import com.example.android.nadris.ui.studentActivity.posts.CustomAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +53,14 @@ class ProfileFragment : Fragment() {
         binding.imagSetting.setOnClickListener {
             this.findNavController()
                 .navigate(ProfileFragmentDirections.actionPrivateProfileFragmentToSettingsFragment())
+        }
+
+
+        viewModel.navigateToLoginPage.observe(viewLifecycleOwner) {
+            if(it){
+                requireActivity().startActivity(Intent(requireContext(), SplashActivity::class.java))
+                NadrisApplication.userData = null
+            }
         }
 
         return binding.root

@@ -136,10 +136,10 @@
     <string name="title_activity_login">Login activity</string>
     <string name="btn_add_comment">go</string>
 
-<string-array name="term_list">
-    <item>first term</item>
-    <item>second term</item>
-</string-array>
+    <string-array name="term_list">
+        <item>first term</item>
+        <item>second term</item>
+    </string-array>
     <string-array name="add_Photo">
         <item>Take photo</item>
         <item>Choose from gallery</item>

@@ -49,6 +49,8 @@ class CustomAdapter(val viewModel: PostPageViewModel) : RecyclerView.Adapter<Cus
             } else {
                 holder.binding.imgPost.visibility = View.GONE
             }
+        }else {
+            holder.binding.imgPost.visibility = View.GONE
         }
             holder.setDataBindingObj(data)
             holder.binding.imgReply.setOnClickListener {

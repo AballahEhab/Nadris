@@ -1,7 +1,8 @@
 package com.example.android.nadris.repository
 
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.database.models.TeacherSubject
+import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.network.dtos.*
 import com.example.android.nadris.util.getFromApiAndSaveToDataBase
@@ -18,20 +19,27 @@ class Repository @Inject constructor(
     fun login(loginAccountModel: LoginAccountModel) = postToApiAndSaveToDatabase(
         request = { remoteDataSource.login(loginAccountModel) },
         saveFetchResult = { user -> localDataSource.addUserData(user) },
-        convertToDatabaseModel = { networkModel -> NetworkModelsMapper.authModelAsDataBaseModel(networkModel) }
+        convertToDatabaseModel = { networkModel ->
+            NetworkModelsMapper.authModelAsDataBaseModel(networkModel)
+        }
     )
 
-    fun registerNewStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) = postToApiAndSaveToDatabase(
-        request = { remoteDataSource.createStudentAccount(accountDataModel) },
-        saveFetchResult = { user -> localDataSource.addUserData(user) },
-        convertToDatabaseModel = { networkModel -> NetworkModelsMapper.authModelAsDataBaseModel(networkModel) }
-    )
+    fun registerNewStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) =
+        postToApiAndSaveToDatabase(
+            request = { remoteDataSource.createStudentAccount(accountDataModel) },
+            saveFetchResult = { user -> localDataSource.addUserData(user) },
+            convertToDatabaseModel = { networkModel ->
+                NetworkModelsMapper.authModelAsDataBaseModel(networkModel)
+            }
+        )
 
     fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
         postToApiAndSaveToDatabase(
             request = { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) },
             saveFetchResult = { user -> localDataSource.addUserData(user) },
-            convertToDatabaseModel = { networkModel -> NetworkModelsMapper.authModelAsDataBaseModel(networkModel) }
+            convertToDatabaseModel = { networkModel ->
+                NetworkModelsMapper.authModelAsDataBaseModel(networkModel)
+            }
         )
 
     suspend fun getUser() = localDataSource.getUserData()
@@ -40,7 +48,9 @@ class Repository @Inject constructor(
         query = { localDataSource.getAllPosts() },
         fetch = { remoteDataSource.getAllPosts(token) },
         convertToDatabaseModel = { networkPostsList ->
-            networkPostsList.map { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) }
+            networkPostsList.map { networkPost ->
+                NetworkModelsMapper.postAsDatabaseModel(networkPost)
+            }
         },
         saveFetchResult = { list_of_posts -> list_of_posts.let { localDataSource.insertPosts(it) } }
     )
@@ -51,7 +61,9 @@ class Repository @Inject constructor(
 
     fun publishPost(post: CreatePostModel, token: String) = postToApiAndSaveToDatabase(
         request = { remoteDataSource.publishAPost(post, token) },
-        convertToDatabaseModel = { networkPost -> NetworkModelsMapper.postAsDatabaseModel(networkPost) },
+        convertToDatabaseModel = { networkPost ->
+            NetworkModelsMapper.postAsDatabaseModel(networkPost)
+        },
         saveFetchResult = { post -> localDataSource.insertPost(post) }
     )
 
@@ -70,7 +82,9 @@ class Repository @Inject constructor(
         postToApiAndSaveToDatabase(
             request = { remoteDataSource.vote(voteModel, token) },
             saveFetchResult = { post -> localDataSource.updatePost(post) },
-            convertToDatabaseModel = { networkMPost -> NetworkModelsMapper.postAsDatabaseModel(networkMPost) }
+            convertToDatabaseModel = { networkMPost ->
+                NetworkModelsMapper.postAsDatabaseModel(networkMPost)
+            }
         )
 
     suspend fun publishComment(comment: PublishCommentModel, token: String) = requestAPI(
@@ -80,17 +94,17 @@ class Repository @Inject constructor(
     fun getUniversities() = requestAPI(
         fetch = { remoteDataSource.getUniversities() })
 
-    fun getProfileInfo(token:String)= requestAPI  (
-         fetch = {remoteDataSource.getProfileInfo(token)})
+    fun getProfileInfo(token: String) = requestAPI(
+        fetch = { remoteDataSource.getProfileInfo(token) })
 
-    fun flowProfile(userID:String, token:String)= requestAPI  (
-         fetch = {remoteDataSource.followProfile(userID,token)})
+    fun flowProfile(userID: String, token: String) = requestAPI(
+        fetch = { remoteDataSource.followProfile(userID, token) })
 
-    fun getPublicProfileInfo(token:String,userId:String)= requestAPI  (
-         fetch = {remoteDataSource.getPublicProfileInfo(token,userId)})
+    fun getPublicProfileInfo(token: String, userId: String) = requestAPI(
+        fetch = { remoteDataSource.getPublicProfileInfo(token, userId) })
 
-    fun getLastActivity(token:String)= requestAPI  (
-        fetch = {remoteDataSource.getLastActivity(token)})
+    fun getLastActivity(token: String) = requestAPI(
+        fetch = { remoteDataSource.getLastActivity(token) })
 
     fun getColleges(id: Int) = requestAPI(
         fetch = { remoteDataSource.getColleges(id) })
@@ -104,12 +118,20 @@ class Repository @Inject constructor(
     fun getTeacherSubject(token: String) = getFromApiAndSaveToDataBase(
         query = { localDataSource.getSubjects() },
         fetch = { remoteDataSource.getTeacherSubjects(token) },
-        convertToDatabaseModel = { list -> list.map { dto -> NetworkModelsMapper.subjectDTOtoModel(dto) } },
+        convertToDatabaseModel = { list ->
+            list.map { dto ->
+                NetworkModelsMapper.subjectDTOtoModel(dto)
+            }
+        },
         saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it) } }
     )
-    fun addTeacherSubject(token: String,addSubjectDTO: AddSubjectDTO)= postToApiAndSaveToDatabase(
-        request = {remoteDataSource.addSubject(token,addSubjectDTO)},
-        saveFetchResult = {item-> localDataSource.insertSubject(item)},
-        convertToDatabaseModel = {item->NetworkModelsMapper.subjectDTOtoModel(item)}
+
+    fun addTeacherSubject(token: String, addSubjectDTO: AddSubjectDTO) = postToApiAndSaveToDatabase(
+        request = { remoteDataSource.addSubject(token, addSubjectDTO) },
+        saveFetchResult = { item -> localDataSource.insertSubject(item) },
+        convertToDatabaseModel = { item -> NetworkModelsMapper.subjectDTOtoModel(item) }
     )
+
+    suspend fun logOut(user: UserData) = localDataSource.deleteUser(user)
+
 }

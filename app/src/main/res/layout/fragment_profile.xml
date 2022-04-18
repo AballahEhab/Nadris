@@ -139,30 +139,20 @@
             app:layout_constraintTop_toBottomOf="@+id/last_activities" />
 
 
-        <ImageView
+        <ImageButton
             android:id="@+id/notificationImage"
-            android:layout_width="18dp"
-            android:layout_height="31dp"
+            android:layout_width="31dp"
+            android:layout_height="34dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
+            android:background="#00FFFFFF"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{()-> viewmodel.logOut()}"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32"
-            app:srcCompat="@drawable/ic_notification"
-            />
-
-        <TextView
-            android:id="@+id/textViewNumber"
-            style="@style/material_text_body_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mid_margin"
-            android:fontFamily="@font/cairo_light"
-            android:text="@string/_1"
-            app:layout_constraintEnd_toStartOf="@+id/notificationImage"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:srcCompat="@drawable/ic_baseline_login_24" />
 
         <ImageView
             android:id="@+id/imag_setting"

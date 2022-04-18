@@ -1,10 +1,7 @@
 package com.example.android.nadris.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
-import androidx.room.Update
 import com.example.android.nadris.database.models.UserData
 import kotlinx.coroutines.flow.Flow
 
@@ -19,5 +16,8 @@ interface UserDao {
 
     @Query("SELECT * FROM UserData WHERE id = 1")
      suspend fun getUser(): UserData
+
+     @Delete
+    suspend fun deleteUser(user:UserData)
 
 }
