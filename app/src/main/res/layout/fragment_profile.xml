@@ -8,7 +8,6 @@
         <variable
             name="viewmodel"
             type="com.example.android.nadris.ui.studentActivity.profile.ProfileViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,11 +21,11 @@
             android:layout_height="100dp"
             android:layout_margin="@dimen/mid_margin"
             style="@style/circleImageView"
+            android:onClick="@{()->viewmodel.onProfileImageClicked()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_name_profile"
-            app:srcCompat="@drawable/ic_google">
+            app:layout_constraintBottom_toTopOf="@id/tv_name_profile">
 
         </com.google.android.material.imageview.ShapeableImageView>
 
@@ -35,7 +34,7 @@
             style="@style/material_text_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewmodel.profileData.firstName+viewmodel.profileData.lastName}"
+            android:text="@{viewmodel.nameProfile}"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/img_profile"
             app:layout_constraintStart_toStartOf="@+id/img_profile"
@@ -46,7 +45,7 @@
             android:id="@+id/specialty_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewmodel.profileData.type}"
+            android:text="@{viewmodel.profileType}"
             app:layout_constraintEnd_toEndOf="@id/tv_name_profile"
             app:layout_constraintStart_toStartOf="@id/tv_name_profile"
             app:layout_constraintTop_toBottomOf="@id/tv_name_profile"
@@ -88,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:text="@{Long.toString(viewmodel.profileData.numOfFollowers)}"
+            android:text="@{Long.toString(viewmodel.numFollowers)}"
             app:layout_constraintEnd_toStartOf="@+id/tv_num_folloing"
             app:layout_constraintStart_toEndOf="@+id/tv_num_posts"
             app:layout_constraintTop_toBottomOf="@+id/specialty_profile"
@@ -109,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="60dp"
-            android:text="@{Long.toString(viewmodel.profileData.numOfFollowing)}"
+            android:text="@{Long.toString(viewmodel.numFollowers)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />

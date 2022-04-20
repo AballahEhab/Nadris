@@ -1,5 +1,6 @@
 package com.example.android.nadris.repository
 
+import androidx.lifecycle.MutableLiveData
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.UserData
@@ -133,5 +134,9 @@ class Repository @Inject constructor(
     )
 
     suspend fun logOut(user: UserData) = localDataSource.deleteUser(user)
+
+    fun updateProfilePic(token: String, imgStrB64: UploadPhotoDTO) = requestAPI(
+        fetch = { remoteDataSource.updateProfilePic(token,imgStrB64) })
+
 
 }

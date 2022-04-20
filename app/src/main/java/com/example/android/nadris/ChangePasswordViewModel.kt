@@ -13,13 +13,19 @@ class ChangePasswordViewModel @Inject constructor(val repository: Repository) : 
     var newPassowrd: MutableLiveData<String> = MutableLiveData()
     var reNewPassowrd: MutableLiveData<String> = MutableLiveData()
 
-//    var password: MutableLiveData<String> = MutableLiveData("")
-//    var passwordErrorMessage: MutableLiveData<String?> = MutableLiveData<String?>()
+    fun validateNewPassword(){
+        if(newPassowrd.value.toString() == reNewPassowrd.value.toString()){
 
-    fun validateTowPassword(){
-       // passwordErrorMessage.value=  matchPasswords(newPassowrd,reNewPassowrd)
-
-
+        }
     }
+
+//    if(binding.edtNewPassowrd.text.toString() == binding.edtRetypeNewPassowrd.text.toString()&&
+//    binding.edtNewPassowrd.text.toString().isNotEmpty() &&
+//    binding.edtOldPassword.text.toString().isNotEmpty()){
+//        //send old password to api to cheeck on true or false
+//
+//    }else{
+//        Toast.makeText(requireContext(),"الباسورد غير متساوي", Toast.LENGTH_SHORT).show()
+//    }
 
 }

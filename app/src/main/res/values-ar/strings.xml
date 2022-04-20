@@ -171,5 +171,14 @@
     <string name="tgbtn_add_frind">إضافه صديق</string>
     <string name="my_subjects_fragment_label">موادى</string>
     <string name="btn_close">إلغاء</string>
+    <string name="video_link_input_hint">رابط الفيديو</string>
+    <string name="please_enter_num_of_sections_hin">من فضلك أدخل عدد الفقرات</string>
+    <string name="proceed">إستمرار</string>
+    <string name="text_editor_label">محرر النصوص</string>
+    <string name="adding_subject_sections_label">إضافة فقرات الدرس</string>
+    <string name="adding_sections_title">وحدة %o : درس %o ( %s )</string>
+    <string name="edt_new_passowrd">كلمة سر جديدة</string>
+    <string name="edt_old_password">كلمة السر القديمة</string>
+    <string name="btn_save">حقظ</string>
 
 </resources>

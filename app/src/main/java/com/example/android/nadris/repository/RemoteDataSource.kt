@@ -56,6 +56,7 @@ constructor(
     suspend fun followProfile(token: String,userId:String) =
         usersService.followUser(userId,token)
 
+
     suspend fun addSubject(token: String, addSubjectDTO: AddSubjectDTO) =
         coursesService.addSubjectForATeacher(addSubjectDTO, token)
 
@@ -80,6 +81,9 @@ constructor(
 
     suspend fun getLastActivity(token: String) =
         profileService.getCurrentUserPosts(token)
+
+    suspend fun updateProfilePic(token: String,imgStrB64:UploadPhotoDTO) =
+        profileService.updateProfilePic(token,imgStrB64)
 
     fun revokeToken(token:String) {
         authService.revokeToken(token)

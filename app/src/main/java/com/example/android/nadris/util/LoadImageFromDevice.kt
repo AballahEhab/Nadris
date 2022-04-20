@@ -70,34 +70,49 @@ object LoadImageFromDevice {
               val builder = AlertDialog.Builder(it)
               builder.setTitle(fragment.getString(R.string.dlg_add_photo_title))
               builder.setItems(options) { dialog, item ->
+                  when(item) {
+                      0 -> takePhoto(activity, context,fragment)
+                      1 -> uploadPhoto(activity, context,fragment)
+                      else -> dialog.dismiss()
+                  }
+                  /**
                   if (options[item] == options[0]) {
-                      if (ContextCompat.checkSelfPermission(
-                              fragment.requireContext(),
-                              Manifest.permission.CAMERA)
-                          != PackageManager.PERMISSION_GRANTED
-                      ) {
-                          requestCameraPermission(activity, context,fragment)
-                      } else {
-                          val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                          fragment.startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-                      }
+                      takePhoto(activity, context,fragment)
                   } else if (options[item] == options[1]) {
-                      if (ContextCompat.checkSelfPermission(
-                              fragment.requireContext(),
-                              Manifest.permission.READ_EXTERNAL_STORAGE)
-                          != PackageManager.PERMISSION_GRANTED
-                      ) {
-                          requestStoragePermission(activity, context,fragment)
-                      } else {
-                          val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                          fragment.startActivityForResult(intent, PHOTO_PICKER_REQUEST_CODE)
-                      }
+                      uploadPhoto(activity, context,fragment)
                   } else if (options[item] == options[2]) {
                       dialog.dismiss()
                   }
+                  **/
               }
               builder.show()
           }
      }
+
+    fun takePhoto(activity: FragmentActivity, context:Context,fragment:Fragment){
+        if (ContextCompat.checkSelfPermission(
+                fragment.requireContext(),
+                Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestCameraPermission(activity, context,fragment)
+        } else {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            fragment.startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        }
+    }
+
+    fun uploadPhoto(activity: FragmentActivity, context:Context,fragment:Fragment){
+        if (ContextCompat.checkSelfPermission(
+                fragment.requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestStoragePermission(activity, context,fragment)
+        } else {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            fragment.startActivityForResult(intent, PHOTO_PICKER_REQUEST_CODE)
+        }
+    }
 
 }

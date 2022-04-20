@@ -13,11 +13,10 @@ interface ProfileService {
     suspend fun getCurrentUserPosts(@Header("authorization") token: String):Response<List<NetworkPost>>
 
     @POST("api/Profile/profilePic")
-    suspend fun addProfilePic( @Header("authorization") token: String)
+    suspend fun updateProfilePic(@Header("authorization") token: String, @Body imgStrB64:UploadPhotoDTO):Response<UploadPhotoStatus>
 
     @PUT("api/Profile/EditPassword")
     suspend fun editPassword(@Header("authorization") token: String,@Body editPassword:EditPasswordModel)
-
 
 
 

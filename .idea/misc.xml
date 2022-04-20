@@ -90,6 +90,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/activity_teacher_main.xml" value="0.1" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_add_pos.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_adding_subject_sections.xml" value="0.4" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_change_password.xml" value="0.536" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_choosing_new_subjects.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_headline_subjects.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_help.xml" value="0.11979166666666667" />
@@ -100,7 +101,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_phone.xml" value="0.1" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_post_page.xml" value="0.17592592592592593" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_preview_profile_pic.xml" value="0.264" />
-        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_profile.xml" value="0.72" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_profile.xml" value="0.20833333333333334" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_setting_the_num_of_sections.xml" value="0.264" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_signup.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_signup_teacher.xml" value="0.26197916666666665" />

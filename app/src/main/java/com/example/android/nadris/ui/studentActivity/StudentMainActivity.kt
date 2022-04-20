@@ -27,12 +27,14 @@ class StudentMainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_studnet_main_acitivity)
         visibilityNavElements(navController)
         navView.setupWithNavController(navController)
+
+
     }
 
     private fun visibilityNavElements(navController: NavController) {
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.adding_sections_fragment->binding.navView.visibility = View.GONE
+                R.id.adding_sections_fragment,R.id.previewProfilePicFragment->binding.navView.visibility = View.GONE
                 else -> binding.navView.visibility = View.VISIBLE
             }
         }

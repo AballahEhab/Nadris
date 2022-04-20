@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_private_profile_fragment_to_settings_fragment"
             app:destination="@id/settings_fragment" />
+        <action
+            android:id="@+id/action_private_profile_fragment_to_previewProfilePicFragment"
+            app:destination="@id/previewProfilePicFragment" />
     </fragment>
 
     <fragment
@@ -131,6 +134,16 @@
         <argument
             android:name="lesson_name"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewProfilePicFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.previewProfilePic.PreviewProfilePicFragment"
+        android:label="fragment_preview_profile_pic"
+        tools:layout="@layout/fragment_preview_profile_pic" >
+        <argument
+            android:name="imgString64"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
 </navigation>
