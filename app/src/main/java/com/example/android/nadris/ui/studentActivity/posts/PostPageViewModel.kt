@@ -54,9 +54,9 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
             postsFlow.collect {
                 it.handleRepoResponse(
                     onLoading= {
-                        it.data?.let{
+                        it.data?.let{posts->
                             disableProgressBar()
-                            postsList.value= it
+                            postsList.value= posts
                         }
                     },
                     onError= {
@@ -68,14 +68,13 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
                     onSuccess= {
                         disableProgressBar()
                         postsList.value= (it.data as List<DatabasePost>)
-                        Log.v("posts responce", it.data.toString() )
-                    },
+                    }
+
                 )
 
+}
             }
         }
-
-    }
 
     private fun enableErrorMessage(){
         _errorMessageVisibility.value = true
@@ -86,7 +85,6 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
         _errorMessageVisibility.value = false
     }
 
-
     private fun enableProgressBar(){
         _showIndicator.value = true
     }
@@ -96,7 +94,6 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
     }
 
     fun vote( postId: Long): DatabasePost? = runBlocking { async { voteToPost(postId) }.await() }
-
 
     private suspend fun voteToPost(postId: Long): DatabasePost? {
         var updatePost :DatabasePost? = null

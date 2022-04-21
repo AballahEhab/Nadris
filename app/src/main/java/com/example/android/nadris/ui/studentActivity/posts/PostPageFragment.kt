@@ -15,8 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PostPageFragment : Fragment() {
-
-
     val viewModel: PostPageViewModel by viewModels()
 
     override fun onCreateView(
@@ -54,12 +52,6 @@ class PostPageFragment : Fragment() {
             }
         }
 
-        binding.profileImage.setOnClickListener {
-            this.findNavController()
-                .navigate(PostPageFragmentDirections
-                    .actionPostsFragmentToPrivateProfileFragment())
-
-        }
 
         return binding.root
     }

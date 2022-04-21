@@ -1,7 +1,5 @@
 package com.example.android.nadris.ui.studentActivity.subject_student
-/**
- * @author mohammed sarhan
- * **/
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.R

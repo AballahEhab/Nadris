@@ -3,21 +3,14 @@ package com.example.android.nadris
  * @author mohammed sarhan
  * **/
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.ItemRvTeachersBinding
-import com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragmentDirections
-import com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubTeacherRVFragmentDirections
 
 //var teacherList:ArrayList<dataRvTeach>
-class customAdapterRVTeach
+class customAdapterRVTeach()
     :RecyclerView.Adapter<customAdapterRVTeach.Viewholder>() {
 
     private val differCallback=object :DiffUtil.ItemCallback<dataRvTeach>(){
@@ -48,12 +41,12 @@ class customAdapterRVTeach
         holder.binding.tvNameTeachers.text=data.name_teachers
         holder.binding.tvEvaluation.text=data.evaluation.toString()
         holder.binding.ivTeachers.setImageResource(data.iv_teachers_photo)
+//
+//        holder.binding.tvNameTeachers.setOnClickListener {
+//            var action =teachers_RV_fragmentDirections.actionTeachersRVFragmentToHeadlineSubjects()
+//            it.findNavController().navigate(action)
+//        }
 
-        holder.binding.tvNameTeachers.setOnClickListener {
-            //todo: important
-            var action =teachers_RV_fragmentDirections.actionStudentTeachersForASubjectFragmentToStudentSubjectUnitsFragment()
-            it.findNavController().navigate(action)
-        }
 
 
 

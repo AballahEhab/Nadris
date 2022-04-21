@@ -60,10 +60,13 @@ constructor(
     suspend fun addSubject(token: String, addSubjectDTO: AddSubjectDTO) =
         coursesService.addSubjectForATeacher(addSubjectDTO, token)
 
-    suspend fun getTeacherSubjects(token: String) =
+    suspend fun getTeacherCourses(token: String) =
         coursesService.getTeacherCourses(token)
 
-    suspend fun getGradeSubjects(gradeId: Long, token: String) =
+    suspend fun getRegisteredCoursesForAStudent(token: String)=
+        coursesService.getRegisteredCoursesForAStudent(token)
+
+    suspend fun getSubjectsWithGradeId(gradeId: Long, token: String) =
         subjectsService.getSubjectsWithGradeId(gradeId, token)
 
     suspend fun getUniversities() =
@@ -89,5 +92,6 @@ constructor(
         authService.revokeToken(token)
     }
 
-
+    suspend fun getSubjectUnit(id: Long , token: String)=
+        subjectsService.getUnitsWithSubjectId(id, token)
 }

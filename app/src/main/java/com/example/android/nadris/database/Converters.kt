@@ -6,6 +6,6 @@ import com.example.android.nadris.database.models.Lesson
 
 class Converters {
 
-    @TypeConverter
-    fun toLesson( lessonNum:String, lessonName:String) =  Lesson(lessonNum, lessonName)
+  //  @TypeConverter
+  //  fun toLesson( lessonNum:String, lessonName:String) =  Lesson(lessonNum, lessonName)
 }

@@ -18,6 +18,6 @@ interface SubjectsService {
     suspend fun getSubjectWithId(@Path("id")id:Long, @Header("authorization") token: String): Response<SubjectDTO>
 
     @GET("api/Subject/{id}/Units")
-    suspend fun getUnitsWithSubjectId(@Path("id")id:Long, @Header("authorization") token: String): Response<UnitDTO>
+    suspend fun getUnitsWithSubjectId(@Path("id")id:Long, @Header("authorization") token: String): Response<List<UnitDTO>>
 
 }

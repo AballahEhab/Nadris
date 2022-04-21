@@ -10,21 +10,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
-import com.example.android.nadris.databinding.FragmentChoosingNewSubjectsBinding
+import com.example.android.nadris.databinding.FragmentAddNewSubjectBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class choosing_new_subjects : Fragment() {
+class AddNewSubjectFragment : Fragment() {
 
-    private val viewModel: ChoosingNewSubjectsViewModel by viewModels()
-
+    private val viewModel: AddNewSubjectViewModel by viewModels()
+lateinit var binding:FragmentAddNewSubjectBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        inflater.inflate(R.layout.fragment_choosing_new_subjects, container, false)
-        val binding = FragmentChoosingNewSubjectsBinding.inflate(inflater)
+        inflater.inflate(R.layout.fragment_add_new_subject, container, false)
+        val binding = FragmentAddNewSubjectBinding.inflate(inflater)
         binding.viewmodel = viewModel
 
         viewModel.termList.addAll(resources.getStringArray(R.array.term_list))
@@ -33,12 +33,11 @@ class choosing_new_subjects : Fragment() {
 
         viewModel.grades.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-            // get reference to the autocomplete text view
+
             (binding.chooseClass.editText as? AutoCompleteTextView)?.setAdapter(adapter)
         }
         viewModel.subjects.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-            // get reference to the autocomplete text view
             (binding.chooseSubjects.editText as? AutoCompleteTextView)?.setAdapter(adapter)
         }
 
@@ -49,7 +48,7 @@ class choosing_new_subjects : Fragment() {
             viewModel.addSubject()
 
             val action =
-                choosing_new_subjectsDirections.actionTeacherAddNewSubjectFragmentToTeacherMySubjectsFragment()
+                AddNewSubjectFragmentDirections.actionTeacherAddNewSubjectFragmentToTeacherMySubjectsFragment()
             findNavController().navigate(action)
 
         }

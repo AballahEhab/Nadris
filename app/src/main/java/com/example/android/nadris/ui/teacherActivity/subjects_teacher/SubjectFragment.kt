@@ -16,41 +16,43 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSubTeacherRvBinding
-import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.customAdapterRVsubTeacher
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.SubjectAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SubTeacherRVFragment : Fragment() {
+class SubjectFragment : Fragment() {
 
-    private val viewModel: SubTeacherRvViewModel by viewModels()
-    private lateinit var adapter: customAdapterRVsubTeacher
-    private lateinit var binding:FragmentSubTeacherRvBinding
+    private val viewModel: SubjectViewModel by viewModels()
+    private lateinit var adapter: SubjectAdapter
+    private lateinit var binding: FragmentSubTeacherRvBinding
     private  var   numOfSections:Int  = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         inflater.inflate(R.layout.fragment_sub_teacher_rv, container, false)
-        binding =FragmentSubTeacherRvBinding.inflate(inflater)
+        binding = FragmentSubTeacherRvBinding.inflate(inflater)
 
         binding.viewmodel = viewModel
         viewModel.getdata()
         setupRV()
         binding.fabAddSubject.setOnClickListener {
-            val action = SubTeacherRVFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment()
+            val action = SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment()
             findNavController().navigate(action)
         }
 
         binding.fabAddSubject.setOnClickListener {
 
-            val inputView = inflater.inflate(R.layout.layout_input,container,false)
+            val inputView = inflater.inflate(R.layout.layout_input, container, false)
             val inputLayout = (inputView.findViewById(R.id.youtube_link_input) as TextInputLayout)
             inputLayout.editText?.inputType = InputType.TYPE_CLASS_NUMBER
             inputLayout.editText?.hint = getString(R.string.please_enter_num_of_sections_hin)
+        }
 
+            /** todo: to be moved to on lesson click
             MaterialAlertDialogBuilder(requireContext())
                 .setMessage("please set The number of sections")
                 .setPositiveButton("add"
@@ -73,26 +75,27 @@ class SubTeacherRVFragment : Fragment() {
 
                 .setView(inputView)
                 .show()
-        }
+
 
         viewModel.navigateToAddingSectionFragmentEvent.observe(viewLifecycleOwner){
             if(it) {
 
-                findNavController().navigate(SubTeacherRVFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment())
+                findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment())
                 viewModel.navigateToAddingSectionFragmentDone()
             }
         }
+             **/
 
         return binding.root
     }
 
 
     private fun setupRV(){
-        adapter= customAdapterRVsubTeacher()
-        binding.rvSubjectTeacher.layoutManager=
+        adapter = SubjectAdapter()
+        binding.rvSubjectTeacher.layoutManager =
             LinearLayoutManager(
                 requireContext(),
-                RecyclerView.VERTICAL,false)
+                RecyclerView.VERTICAL, false)
         binding.rvSubjectTeacher.adapter= adapter
 
         activity?.let {

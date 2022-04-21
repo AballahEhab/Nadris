@@ -2,13 +2,10 @@ package com.example.android.nadris.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.database.models.*
 import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.network.dtos.*
-import com.example.android.nadris.util.getFromApiAndSaveToDataBase
-import com.example.android.nadris.util.postToApiAndSaveToDatabase
-import com.example.android.nadris.util.requestAPI
+import com.example.android.nadris.util.*
 import javax.inject.Inject
 
 
@@ -56,6 +53,24 @@ class Repository @Inject constructor(
         saveFetchResult = { list_of_posts -> list_of_posts.let { localDataSource.insertPosts(it) } }
     )
 
+    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
+
+        query = { localDataSource.getSubjectUnits(subjectID) },
+        fetch = { remoteDataSource.getSubjectUnit(subjectID, token) },
+        convertToDatabaseModel = { list ->
+            list.map { item ->
+                NetworkModelsMapper.subjectUnitsDTOtoModel(item)
+            }
+        },
+        saveFetchResult = { list ->
+            list.map {
+                localDataSource.insertSubjectUnit(it.unit)
+                localDataSource.insertUnitLessons(it.lessons)
+            }
+        }
+
+    )
+
     suspend fun updatePostById(post: DatabasePost) = localDataSource.updatePost(post)
 
     suspend fun getPostById(postId: Long) = localDataSource.getPostById(postId)
@@ -73,7 +88,7 @@ class Repository @Inject constructor(
     )
 
     fun getGradeSubjects(gradeId: Long, token: String) = requestAPI(
-        fetch = { remoteDataSource.getGradeSubjects(gradeId, token) }
+        fetch = { remoteDataSource.getSubjectsWithGradeId(gradeId, token) }
     )
 
     fun getAllComments(token: String, postId: Long) = requestAPI(
@@ -118,7 +133,7 @@ class Repository @Inject constructor(
 
     fun getTeacherSubject(token: String) = getFromApiAndSaveToDataBase(
         query = { localDataSource.getSubjects() },
-        fetch = { remoteDataSource.getTeacherSubjects(token) },
+        fetch = { remoteDataSource.getTeacherCourses(token) },
         convertToDatabaseModel = { list ->
             list.map { dto ->
                 NetworkModelsMapper.subjectDTOtoModel(dto)
@@ -127,16 +142,27 @@ class Repository @Inject constructor(
         saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it) } }
     )
 
+    fun getRegisteredCoursesForAStudent(token: String) = getFromApiAndSaveToDataBase(
+        query = { localDataSource.getRegisteredCoursesForAStudent() },
+        fetch = { remoteDataSource.getRegisteredCoursesForAStudent(token) },
+        convertToDatabaseModel = { list -> list.map { dto -> NetworkModelsMapper.studentCourseDTOtoModel(dto) } },
+        saveFetchResult = { list -> list.let { localDataSource.addRegisteredCoursesForAStudent(it as List<StudentSubject>) } }
+    )
+
     fun addTeacherSubject(token: String, addSubjectDTO: AddSubjectDTO) = postToApiAndSaveToDatabase(
         request = { remoteDataSource.addSubject(token, addSubjectDTO) },
         saveFetchResult = { item -> localDataSource.insertSubject(item) },
         convertToDatabaseModel = { item -> NetworkModelsMapper.subjectDTOtoModel(item) }
+
+
     )
 
     suspend fun logOut(user: UserData) = localDataSource.deleteUser(user)
 
     fun updateProfilePic(token: String, imgStrB64: UploadPhotoDTO) = requestAPI(
         fetch = { remoteDataSource.updateProfilePic(token,imgStrB64) })
+
+    suspend fun getUnitLessons(unitId:Long)=localDataSource.getUnitLessons(unitId)
 
 
 }
