@@ -1,6 +1,7 @@
 package com.example.android.nadris.ui.studentActivity.profile
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -128,44 +129,36 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showImageOptionsDialog() {
-        var options:Array<out String>
-        if(viewModel.imgProfile == null) {
-             options = resources.getStringArray(R.array.null_image_click_options)
-            MaterialAlertDialogBuilder(requireContext())
-                .setItems(options){ dialog, item ->
-                    when (options[item]) {
-                        options[0] -> navigateToPreviewImageFragment()
-                        options[1] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
-                        options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
-                        options[3] -> viewModel.removePhoto()
-                    }
+
+        val dialogBuilder= MaterialAlertDialogBuilder(requireContext())
+        var options :Array<out String>
+        lateinit var onOptionsClick: (DialogInterface?,Int)-> Unit
+
+        if(viewModel.imgProfile.value == null) {
+            options = resources.getStringArray(R.array.null_image_click_options)
+            onOptionsClick = { dialog, item ->
+                when (options[item]) {
+                    options[0] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
+                    options[1] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
+                }
                 }
         }else{
-             options = resources.getStringArray(R.array.image_click_options)
-            MaterialAlertDialogBuilder(requireContext())
-                .setItems(options){ dialog, item ->
-                    when (options[item]) {
-                        options[1] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
-                        options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
-                    }
+            options = resources.getStringArray(R.array.image_click_options)
+            onOptionsClick = { dialog, item ->
+                when (options[item]) {
+                    options[0] -> navigateToPreviewImageFragment()
+                    options[1] -> LoadImageFromDevice.takePhoto(requireActivity(),
+                        requireContext(),
+                        this)
+                    options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(),
+                        requireContext(),
+                        this)
+                    options[3] -> viewModel.removePhoto()
+
                 }
-        }
-        MaterialAlertDialogBuilder(requireContext())
-            .setItems(options){ dialog, item ->
-                    when (options[item]) {
-                        options[0] -> navigateToPreviewImageFragment()
-                        options[1] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
-                        options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
-                        options[3] -> viewModel.removePhoto()
-                    }
             }
-//            .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
-//                // Respond to negative button press
-//            }
-//            .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
-//                // Respond to positive button press
-//            }
-            .show()
+        }
+        dialogBuilder.setItems(options,onOptionsClick).show()
     }
 
     private fun navigateToPreviewImageFragment() {
