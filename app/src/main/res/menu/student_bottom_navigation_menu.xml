@@ -7,7 +7,7 @@
         android:title="@string/student_home_title" />
 
     <item
-        android:id="@+id/student_all_subjects_fragment"
+        android:id="@+id/student_subjects_tabs_fragment"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/student_subjects_title" />
 

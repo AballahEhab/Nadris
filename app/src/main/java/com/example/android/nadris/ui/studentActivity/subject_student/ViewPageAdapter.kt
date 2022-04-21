@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.units
+package com.example.android.nadris.ui.studentActivity.subject_student
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

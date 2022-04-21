@@ -128,7 +128,28 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showImageOptionsDialog() {
-        val options = resources.getStringArray(R.array.image_click_options)
+        var options:Array<out String>
+        if(viewModel.imgProfile == null) {
+             options = resources.getStringArray(R.array.null_image_click_options)
+            MaterialAlertDialogBuilder(requireContext())
+                .setItems(options){ dialog, item ->
+                    when (options[item]) {
+                        options[0] -> navigateToPreviewImageFragment()
+                        options[1] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
+                        options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
+                        options[3] -> viewModel.removePhoto()
+                    }
+                }
+        }else{
+             options = resources.getStringArray(R.array.image_click_options)
+            MaterialAlertDialogBuilder(requireContext())
+                .setItems(options){ dialog, item ->
+                    when (options[item]) {
+                        options[1] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
+                        options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
+                    }
+                }
+        }
         MaterialAlertDialogBuilder(requireContext())
             .setItems(options){ dialog, item ->
                     when (options[item]) {

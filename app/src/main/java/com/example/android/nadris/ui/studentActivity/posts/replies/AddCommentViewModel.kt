@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.posts.comment
+package com.example.android.nadris.ui.studentActivity.posts.replies
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +13,6 @@ import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel

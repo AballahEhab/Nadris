@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentPreviewProfilePicBinding
 import com.example.android.nadris.services.Converter
@@ -25,6 +26,7 @@ class PreviewProfilePicFragment : Fragment() {
         val binding =  FragmentPreviewProfilePicBinding.inflate(layoutInflater, container, false)
 
 //        binding.imageButton2.setImageResource(Converter(requireContext().applicationContext).convertFromBase64ToBitmap(null,"profile_photo"))
+        binding.textView2.text = NadrisApplication.userData?.getFullName()
 
 
 

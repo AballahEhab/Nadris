@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/addingSubjectSectionsFragment">
+    app:startDestination="@id/posts_fragment">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/add_comment_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.replies.AddCommentFragment"
         tools:layout="@layout/fragment_add_comment">
         <argument
             android:name="postId"
@@ -112,16 +112,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/student_all_subjects_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment"
-        android:label="@string/student_subjects_title"
-        tools:layout="@layout/fragment_subjects_rv">
-        <action
-            android:id="@+id/action_student_all_subjects_fragment_to_student_teachers_for_a_subject_fragment"
-            app:destination="@id/student_teachers_for_a_subject_fragment" />
-    </fragment>
-
-    <fragment
         android:id="@+id/student_teachers_for_a_subject_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragment"
         tools:layout="@layout/fragment_teachers__r_v">
@@ -146,13 +136,16 @@
         tools:layout="@layout/fragment_adding_subject_sections" />
 
     <fragment
-        android:id="@+id/subject_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.units.SubjectFragment"
+        android:id="@+id/student_subjects_tabs_fragment"
+        android:name="com.example.android.nadris.ui.studentActivity.subject_student.SubjectFragment"
         android:label="SubjectFragment"
         tools:layout="@layout/fragment_subject">
         <action
             android:id="@+id/action_subject_fragment_to_subject_Units"
             app:destination="@id/student_subject_units_fragment" />
+        <action
+            android:id="@+id/action_subject_fragment_to_student_teachers_for_a_subject_fragment"
+            app:destination="@id/student_teachers_for_a_subject_fragment" />
     </fragment>
 
 </navigation>

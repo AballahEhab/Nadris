@@ -108,6 +108,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_signup.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_signup_teacher.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_sub_teacher_rv.xml" value="0.26197916666666665" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_subjects_rv.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_teachers__r_v.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_text_editor.xml" value="0.10458015267175573" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_units.xml" value="0.16944444444444445" />
@@ -123,6 +124,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_section_num.xml" value="0.536" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_unit_subjects.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/layout_input.xml" value="0.1" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/my_subject_student_fragment.xml" value="0.26197916666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/add_post_fragment.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/cardcell.xml" value="0.33" />

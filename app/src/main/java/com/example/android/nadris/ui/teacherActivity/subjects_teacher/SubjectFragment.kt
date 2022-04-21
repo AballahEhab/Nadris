@@ -44,14 +44,6 @@ class SubjectFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.fabAddSubject.setOnClickListener {
-
-            val inputView = inflater.inflate(R.layout.layout_input, container, false)
-            val inputLayout = (inputView.findViewById(R.id.youtube_link_input) as TextInputLayout)
-            inputLayout.editText?.inputType = InputType.TYPE_CLASS_NUMBER
-            inputLayout.editText?.hint = getString(R.string.please_enter_num_of_sections_hin)
-        }
-
             /** todo: to be moved to on lesson click
             MaterialAlertDialogBuilder(requireContext())
                 .setMessage("please set The number of sections")

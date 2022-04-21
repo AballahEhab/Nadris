@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.posts.comment
+package com.example.android.nadris.ui.studentActivity.posts.replies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

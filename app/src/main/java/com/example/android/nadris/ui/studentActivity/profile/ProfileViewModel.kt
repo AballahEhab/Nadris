@@ -97,9 +97,9 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
     }
 
     fun onProfileImageClicked() {
-        imgProfile.value?.let{
+
             profileImageClicked.value = true
-        }    }
+           }
     fun profileImageClickDone() {
         profileImageClicked.value = false
     }

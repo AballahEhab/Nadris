@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@id/subject_fragment">
+    app:startDestination="@id/teacher_my_subjects_fragment">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/add_comment_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.replies.AddCommentFragment"
         tools:layout="@layout/fragment_add_comment">
         <argument
             android:name="postId"

@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.units
+package com.example.android.nadris.ui.studentActivity.subject_student
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSubjectBinding
-import com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragment
 import com.example.android.nadris.ui.studentActivity.subject_student.mySubject.MySubjectStudentFragment
-import com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

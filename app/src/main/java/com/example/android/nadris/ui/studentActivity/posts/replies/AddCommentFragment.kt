@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.posts.comment
+package com.example.android.nadris.ui.studentActivity.posts.replies
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
