@@ -14,10 +14,13 @@ object NetworkModelsMapper {
               Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.imgStrB64,
                     networkPost.id.toString())
             }
-
             hasImage = true
-
-
+        }
+        if (!networkPost.ProfilePicBase64.isNullOrEmpty()) {
+            NadrisApplication.instance?.let {
+                Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.ProfilePicBase64,
+                    networkPost.userId)
+            }
         }
         return DatabasePost(
             networkPost.id,

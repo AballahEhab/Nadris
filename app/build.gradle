@@ -111,10 +111,10 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$test_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$test_espresso_core_version"
 
+    implementation project(path: ':richeditor')
 
-
-    implementation project(path: ':richeditor')}
-
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+}
 // Allow references to generated code
 kapt {
     correctErrorTypes = true

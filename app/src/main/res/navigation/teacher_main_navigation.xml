@@ -114,9 +114,6 @@
         <action
             android:id="@+id/action_teacher_my_subjects_fragment_to_teacher_subject_units_fragment"
             app:destination="@id/teacher_subject_units_fragment" />
-        <action
-            android:id="@+id/action_teacher_my_subjects_fragment_to_adding_sections_fragment"
-            app:destination="@id/adding_sections_fragment" />
 
     </fragment>
 
@@ -137,6 +134,9 @@
         <argument
             android:name="subjectId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
+            app:destination="@id/adding_sections_fragment" />
     </fragment>
 
     <fragment

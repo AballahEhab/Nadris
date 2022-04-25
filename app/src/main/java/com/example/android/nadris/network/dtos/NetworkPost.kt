@@ -11,7 +11,7 @@ data class NetworkPost(
     val name: String,
     val imgStrB64: String?,
     val isVoted: Boolean,
-    val ProfilePicBase64: String?,
+    val ProfilePicBase64: String?
 )
 
 

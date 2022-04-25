@@ -23,6 +23,7 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
     val navigate_to_add_post: MutableLiveData<Boolean> get() = _navigate_to_add_post
 
      var postsList =MutableLiveData< List<DatabasePost>>()
+    val postsIsRefreshing = MutableLiveData(false)
 
 
     private var _destinationProfileEmail = MutableLiveData<String?>(null)
@@ -36,6 +37,7 @@ class PostPageViewModel @Inject constructor(val repository:Repository): ViewMode
     val errorMessageVisibility get() = _errorMessageVisibility
 val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.lastName
 
+
     fun navigateToAddPost(){
         _navigate_to_add_post.value = true
     }
@@ -45,11 +47,12 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
     }
 
 
-    fun getPosts() {
+    fun getPosts( ) {
 
         disableErrorMessage()
         enableProgressBar()
         viewModelScope.launch {
+            postsIsRefreshing.value = true
             val postsFlow = repository.getPosts( TOKEN_PREFIX + NadrisApplication.userData?.Token)
             postsFlow.collect {
                 it.handleRepoResponse(
@@ -73,9 +76,10 @@ val  name=NadrisApplication.userData?.firstName+" "+NadrisApplication.userData?.
                 )
 
 }
-            }
-        }
+            postsIsRefreshing.value = false
 
+        }
+        }
     private fun enableErrorMessage(){
         _errorMessageVisibility.value = true
 

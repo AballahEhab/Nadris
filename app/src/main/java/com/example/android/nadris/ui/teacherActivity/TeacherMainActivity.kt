@@ -34,9 +34,11 @@ class TeacherMainActivity : AppCompatActivity() {
     private fun visibilityNavElements(navController: NavController) {
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.adding_sections_fragment->binding.navView.visibility = View.GONE
-                else -> binding.navView.visibility = View.VISIBLE
+                R.id.private_profile_fragment, R.id.teacher_my_subjects_fragment, R.id.posts_fragment -> binding.navView.visibility = View.VISIBLE
+                else -> binding.navView.visibility = View.GONE
             }
         }
     }
+
+
 }

@@ -124,16 +124,16 @@
         android:id="@+id/student_subject_units_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.headlineSubject.headline_subjects"
         tools:layout="@layout/fragment_headline_subjects">
-        <action
-            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"
-            app:destination="@id/addingSubjectSectionsFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"-->
+<!--            app:destination="@id/addingSubjectSectionsFragment" />-->
     </fragment>
 
-    <fragment
-        android:id="@+id/addingSubjectSectionsFragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
-        android:label="fragment_adding_subject_sections"
-        tools:layout="@layout/fragment_adding_subject_sections" />
+<!--    <fragment-->
+<!--        android:id="@+id/addingSubjectSectionsFragment"-->
+<!--        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"-->
+<!--        android:label="fragment_adding_subject_sections"-->
+<!--        tools:layout="@layout/fragment_adding_subject_sections" />-->
 
     <fragment
         android:id="@+id/student_subjects_tabs_fragment"

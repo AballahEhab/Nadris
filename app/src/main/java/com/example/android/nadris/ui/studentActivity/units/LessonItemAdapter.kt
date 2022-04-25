@@ -2,10 +2,12 @@ package com.example.android.nadris.ui.studentActivity.units
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.database.models.Lesson
+import com.example.android.nadris.databinding.FragmentUnitsBinding
 import com.example.android.nadris.databinding.ItemLessonBinding
 
 class LessonItemAdapter : RecyclerView.Adapter<LessonItemAdapter.LessonItemViewHolder>() {
@@ -32,6 +34,10 @@ class LessonItemAdapter : RecyclerView.Adapter<LessonItemAdapter.LessonItemViewH
     override fun onBindViewHolder(holder: LessonItemViewHolder, position: Int) {
         val lessonData = differ.currentList[position]
         holder.binding.lessonTitle.text = lessonData.lessonName
+
+        holder.binding.root.setOnClickListener {
+            it.findNavController().navigate(UnitsFragmentDirections.actionTeacherSubjectUnitsFragmentToAddingSectionsFragment(5,0,position,lessonData.lessonName))
+        }
     }
 
     override fun getItemCount() = differ.currentList.size

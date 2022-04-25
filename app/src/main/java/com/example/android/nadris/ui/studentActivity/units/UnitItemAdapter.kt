@@ -11,7 +11,7 @@ import com.example.android.nadris.util.isVisible
 import javax.inject.Inject
 
 
-class UnitItemAdapter @Inject constructor(val viewModel: UnitsViewModel) :
+class UnitItemAdapter (val viewModel: UnitsViewModel) :
     RecyclerView.Adapter<UnitItemAdapter.UnitItemViewHolder>() {
     var expandedItemIndex: Int = -1
 
