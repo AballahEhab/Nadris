@@ -12,15 +12,21 @@ interface PostsService {
     suspend fun publishAPost(@Body createPostModel: CreatePostModel, @Header("authorization") token: String): Response<NetworkPost>
 
     @GET("api/Posts/{id}")
-    suspend fun getPostsByUserId(@Path("id") id:String, @Header("authorization") token: String): Response<CreatePostModel>
+    suspend fun getPostsById(@Path("id") id:Long, @Header("authorization") token: String): Response<CreatePostModel>
+
+    @PUT("api/Posts/{id}")
+    suspend fun updateDiscussion(@Path("id") discussionID:Long, @Header("authorization") token: String,updatedDiscussion:CreatePostModel): Response<CreatePostModel> // TODO: edit the response type
+
+    @DELETE("api/Posts/{id}")
+    suspend fun deleteDiscussion(@Path("id") discussionID:Long, @Header("authorization") token: String): Response<Boolean>
 
     @POST("api/Posts/vote")
     suspend fun vote(@Body voteModel: VoteModel, @Header("authorization") token: String) : Response<NetworkPost>
 
-    @POST("api/Posts/comment")
-    suspend fun addCommentToAPost(@Body publishCommentModel: PublishCommentModel, @Header("authorization") token: String) :Response<CommentModel>
+    @POST("api/Posts/{id}/comment")
+    suspend fun addCommentToAPost(@Body publishCommentModel: PublishCommentModel,@Path("id")postId:Long, @Header("authorization") token: String) :Response<CommentModel>
 
-    @GET("/api/Posts/{id}/comments")
+    @GET("api/Posts/{id}/comments")
     suspend fun getCommentsByPostId(@Path("id") id:Long, @Header("authorization") token: String): Response<List<CommentModel>>
 
 }

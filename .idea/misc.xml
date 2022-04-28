@@ -78,6 +78,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_arrow_drop_up_24.xml" value="0.1305" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_face_24.xml" value="0.1305" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.1305" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_more_horiz_24.xml" value="0.1905" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1305" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_chat_room.xml" value="0.1305" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1305" />
@@ -101,7 +102,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_notifications.xml" value="0.18177083333333333" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_notifications1.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_phone.xml" value="0.1" />
-        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_post_page.xml" value="0.17592592592592593" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_post_page.xml" value="0.2" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_preview_profile_pic.xml" value="0.264" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_profile.xml" value="0.20833333333333334" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/fragment_setting_the_num_of_sections.xml" value="0.264" />
@@ -118,7 +119,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_gender_list.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_lesson.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_lesson_subjects.xml" value="0.11979166666666667" />
-        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_post_card_cell.xml" value="0.22122302158273383" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_post_card_cell.xml" value="0.536" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_rv_sub_teacher.xml" value="0.4" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_rv_subjects.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_rv_teachers.xml" value="0.536" />
@@ -126,6 +127,7 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/item_unit_subjects.xml" value="0.11979166666666667" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/layout_input.xml" value="0.1" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/my_subject_student_fragment.xml" value="0.26197916666666665" />
+        <entry key="..\:/Media/deskop/Nadris/app/src/main/res/menu/discussion_more_options_menu.xml" value="0.26197916666666665" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/add_post_fragment.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/cardcell.xml" value="0.33" />

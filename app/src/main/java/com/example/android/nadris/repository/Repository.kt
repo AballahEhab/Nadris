@@ -1,7 +1,5 @@
 package com.example.android.nadris.repository
 
-import androidx.lifecycle.MutableLiveData
-import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.database.models.*
 import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.network.dtos.*
@@ -103,8 +101,8 @@ class Repository @Inject constructor(
             }
         )
 
-    suspend fun publishComment(comment: PublishCommentModel, token: String) = requestAPI(
-        fetch = { remoteDataSource.comment(comment, token) }
+    suspend fun publishComment(comment: PublishCommentModel,postId:Long, token: String) = requestAPI(
+        fetch = { remoteDataSource.comment(comment,postId, token) }
     )
 
     fun getUniversities() = requestAPI(
@@ -163,6 +161,59 @@ class Repository @Inject constructor(
         fetch = { remoteDataSource.updateProfilePic(token,imgStrB64) })
 
     suspend fun getUnitLessons(unitId:Long)=localDataSource.getUnitLessons(unitId)
+
+
+    suspend fun getUpdatedDiscussions(token:String): List<DatabasePost> {
+
+        //getting saved posts ids from database to update them to the database from the fetched posts
+        val savedDiscussionsIds = localDataSource.getSavedDiscussionsIds()
+
+        lateinit var allDiscussions: List<DatabasePost>
+
+        //getting all discussions from the api
+        val allDiscussionsResponse = remoteDataSource.getAllPosts(token)
+
+        // check if the request is successful
+        if(allDiscussionsResponse.isSuccessful){
+
+            //mapping network posts to database posts to be ready to be stored or shown for the user
+             allDiscussions = allDiscussionsResponse.body()?.map { discussion ->
+                 NetworkModelsMapper.postAsDatabaseModel(discussion)  }!!
+
+            // setting the saved discussions parameter isBookmarked to true for the ids fetched from the database
+            allDiscussions.map {discussion->
+                if(savedDiscussionsIds.contains(discussion.postId))
+                    discussion.isBookMarked = true
+            }
+
+            // filtering the saved discussions
+            val savedDiscussions = allDiscussions.filter { discussion->  discussion.isBookMarked }
+
+
+            // updating the database with the saved discussions data fetched from the api
+             localDataSource.updateAllSavedDiscussions(savedDiscussions)
+        }else{
+            return localDataSource.getAllPosts()
+        }
+
+        return allDiscussions
+    }
+
+    suspend fun bookmarkDiscussion(discussion:DatabasePost){
+        if(discussion.isBookMarked)
+        localDataSource.insertPost(discussion)
+        else
+            localDataSource.deleteDiscussion(discussion.postId)
+    }
+
+    suspend fun deleteDiscussion(discussionId:Long,token:String): Boolean {
+        val responce = remoteDataSource.deleteDiscussion(discussionId,token)
+        if(responce.isSuccessful && responce.body()!!) {
+            localDataSource.deleteDiscussion(discussionId)
+            return true
+        }
+            return false
+    }
 
 
 }

@@ -180,5 +180,7 @@
     <string name="edt_new_passowrd">كلمة سر جديدة</string>
     <string name="edt_old_password">كلمة السر القديمة</string>
     <string name="btn_save">حقظ</string>
+    <string name="delete_discussion_meu_item_string">حذف</string>
+    <string name="edit_discussion_menu_item_string">تعديل</string>
 
 </resources>

@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
+import com.example.android.nadris.util.isVisible
 import java.io.File
 
 class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Adapter<CustomAdapter.PostViewHolder>(),Filterable {
@@ -41,8 +43,10 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+
         val postData = differ.currentList[position]
         var img: Bitmap?
+
         if (postData.hasImage) {
             val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
                 postData.postId.toString())
@@ -76,7 +80,8 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
 
         holder.binding.bookmark.setOnClickListener {
             postData.toggleBookMark()
-            postPageViewModel.BookMark(postData)
+
+            postPageViewModel.bookMark(postData)
             notifyItemChanged(position)
         }
 
@@ -92,6 +97,28 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
             }catch (e:Throwable) {
                 Log.e("PostsCustomAdapter", e.message.toString())
             }
+
+        // todo: adding after testing features so that user cannot edit or delete but his discussions
+//        if (NadrisApplication.userData?.id?.equals(postData.userId)!!){
+            holder.binding.discussionMoreOption.isVisible(true)
+            holder.binding.discussionMoreOption.setOnClickListener {
+                val menu = android.widget.PopupMenu(it.context, it)
+
+                menu.inflate(R.menu.discussion_more_options_menu)
+                menu.show()
+
+                menu.setOnMenuItemClickListener { menu_item ->
+
+                    when (menu_item.itemId) {
+                        R.id.delete_discussion_menu_item -> postPageViewModel.deletepost(postData.postId)
+                        R.id.edit_discussion_menu_item -> Log.v("discussionsAdapter", "edit")
+                    }
+
+                    false
+                }
+
+            }
+//        }
     }
 
     override fun getItemCount(): Int {
@@ -107,7 +134,7 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
 
     override fun getFilter(): Filter  = searchFilter
 
-    val searchFilter = object : Filter() {
+        private val searchFilter = object : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
 
             fullPostsList = postPageViewModel.postsList.value!!

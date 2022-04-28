@@ -35,14 +35,17 @@ constructor(
         postsService.publishAPost(createPostModel, token)
 
 
-    suspend fun getPostsByEmail(email: String, token: String) =
-        postsService.getPostsByUserId(email, token)
+    suspend fun deleteDiscussion(discussionId: Long, token: String) =
+        postsService.deleteDiscussion(discussionId, token)
+
+
+
 
     suspend fun vote(voteModel: VoteModel, token: String) =
         postsService.vote(voteModel, token)
 
-    suspend fun comment(publishCommentModel: PublishCommentModel, token: String) =
-        postsService.addCommentToAPost(publishCommentModel, token)
+    suspend fun comment(publishCommentModel: PublishCommentModel,postId:Long, token: String) =
+        postsService.addCommentToAPost(publishCommentModel,postId, token)
 
     suspend fun getCommentsByPostId(postId: Long, token: String) =
         postsService.getCommentsByPostId(postId, token)

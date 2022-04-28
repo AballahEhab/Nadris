@@ -37,6 +37,7 @@ object NetworkModelsMapper {
     }
 
     fun authModelAsDataBaseModel(model: AuthModel) = UserData(
+
         Email = model.email,
         firstName = model.firstName,
         lastName = model.lastName,

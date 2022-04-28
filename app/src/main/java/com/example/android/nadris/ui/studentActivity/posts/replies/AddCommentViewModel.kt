@@ -71,8 +71,7 @@ class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel(
 
     fun sendComment() {
         viewModelScope.launch {
-            repo.publishComment(PublishCommentModel(comment.value!!,
-                currentPostData.value?.postId!!),TOKEN_PREFIX + NadrisApplication.userData?.Token).collect()
+            repo.publishComment(PublishCommentModel(comment.value!!),currentPostData.value?.postId!!,TOKEN_PREFIX + NadrisApplication.userData?.Token).collect()
             getAllComments()
         }
         comment.value = ""

@@ -26,6 +26,10 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun insertPost(databasePosts: DatabasePost) = postDao.insertPost(databasePosts)
 
     suspend fun updatePost(databasePosts: DatabasePost) = postDao.updatePost(databasePosts)
+    suspend fun deleteDiscussion(discussionId: Long) = postDao.deleteDiscussion(discussionId)
+
+    suspend fun getSavedDiscussionsIds() = postDao.getSavedDiscussionsIds()
+    suspend fun updateAllSavedDiscussions(discussions:List<DatabasePost>) = postDao.updateAllSavedDiscussions(discussions)
 
     suspend fun insertSubjects(list: List<TeacherSubject>) = subjectDao.insertSubjects(list)
 

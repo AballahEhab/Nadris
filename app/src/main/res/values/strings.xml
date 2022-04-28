@@ -194,6 +194,8 @@
     <string name="edt_old_password">old Password</string>
     <string name="btn_save">Save</string>
     <string name="btn_close">Colse</string>
+    <string name="delete_discussion_meu_item_string">delete</string>
+    <string name="edit_discussion_menu_item_string">edit</string>
 
 
 </resources>
