@@ -113,27 +113,33 @@
 
     <fragment
         android:id="@+id/student_teachers_for_a_subject_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.select_teacher.teachers_RV_fragment"
-        tools:layout="@layout/fragment_teachers__r_v">
-        <action
-            android:id="@+id/action_student_teachers_for_a_subject_fragment_to_student_subject_units_fragment"
-            app:destination="@id/student_subject_units_fragment" />
+        android:name="com.example.android.nadris.ui.studentActivity.select_teacher.TeachersCoursesFragment"
+        android:label="TeachersCoursesFragment"
+        tools:layout="@layout/fragment_teachers_courses">
+
+        <action android:id="@+id/action_student_teachers_for_a_subject_fragment_to_student_subject_units_fragment"
+                app:destination="@id/student_subject_units_fragment"/>
+        <argument android:name="subjectId"
+                  app:argType="long"/>
+        <action android:id="@+id/action_student_teachers_for_a_subject_fragment_to_public_profile_fragment"
+                app:destination="@id/public_profile_fragment"/>
     </fragment>
 
     <fragment
         android:id="@+id/student_subject_units_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.headlineSubject.headline_subjects"
+        android:name="com.example.android.nadris.ui.studentActivity.headlineSubject.HeadlineSubjectsFragment"
         tools:layout="@layout/fragment_headline_subjects">
-<!--        <action-->
-<!--            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"-->
-<!--            app:destination="@id/addingSubjectSectionsFragment" />-->
+        <action
+            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"
+            app:destination="@id/addingSubjectSectionsFragment" />
+        <argument android:name="subjectId" app:argType="long"/>
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/addingSubjectSectionsFragment"-->
-<!--        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"-->
-<!--        android:label="fragment_adding_subject_sections"-->
-<!--        tools:layout="@layout/fragment_adding_subject_sections" />-->
+    <fragment
+        android:id="@+id/addingSubjectSectionsFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
+        android:label="fragment_adding_subject_sections"
+        tools:layout="@layout/fragment_adding_subject_sections" />
 
     <fragment
         android:id="@+id/student_subjects_tabs_fragment"

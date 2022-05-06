@@ -1,3 +1,3 @@
 package com.example.android.nadris.network.dtos
 
-data class CourseID (val courseId:Int)
+data class CourseID (val courseId:Long)

@@ -118,7 +118,7 @@
     <string name="tv_name_teachers">mohamed mostafa</string>
     <string name="tv_content_description">Explanation and references</string>
     <string name="tv_add_teacher">add</string>
-    <string name="tv_star">* * * </string>
+    <string name="tv_star">*</string>
     <string name="tv_evaluation">4.8</string>
     <string name="my_course">subjects</string>
     <string name="add_subject">add subject</string>
@@ -194,8 +194,6 @@
     <string name="edt_old_password">old Password</string>
     <string name="btn_save">Save</string>
     <string name="btn_close">Colse</string>
-    <string name="delete_discussion_meu_item_string">delete</string>
-    <string name="edit_discussion_menu_item_string">edit</string>
 
 
 </resources>

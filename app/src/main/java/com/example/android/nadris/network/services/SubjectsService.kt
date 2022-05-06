@@ -20,4 +20,6 @@ interface SubjectsService {
     @GET("api/Subject/{id}/Units")
     suspend fun getUnitsWithSubjectId(@Path("id")id:Long, @Header("authorization") token: String): Response<List<UnitDTO>>
 
+    @GET("api/Grade/{id}/subjects")
+    suspend fun getGradeSubjectsWithId(@Path("id")id: Long,@Header("authorization") token: String):Response<List<SubjectDTO>>
 }

@@ -1,9 +1,14 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.database.models.*
+import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.StudentSubject
+import com.example.android.nadris.database.models.Subjects
+import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.network.NetworkModelsMapper
 import com.example.android.nadris.network.dtos.*
-import com.example.android.nadris.util.*
+import com.example.android.nadris.util.getFromApiAndSaveToDataBase
+import com.example.android.nadris.util.postToApiAndSaveToDatabase
+import com.example.android.nadris.util.requestAPI
 import javax.inject.Inject
 
 
@@ -89,8 +94,37 @@ class Repository @Inject constructor(
         fetch = { remoteDataSource.getSubjectsWithGradeId(gradeId, token) }
     )
 
+//    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
+//
+//        query = { localDataSource.getSubjectUnits(subjectID) },
+//        fetch = { remoteDataSource.getSubjectUnit(subjectID, token) },
+//        convertToDatabaseModel = { list ->
+//            list.map { item ->
+//                NetworkModelsMapper.subjectUnitsDTOtoModel(item)
+//            }
+//        },
+//        saveFetchResult = { list ->
+//            list.map {
+//                localDataSource.insertSubjectUnit(it.unit)
+//                localDataSource.insertUnitLessons(it.lessons)
+//            }
+//        }
+//
+//    )
+
+    fun getTeachersCourses(subjectID: Long, token: String) =
+        requestAPI(fetch = { remoteDataSource.getTeachersCourses(subjectID, token) })
+
+    fun getSubjects(gradeId: Long, token: String) =
+        requestAPI(fetch = { remoteDataSource.getGradeSubjectsWithId(gradeId, token) })
+
     fun getAllComments(token: String, postId: Long) = requestAPI(
         fetch = { remoteDataSource.getCommentsByPostId(postId, token) })
+
+    fun removeCourse(token: String,courseId:Long)= requestAPI(
+        fetch = {remoteDataSource.removeCourse(token,courseId)}
+    )
+
 
     fun vote(voteModel: VoteModel, token: String) =
         postToApiAndSaveToDatabase(
@@ -102,7 +136,11 @@ class Repository @Inject constructor(
         )
 
     suspend fun publishComment(comment: PublishCommentModel,postId:Long, token: String) = requestAPI(
-        fetch = { remoteDataSource.comment(comment,postId, token) }
+        fetch = { remoteDataSource.comment(comment,postId,token) }
+    )
+
+    suspend fun registerAStudentInACourse(CourseId: CourseID, token: String) = requestAPI(
+        fetch = { remoteDataSource.registerAStudentInACourse(CourseId, token) }
     )
 
     fun getUniversities() = requestAPI(
@@ -137,7 +175,7 @@ class Repository @Inject constructor(
                 NetworkModelsMapper.subjectDTOtoModel(dto)
             }
         },
-        saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it) } }
+        saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it as List<Subjects>) } }
     )
 
     fun getRegisteredCoursesForAStudent(token: String) = getFromApiAndSaveToDataBase(
@@ -161,59 +199,6 @@ class Repository @Inject constructor(
         fetch = { remoteDataSource.updateProfilePic(token,imgStrB64) })
 
     suspend fun getUnitLessons(unitId:Long)=localDataSource.getUnitLessons(unitId)
-
-
-    suspend fun getUpdatedDiscussions(token:String): List<DatabasePost> {
-
-        //getting saved posts ids from database to update them to the database from the fetched posts
-        val savedDiscussionsIds = localDataSource.getSavedDiscussionsIds()
-
-        lateinit var allDiscussions: List<DatabasePost>
-
-        //getting all discussions from the api
-        val allDiscussionsResponse = remoteDataSource.getAllPosts(token)
-
-        // check if the request is successful
-        if(allDiscussionsResponse.isSuccessful){
-
-            //mapping network posts to database posts to be ready to be stored or shown for the user
-             allDiscussions = allDiscussionsResponse.body()?.map { discussion ->
-                 NetworkModelsMapper.postAsDatabaseModel(discussion)  }!!
-
-            // setting the saved discussions parameter isBookmarked to true for the ids fetched from the database
-            allDiscussions.map {discussion->
-                if(savedDiscussionsIds.contains(discussion.postId))
-                    discussion.isBookMarked = true
-            }
-
-            // filtering the saved discussions
-            val savedDiscussions = allDiscussions.filter { discussion->  discussion.isBookMarked }
-
-
-            // updating the database with the saved discussions data fetched from the api
-             localDataSource.updateAllSavedDiscussions(savedDiscussions)
-        }else{
-            return localDataSource.getAllPosts()
-        }
-
-        return allDiscussions
-    }
-
-    suspend fun bookmarkDiscussion(discussion:DatabasePost){
-        if(discussion.isBookMarked)
-        localDataSource.insertPost(discussion)
-        else
-            localDataSource.deleteDiscussion(discussion.postId)
-    }
-
-    suspend fun deleteDiscussion(discussionId:Long,token:String): Boolean {
-        val responce = remoteDataSource.deleteDiscussion(discussionId,token)
-        if(responce.isSuccessful && responce.body()!!) {
-            localDataSource.deleteDiscussion(discussionId)
-            return true
-        }
-            return false
-    }
 
 
 }

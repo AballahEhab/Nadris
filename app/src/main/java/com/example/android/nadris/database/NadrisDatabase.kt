@@ -14,6 +14,7 @@ import com.example.android.nadris.database.models.*
     Lesson::class,
     TeacherSubject::class,
     StudentSubject::class,
+    Subjects::class,
     SubjectUnit::class],
     version = 1,
     exportSchema = false)

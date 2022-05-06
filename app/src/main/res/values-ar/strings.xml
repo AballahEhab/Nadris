@@ -120,7 +120,7 @@
     <string name="tv_name_teachers">محمد مصطفي</string>
     <string name="tv_content_description">شرح ومراجعه</string>
     <string name="tv_add_teacher">إضافه</string>
-    <string name="tv_star">* * *</string>
+    <string name="tv_star">*</string>
     <string name="tv_evaluation">4.8</string>
     <string name="my_course">"المواد الدراسيه "</string>
     <string name="add_subject">إضافه ماده</string>
@@ -180,7 +180,5 @@
     <string name="edt_new_passowrd">كلمة سر جديدة</string>
     <string name="edt_old_password">كلمة السر القديمة</string>
     <string name="btn_save">حقظ</string>
-    <string name="delete_discussion_meu_item_string">حذف</string>
-    <string name="edit_discussion_menu_item_string">تعديل</string>
 
 </resources>

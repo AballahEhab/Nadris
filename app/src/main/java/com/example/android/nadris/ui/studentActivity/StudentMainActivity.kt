@@ -25,7 +25,7 @@ class StudentMainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_studnet_main_acitivity)
-        visibilityNavElements(navController)
+//        visibilityNavElements(navController)
         navView.setupWithNavController(navController)
 
 
