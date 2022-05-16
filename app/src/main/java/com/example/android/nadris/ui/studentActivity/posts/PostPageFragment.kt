@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.Mode
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentPostPageBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,6 +67,16 @@ class PostPageFragment() : Fragment() {
 
         })
 
+        viewModel.aPostToEdit.observe(viewLifecycleOwner){post->
+            post?.let{
+                findNavController().navigate(
+                    PostPageFragmentDirections
+                        .actionPostsFragmentToAddPostFragment(Mode.EDIT,
+                            post.postId, post.subject, post.content, post.hasImage))
+                viewModel.aPostToEdit.value = null
+            }
+        }
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getPosts()
         }
@@ -76,6 +87,5 @@ class PostPageFragment() : Fragment() {
 
         return binding.root
     }
-
 
 }

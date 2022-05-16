@@ -8,7 +8,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface SubjectsService {
-    @GET("api/Subject/Grade/{id}")
+    @GET("api/Grade/{id}/subjects")
     suspend fun getSubjectsWithGradeId(@Path("id")id:Long, @Header("authorization") token: String): Response<List<SubjectDTO>>
 
     @GET("api/Subject/Section/{id}")

@@ -92,6 +92,9 @@ class Repository @Inject constructor(
     fun getAllComments(token: String, postId: Long) = requestAPI(
         fetch = { remoteDataSource.getCommentsByPostId(postId, token) })
 
+    fun updateDiscussion(postId:Long,updatedDiscussion: EditDiscussion, token: String) = requestAPI(
+        fetch = { remoteDataSource.updateDiscussion(postId,updatedDiscussion, token) })
+
     fun vote(voteModel: VoteModel, token: String) =
         postToApiAndSaveToDatabase(
             request = { remoteDataSource.vote(voteModel, token) },

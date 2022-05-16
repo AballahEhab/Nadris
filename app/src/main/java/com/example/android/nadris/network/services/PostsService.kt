@@ -15,7 +15,7 @@ interface PostsService {
     suspend fun getPostsById(@Path("id") id:Long, @Header("authorization") token: String): Response<CreatePostModel>
 
     @PUT("api/Posts/{id}")
-    suspend fun updateDiscussion(@Path("id") discussionID:Long, @Header("authorization") token: String,updatedDiscussion:CreatePostModel): Response<CreatePostModel> // TODO: edit the response type
+    suspend fun updateDiscussion(@Path("id") discussionID:Long,@Body updatedDiscussion:EditDiscussion, @Header("authorization") token: String): Response<NetworkPost>
 
     @DELETE("api/Posts/{id}")
     suspend fun deleteDiscussion(@Path("id") discussionID:Long, @Header("authorization") token: String): Response<Boolean>

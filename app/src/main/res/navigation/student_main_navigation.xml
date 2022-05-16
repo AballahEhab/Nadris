@@ -23,12 +23,44 @@
             android:id="@+id/action_posts_fragment_to_private_profile_fragment"
             app:destination="@id/private_profile_fragment" />
 
+
     </fragment>
 
     <fragment
         android:id="@+id/add_post_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
         tools:layout="@layout/fragment_add_pos">
+        <argument
+            android:name="post_id"
+            app:argType="long"
+            android:defaultValue="0L"
+
+            />
+
+        <argument
+            android:name="subject"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue=""
+
+            />
+        <argument
+            android:name="grade"
+            app:argType="string"
+            android:defaultValue=""
+
+            />
+        <argument
+            android:name="discussion_content"
+            app:argType="string"
+            android:defaultValue=""
+
+            />
+        <argument
+            android:name="is_in_edit_view"
+            app:argType="boolean"
+
+            />
         <action
             android:id="@+id/action_add_post_fragment_to_posts_fragment"
             app:destination="@id/posts_fragment" />
@@ -147,5 +179,23 @@
             android:id="@+id/action_subject_fragment_to_student_teachers_for_a_subject_fragment"
             app:destination="@id/student_teachers_for_a_subject_fragment" />
     </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/editDiscussionFragment"-->
+<!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
+<!--        android:label="EditDiscussionFragment" >-->
+
+<!--        <argument-->
+<!--            android:name="post_id"-->
+<!--            app:argType="long" />-->
+
+<!--        <argument-->
+<!--            android:name="subject"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="discussion_content"-->
+<!--            app:argType="string" />-->
+
+<!--    </fragment>-->
 
 </navigation>

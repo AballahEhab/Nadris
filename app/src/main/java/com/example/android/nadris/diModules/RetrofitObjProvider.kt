@@ -16,7 +16,7 @@ class RetrofitObjProvider {
     @Provides
     fun provideRetrofitObj() =
         Retrofit.Builder()
-            .baseUrl("https://nadris-api-ic8.conveyor.cloud/")
+            .baseUrl("https://nadrisapi.azurewebsites.net/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

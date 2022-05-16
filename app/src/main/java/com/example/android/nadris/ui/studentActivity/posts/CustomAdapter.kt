@@ -91,7 +91,7 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
 
             try{
                 val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
-                    postData.postId.toString())
+                    postData.userId.toString())
                 val profileImageBitMap = BitmapFactory.decodeFile(file.absolutePath)
                 holder.binding.profileImage.setImageBitmap(profileImageBitMap)
             }catch (e:Throwable) {
@@ -111,7 +111,7 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
 
                     when (menu_item.itemId) {
                         R.id.delete_discussion_menu_item -> postPageViewModel.deletepost(postData.postId)
-                        R.id.edit_discussion_menu_item -> Log.v("discussionsAdapter", "edit")
+                        R.id.edit_discussion_menu_item -> postPageViewModel.navigate_to_edit_post(postData)
                     }
 
                     false

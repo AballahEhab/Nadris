@@ -19,8 +19,16 @@ enum class InputError   {
     NOT_VALID_MOBILE_NUMB
 }
 
-    const val TOKEN_PREFIX = "Bearer "
+enum class Mode {
+    EDIT,
+    CREATE;
 
+    fun isInEditMode():Boolean {
+        return this == EDIT
+    }
+}
+
+    const val TOKEN_PREFIX = "Bearer "
     const val REQUEST_IMAGE_CAPTURE = 1
     const val PHOTO_PICKER_REQUEST_CODE = 2
     const val CAMERA_PERMISSION_REQUEST_CODE = 3

@@ -23,6 +23,7 @@
         <action
             android:id="@+id/action_posts_fragment_to_private_profile_fragment"
             app:destination="@id/private_profile_fragment" />
+
     </fragment>
 
     <fragment
@@ -48,9 +49,48 @@
         android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
         tools:layout="@layout/fragment_add_pos">
 
+        <argument
+            android:name="mode"
+            app:argType="com.example.android.nadris.Mode"
+            android:defaultValue="CREATE" />
+
+                <argument
+                    android:name="post_id"
+                    app:argType="long"
+                    android:defaultValue="0L"
+
+                    />
+
+                <argument
+                    android:name="subject"
+                    app:argType="string"
+                    android:defaultValue=""
+
+                    />
+
+<!--        todo: grade user only with teacher -->
+<!--                <argument-->
+<!--                    android:name="grade"-->
+<!--                    app:argType="string"-->
+<!--                    android:defaultValue=""-->
+
+<!--                    />-->
+                <argument
+                    android:name="discussion_content"
+                    app:argType="string"
+                    android:defaultValue=""
+
+                    />
+                <argument
+                    android:name="hasImage"
+                    app:argType="boolean"
+                    android:defaultValue="false"
+
+                    />
         <action
             android:id="@+id/action_add_post_fragment_to_posts_fragment"
             app:destination="@id/posts_fragment" />
+
     </fragment>
 
     <fragment
@@ -156,7 +196,23 @@
             app:argType="integer" />
         <argument
             android:name="lesson_name"
-            app:argType="string" />
+            app:argType="string"
+            />
     </fragment>
 
+<!--    <fragment-->
+<!--        android:id="@+id/editDiscussionFragment"-->
+<!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
+<!--        android:label="EditDiscussionFragment" >-->
+<!--        <argument-->
+<!--            android:name="post_id"-->
+<!--            app:argType="long" />-->
+
+<!--        <argument-->
+<!--            android:name="subject"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="discussion_content"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
 </navigation>

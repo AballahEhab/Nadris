@@ -196,6 +196,8 @@
     <string name="btn_close">Colse</string>
     <string name="delete_discussion_meu_item_string">delete</string>
     <string name="edit_discussion_menu_item_string">edit</string>
+    <string name="save_edits">save edits</string>
+    <string name="save_discussion_btn_title">save discussion</string>
 
 
 </resources>

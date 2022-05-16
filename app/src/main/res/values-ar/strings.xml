@@ -182,5 +182,8 @@
     <string name="btn_save">حقظ</string>
     <string name="delete_discussion_meu_item_string">حذف</string>
     <string name="edit_discussion_menu_item_string">تعديل</string>
+    <string name="save_discussion_btn_title">حفظ الاستفسار</string>
+    <string name="save_edits">حفظ التعديلات</string>
+
 
 </resources>

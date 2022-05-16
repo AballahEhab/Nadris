@@ -1,8 +1,6 @@
 package com.example.android.nadris.ui.studentActivity.addPosts
 
-import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -16,17 +14,18 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.android.nadris.*
 import com.example.android.nadris.databinding.FragmentAddPosBinding
 import com.example.android.nadris.services.Converter
 import com.example.android.nadris.util.LoadImageFromDevice
 import com.example.android.nadris.util.getResizedBitmap
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 
 
 @AndroidEntryPoint
@@ -34,29 +33,48 @@ class AddPostFragment : Fragment() {
 
     val viewModel: AddPostViewModel by viewModels()
     lateinit var binding: FragmentAddPosBinding
-    private lateinit var converter: Converter
+    private val converter: Converter by lazy {
+        Converter(requireContext().applicationContext)
+    }
     private var image: Bitmap? = null
+
+    private var mode = Mode.CREATE
+
+     private val args:AddPostFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        inflater.inflate(R.layout.fragment_add_pos, container, false)
-        binding = FragmentAddPosBinding.inflate(inflater)
+
+        binding =FragmentAddPosBinding.inflate(layoutInflater, container, false)
+
         binding.addPostViewModel = viewModel
-        //initialize converter
-        converter = Converter(requireContext().applicationContext)
+
+        binding.lifecycleOwner = this
+
         if (viewModel.isTeacher)
             viewModel.getGrades()
         else viewModel.getSubjects()
+
 
 
         viewModel.grades.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
             (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
         }
+
         viewModel.subjects.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
             (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        }
+        viewModel.navigateBackToHomeScreen.observe(viewLifecycleOwner) { navigate ->
+            if(navigate) {
+                findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToPostsFragment())
+                viewModel.navigationBackToHomeScreenDone()
+
+            }
+
         }
 
         binding.imageButton.setOnClickListener {
@@ -64,15 +82,48 @@ class AddPostFragment : Fragment() {
         }
 
         binding.publishButton.setOnClickListener {
+
             if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
                 viewModel.addPost()
-                it.findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToPostsFragment())
+                viewModel.navigateBackToHomeScreen()
             } else {
                 Toast.makeText(requireContext().applicationContext,
                     getString(R.string.add_post_requirments),
                     Toast.LENGTH_SHORT).show()
             }
         }
+
+        if(args.mode.isInEditMode()){
+            viewModel.selectedSubject.value = args.subject
+            viewModel.question.value = args.discussionContent
+            viewModel.editedDiscussionId = args.postId
+            binding.publishButton.apply {
+                this.setOnClickListener {
+
+                    if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
+                        viewModel.updatePostAfterEdit()
+                    } else {
+                        Toast.makeText(requireContext().applicationContext,
+                            getString(R.string.add_post_requirments),
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+                this.text = context.getString(R.string.save_edits)
+            }
+            binding.imageButton.text = "edit image"
+
+            if (args.hasImage){
+                    val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
+                        args.postId.toString())
+                    if (file.exists()) {
+                        val img = BitmapFactory.decodeFile(file.absolutePath)
+                        binding.pickedImage.setImageBitmap(img!!)
+                        binding.pickedImage.visibility = View.VISIBLE
+                    }
+                }
+
+        }
+
         return binding.root
     }
 

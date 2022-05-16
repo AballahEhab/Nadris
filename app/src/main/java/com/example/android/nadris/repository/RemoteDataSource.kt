@@ -34,6 +34,9 @@ constructor(
     suspend fun publishAPost(createPostModel: CreatePostModel, token: String) =
         postsService.publishAPost(createPostModel, token)
 
+    suspend fun updateDiscussion(postId:Long,updatedDiscussion: EditDiscussion, token: String) =
+        postsService.updateDiscussion(postId,updatedDiscussion, token)
+
 
     suspend fun deleteDiscussion(discussionId: Long, token: String) =
         postsService.deleteDiscussion(discussionId, token)

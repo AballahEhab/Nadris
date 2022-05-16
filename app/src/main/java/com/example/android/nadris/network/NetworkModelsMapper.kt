@@ -16,9 +16,9 @@ object NetworkModelsMapper {
             }
             hasImage = true
         }
-        if (!networkPost.ProfilePicBase64.isNullOrEmpty()) {
+        if (!networkPost.profilePicBase64.isNullOrEmpty()) {
             NadrisApplication.instance?.let {
-                Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.ProfilePicBase64,
+                Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.profilePicBase64,
                     networkPost.userId)
             }
         }

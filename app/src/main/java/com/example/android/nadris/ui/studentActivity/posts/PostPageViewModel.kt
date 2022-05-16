@@ -2,6 +2,7 @@ package com.example.android.nadris.ui.studentActivity.posts
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,6 +26,7 @@ class PostPageViewModel @Inject constructor(val repository: Repository) : ViewMo
     var postsList = MutableLiveData<MutableList<DatabasePost>>()
     val postsIsRefreshing = MutableLiveData(false)
 
+    val aPostToEdit: MutableLiveData<DatabasePost> = MutableLiveData()
 
     private var _destinationProfileEmail = MutableLiveData<String?>(null)
     val destinationProfileEmail: MutableLiveData<String?> get() = _destinationProfileEmail
@@ -164,5 +166,9 @@ class PostPageViewModel @Inject constructor(val repository: Repository) : ViewMo
                 this@PostPageViewModel.getPosts()
 
         }
+    }
+
+    fun navigate_to_edit_post(post: DatabasePost){
+        aPostToEdit.value =post
     }
 }
