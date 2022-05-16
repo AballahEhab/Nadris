@@ -36,6 +36,8 @@ object NetworkModelsMapper {
         )
     }
 
+
+
     fun authModelAsDataBaseModel(model: AuthModel) = UserData(
 
         Email = model.email,
@@ -85,4 +87,5 @@ object NetworkModelsMapper {
         }
         return UnitLessons(unit, list);
     }
+
 }

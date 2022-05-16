@@ -37,3 +37,10 @@ data class StudentSubject(
     val progress: Long,
     val rate: Long,
 )
+@Entity
+data class Subjects(
+    @PrimaryKey  val id: Long,
+    val name: String,
+    val numOfTeachers:Long,
+    val icon: Int,
+)

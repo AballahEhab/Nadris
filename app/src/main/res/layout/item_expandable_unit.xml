@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="unit" type="com.example.android.nadris.database.models.SubjectUnit"/>
@@ -20,23 +21,32 @@
                           android:layout_height="wrap_content"
                           android:orientation="horizontal">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/unit_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/pink"
-                    app:shapeAppearanceOverlay="@style/circleImageView"
-                    tools:srcCompat="@drawable/ic_launcher_background"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/unit_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/pink"
+                        app:shapeAppearanceOverlay="@style/circleImageView"
+                        tools:srcCompat="@drawable/ic_launcher_background"/>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/unit_name"
+                        style="@style/material_text_header_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{unit.name}"
+                        android:layout_margin="@dimen/mid_margin"
+                    />
+                    <TextView
+                        android:id="@+id/number_of_lessons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/mid_margin"
+                    />
 
-                <TextView
-                    android:id="@+id/unit_name"
-                    style="@style/material_text_header_small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@{unit.name}"
-                    android:layout_margin="@dimen/mid_margin"
-                />
+                </LinearLayout>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lessons_list"

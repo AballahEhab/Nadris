@@ -4,6 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="match_constrain">0dp</dimen>
     <dimen name="header_text_size">24sp</dimen>
+    <dimen name="progress_text_size">18sp</dimen>
     <dimen name="mid_margin">16dp</dimen>
     <dimen name="large_margin">24dp</dimen>
     <dimen name="xlarge_margin">32dp</dimen>
@@ -12,4 +13,6 @@
     <dimen name="min_height">36dp</dimen>
     <dimen name="mid_radius">12dp</dimen>
     <dimen name="card_elv">6dp</dimen>
+    <dimen name="image_max_size">20dp</dimen>
+    <dimen name="progress">70dp</dimen>
 </resources>

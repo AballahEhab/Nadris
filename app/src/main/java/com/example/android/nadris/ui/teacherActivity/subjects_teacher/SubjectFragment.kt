@@ -1,7 +1,4 @@
 package com.example.android.nadris.ui.teacherActivity.subjects_teacher
-/**
- * @author mohammed M sarhan
- * **/
 
 import android.os.Bundle
 import android.text.InputType

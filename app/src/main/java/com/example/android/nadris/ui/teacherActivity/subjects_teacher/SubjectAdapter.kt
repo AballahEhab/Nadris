@@ -41,7 +41,7 @@ class SubjectAdapter() :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = differ.currentList[position]
         holder.binding.tvNameSubjectTeacher.text = data.name
-        holder.binding.tvCountStudentTeach.text = ""
+        holder.binding.numOfStudents.text = ""
         holder.binding.tvClass.text = data.grade
         holder.binding.tvSemester.text = data.term
         holder.itemView.setOnClickListener {

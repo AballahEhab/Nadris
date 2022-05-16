@@ -31,13 +31,13 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun getSavedDiscussionsIds() = postDao.getSavedDiscussionsIds()
     suspend fun updateAllSavedDiscussions(discussions:List<DatabasePost>) = postDao.updateAllSavedDiscussions(discussions)
 
-    suspend fun insertSubjects(list: List<TeacherSubject>) = subjectDao.insertSubjects(list)
+    suspend fun insertTeacherSubjects(list: List<TeacherSubject>) = subjectDao.insertTeacherSubjects(list)
 
     suspend fun addRegisteredCoursesForAStudent(list: List<StudentSubject>)=subjectDao.addRegisteredCoursesForAStudent(list)
 
     suspend fun insertSubject(item: TeacherSubject) = subjectDao.insertSubject(item)
 
-    suspend fun getSubjects() = subjectDao.getSubjects()
+    suspend fun getSubjects() = subjectDao.getTeacherSubjects()
     suspend fun getRegisteredCoursesForAStudent()=subjectDao.getRegisteredCoursesForAStudent();
 
     suspend fun getSubjectById(subjectId: Long) = subjectDao.getSubject(subjectId)
@@ -52,4 +52,8 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun getSubjectUnits(id :Long) = subjectDao.getSubjectUnits(id)
 
     suspend fun getUnitLessons(id: Long) = subjectDao.getUnitLessons(id)
+
+    suspend fun insertSubjects(list: List<Subjects>) = subjectDao.insertSubjects(list)
+
+    suspend fun getSubjectsWithGrade(id : Long) = subjectDao.getSubjects(id)
 }

@@ -50,6 +50,8 @@ constructor(
     suspend fun comment(publishCommentModel: PublishCommentModel,postId:Long, token: String) =
         postsService.addCommentToAPost(publishCommentModel,postId, token)
 
+    suspend fun registerAStudentInACourse(CourseId:CourseID,token: String)=
+        coursesService.registerAStudentInACourse(token,CourseId)
     suspend fun getCommentsByPostId(postId: Long, token: String) =
         postsService.getCommentsByPostId(postId, token)
 
@@ -71,6 +73,9 @@ constructor(
 
     suspend fun getRegisteredCoursesForAStudent(token: String)=
         coursesService.getRegisteredCoursesForAStudent(token)
+
+    suspend fun removeCourse(token: String , courseID: Long)=
+        coursesService.removeCourse(courseID,token)
 
     suspend fun getSubjectsWithGradeId(gradeId: Long, token: String) =
         subjectsService.getSubjectsWithGradeId(gradeId, token)
@@ -100,4 +105,10 @@ constructor(
 
     suspend fun getSubjectUnit(id: Long , token: String)=
         subjectsService.getUnitsWithSubjectId(id, token)
+
+    suspend fun getGradeSubjectsWithId(id: Long, token: String)=
+        subjectsService.getGradeSubjectsWithId(id,token)
+
+    suspend fun getTeachersCourses(id: Long , token: String)=
+        coursesService.getTeachersCourses(id,token)
 }

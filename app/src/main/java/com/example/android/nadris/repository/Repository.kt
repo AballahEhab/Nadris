@@ -89,11 +89,40 @@ class Repository @Inject constructor(
         fetch = { remoteDataSource.getSubjectsWithGradeId(gradeId, token) }
     )
 
+//    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
+//
+//        query = { localDataSource.getSubjectUnits(subjectID) },
+//        fetch = { remoteDataSource.getSubjectUnit(subjectID, token) },
+//        convertToDatabaseModel = { list ->
+//            list.map { item ->
+//                NetworkModelsMapper.subjectUnitsDTOtoModel(item)
+//            }
+//        },
+//        saveFetchResult = { list ->
+//            list.map {
+//                localDataSource.insertSubjectUnit(it.unit)
+//                localDataSource.insertUnitLessons(it.lessons)
+//            }
+//        }
+//
+//    )
+
+    fun getTeachersCourses(subjectID: Long, token: String) =
+        requestAPI(fetch = { remoteDataSource.getTeachersCourses(subjectID, token) })
+
+    fun getSubjects(gradeId: Long, token: String) =
+        requestAPI(fetch = { remoteDataSource.getGradeSubjectsWithId(gradeId, token) })
+
     fun getAllComments(token: String, postId: Long) = requestAPI(
         fetch = { remoteDataSource.getCommentsByPostId(postId, token) })
 
     fun updateDiscussion(postId:Long,updatedDiscussion: EditDiscussion, token: String) = requestAPI(
         fetch = { remoteDataSource.updateDiscussion(postId,updatedDiscussion, token) })
+
+    fun removeCourse(token: String,courseId:Long)= requestAPI(
+        fetch = {remoteDataSource.removeCourse(token,courseId)}
+    )
+
 
     fun vote(voteModel: VoteModel, token: String) =
         postToApiAndSaveToDatabase(
@@ -105,7 +134,11 @@ class Repository @Inject constructor(
         )
 
     suspend fun publishComment(comment: PublishCommentModel,postId:Long, token: String) = requestAPI(
-        fetch = { remoteDataSource.comment(comment,postId, token) }
+        fetch = { remoteDataSource.comment(comment,postId,token) }
+    )
+
+    suspend fun registerAStudentInACourse(CourseId: CourseID, token: String) = requestAPI(
+        fetch = { remoteDataSource.registerAStudentInACourse(CourseId, token) }
     )
 
     fun getUniversities() = requestAPI(
@@ -140,7 +173,7 @@ class Repository @Inject constructor(
                 NetworkModelsMapper.subjectDTOtoModel(dto)
             }
         },
-        saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it) } }
+        saveFetchResult = { list -> list.let { localDataSource.insertSubjects(it as List<Subjects>) } }
     )
 
     fun getRegisteredCoursesForAStudent(token: String) = getFromApiAndSaveToDataBase(
