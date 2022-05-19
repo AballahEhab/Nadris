@@ -4,7 +4,7 @@ import com.example.android.nadris.network.dtos.*
 import retrofit2.Response
 import retrofit2.http.*
 
-interface AuthService{
+interface AuthService {
 
     @POST("api/Auth/Token")
     suspend fun login( @Body loginAccountData: LoginAccountModel): Response<AuthModel>  // send email and password and receive token as return string
