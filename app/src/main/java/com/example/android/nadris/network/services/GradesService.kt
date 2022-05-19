@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 
-interface GradesService {
+interface GradesService  {
 
     @GET("api/Grades/Sections")
     suspend fun getSections(): Response<List<SectionDTO>>
