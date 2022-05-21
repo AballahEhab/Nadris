@@ -38,8 +38,6 @@ class AddPostFragment : Fragment() {
     }
     private var image: Bitmap? = null
 
-    private var mode = Mode.CREATE
-
      private val args:AddPostFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -55,9 +53,8 @@ class AddPostFragment : Fragment() {
 
         if (viewModel.isTeacher)
             viewModel.getGrades()
-        else viewModel.getSubjects()
-
-
+        else
+            viewModel.getSubjects()
 
         viewModel.grades.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
@@ -68,6 +65,7 @@ class AddPostFragment : Fragment() {
             val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
             (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
         }
+
         viewModel.navigateBackToHomeScreen.observe(viewLifecycleOwner) { navigate ->
             if(navigate) {
                 findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToPostsFragment())
