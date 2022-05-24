@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@id/teacher_my_subjects_fragment">
+    app:startDestination="@id/addSectionFragment">
+<!--    Todo: revert start destination back to/teacher_my_subjects_fragment -->
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -177,6 +178,9 @@
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
             app:destination="@id/adding_sections_fragment" />
+        <action
+            android:id="@+id/action_teacher_subject_units_fragment_to_addSectionFragment"
+            app:destination="@id/addSectionFragment" />
     </fragment>
 
     <fragment
@@ -199,8 +203,13 @@
             app:argType="string"
             />
     </fragment>
+    <fragment
+        android:id="@+id/addSectionFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addSection.addSectionFragment"
+        android:label="fragment_add_section"
+        tools:layout="@layout/fragment_add_section" />
 
-<!--    <fragment-->
+    <!--    <fragment-->
 <!--        android:id="@+id/editDiscussionFragment"-->
 <!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
 <!--        android:label="EditDiscussionFragment" >-->

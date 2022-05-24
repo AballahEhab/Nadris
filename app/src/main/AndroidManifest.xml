@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature android:name="android.hardware.camera"
                   android:required="true"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.STORAGE" />
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE"/>
@@ -25,11 +27,7 @@
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.studentActivity.StudentMainActivity"
@@ -39,12 +37,17 @@
         <activity
             android:name=".ui.teacherActivity.TeacherMainActivity"
             android:label="@string/title_activity_teacher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.loginActivity.MainActivity"
             android:label="@string/title_activity_login"
         >
+
         </activity>
 
         <meta-data

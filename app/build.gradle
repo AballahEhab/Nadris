@@ -114,6 +114,9 @@ dependencies {
     implementation project(path: ':richeditor')
 
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+//    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
 }
 // Allow references to generated code
 kapt {
