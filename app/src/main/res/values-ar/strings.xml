@@ -99,7 +99,7 @@
     </string-array>
     <string name="title_activity_teacher">TeacherActivity</string>
     <string name="student_home_title">الرئيسه</string>
-    <string name="title_home">الرئيسية</string>
+    <string name="posts_fragment_label">الرئيسية</string>
     <string name="student_subjects_title">المواد</string>
     <string name="student_schedual_title">المواعيد</string>
     <string name="name">عربى</string>
@@ -135,7 +135,7 @@
     <string name="content_comment">أستاذ شاطر جدا ومجتهد ومهتم بالطالب لأقصي درجه</string>
     <string name="name_acount_add_comment">محمد مصطفي</string>
 
-    <string name="add_comment">أضف تعليقك</string>
+    <string name="add_comment">أضف رد</string>
     <string name="title_activity_login">صفحة تسجيل الدخول</string>
     <string name="btn_add_comment">إذهب</string>
     <string-array name="add_Photo">
@@ -168,5 +168,22 @@
     <string name="tv_help">المساعدة</string>
     <string name="tv_sign_out">تسجيل الخروج</string>
     <string name="profile">profile</string>
+    <string name="tgbtn_add_frind">إضافه صديق</string>
+    <string name="my_subjects_fragment_label">موادى</string>
+    <string name="btn_close">إلغاء</string>
+    <string name="video_link_input_hint">رابط الفيديو</string>
+    <string name="please_enter_num_of_sections_hin">من فضلك أدخل عدد الفقرات</string>
+    <string name="proceed">إستمرار</string>
+    <string name="text_editor_label">محرر النصوص</string>
+    <string name="adding_subject_sections_label">إضافة فقرات الدرس</string>
+    <string name="adding_sections_title">وحدة %o : درس %o ( %s )</string>
+    <string name="edt_new_passowrd">كلمة سر جديدة</string>
+    <string name="edt_old_password">كلمة السر القديمة</string>
+    <string name="btn_save">حقظ</string>
+    <string name="delete_discussion_meu_item_string">حذف</string>
+    <string name="edit_discussion_menu_item_string">تعديل</string>
+    <string name="save_discussion_btn_title">حفظ الاستفسار</string>
+    <string name="save_edits">حفظ التعديلات</string>
+
 
 </resources>

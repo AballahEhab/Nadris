@@ -1,180 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <import type="com.example.android.nadris.R"/>
-        <variable name="postData"
-                  type="com.example.android.nadris.database.models.DatabasePost"/>
+
+        <import type="com.example.android.nadris.R" />
+
+        <variable
+            name="postData"
+            type="com.example.android.nadris.database.models.DatabasePost" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <com.google.android.material.card.MaterialCardView
             style="@style/material_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_margin"
-            >
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_margin="@dimen/small_margin"
-                          android:orientation="vertical"
-                          android:weightSum="5">
+            android:layout_margin="@dimen/small_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:orientation="vertical"
+                android:weightSum="5">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="horizontal">
-                    <LinearLayout android:layout_width="wrap_content"
-                                  android:layout_height="match_parent"
-                                  android:orientation="horizontal"
-                                  app:layout_constraintStart_toStartOf="parent"
-                                  app:layout_constraintTop_toTopOf="parent"                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
                         <ImageView
                             android:id="@+id/profileImage"
                             style="@style/material_icon_small"
                             android:layout_gravity="center"
                             android:clickable="true"
                             android:focusable="true"
-                            app:srcCompat="@drawable/ic_user"/>
-                        <LinearLayout android:layout_width="wrap_content"
-                                      android:layout_height="wrap_content"
-                                      android:orientation="vertical">
+                            app:srcCompat="@drawable/ic_user" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
                             <TextView
                                 android:id="@+id/account_name"
                                 style="@style/material_text_body_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:text="@{postData.name}"
-                            />
+                                app:text="@{postData.name}" />
+
                             <TextView
                                 android:id="@+id/subject_name"
                                 style="@style/material_text_body_small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:text="@{postData.subject}"
-                            />
+                                app:text="@{postData.subject}" />
                         </LinearLayout>
                     </LinearLayout>
-                    <LinearLayout
+
+                    <ImageButton
+                        android:id="@+id/discussion_more_option"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-                        <TextView android:id="@+id/textsave"
-                                  style="@style/material_text_body_small"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:layout_gravity="center"
-                                  android:text="@string/save"
-                        />
-                        <ImageView
-                            android:id="@+id/bookmark"
-                            style="@style/material_icon_small"
-                            android:clickable="true"
-                            android:focusable="true"
-                            app:checked_image ="@{R.drawable.checked_bookmark_icon}"
-                            app:unchecked_image ="@{R.drawable.unchecked_bookmark_icon}"
-                            app:state = "@{postData.isBookMarked}"
-                        />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
 
 
-                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/post_content"
                         style="@style/material_text_header_small"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/tiny_margin"
-                        android:text="@{postData.content}"/>
+                        android:text="@{postData.content}" />
+
                     <ImageView
                         android:id="@+id/img_post"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
-                <LinearLayout
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
+
+                <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:weightSum="10"
-                >
-                    <ImageView
-                        android:id="@+id/img_vote"
-                        style="@style/material_icon_small"
-                        android:layout_weight="2"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:checked_image ="@{R.drawable.checked_vote_icon}"
-                        app:unchecked_image ="@{R.drawable.unchecked_vote_icon}"
-                        app:state = "@{postData.isVoted}"
-                    />
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:orientation="horizontal">
+                    app:justifyContent="space_around"
+                    android:layout_marginTop="4dp">
 
-                        <TextView android:id="@+id/textvote"
-                                  style="@style/material_text_body_small"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  app:formatterInput="@{postData.votesNum}"
-                                  app:stringRecourse="@{R.string.vote}"
-                        />
-                        <!--                    <TextView style="@style/material_text_body_small"-->
-                        <!--                              android:layout_width="wrap_content"-->
-                        <!--                              android:layout_height="wrap_content"-->
-                        <!--                              android:text="@string/_1"/>-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_vote"
+                            style="@style/material_icon_small"
+                            android:layout_weight="2"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:checked_image="@{R.drawable.checked_vote_icon}"
+                            app:state="@{postData.isVoted}"
+                            app:unchecked_image="@{R.drawable.unchecked_vote_icon}" />
+
+                        <TextView
+                            android:id="@+id/textvote"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:formatterInput="@{postData.votesNum}"
+                            app:stringRecourse="@{R.string.vote}" />
+
                     </LinearLayout>
-                    <ImageView
-                        android:id="@+id/img_split"
-                        style="@style/material_icon_small"
-                        android:layout_weight="2"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_vertical_line"/>
-                    <ImageView
-                        android:id="@+id/img_reply"
-                        style="@style/material_icon_small"
-                        android:layout_weight="2"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_chat_room"/>
-                    <LinearLayout android:layout_width="0dp"
-                                  android:layout_height="wrap_content"
-                                  android:layout_gravity="center"
-                                  android:layout_weight="2"
-                                  android:orientation="horizontal"
-                    >
-                        <TextView android:id="@+id/textreply"
-                                  style="@style/material_text_body_small"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  app:formatterInput="@{postData.commentsNum}"
-                                  app:stringRecourse="@{R.string.reply}"
-                        />
-                        <!--                    <TextView style="@style/material_text_body_small"-->
-                        <!--                              android:layout_width="wrap_content"-->
-                        <!--                              android:layout_height="wrap_content"-->
-                        <!--                              android:text="@string/_1"-->
-                        <!--                    />-->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_reply"
+                            style="@style/material_icon_small"
+                            android:layout_weight="2"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textView"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_chat_room" />
+
+                        <TextView
+                            android:id="@+id/textreply"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:formatterInput="@{postData.commentsNum}"
+                            app:stringRecourse="@{R.string.reply}" />
+
                     </LinearLayout>
-                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/bookmark"
+                            style="@style/material_icon_small"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:checked_image="@{R.drawable.checked_bookmark_icon}"
+                            app:state="@{postData.isBookMarked}"
+                            app:unchecked_image="@{R.drawable.unchecked_bookmark_icon}" />
+
+                        <TextView
+                            android:id="@+id/textsave"
+                            style="@style/material_text_body_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/save" />
+
+                    </LinearLayout>
+
+                </com.google.android.flexbox.FlexboxLayout>
+
             </LinearLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

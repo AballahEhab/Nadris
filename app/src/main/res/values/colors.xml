@@ -34,4 +34,5 @@
 <color name="card_color">@color/offwihte</color>
 <color name="text_color">@color/background_dark_color</color>
     <color name="container_card_color">@color/offwihte</color>
+    <color name="secondary_clicked">#C4F25244</color>
 </resources>

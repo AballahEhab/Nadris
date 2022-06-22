@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.ui.studentActivity.posts.comment.AddCommentViewModel"/>
+            type="com.example.android.nadris.ui.studentActivity.posts.replies.AddCommentViewModel"/>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.studentActivity.posts.comment.AddCommentFragment">
+        tools:context=".ui.studentActivity.posts.replies.AddCommentFragment">
 
         <include
             android:id="@+id/included_post"

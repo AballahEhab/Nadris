@@ -2,7 +2,9 @@ package com.example.android.nadris.ui.teacherActivity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.nadris.NadrisApplication.Companion.userData
@@ -14,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TeacherMainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityTeacherMainBinding
+     lateinit var binding: ActivityTeacherMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +25,20 @@ class TeacherMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        Log.i("type", userData!!.isTeacher().toString())
+//        Log.i("type", userData!!.isTeacher().toString())
         val navController = findNavController(R.id.nav_host_fragment_activity_teacher_main)
-
+        visibilityNavElements(navController)
         navView.setupWithNavController(navController)
     }
+
+    private fun visibilityNavElements(navController: NavController) {
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.private_profile_fragment, R.id.teacher_my_subjects_fragment, R.id.posts_fragment -> binding.navView.visibility = View.VISIBLE
+                else -> binding.navView.visibility = View.GONE
+            }
+        }
+    }
+
+
 }

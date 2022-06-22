@@ -3,9 +3,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
 >
 
-    <data>
-
-    </data>
     <com.google.android.material.card.MaterialCardView
         style="@style/material_card"
         android:layout_width="match_parent"
@@ -32,14 +29,14 @@
                 android:layout_height="wrap_content"
                 style="@style/material_text_header_small"
                 android:text="@string/tv_name_subject_phyiscs"
-                app:layout_constraintStart_toStartOf="@id/tv_count_student_teach"
+                app:layout_constraintStart_toStartOf="@id/num_of_students"
                 app:layout_constraintTop_toTopOf="@id/img_sub_teach"
-                app:layout_constraintBottom_toTopOf="@id/tv_count_student_teach"
+                app:layout_constraintBottom_toTopOf="@id/num_of_students"
 
             />
 
             <TextView
-                android:id="@+id/tv_count_student_teach"
+                android:id="@+id/num_of_students"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/material_text_body_small"
@@ -50,31 +47,18 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_name_subject_teacher"
             />
 
+
+
             <TextView
                 android:id="@+id/tv_item_st_count_teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/material_text_body_small"
                 android:text="@string/tv_item_st_count"
-                app:layout_constraintBottom_toBottomOf="@id/tv_count_student_teach"
-                app:layout_constraintStart_toEndOf="@+id/tv_count_student_teach"
-                app:layout_constraintTop_toTopOf="@+id/tv_count_student_teach"
+                app:layout_constraintBottom_toBottomOf="@id/num_of_students"
+                app:layout_constraintStart_toEndOf="@+id/num_of_students"
+                app:layout_constraintTop_toTopOf="@+id/num_of_students"
             />
-
-            <!--            <com.google.android.material.button.MaterialButton-->
-            <!--                android:id="@+id/btn_modification"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="16dp"-->
-            <!--                android:fontFamily="@font/cairo_light"-->
-            <!--                android:text="@string/btn_modification"-->
-            <!--                android:textSize="24sp"-->
-            <!--                app:backgroundTint="@color/bink"-->
-            <!--                app:cornerRadius="15dp"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent"-->
-            <!--                app:layout_constraintVertical_bias="0.372"/>-->
 
             <TextView
                 android:id="@+id/tv_class"

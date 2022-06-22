@@ -4,30 +4,17 @@
 android:state_enabled="false"
     >
     <shape
-        android:shape="rectangle"
-        >
-        <corners android:radius="10dp" />
-        <stroke
-            android:width="2dp"
-            android:color="#7E484766"
-            />
-
-    </shape>
+        android:shape="oval"
+        android:color="#7E484766"
+/>
 </item>
 
 
-    <item
-android:state_enabled="true"
+    <item android:state_enabled="true"
         >
         <shape
             android:shape="rectangle"
-            >
-            <corners android:radius="10dp" />
-            <stroke
-                android:width="2dp"
-                android:color="#FFFE6464"
-                />
-
-        </shape>
+            android:color="#FFFE6464"
+           />
     </item>
 </selector>

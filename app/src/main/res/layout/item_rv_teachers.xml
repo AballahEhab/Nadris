@@ -1,95 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--     :سرحان-->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.cardview.widget.CardView
+        style="@style/material_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="@dimen/small_margin">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:backgroundTint="@color/backwhite"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.026">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_teachers"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/match_constrain"
+                android:layout_margin="@dimen/mid_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_name_teachers"
+                app:srcCompat="@drawable/ic_user"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
 
-                <ImageView
-                    android:id="@+id/iv_teachers"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_margin="16dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/icon_plus" />
+            />
 
-                <TextView
-                    android:id="@+id/tv_name_teachers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cairo_light"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="@string/tv_name_teachers"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_teachers"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_name_teachers"
+                style="@style/material_text_header_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_name_teachers"
+                app:layout_constraintBottom_toTopOf="@id/num_of_students"
+                app:layout_constraintStart_toStartOf="@id/num_of_students"
+                app:layout_constraintTop_toTopOf="@id/iv_teachers"/>
+            <TextView
+                android:id="@+id/num_of_students"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/material_text_body_small"
+                android:text="@string/tv_count_student_on_all_subjects"
+                android:layout_margin="@dimen/mid_margin"
+                app:layout_constraintBottom_toTopOf="@id/tv_star"
+                app:layout_constraintStart_toEndOf="@id/iv_teachers"
+                app:layout_constraintTop_toBottomOf="@id/tv_name_teachers"
+            />
+            <TextView
+                android:id="@+id/tv_student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/material_text_body_small"
+                android:text="@string/tv_item_st_count"
+                app:layout_constraintStart_toEndOf="@id/num_of_students"
+                app:layout_constraintTop_toTopOf="@id/num_of_students"
+                app:layout_constraintBottom_toBottomOf="@id/num_of_students"
+            />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/tv_add_teacher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cairo_light"
-                    android:text="@string/tv_add_teacher"
-                    app:backgroundTint="@color/bink"
-                    android:layout_marginStart="16dp"
-                    app:cornerRadius="11sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tv_add_teacher"
+                style="@style/material_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_add_teacher"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintStart_toEndOf="@id/iv_teachers"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tv_evaluation"
+                app:layout_constraintTop_toBottomOf="@+id/tv_student"/>
 
-                <TextView
-                    android:id="@+id/tv_star"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tv_star"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_evaluation"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_name_teachers"
-                    app:layout_constraintTop_toTopOf="@+id/tv_evaluation"
-                    app:layout_constraintVertical_bias="0.1" />
+            <TextView
+                android:id="@+id/tv_star"
+                style="@style/material_text_body_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_star"
+                android:layout_margin="@dimen/mid_margin"
+                app:layout_constraintBottom_toBottomOf="@id/tv_student"
+                app:layout_constraintStart_toEndOf="@id/tv_student"
+                app:layout_constraintTop_toTopOf="@id/tv_student"
+            />
 
-                <TextView
-                    android:id="@+id/tv_evaluation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/tv_evaluation"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_star"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name_teachers"
-                    app:layout_constraintVertical_bias="0.303" />
+            <TextView
+                android:id="@+id/tv_evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_evaluation"
+                style="@style/material_text_body_small"
+                android:layout_margin="@dimen/small_margin"
+                app:layout_constraintBottom_toBottomOf="@id/tv_star"
+                app:layout_constraintStart_toEndOf="@id/tv_star"
+                app:layout_constraintTop_toTopOf="@id/tv_star"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

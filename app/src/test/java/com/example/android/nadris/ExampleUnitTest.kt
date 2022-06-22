@@ -1,8 +1,8 @@
 package com.example.android.nadris
 
+import com.example.android.nadris.util.matchEmailPattern
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

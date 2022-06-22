@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserData(
-    @PrimaryKey val id: Int = 1,
+    @PrimaryKey val id: Int = 1,  // todo: to be updated to delete the default value
     val Email: String,
     val firstName: String,
     val lastName: String,

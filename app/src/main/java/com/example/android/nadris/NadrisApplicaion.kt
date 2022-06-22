@@ -38,7 +38,6 @@ class NadrisApplication : Application() {
 
     }
 
-
     fun hasNetwork(): Boolean {
         return isNetworkConnected()
     }

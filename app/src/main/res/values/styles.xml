@@ -75,4 +75,14 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circle</item>
+    </style>
+    <style name="material_text_circular_determinate_progressBar" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/progress_text_size</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+    </style>
 </resources>

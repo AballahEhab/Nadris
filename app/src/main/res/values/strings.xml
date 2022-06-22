@@ -37,9 +37,9 @@
     <string name="textView_teacher_signup">Teacher</string>
     <string name="textView_HaveAccount_SignIn">Do you have account?</string>
     <string name="textView_account_login"> <u>Login</u></string>
-    <string name="wrong_OTB_text_dialog">الرقم السرى المؤقت الذى أدخلته غير صحيح</string>
-    <string name="back_txt">السابق</string>
-    <string name="next_txt">التالي</string>
+    <string name="wrong_OTB_text_dialog">Worng OTP</string>
+    <string name="back_txt">Back</string>
+    <string name="next_txt">next</string>
     <string name="num_zero" translatable="false">0</string>
     <string name="num_one">1</string>
     <string name="num_two">2</string>
@@ -51,12 +51,12 @@
     <string name="num_eight">8</string>
     <string name="num_nine">9</string>
     <string name="delete_symbol">⌦</string>
-    <string name="confirm_txt">تأكيد</string>
+    <string name="confirm_txt">confirm</string>
     <string name="wrong_credentials">"worng email or password please "</string>
 
 
     <string name="Required1">" "</string>
-    <string name="Required"> </string>
+    <string name="Required">" required"</string>
     <string name="search">Search</string>
     <string name="welcome">good morining</string>
     <string name="yourQus">what\'s your question..?</string>
@@ -97,7 +97,7 @@
     </string-array>
     <string name="title_activity_teacher">TeacherActivity</string>
     <string name="student_home_title">home</string>
-    <string name="title_home">Home</string>
+    <string name="posts_fragment_label">Home</string>
     <string name="student_subjects_title">subject</string>
     <string name="student_schedual_title">schedule</string>
     <string name="name">name</string>
@@ -106,44 +106,55 @@
     <string name="title_activity_student_home">StudentHome</string>
     <string name="title_activity_studnet_main_acitivity">StudnetMainAcitivity</string>
     <string name="title_activity_teacher_main">TeacherMainActivity</string>
-    <string name="wron_cridentials">بريد إلكترونى أو رمز مرور غير صالح برجاء التحقق والمحاولة مرة اخرى</string>
-    <string name="namesubjects">المواد الدراسيه</string>
-    <string name="TvChoseTeachers">إختار مدرس</string>
-    <string name="btn_joining">إنضمام</string>
+    <string name="wron_cridentials">worng email or password please try again later</string>
+    <string name="namesubjects">subjects</string>
+    <string name="TvChoseTeachers">choose a teacher</string>
+    <string name="btn_joining">join</string>
     <string name="tv_name_subject_phyiscs">physics</string>
     <string name="tv_count_student_on_all_subjects">160 </string>
     <string name="tv_count_teacher_on_all_subjects">15 </string>
     <string name="tv_item_st_count">student</string>
     <string name="tv_item_teach_count">teacher</string>
-    <string name="tv_name_teachers">محمد مصطفي</string>
-    <string name="tv_content_description">شرح ومراجعه</string>
-    <string name="tv_add_teacher">إضافه</string>
+    <string name="tv_name_teachers">mohamed mostafa</string>
+    <string name="tv_content_description">Explanation and references</string>
+    <string name="tv_add_teacher">add</string>
     <string name="tv_star">* * * </string>
     <string name="tv_evaluation">4.8</string>
-    <string name="my_course">"المواد الدراسيه "</string>
-    <string name="add_subject">إضافه ماده</string>
-    <string name="add_explain_subject">إضافه شرح ماده</string>
-    <string name="btn_modification">تعديل</string>
+    <string name="my_course">subjects</string>
+    <string name="add_subject">add subject</string>
+    <string name="add_explain_subject">add subject content</string>
+    <string name="btn_modification">edit</string>
     <string name="tv_semester">first term</string>
     <string name="tv_class">Third Grade</string>
-    <string name="autoCompleteTV_choose_class">إختيار الصف الدراسي</string>
-    <string name="btn_add_new_subject">إضافة المادة</string>
-    <string name="autoCompleteTV_choose_subjects">إختيار المادة</string>
-    <string name="autoCompleteTV_choose_semester">إختيار الفصل الدراسي</string>
+    <string name="autoCompleteTV_choose_class">chosse grade</string>
+    <string name="btn_add_new_subject">add subject</string>
+    <string name="autoCompleteTV_choose_subjects">choose subject</string>
+    <string name="autoCompleteTV_choose_semester">choose grade</string>
     <string name="content_comment">أستاذ شاطر جدا ومجتهد ومهتم  بالطالب لأقصي درجه </string>
     <string name="name_acount_add_comment">محمد مصطفي </string>
-    <string name="add_comment">add comment</string>
+    <string name="add_comment">add reply</string>
     <string name="title_activity_login">Login activity</string>
     <string name="btn_add_comment">go</string>
 
-<string-array name="term_list">
-    <item>first term</item>
-    <item>second term</item>
-</string-array>
+    <string-array name="term_list">
+        <item>first term</item>
+        <item>second term</item>
+    </string-array>
     <string-array name="add_Photo">
         <item>Take photo</item>
         <item>Choose from gallery</item>
         <item>Cancel</item>
+    </string-array>
+    <string-array name="image_click_options">
+        <item>view photo</item>
+        <item>take photo</item>
+        <item>upload photo</item>
+        <item>remove photo</item>
+    </string-array>
+
+    <string-array name="null_image_click_options">
+        <item>take photo</item>
+        <item>upload photo</item>
     </string-array>
     <string name="dlg_add_photo_title">Add Photo</string>
     <string name="add_post_requirments">Subject and question are required</string>
@@ -158,9 +169,9 @@
     <string name="last_activities">Last Activities</string>
     <string name="tv_posts">Posts</string>
     <string name="tv_num_posts">147</string>
-    <string name="tv_name_profile">محمد مصطفي</string>
-    <string name="specialty_profile">طالب بالصف الثالث الثانوي</string>
-    <string name="tv_followers">followers</string>
+    <string name="tv_name_profile">Mohamed Mostafa</string>
+    <string name="specialty_profile">3rd grade high school student</string>
+    <string name="tv_followers">followers:</string>
     <string name="tv_following">following</string>
     <string name="Settings">Settings</string>
     <string name="tv_edit_profile">Edit Profile</string>
@@ -171,5 +182,22 @@
     <string name="tv_help">Help</string>
     <string name="tv_sign_out">Sign Out</string>
     <string name="profile">profile</string>
+    <string name="tgbtn_add_frind">add friend</string>
+    <string name="my_subjects_fragment_label">My Subjects</string>
+    <string name="video_link_input_hint">video link</string>
+    <string name="please_enter_num_of_sections_hin">please enter the num of the sections</string>
+    <string name="proceed">procceed</string>
+    <string name="text_editor_label">Text Editor</string>
+    <string name="adding_subject_sections_label">Adding Subject Sections</string>
+    <string name="adding_sections_title">Unit %o : lesson %o ( %s )</string>
+    <string name="edt_new_passowrd">New Password</string>
+    <string name="edt_old_password">old Password</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_close">Colse</string>
+    <string name="delete_discussion_meu_item_string">delete</string>
+    <string name="edit_discussion_menu_item_string">edit</string>
+    <string name="save_edits">save edits</string>
+    <string name="save_discussion_btn_title">save discussion</string>
+
 
 </resources>

@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.InputError
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.network.dtos.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.dtos.SectionDTO
+import com.example.android.nadris.network.dtos.GradeDTO
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.checkPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +29,7 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
     private var _gender: MutableLiveData<String> = MutableLiveData<String>("")
     val gender get() = _gender
 
-    var sections: MutableLiveData<List<SectionDTO>> = MutableLiveData<List<SectionDTO>>()
+    var sections: MutableLiveData<List<GradeDTO>> = MutableLiveData<List<GradeDTO>>()
     var selectedSection: MutableLiveData<String> = MutableLiveData<String>()
 
     private var _firstnameHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)

@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home1"
+        android:id="@+id/posts_fragment"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="@string/posts_fragment_label" />
     <item
-        android:id="@+id/sub_teacher_rv_Fragment"
+        android:id="@+id/teacher_my_subjects_fragment"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/student_subjects_title" />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/private_profile_fragment"
         android:icon="@drawable/ic_user"
         android:title="@string/profile" />
 

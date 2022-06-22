@@ -8,7 +8,6 @@
         <variable
             name="viewmodel"
             type="com.example.android.nadris.ui.studentActivity.profile.ProfileViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,11 +21,11 @@
             android:layout_height="100dp"
             android:layout_margin="@dimen/mid_margin"
             style="@style/circleImageView"
+            android:onClick="@{()->viewmodel.onProfileImageClicked()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_name_profile"
-            app:srcCompat="@drawable/ic_google">
+            app:layout_constraintBottom_toTopOf="@id/tv_name_profile">
 
         </com.google.android.material.imageview.ShapeableImageView>
 
@@ -67,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            android:text="@{viewmodel.numPosts.toString()}"
+            android:text="@{Integer.toString(viewmodel.postsProfileList.size())}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
@@ -88,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:text="@{viewmodel.numFollowers.toString()}"
+            android:text="@{Long.toString(viewmodel.numFollowers)}"
             app:layout_constraintEnd_toStartOf="@+id/tv_num_folloing"
             app:layout_constraintStart_toEndOf="@+id/tv_num_posts"
             app:layout_constraintTop_toBottomOf="@+id/specialty_profile"
@@ -109,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="60dp"
-            android:text="@{viewmodel.numFolling.toString()}"
+            android:text="@{Long.toString(viewmodel.numFollowers)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
@@ -139,30 +138,20 @@
             app:layout_constraintTop_toBottomOf="@+id/last_activities" />
 
 
-        <ImageView
+        <ImageButton
             android:id="@+id/notificationImage"
-            android:layout_width="18dp"
-            android:layout_height="31dp"
+            android:layout_width="31dp"
+            android:layout_height="34dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
+            android:background="#00FFFFFF"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{()-> viewmodel.logOut()}"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32"
-            app:srcCompat="@drawable/ic_notification"
-            />
-
-        <TextView
-            android:id="@+id/textViewNumber"
-            style="@style/material_text_body_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mid_margin"
-            android:fontFamily="@font/cairo_light"
-            android:text="@string/_1"
-            app:layout_constraintEnd_toStartOf="@+id/notificationImage"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:srcCompat="@drawable/ic_baseline_login_24" />
 
         <ImageView
             android:id="@+id/imag_setting"

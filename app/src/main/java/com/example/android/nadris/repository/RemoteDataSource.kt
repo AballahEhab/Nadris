@@ -7,22 +7,26 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject
 constructor(
-    private val usersService: UserService,
+    private val authService: AuthService,
+    private val coursesService: CoursesService,
+    private val gradesService: GradesService,
     private val postsService: PostsService,
+    private val profileService: ProfileService,
     private val subjectsService: SubjectsService,
     private val universityService: UniversityService,
-    private val gradesService: GradesService,
-    private val profileService: ProfileService,
-) {
+    private val usersService: UserService
+
+    ) {
 
     suspend fun login(loginModel: LoginAccountModel) =
-        usersService.login(loginModel)
+        authService.login(loginModel)
 
     suspend fun createStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) =
-        usersService.createStudentAccount(accountDataModel)
+        authService.createStudentAccount(accountDataModel)
 
     suspend fun createTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
-        usersService.createTeacherAccount(createTeacherAccountDataModelModel)
+        authService.createTeacherAccount(createTeacherAccountDataModelModel)
+
 
     suspend fun getAllPosts(token: String) =
         postsService.getAllPosts(token)
@@ -30,43 +34,81 @@ constructor(
     suspend fun publishAPost(createPostModel: CreatePostModel, token: String) =
         postsService.publishAPost(createPostModel, token)
 
-    suspend fun getAPostByPostId(postId: Int, token: String) =
-        postsService.getAPostByPostId(postId, token)
+    suspend fun updateDiscussion(postId:Long,updatedDiscussion: EditDiscussion, token: String) =
+        postsService.updateDiscussion(postId,updatedDiscussion, token)
 
-    suspend fun getPostsByEmail(email: String, token: String) =
-        postsService.getPostsByEmail(email, token)
+
+    suspend fun deleteDiscussion(discussionId: Long, token: String) =
+        postsService.deleteDiscussion(discussionId, token)
+
+
+
 
     suspend fun vote(voteModel: VoteModel, token: String) =
         postsService.vote(voteModel, token)
 
-    suspend fun comment(publishCommentModel: PublishCommentModel, token: String) =
-        postsService.comment(publishCommentModel, token)
+    suspend fun comment(publishCommentModel: PublishCommentModel,postId:Long, token: String) =
+        postsService.addCommentToAPost(publishCommentModel,postId, token)
 
+    suspend fun registerAStudentInACourse(CourseId:CourseID,token: String)=
+        coursesService.registerAStudentInACourse(token,CourseId)
     suspend fun getCommentsByPostId(postId: Long, token: String) =
-        postsService.getCommentByPostId(postId, token)
+        postsService.getCommentsByPostId(postId, token)
 
-    suspend fun getTeacherSubjects(token: String) =
-        subjectsService.getTeacherSubjects(token)
+    suspend fun getPostsByUserId( userId: String, token: String) =
+        usersService.getPostsByUserId(userId, token)
 
-    suspend fun getGradeSubjects(gradeId: Long, token: String) =
-        subjectsService.getGradeSubjects(gradeId, token)
+    suspend fun getPublicProfileInfo(token: String,userId:String) =
+        usersService.getPublicProfileInfoById(userId,token)
+
+    suspend fun followProfile(token: String,userId:String) =
+        usersService.followUser(userId,token)
+
+
+    suspend fun addSubject(token: String, addSubjectDTO: AddSubjectDTO) =
+        coursesService.addSubjectForATeacher(addSubjectDTO, token)
+
+    suspend fun getTeacherCourses(token: String) =
+        coursesService.getTeacherCourses(token)
+
+    suspend fun getRegisteredCoursesForAStudent(token: String)=
+        coursesService.getRegisteredCoursesForAStudent(token)
+
+    suspend fun removeCourse(token: String , courseID: Long)=
+        coursesService.removeCourse(courseID,token)
+
+    suspend fun getSubjectsWithGradeId(gradeId: Long, token: String) =
+        subjectsService.getSubjectsWithGradeId(gradeId, token)
 
     suspend fun getUniversities() =
         universityService.getUniversities()
 
     suspend fun getColleges(id: Int) =
-        universityService.getColleges(id)
+        universityService.getCollegesWithUniversityId(id)
 
-    suspend fun getSections() = gradesService.getSections()
-    suspend fun getGrades() = gradesService.getGrades()
-    suspend fun addSubject(token: String, addSubjectDTO: AddSubjectDTO) =
-        subjectsService.addTeacherSubject(addSubjectDTO, token)
+    suspend fun getSections() = gradesService.getAllGradesWithSections()
+
+    suspend fun getGrades() = gradesService.getAllGrades()
 
     suspend fun getProfileInfo(token: String) =
-        profileService.getProfileInfo(token)
+        profileService.getCurrentUserProfileInfo(token)
 
     suspend fun getLastActivity(token: String) =
-        postsService.getLastActivity(token)
+        profileService.getCurrentUserPosts(token)
 
+    suspend fun updateProfilePic(token: String,imgStrB64:UploadPhotoDTO) =
+        profileService.updateProfilePic(token,imgStrB64)
 
+    fun revokeToken(token:String) {
+        authService.revokeToken(token)
+    }
+
+    suspend fun getSubjectUnit(id: Long , token: String)=
+        subjectsService.getUnitsWithSubjectId(id, token)
+
+    suspend fun getGradeSubjectsWithId(id: Long, token: String)=
+        subjectsService.getGradeSubjectsWithId(id,token)
+
+    suspend fun getTeachersCourses(id: Long , token: String)=
+        coursesService.getTeachersCourses(id,token)
 }

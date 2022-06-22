@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentHelpBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class HelpFragment : Fragment() {
     private lateinit var binding: FragmentHelpBinding
@@ -29,6 +30,7 @@ class HelpFragment : Fragment() {
 
         return binding.root
     }
+
 
 
 

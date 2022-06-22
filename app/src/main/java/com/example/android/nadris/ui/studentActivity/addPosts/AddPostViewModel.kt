@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication.Companion.userData
 import com.example.android.nadris.TOKEN_PREFIX
 import com.example.android.nadris.network.dtos.CreatePostModel
+import com.example.android.nadris.network.dtos.EditDiscussion
 import com.example.android.nadris.network.dtos.GradeDTO
 import com.example.android.nadris.network.dtos.SubjectDTO
 import com.example.android.nadris.repository.Repository
@@ -20,6 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AddPostViewModel @Inject constructor(val repository: Repository, @ApplicationContext val context: Context) :
     ViewModel() {
+    var editedDiscussionId:Long? = null
+    var navigateBackToHomeScreen:MutableLiveData<Boolean> =MutableLiveData(false)
     var subjects: MutableLiveData<List<SubjectDTO>> = MutableLiveData<List<SubjectDTO>>()
     var grades: MutableLiveData<List<GradeDTO>> = MutableLiveData<List<GradeDTO>>()
     var selectedSubject: MutableLiveData<String> = MutableLiveData<String>()
@@ -28,6 +31,8 @@ class AddPostViewModel @Inject constructor(val repository: Repository, @Applicat
     val isTeacher = userData!!.isTeacher()
     var gradeId = if (isTeacher) 0 else userData!!.GradeId!!
     private var selectedGrade: MutableLiveData<String> = MutableLiveData<String>()
+
+
     fun setSelectedGrade(grade: String) {
         selectedGrade.value = grade
         getSubjects()
@@ -50,6 +55,30 @@ class AddPostViewModel @Inject constructor(val repository: Repository, @Applicat
                     },
                     onSuccess = {
                         Log.v("post", it.data.toString())
+                    },
+                )
+            }
+        }
+    }
+
+    //todo:update this fun to edit dicussion
+    fun updatePostAfterEdit() {
+        val token = userData?.Token
+        val subjectId = subjects.value!!.find { it.name == selectedSubject.value }!!.id
+
+        viewModelScope.launch {
+            var res = repository.updateDiscussion(editedDiscussionId!!,
+                EditDiscussion(question.value!!,subjectId,/* imageStrB64*/), TOKEN_PREFIX + token)
+            res.collect {
+                it.handleRepoResponse(
+                    onLoading = {
+
+                    },
+                    onError = {
+                        Log.v("post", it.error.toString())
+                    },
+                    onSuccess = {
+                        navigateBackToHomeScreen()
                     },
                 )
             }
@@ -94,4 +123,15 @@ class AddPostViewModel @Inject constructor(val repository: Repository, @Applicat
             }
         }
     }
+
+    fun navigateBackToHomeScreen() {
+        navigateBackToHomeScreen.value = true
+    }
+
+    fun navigationBackToHomeScreenDone() {
+        navigateBackToHomeScreen.value = false
+
+    }
+
+
 }

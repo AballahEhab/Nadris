@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="postViewModle"
-            type="com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel"/>
+            type="com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel" />
     </data>
-    <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="match_parent">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,10 +24,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-                <LinearLayout android:id="@+id/l2"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/l2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/profileImage"
@@ -37,32 +37,36 @@
                         android:layout_margin="@dimen/small_margin"
                         android:clickable="true"
                         android:focusable="true"
-                        app:srcCompat="@drawable/ic_user"/>
+                        app:srcCompat="@drawable/ic_user" />
 
-                    <LinearLayout android:id="@+id/l3"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:layout_margin="@dimen/small_margin"
-                                  android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/l3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/small_margin"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/textViewWelcome"
                             style="@style/material_text_body_small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/welcome"
-                        />
+                            android:text="@string/welcome" />
+
                         <TextView
                             android:id="@+id/account_name"
                             style="@style/material_text_body"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{postViewModle.name}"
-                            android:textStyle="bold"
-                        />
+                            android:textStyle="bold" />
                     </LinearLayout>
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
+
                         <TextView
                             android:id="@+id/textViewNumber"
                             style="@style/material_text_body_small"
@@ -71,9 +75,9 @@
                             android:layout_marginTop="@dimen/mid_margin"
                             android:fontFamily="@font/cairo_light"
                             android:text="@string/_1"
-
                             app:layout_constraintEnd_toStartOf="@+id/notificationImage"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <ImageView
                             android:id="@+id/notificationImage"
                             android:layout_width="18dp"
@@ -85,7 +89,8 @@
                             app:layout_constraintBottom_toBottomOf="@+id/textViewNumber"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.32" app:srcCompat="@drawable/ic_notification"/>
+                            app:layout_constraintVertical_bias="0.32"
+                            app:srcCompat="@drawable/ic_notification" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,51 +104,39 @@
                     android:background="@color/container_card_color"
                     android:iconifiedByDefault="false"
                     android:queryHint="@string/search"
-                    android:searchIcon="@drawable/ic_search"/>
+                    android:searchIcon="@drawable/ic_search" />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/match_constrain"
-                app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/l1"
-                tools:listitem="@layout/item_post_card_cell"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/l1">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:listitem="@layout/item_post_card_cell" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabBtnCreateNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/mid_margin"
+                android:onClick="@{()->postViewModle.navigateToAddPost()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_add" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabBtnCreateNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/mid_margin"
-            android:onClick="@{()->postViewModle.navigate_to_add_post()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_add"/>
 
-        <FrameLayout
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#7A787878"
-            android:translationZ="2dp"
-            app:isVisible="@{postViewModle.showIndicator}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progressBar"
-                android:layout_width="31dp"
-                android:layout_height="31dp"
-                android:layout_gravity="center"
-                android:indeterminate="true"
-                app:indicatorColor="#FE6464"/>
-        </FrameLayout>
-    </FrameLayout>
 </layout>

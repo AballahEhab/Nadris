@@ -13,14 +13,11 @@ data class ProfileInfoDTO (val firstName:String,
                            val college:String?,
                            val university:String?,
                            val exp:Long?,
-                           val grade:String?
-
-)
+                           val grade:String?,
+                           val profilePicStrB64:String?,
+                           var isFollowed:Boolean
+                           )
 //exp ==>  experince of Student
-
-{
-
-}
 
 
 //data transfer object

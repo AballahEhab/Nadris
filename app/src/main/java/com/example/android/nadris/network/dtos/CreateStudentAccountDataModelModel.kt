@@ -7,5 +7,5 @@ data class CreateStudentAccountDataModelModel(
     val password: String,
     val phoneNumber: String,
     val gender: Int,
-    val sectionId: Int
+    val sectionId: Long
 )
