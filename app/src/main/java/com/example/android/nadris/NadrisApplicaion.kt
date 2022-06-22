@@ -6,6 +6,9 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.repository.Repository
+import com.google.firebase.FirebaseApp
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.initialize
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -25,25 +28,13 @@ class NadrisApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseApp.initializeApp(this)
         if (instance == null)
             instance = this
 
-//        if(userData == null) {
-//            GlobalScope.launch  {
-//                repo.getUser().collect {
-//                    userData = it
-//                }
-//            }
-//        }
-
     }
 
-    fun hasNetwork(): Boolean {
-        return isNetworkConnected()
-    }
-
-
-    private fun isNetworkConnected(): Boolean {
+     fun isNetworkConnected(): Boolean {
         val connectivityManager =
             getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
