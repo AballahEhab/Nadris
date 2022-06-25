@@ -198,6 +198,10 @@
     <string name="edit_discussion_menu_item_string">edit</string>
     <string name="save_edits">save edits</string>
     <string name="save_discussion_btn_title">save discussion</string>
+    <string name="enter_your_question">ENTER YOUR QUESTION</string>
+    <string name="progressQuiz">1/5</string>
+    <string name="option">option1</string>
+    <string name="submit">Submit</string>
 
 
 </resources>

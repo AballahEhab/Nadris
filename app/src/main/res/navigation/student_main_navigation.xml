@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/posts_fragment">
+    app:startDestination="@id/student_quiz">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -185,6 +185,11 @@
             android:id="@+id/action_subject_fragment_to_student_teachers_for_a_subject_fragment"
             app:destination="@id/student_teachers_for_a_subject_fragment" />
     </fragment>
+    <fragment
+    android:id="@+id/student_quiz"
+    android:name="com.example.android.nadris.ui.studentActivity.quizzes.QuizFragment"
+    android:label="QuizFragment"
+    tools:layout="@layout/quiz_fragment"/>
 
 <!--    <fragment-->
 <!--        android:id="@+id/editDiscussionFragment"-->
