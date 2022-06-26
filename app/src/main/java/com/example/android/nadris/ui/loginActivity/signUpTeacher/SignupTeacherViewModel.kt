@@ -7,14 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.InputError
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.PasswordError
-import com.example.android.nadris.network.dtos.CollegeDTO
-import com.example.android.nadris.network.dtos.CreateTeacherAccountDataModelModel
-import com.example.android.nadris.network.dtos.UniversityDTO
+import com.example.android.nadris.network.firebase.dtos.College
+import com.example.android.nadris.network.firebase.dtos.University
+import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.checkPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,12 +27,17 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     var password1: String = ""
     var password2: String = ""
     var phone: String = ""
-    var university: String = ""
-    var collage: String = ""
+
+    //    var university: String = ""
+//    var collage: String = ""
+    var universities: MutableLiveData<List<University>> = MutableLiveData<List<University>>()
+    var colleges: MutableLiveData<List<College>> = MutableLiveData<List<College>>()
+    private var selectedUniversity: MutableLiveData<String> = MutableLiveData<String>()
+    var selectedCollege: MutableLiveData<String> = MutableLiveData<String>()
 
 
-    private var _subjects: MutableLiveData<String> = MutableLiveData<String>("")
-    val subjects get() = _subjects
+    private var _selectedSubject: MutableLiveData<String> = MutableLiveData<String>("")
+    val selectedSubject get() = _selectedSubject
     var genderList: ArrayList<String> = ArrayList()
     private var _gender: MutableLiveData<String> = MutableLiveData<String>("")
     val gender get() = _gender
@@ -81,10 +85,6 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
 
     private var _errorMessageVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
-    var universities: MutableLiveData<List<UniversityDTO>> = MutableLiveData<List<UniversityDTO>>()
-    private var selectedUniversity: MutableLiveData<String> = MutableLiveData<String>()
-    var colleges: MutableLiveData<List<CollegeDTO>> = MutableLiveData<List<CollegeDTO>>()
-    var selectedCollege: MutableLiveData<String> = MutableLiveData<String>()
 
     fun setSelectedUniversity(university: String) {
         selectedUniversity.value = university
@@ -109,7 +109,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
 
     fun validPassword1() {
 
-        passwordErrorType =  checkPassword(password1)
+        passwordErrorType = checkPassword(password1)
 
 //        if (password1.length < 8) {
 //            passwordErrorType = PasswordError.SHORT_PASSWORD
@@ -141,7 +141,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
 
     fun validateSubject() {
 
-        _subjectsHaveError.value = subjects.value?.isEmpty()
+        _subjectsHaveError.value = selectedSubject.value?.isEmpty()
 
     }
 
@@ -179,32 +179,63 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
         if (!isDataNotValid) {
             disableErrorMessage()
             enableProgressBar()
-            val universityId = universities.value!!.find { it.name == selectedUniversity.value }!!.id
-            val collegeId = colleges.value!!.find { it.name == selectedCollege.value }!!.id
-            val genderId = genderList.indexOf(gender.value)
-            Log.i("test", firstname + lastname + email + password1 + phone + genderId + universityId + collegeId)
-            viewModelScope.launch {
-                val response = repository.registerNewTeacherAccount(
-                    CreateTeacherAccountDataModelModel(
-                        firstname, lastname, email, password1, phone, genderId, universityId, collegeId)
-                )
-                response.collect {
+            val universityDocRef =
+                universities.value!!.find { it.name_ar == selectedUniversity.value }!!.docRef
+            val collegeDocRef =
+                colleges.value!!.find { it.name_ar == selectedCollege.value }!!.docRef
+            val genderId = genderList.indexOf(gender.value) == 0
 
-                    it?.handleRepoResponse(
+//            Log.i("test", firstname + lastname + email + password1 + phone + genderId + universityId + collegeId)
+
+            viewModelScope.launch(Dispatchers.IO) {
+                val result = repository
+                    .createNewUser(
+                        User(
+                            firstName = firstname,
+                            lastName = lastname,
+                            email = email,
+                            gender = genderId,
+                            phoneNumber = phone,
+                            type = false,
+                            university = universityDocRef,
+                            college = collegeDocRef
+                        ), password1)
+
+                result.handleRepoResponse(
                         onLoading = {},
                         onError = {
                             disableProgressBar()
                             enableErrorMessage()
-                            _errorMessage.value = it.error!!
+                            _errorMessage.value = result.error!!
                         },
                         onSuccess = {
                             disableProgressBar()
-                            NadrisApplication.userData = it.data
+                            NadrisApplication.currentUserLocalData = result.data
                             navigateToHomeScreen()
                         },
                     )
 
-                }
+//                val response = repository.registerNewTeacherAccount(
+//                    CreateTeacherAccountDataModelModel(
+//                        firstname, lastname, email, password1, phone, genderId, universityId, collegeId)
+//                )
+//                response.collect {
+//
+//                    it?.handleRepoResponse(
+//                        onLoading = {},
+//                        onError = {
+//                            disableProgressBar()
+//                            enableErrorMessage()
+//                            _errorMessage.value = it.error!!
+//                        },
+//                        onSuccess = {
+//                            disableProgressBar()
+//                            NadrisApplication.userData = it.data
+//                            navigateToHomeScreen()
+//                        },
+//                    )
+//
+//                }
             }
         }
 
@@ -224,7 +255,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     }
 
     private fun disableProgressBar() {
-        _showIndicator.value = false
+        _showIndicator.postValue(false)
     }
 
     private fun navigateToHomeScreen() {
@@ -237,40 +268,38 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
 
     fun getUniversities() {
 
-        viewModelScope.launch {
-            var res = repository.getUniversities()
-            res.collect {
-                it.handleRepoResponse(
-                    onLoading = {
-                    },
-                    onError = {
-                    },
-                    onSuccess = {
-                        universities.value = it.data
-                    },
-                )
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.getAllUniversities()
+            result.handleRepoResponse(
+                onLoading = {
 
-            }
+                },
+                onError = {
+
+                },
+                onSuccess = {
+                    universities.postValue(result.data)
+                }
+            )
         }
     }
 
-    fun getColleges() {
-        val universityId = universities.value!!.find { it.name == selectedUniversity.value }!!.id
+    private fun getColleges() {
 
-        viewModelScope.launch {
-            var res = repository.getColleges(universityId)
-            res.collect {
-                it.handleRepoResponse(
-                    onLoading = {
-                    },
-                    onError = {
-                    },
-                    onSuccess = {
-                        colleges.value = it.data
-                    },
-                )
-
-            }
+        val universityId =
+            universities.value!!.find { it.name_ar == selectedUniversity.value }!!.docRef
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.getCollegeForAUniversity(universityId!!)
+            result.handleRepoResponse(
+                onLoading = {
+                },
+                onError = {
+                    Log.v("fjaslfkd0", result.error!!)
+                },
+                onSuccess = {
+                    colleges.postValue(result.data)
+                },
+            )
         }
     }
 

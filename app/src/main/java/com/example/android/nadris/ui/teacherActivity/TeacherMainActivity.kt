@@ -1,13 +1,11 @@
 package com.example.android.nadris.ui.teacherActivity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.android.nadris.NadrisApplication.Companion.userData
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.ActivityTeacherMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView

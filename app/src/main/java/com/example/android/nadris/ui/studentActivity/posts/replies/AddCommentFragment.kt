@@ -1,10 +1,10 @@
 package com.example.android.nadris.ui.studentActivity.posts.replies
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,9 +50,9 @@ class AddCommentFragment : Fragment() {
 
         val adapter = CustomAdapterComment()
 
-            viewModel.commentsList.observe(viewLifecycleOwner){
-                adapter.differ.submitList(it)
-            }
+//            viewModel.commentsList.observe(viewLifecycleOwner){
+//                adapter.differ.submitList(it)
+//            }
 
         binding.RVComment.adapter=adapter
 

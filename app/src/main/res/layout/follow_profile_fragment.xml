@@ -48,22 +48,22 @@
                 style="@style/material_text_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.profileData.firstName + viewmodel.profileData.lastName }"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/img_profile"
                 app:layout_constraintStart_toStartOf="@+id/img_profile"
                 app:layout_constraintTop_toBottomOf="@+id/img_profile"
                 app:layout_constraintBottom_toTopOf="@id/specialty_profile" />
+<!--            android:text="@{viewmodel.profileData.firstName + viewmodel.profileData.lastName }"-->
 
             <TextView
                 android:id="@+id/specialty_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.profileData.type}"
                 app:layout_constraintEnd_toEndOf="@id/tv_name_profile"
                 app:layout_constraintStart_toStartOf="@id/tv_name_profile"
                 app:layout_constraintTop_toBottomOf="@id/tv_name_profile"
                 app:layout_constraintBottom_toTopOf="@id/tv_num_followers" />
+<!--            android:text="@{viewmodel.profileData.getType()}"-->
 
             <TextView
                 android:id="@+id/tv_posts"
@@ -80,10 +80,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:text="@{Integer.toString(viewmodel.postsProfileList.size())}"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
+<!--            android:text="@{Integer.toString(viewmodel.postsProfileList.size())}"-->
 
             <TextView
                 android:id="@+id/tv_followers"
@@ -101,11 +101,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="@{Long.toString(viewmodel.profileData.numOfFollowers)}"
                 app:layout_constraintEnd_toStartOf="@+id/tv_num_folloing"
                 app:layout_constraintStart_toEndOf="@+id/tv_num_posts"
                 app:layout_constraintTop_toBottomOf="@+id/specialty_profile"
                 app:layout_constraintBottom_toTopOf="@id/tv_followers" />
+<!--            android:text="@{Long.toString(viewmodel.profileData)}"-->
 
             <TextView
                 android:id="@+id/tv_following"
@@ -122,10 +122,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
-                android:text="@{Long.toString(viewmodel.profileData.numOfFollowing)}"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
+<!--            android:text="@{Long.toString(viewmodel.profileData)}"-->
 
             <TextView
                 android:id="@+id/last_activities"
@@ -158,13 +158,13 @@
                 android:text="@string/tgbtn_add_frind"
                 android:textOff="flow"
                 android:textOn="flowing"
-                android:checked="@{viewmodel.profileData.isFollowed}"
                 android:onClick="@{()->viewmodel.followPublicProfile()}"
                 app:layout_constraintBottom_toBottomOf="@+id/last_activities"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.83"
                 app:layout_constraintStart_toEndOf="@+id/last_activities"
                 app:layout_constraintTop_toTopOf="@+id/last_activities" />
+<!--            android:checked="@{}"-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

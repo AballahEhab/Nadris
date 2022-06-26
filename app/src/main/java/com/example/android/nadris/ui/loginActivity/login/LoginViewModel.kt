@@ -6,14 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.network.dtos.LoginAccountModel
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.checkEmpty
 import com.example.android.nadris.util.checkPassword
 import com.example.android.nadris.util.getErrorMessage
 import com.example.android.nadris.util.matchEmailPattern
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,18 +23,17 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
     var email: MutableLiveData<String> = MutableLiveData("")
     var emailErrorMessage: MutableLiveData<String?> = MutableLiveData<String?>()
 
-
     var password: MutableLiveData<String> = MutableLiveData("")
     var passwordErrorMessage: MutableLiveData<String?> = MutableLiveData<String?>()
 
-
     private var _showIndicator: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val showIndicator get() = _showIndicator
+
     private var _loginRequestErrorMessage: MutableLiveData<String> = MutableLiveData<String>("")
     val loginRequestErrorMessage get() = _loginRequestErrorMessage
+
     private var _errorMessageVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
-
 
     private var _navigateToHomeScreen: MutableLiveData<Boolean> = MutableLiveData(false)
     val navigateToHomeScreen: LiveData<Boolean> get() = _navigateToHomeScreen
@@ -66,34 +64,35 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
         validateEmail()
         validatePassword()
         if ((emailErrorMessage.value == null) && (passwordErrorMessage.value == null)) {
+
             enableProgressBar()
-            viewModelScope.launch {
-                val response = repository.login(LoginAccountModel(email.value!!, password.value!!))
-                response.collect {
-                    it?.handleRepoResponse(
-                        onLoading = {},
-                        onError = {
-                            disableProgressBar()
-                            enableErrorMessage()
-                            _loginRequestErrorMessage.value = it.error!!
-                        },
-                        onSuccess = {
-                            disableProgressBar()
-                            Log.v("responceTag", it.data?.Token!!)
-                            NadrisApplication.userData = it.data
-                            navigateToHomeScreen()
 
-                        },
-                    )
+            viewModelScope.launch(Dispatchers.IO) {
 
-                }
+                val result = repository.signInWithEmailAndPassword(email.value!!, password.value!!)
+
+                result.handleRepoResponse(
+                    onLoading = {},
+                    onError = {
+                        _loginRequestErrorMessage.postValue( result.error!!)
+                        enableErrorMessage()
+                    },
+                    onSuccess = {
+                        NadrisApplication.currentUserLocalData = result.data
+                        Log.v("loginViewModel", result.data.toString())
+                        navigateToHomeActivity()
+                    },
+                )
+                disableProgressBar()
+
             }
+
         }
     }
 
 
     private fun enableErrorMessage() {
-        _errorMessageVisibility.value = true
+        _errorMessageVisibility.postValue(true)
 
     }
 
@@ -107,11 +106,15 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
     }
 
     private fun disableProgressBar() {
-        _showIndicator.value = false
+        _showIndicator.postValue(false)
     }
 
-    private fun navigateToHomeScreen() {
-        _navigateToHomeScreen.value = true
+    private fun navigateToHomeActivity() {
+        _navigateToHomeScreen.postValue( true)
+    }
+
+    fun navigateToHomeActivityDone() {
+        _navigateToHomeScreen.value = false
     }
 
     fun onCreateAccountClicked() {

@@ -7,8 +7,6 @@ import android.os.Build
 import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.repository.Repository
 import com.google.firebase.FirebaseApp
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.ktx.initialize
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -17,20 +15,19 @@ class NadrisApplication : Application() {
 
     companion object {
         var instance: NadrisApplication? = null
-        var userData: UserData? = null
-
+        var currentUserLocalData : UserData? = null
     }
 
     @Inject
     lateinit var repo: Repository
 
-    var userData: UserData? = null
 
     override fun onCreate() {
         super.onCreate()
+
         FirebaseApp.initializeApp(this)
-        if (instance == null)
-            instance = this
+
+        if (instance == null) instance = this
 
     }
 

@@ -31,15 +31,15 @@ lateinit var binding:FragmentAddNewSubjectBinding
 
         viewModel.getGrades()
 
-        viewModel.grades.observe(viewLifecycleOwner) { list ->
-            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-
-            (binding.chooseClass.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-        }
-        viewModel.subjects.observe(viewLifecycleOwner) { list ->
-            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-            (binding.chooseSubjects.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-        }
+//        viewModel.grades.observe(viewLifecycleOwner) { list ->
+//            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
+//
+//            (binding.chooseClass.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+//        }
+//        viewModel.subjects.observe(viewLifecycleOwner) { list ->
+//            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
+//            (binding.chooseSubjects.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+//        }
 
         val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, viewModel.termList)
         (binding.termMenu.editText as? AutoCompleteTextView)?.setAdapter(adapter)

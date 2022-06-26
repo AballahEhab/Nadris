@@ -8,17 +8,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.InputError
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.network.dtos.CreateStudentAccountDataModelModel
-import com.example.android.nadris.network.dtos.GradeDTO
+import com.example.android.nadris.network.firebase.dtos.Grade
+import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.checkPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
+
     var firstname: String = ""
     var lastname: String = ""
     var email: String = ""
@@ -26,11 +27,9 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
     var password2: String = ""
     var phone: String = ""
     var genderList: ArrayList<String> = ArrayList()
-    private var _gender: MutableLiveData<String> = MutableLiveData<String>("")
-    val gender get() = _gender
-
-    var sections: MutableLiveData<List<GradeDTO>> = MutableLiveData<List<GradeDTO>>()
-    var selectedSection: MutableLiveData<String> = MutableLiveData<String>()
+    val selectedGender: MutableLiveData<String> = MutableLiveData<String>("")
+    var gradesList: MutableLiveData<List<Grade>> = MutableLiveData<List<Grade>>()
+    var selectedGrade: MutableLiveData<String> = MutableLiveData<String>()
 
     private var _firstnameHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val firstnameHaveError get() = _firstnameHaveError
@@ -69,7 +68,6 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
     private var _errorMessageVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
 
-
     fun validFirstName() {
         _firstnameHaveError.value = firstname.isEmpty() || (firstname.length < 3)
     }
@@ -96,15 +94,16 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
     }
 
     fun validateGender() {
-        _ganderHaveError.value = gender.value?.isEmpty()
+        _ganderHaveError.value = selectedGender.value?.isEmpty()
     }
 
     fun validateGrade() {
-        _gradeHaveError.value = selectedSection.value?.isEmpty()
+        _gradeHaveError.value = selectedGrade.value?.isEmpty() ?: true
 
     }
 
     fun onSignUpClicked() {
+        disableErrorMessage()
         validFirstName()
         validLastName()
         validEmail()
@@ -125,78 +124,84 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
 
         if (!isDataNotValid) {
             enableProgressBar()
-            val genderId = genderList.indexOf(gender.value)
-            val sectionId = sections.value!!.find { it.name == selectedSection.value }!!.id
-            Log.i("sectionId",sectionId.toString())
-            viewModelScope.launch {
-                val response = repository.registerNewStudentAccount(
-                    CreateStudentAccountDataModelModel(
-                        firstname, lastname, email, password1, phone, genderId, sectionId))
-                response.collect {
-                    it?.handleRepoResponse(
-                        onLoading = {},
-                        onError = {
-                            disableProgressBar()
-                            _errorMessageVisibility.value = true
-                            _errorMessage.value = it.error!!
-                            Log.v("ErrorResponce", _errorMessage.value!!)
-                        },
-                        onSuccess = {
-                            disableProgressBar()
-                            NadrisApplication.userData = it.data
-                            navigateToHomeScreen()
-                        },
-                    )
+            val genderType = genderList.indexOf(selectedGender.value) == 0
 
-                }
+            val grade =
+                gradesList.value?.find {
+                    it.name_ar == selectedGrade.value
+                }?.gradeReference
+            Log.i("sectionId", grade?.path!!)
+            viewModelScope.launch(Dispatchers.IO) {
+                val result = repository
+                    .createNewUser(
+                        User(
+                            firstName = firstname,
+                            lastName = lastname,
+                            email = email,
+                            gender = genderType,
+                            grade = grade,
+                            phoneNumber = phone,
+                            type = false,
+                        ), password1)
+
+                result.handleRepoResponse(
+                    onLoading = {},
+                    onError = {
+                        disableProgressBar()
+                        enableErrorMessage()
+                        _errorMessage.value = result.error!!
+                        Log.v("ErrorResponce", _errorMessage.value!!)
+                    },
+                    onSuccess = {
+                        disableProgressBar()
+                        NadrisApplication.currentUserLocalData = result.data
+                        navigateToHomeActivity()
+                    },
+                )
             }
         }
-
 
     }
 
     private fun enableErrorMessage() {
-        _errorMessageVisibility.value = true
-
+        _errorMessageVisibility.postValue(true)
     }
 
     private fun disableErrorMessage() {
         _errorMessageVisibility.value = false
     }
 
-
     private fun enableProgressBar() {
         _showIndicator.value = true
     }
 
     private fun disableProgressBar() {
-        _showIndicator.value = false
+        _showIndicator.postValue(false)
     }
 
-
-    private fun navigateToHomeScreen() {
-        _navigateToHomeScreen.value = true
+    private fun navigateToHomeActivity() {
+        _navigateToHomeScreen.postValue(true)
     }
 
-    fun navigationAfterSuccessfulLoginDone() {
+    fun navigationToHomeActivityDone() {
         _navigateToHomeScreen.value = false
     }
 
     fun getSections() {
-        viewModelScope.launch {
-            var res = repository.getSections()
-            res.collect {
-                it.handleRepoResponse(
-                    onLoading = {
-                    },
-                    onError = {
-                    },
-                    onSuccess = {
-                        sections.value = it.data
-                    },
-                )
-
-            }
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = repository.getGrades()
+            result.handleRepoResponse(
+                onLoading = {
+                },
+                onError = {
+                    Log.v("jaflsjfs", result.error.toString())
+                },
+                onSuccess = {
+                    gradesList.postValue(result.data)
+                    gradesList.toString()
+                    Log.v("jaflsjfs", result.data.toString())
+                }
+            )
         }
     }
 }

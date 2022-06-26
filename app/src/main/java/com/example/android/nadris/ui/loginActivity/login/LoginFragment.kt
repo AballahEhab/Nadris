@@ -11,33 +11,27 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentLoginBinding
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.disableUserInterAction
 import com.example.android.nadris.util.enableUserInterAction
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    lateinit var  binding: FragmentLoginBinding
+    lateinit var binding: FragmentLoginBinding
 
-     val viewModel: LoginViewModel by viewModels()
+    val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
 
-        inflater.inflate(R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
-        binding = FragmentLoginBinding.inflate(inflater)
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         //using view model to save UI state
@@ -45,15 +39,14 @@ class LoginFragment : Fragment() {
 
         viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
             if (it) {
-
-                login()
+                navigateToHomeFragment()
+                viewModel.navigateToHomeActivityDone()
             }
         }
 
         viewModel.navigateToCreateAccount.observe(viewLifecycleOwner) {
             if (it) {
-                this.findNavController()
-                    .navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
+                navigateToSignUpFragment()
                 viewModel.navigationToCreateAccountDone()
             }
         }
@@ -61,17 +54,16 @@ class LoginFragment : Fragment() {
         viewModel.emailErrorMessage.observe(viewLifecycleOwner) {
             binding.materialEmailOrPhone.error = it
         }
+
         viewModel.passwordErrorMessage.observe(viewLifecycleOwner) {
             binding.edtPasswordLogin.error = it
         }
 
-
-        viewModel.showIndicator.observe(this.viewLifecycleOwner){
+        viewModel.showIndicator.observe(this.viewLifecycleOwner) {
             if (it) {
                 disableUserInterAction(activity)
                 hideKeyboard(this.requireActivity())
-            }
-            else
+            } else
                 enableUserInterAction(activity)
         }
 
@@ -81,20 +73,24 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        NadrisApplication.userData?.let {
-            login()
-        }
+//        NadrisApplication.currentUserLocalData?.let {
+//            navigateToHomeFragment()
+//        }
     }
 
-    private fun login() {
-        lateinit var directionClass:Class<*>
-        if (NadrisApplication.userData?.Type == "student")
+    private fun navigateToHomeFragment() {
+        lateinit var directionClass: Class<*>
+        if (NadrisApplication.currentUserLocalData?.Type == true)
             directionClass = StudentMainActivity::class.java
-        else if(NadrisApplication.userData?.Type == "teacher")
+        else if (NadrisApplication.currentUserLocalData?.Type == false)
             directionClass = TeacherMainActivity::class.java
 
         startActivity(Intent(requireContext(), directionClass))
-        this.activity?.finish()
+    }
+
+    private fun navigateToSignUpFragment() {
+        this.findNavController()
+            .navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
     }
 
     fun hideKeyboard(activity: Activity) {
@@ -108,7 +104,6 @@ class LoginFragment : Fragment() {
         }
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
 
 
 }

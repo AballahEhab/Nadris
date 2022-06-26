@@ -10,7 +10,6 @@ import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
@@ -18,26 +17,43 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        val firebaseUser = NadrisApplication.instance?.repo?.getCurrentFirebaseUser()
 
-        CoroutineScope(Dispatchers.Main).launch{
-                NadrisApplication.userData = NadrisApplication.instance?.repo?.getUser()
-            if(NadrisApplication.userData == null) {
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                return@launch
+        if (firebaseUser == null)
+            navigateToLoginActivity()
+
+        else {
+            CoroutineScope(Dispatchers.Main).launch {
+               getCurrentUserLocalData()
+                navigateToHomeActivity()
             }
-            login()
         }
-
     }
-    fun login( ) {
-        lateinit var directionClass:Class<*>
-        if (NadrisApplication.userData?.Type == "student")
-            directionClass = StudentMainActivity::class.java
-        else if(NadrisApplication.userData?.Type == "teacher")
-            directionClass = TeacherMainActivity::class.java
 
-        startActivity(Intent(this, directionClass))
-        this.finish()
+    private suspend fun getCurrentUserLocalData() {
+        NadrisApplication.currentUserLocalData =
+            NadrisApplication.instance?.repo?.getLocalUserData()
+    }
+
+    private fun navigateToHomeActivity() {
+
+        when (NadrisApplication.currentUserLocalData?.Type) {
+            true -> navigateToTeacherMainActivity()
+            false -> navigateToStudentHomeActivity()
+            else -> navigateToLoginActivity()
+        }
+    }
+
+    private fun navigateToLoginActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
+    }
+
+    private fun navigateToTeacherMainActivity() {
+        startActivity(Intent(this, TeacherMainActivity::class.java))
+    }
+
+    private fun navigateToStudentHomeActivity() {
+        startActivity(Intent(this, StudentMainActivity::class.java))
     }
 
 

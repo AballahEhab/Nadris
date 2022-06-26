@@ -1,19 +1,13 @@
 package com.example.android.nadris.ui.studentActivity.posts
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.TOKEN_PREFIX
 import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.network.dtos.VoteModel
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 
@@ -37,7 +31,7 @@ class PostPageViewModel @Inject constructor(val repository: Repository) : ViewMo
     val loginRequestErrorMessage get() = _loginRequestErrorMessage
     private var _errorMessageVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
-    val name = NadrisApplication.userData?.firstName + " " + NadrisApplication.userData?.lastName
+    val name = NadrisApplication.currentUserLocalData?.firstName + " " + NadrisApplication.currentUserLocalData?.lastName
 
 
     fun navigateToAddPost() {
@@ -87,18 +81,18 @@ class PostPageViewModel @Inject constructor(val repository: Repository) : ViewMo
 
         disableErrorMessage()
         enableProgressBar()
-        viewModelScope.launch {
-            postsIsRefreshing.value = true
-            postsList.value =
-                repository.getUpdatedDiscussions(TOKEN_PREFIX + NadrisApplication.userData?.Token).toMutableList()
-            postsIsRefreshing.value = false
-
-        }
+//        viewModelScope.launch {
+//            postsIsRefreshing.value = true
+//            postsList.value =
+//                repository.getUpdatedDiscussions(TOKEN_PREFIX + NadrisApplication.userData?.Token).toMutableList()
+//            postsIsRefreshing.value = false
+//
+//        }
     }
     fun bookMark(discussion:DatabasePost) {
-        viewModelScope.launch {
-            repository.bookmarkDiscussion(discussion )
-        }
+//        viewModelScope.launch {
+//            repository.bookmarkDiscussion(discussion )
+//        }
     }
 
 
@@ -123,25 +117,25 @@ class PostPageViewModel @Inject constructor(val repository: Repository) : ViewMo
 
     private suspend fun voteToPost(postId: Long): DatabasePost? {
         var updatePost: DatabasePost? = null
-        val postsFlow =
-            repository.vote(VoteModel(postId), TOKEN_PREFIX + NadrisApplication.userData?.Token)
-        postsFlow.collectLatest {
-            it?.handleRepoResponse(
-                onLoading = {
-
-                },
-                onError = {
-                    it.data?.let { post ->
-                        updatePost = post
-                    }
-                },
-                onSuccess = {
-                    it.data?.let { post ->
-                        updatePost = post
-                    }
-                },
-            )
-        }
+//        val postsFlow =
+//            repository.vote(VoteModel(postId), TOKEN_PREFIX + NadrisApplication.userData?.Token)
+//        postsFlow.collectLatest {
+//            it?.handleRepoResponse(
+//                onLoading = {
+//
+//                },
+//                onError = {
+//                    it.data?.let { post ->
+//                        updatePost = post
+//                    }
+//                },
+//                onSuccess = {
+//                    it.data?.let { post ->
+//                        updatePost = post
+//                    }
+//                },
+//            )
+//        }
         return updatePost
     }
 
@@ -160,12 +154,12 @@ class PostPageViewModel @Inject constructor(val repository: Repository) : ViewMo
     }
 
     fun deletepost(discussionId: Long) {
-        viewModelScope.launch {
-             val isDiscusisonDeleted = repository.deleteDiscussion(discussionId,TOKEN_PREFIX + NadrisApplication.userData?.Token)
-            if(isDiscusisonDeleted)
-                this@PostPageViewModel.getPosts()
-
-        }
+//        viewModelScope.launch {
+//             val isDiscusisonDeleted = repository.deleteDiscussion(discussionId,TOKEN_PREFIX + NadrisApplication.userData?.Token)
+//            if(isDiscusisonDeleted)
+//                this@PostPageViewModel.getPosts()
+//
+//        }
     }
 
     fun navigate_to_edit_post(post: DatabasePost){

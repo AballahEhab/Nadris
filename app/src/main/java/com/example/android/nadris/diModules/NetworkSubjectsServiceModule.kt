@@ -1,50 +1,24 @@
 package com.example.android.nadris.diModules
 
-import com.example.android.nadris.network.services.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
 import javax.inject.Singleton
+
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkServicesModule {
 
     @Singleton
     @Provides
-    fun provideAuthService(retrofitObj:Retrofit) = retrofitObj.create(AuthService::class.java)
+    fun provideFirebaseAuth() = FirebaseAuth.getInstance()
 
     @Singleton
     @Provides
-    fun provideCoursesService(retrofitObj:Retrofit) = retrofitObj.create(CoursesService::class.java)
-
-    @Singleton
-    @Provides
-    fun provideGradesService(retrofitObj:Retrofit) = retrofitObj.create( GradesService::class.java)
-
-
-    @Singleton
-    @Provides
-    fun providePostsService(retrofitObj:Retrofit) = retrofitObj.create(PostsService::class.java)
-
-    @Singleton
-    @Provides
-    fun provideProfileService(retrofitObj: Retrofit) = retrofitObj.create(ProfileService::class.java)
-
-    @Singleton
-    @Provides
-    fun provideSubjectsService(retrofitObj:Retrofit) = retrofitObj.create( SubjectsService::class.java)
-
-
-    @Singleton
-    @Provides
-    fun provideUniversityService(retrofitObj:Retrofit) = retrofitObj.create( UniversityService::class.java)
-
-    @Singleton
-    @Provides
-    fun provideUserService(retrofitObj:Retrofit) = retrofitObj.create( UserService::class.java)
-
-
+    fun provideFirebaseFireStore() = Firebase.firestore
 
 }

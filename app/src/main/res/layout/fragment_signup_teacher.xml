@@ -205,7 +205,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:hint="@string/sp_subject_teacher_signup"
-                    app:errorEnabled="@{TeacherViewModel.collageHaveError}"
+                    app:errorEnabled="@{TeacherViewModel.subjectsHaveError}"
                     app:layout_constraintEnd_toStartOf="@id/sp_grander_teacher_signup"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/sp_unvisty_teacher_signup"
@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:afterTextChanged="@{()->TeacherViewModel.validateSubject()}"
                         android:inputType="none"
-                        android:text="@={TeacherViewModel.subjects}"
+                        android:text="@={TeacherViewModel.selectedSubject}"
 
                         tools:ignore="LabelFor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -344,14 +344,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone">
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progressBar"
                 android:layout_width="31dp"
                 android:layout_height="31dp"
                 android:layout_gravity="center"
-                android:indeterminate="true"/>
+                android:indeterminate="true" />
         </FrameLayout>
 
     </FrameLayout>

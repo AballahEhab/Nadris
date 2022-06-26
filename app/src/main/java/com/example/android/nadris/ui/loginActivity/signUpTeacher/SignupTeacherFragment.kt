@@ -15,6 +15,7 @@ import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.getErrorMessage
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class signupTeacherFragment : Fragment() {
 
@@ -47,29 +48,29 @@ class signupTeacherFragment : Fragment() {
         return binding.root
     }
 
-    fun setAdaptersForSpinners() {
+    private fun setAdaptersForSpinners() {
         (binding.spGranderTeacherSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter1)!!
         (binding.spSubjectTeacherSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter4)!!
     }
 
-    fun initiate() {
+    private fun initiate() {
         viewModel.genderList.addAll(resources.getStringArray(R.array.GenderList))
         adapter1 = ArrayAdapter(requireContext(), R.layout.item_gender_list, viewModel.genderList)
         viewModel.universities.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(),
-                R.layout.item_gender_list, list.map { it.name })
+                R.layout.item_gender_list, list.map { it.name_ar })
             (binding.spUnvistyTeacherSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
         }
         viewModel.colleges.observe(viewLifecycleOwner) { list ->
             val adapter = ArrayAdapter(requireContext(),
-                R.layout.item_gender_list, list.map { it.name })
+                R.layout.item_gender_list, list.map { it.name_ar })
             (binding.collageTeacherSingup.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
         }
         subjects = resources.getStringArray(R.array.subject)
         adapter4 = ArrayAdapter(requireContext(), R.layout.item_gender_list, subjects)
     }
 
-    fun registerObservers() {
+    private fun registerObservers() {
         this.viewModel.firstnameHaveError.observe(viewLifecycleOwner) {
             if (it)
                 binding.edtFirstNameTeacher.error = "مطلوب"
@@ -119,12 +120,12 @@ class signupTeacherFragment : Fragment() {
             else
                 binding.spSubjectTeacherSignup.error = null
         }
-        viewModel.collageHaveError.observe(viewLifecycleOwner) {
-            if (it)
-                binding.collageTeacherSingup.error = "please set the college"
-            else
-                binding.collageTeacherSingup.error = null
-        }
+//        viewModel.collageHaveError.observe(viewLifecycleOwner) {
+//            if (it)
+//                binding.collageTeacherSingup.error = "please set the college"
+//            else
+//                binding.collageTeacherSingup.error = null
+//        }
         viewModel.universityHaveError.observe(viewLifecycleOwner) {
             if (it)
                 binding.spUnvistyTeacherSignup.error = "please set the university"

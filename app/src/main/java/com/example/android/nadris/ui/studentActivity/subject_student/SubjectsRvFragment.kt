@@ -39,9 +39,9 @@ class SubjectsRvFragment : Fragment() {
         binding.RVSubjects.adapter= adapter
 
         activity?.let {
-            viewModel.list.observe(viewLifecycleOwner) {
-                adapter.differ.submitList(it)
-            }
+//            viewModel.list.observe(viewLifecycleOwner) {
+//                adapter.differ.submitList(it)
+//            }
         }
 
 

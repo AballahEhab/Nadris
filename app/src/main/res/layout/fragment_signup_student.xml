@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:afterTextChanged="@{()->StudentViewModel.validateGrade()}"
                         android:inputType="none"
-                        android:text="@={StudentViewModel.selectedSection}"
+                        android:text="@={StudentViewModel.selectedGrade}"
 
                         tools:ignore="LabelFor"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -172,8 +172,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/sp_gender_student_signup"
                     style="@style/material_drop_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="84dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:hint="@string/sp_gender_teacher_signup"
@@ -181,15 +181,15 @@
                     app:helperText="@string/Required1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/sp_Term_Student_Signup"
-                    app:layout_constraintTop_toTopOf="@id/sp_Term_Student_Signup"
-                >
+                    app:layout_constraintTop_toTopOf="@id/sp_Term_Student_Signup">
+
                     <AutoCompleteTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:afterTextChanged="@{()->StudentViewModel.validateGender()}"
                         android:inputType="none"
-                        android:text="@={StudentViewModel.gender}"
-                        tools:ignore="LabelFor"/>
+                        android:text="@={StudentViewModel.selectedGender}"
+                        tools:ignore="LabelFor" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -298,14 +298,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone">
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progressBar"
                 android:layout_width="31dp"
                 android:layout_height="31dp"
                 android:layout_gravity="center"
-                android:indeterminate="true"/>
+                android:indeterminate="true" />
         </FrameLayout>
     </FrameLayout>
 </layout>

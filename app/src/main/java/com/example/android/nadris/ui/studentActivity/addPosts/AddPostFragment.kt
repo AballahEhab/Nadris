@@ -11,12 +11,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.nadris.*
@@ -56,15 +53,15 @@ class AddPostFragment : Fragment() {
         else
             viewModel.getSubjects()
 
-        viewModel.grades.observe(viewLifecycleOwner) { list ->
-            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-            (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-        }
-
-        viewModel.subjects.observe(viewLifecycleOwner) { list ->
-            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-            (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-        }
+//        viewModel.grades.observe(viewLifecycleOwner) { list ->
+//            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
+//            (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+//        }
+//
+//        viewModel.subjects.observe(viewLifecycleOwner) { list ->
+//            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
+//            (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+//        }
 
         viewModel.navigateBackToHomeScreen.observe(viewLifecycleOwner) { navigate ->
             if(navigate) {

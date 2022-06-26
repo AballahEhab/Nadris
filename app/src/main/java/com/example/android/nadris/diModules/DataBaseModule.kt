@@ -14,21 +14,19 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DataBaseModule {
 
-
     @Singleton
     @Provides
     fun provideDataBase(@ApplicationContext applicationContext: Context): NadrisDatabase {
 
         synchronized(this) {
 
-            return Room.databaseBuilder(
-                applicationContext,
-                NadrisDatabase::class.java,
-                "user_data_database"
-            )
+            return Room
+                .databaseBuilder(
+                    applicationContext,
+                    NadrisDatabase::class.java,
+                    "user_data_database")
                 .fallbackToDestructiveMigration()
                 .build()
         }
-
     }
 }

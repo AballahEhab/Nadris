@@ -2,23 +2,20 @@ package com.example.android.nadris.ui.studentActivity.posts.replies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.ItemAddComentBinding
-import com.example.android.nadris.network.dtos.CommentModel
 
 class CustomAdapterComment:RecyclerView.Adapter<CustomAdapterComment.ViewHolder>() {
 
-    private  val diferrCallback =object : DiffUtil.ItemCallback<CommentModel>() {
-        override fun areItemsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
-            return oldItem.id==newItem.id
-        }
-        override fun areContentsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
-            return oldItem == newItem
-        }
-    }
-    val differ =AsyncListDiffer(this,diferrCallback)
+//    private  val diferrCallback =object : DiffUtil.ItemCallback<CommentModel>() {
+//        override fun areItemsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
+//            return oldItem.id==newItem.id
+//        }
+//        override fun areContentsTheSame(oldItem: CommentModel, newItem: CommentModel): Boolean {
+//            return oldItem == newItem
+//        }
+//    }
+//    val differ =AsyncListDiffer(this,diferrCallback)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,17 +24,21 @@ class CustomAdapterComment:RecyclerView.Adapter<CustomAdapterComment.ViewHolder>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var data=differ.currentList[position]
+//        var data=differ.currentList[position]
 
-        holder.binding.nameAcount.text=data.name
-        holder.binding.contentComment.text=data.content
-
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
+//        holder.binding.nameAcount.text=data.name
+//        holder.binding.contentComment.text=data.content
+//
+//    }
+//
+//    override fun getItemCount(): Int {
+//        return differ.currentList.size
     }
 
     class ViewHolder(var binding: ItemAddComentBinding):RecyclerView.ViewHolder(binding.root)
+
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+    }
 
 }

@@ -6,21 +6,23 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserData(
-    @PrimaryKey val id: Int = 1,  // todo: to be updated to delete the default value
+    @PrimaryKey val dbId: Int = 1,  // todo: to be updated to delete the default value
+    val userID:String,
     val Email: String,
     val firstName: String,
     val lastName: String,
     val PhoneNumber: String,
-    val Type: String?,
-    val Gender: Byte,
-    val Exp: Long,
-    val GradeId: Long?,
-    val University: String?,
-    val College: String?,
-    val Token: String,
+    val Type: Boolean,
+    val Gender: Boolean,
+    val GradeId: String?,
+    /*val University: String?,
+    val College: String?,*/
 ) {
     fun getFullName() = "$firstName  $lastName"
-    fun isTeacher(): Boolean = Type == "teacher"
+    fun getUserType() = if(this.Type) "Teacher" else "Student"
+    override fun toString(): String {
+        return "UserData(dbId=$dbId, userID='$userID', Email='$Email', firstName='$firstName', lastName='$lastName', PhoneNumber='$PhoneNumber', Type=$Type, Gender=$Gender, GradeId=$GradeId)"
+    }
 
 }
 

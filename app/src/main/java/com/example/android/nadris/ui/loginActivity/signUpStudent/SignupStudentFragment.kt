@@ -20,8 +20,9 @@ class signupStudentFragment : Fragment() {
 
     val viewModel: SignupStudentViewModel by viewModels()
     private lateinit var binding: FragmentSignupStudentBinding
-    private lateinit var grade: Array<String>
-    private lateinit var adapter1: ArrayAdapter<String>
+    private lateinit var gradesLevels: Array<String>
+    private lateinit var genderAdapter: ArrayAdapter<String>
+//    private lateinit var gradesAdapter: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,20 +41,21 @@ class signupStudentFragment : Fragment() {
     }
 
     private fun setAdapterForSpinners() {
-        (binding.spGenderStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter1)!!
+        (binding.spGenderStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(genderAdapter)!!
+//        (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(gradesAdapter)!!
     }
 
     private fun initiate() {
         viewModel.genderList.addAll(resources.getStringArray(R.array.GenderList))
-        grade = resources.getStringArray(R.array.GradeList)
-        adapter1 = ArrayAdapter(requireContext(), R.layout.item_gender_list, viewModel.genderList)
-        viewModel.sections.observe(viewLifecycleOwner){list->
-          val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list,list.map { it.name } )
-            (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-        }
+//        grade = resources.getStringArray(R.array.GradeList)
+//        gradesLevels = resources.getStringArray(R.array.grades_levels)
+        genderAdapter =
+            ArrayAdapter(requireContext(), R.layout.item_gender_list, viewModel.genderList)
+//        gradesAdapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, gradesLevels)
+
     }
 
-    fun registerObservers() {
+    private fun registerObservers() {
         this.viewModel.firstnameHaveError.observe(viewLifecycleOwner) {
             if (it)
                 binding.edtFirstNameStudent.error = "مطلوب"
@@ -63,7 +65,7 @@ class signupStudentFragment : Fragment() {
         }
         this.viewModel.lastnameHaveError.observe(viewLifecycleOwner) {
             if (it)
-                binding.edtLastNameStudent. error = "مطلوب"
+                binding.edtLastNameStudent.error = "مطلوب"
             else
                 binding.edtLastNameStudent.error = null
         }
@@ -75,7 +77,7 @@ class signupStudentFragment : Fragment() {
         }
         this.viewModel.password1HaveError.observe(viewLifecycleOwner) {
             var errorMessage: String? = null
-            errorMessage= getErrorMessage(viewModel.passwordErrorType)
+            errorMessage = getErrorMessage(viewModel.passwordErrorType)
             binding.edtPassword1StudentSignup.error = errorMessage
         }
         viewModel.passwordNotMatch.observe(viewLifecycleOwner) {
@@ -107,7 +109,20 @@ class signupStudentFragment : Fragment() {
         viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
             if (it) {
                 startActivity(Intent(requireContext(), StudentMainActivity::class.java))
-                this.activity?.finish()
+                viewModel.navigationToHomeActivityDone()
+            }
+        }
+        viewModel.selectedGrade.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty())
+                viewModel.getSections()
+
+        }
+        viewModel.gradesList.observe(viewLifecycleOwner) { list ->
+            if (!list.isNullOrEmpty()) {
+                val adapter = ArrayAdapter(requireContext(),
+                    R.layout.item_gender_list,
+                    list.map { it.name_ar })
+                (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
             }
         }
     }

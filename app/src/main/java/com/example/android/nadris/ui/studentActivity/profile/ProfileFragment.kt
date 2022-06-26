@@ -9,11 +9,11 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,13 +22,11 @@ import com.example.android.nadris.*
 import com.example.android.nadris.databinding.FragmentProfileBinding
 import com.example.android.nadris.services.Converter
 import com.example.android.nadris.ui.SplashActivity
-import com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel
 import com.example.android.nadris.ui.studentActivity.posts.CustomAdapter
+import com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel
 import com.example.android.nadris.util.LoadImageFromDevice
-import com.example.android.nadris.util.getResizedBitmap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -170,7 +168,7 @@ class ProfileFragment : Fragment() {
         viewModel.navigateToLoginPage.observe(viewLifecycleOwner) {
             if(it){
                 requireActivity().startActivity(Intent(requireContext(), SplashActivity::class.java))
-                NadrisApplication.userData = null
+                NadrisApplication.currentUserLocalData = null
             }
         }
 
