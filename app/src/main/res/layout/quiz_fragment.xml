@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
 >
     <data>
-        <variable name="viewmodel"
+        <variable name="viewModel"
                   type="com.example.android.nadris.ui.studentActivity.quizzes.QuizViewModel"/>
     </data>
 
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             style="@style/material_text_header_small"
-            tools:text="@string/enter_your_question"
+            android:text="@string/enter_your_question"
             android:textSize="@dimen/_20"
         />
         <!--            android:text="@{viewModel.Name.text}"-->
