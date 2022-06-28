@@ -1,10 +1,13 @@
 package com.example.android.nadris.repository
 
+import android.net.Uri
+import com.example.android.nadris.network.firebase.dtos.Inquiry
 import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.network.firebase.services.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import java.io.File
 import javax.inject.Inject
 
 
@@ -14,8 +17,12 @@ constructor(
     private val userService: UserService,
     private val gradesService: GradesService,
     private val universitiesServices: UniversitiesServices,
-    private val collegesService: CollegesService
+    private val collegesService: CollegesService,
+    private val storageService: StorageService,
+    private val inquiriesService: InquiriesService,
+    private val subjectsService: SubjectsService,
 ) {
+
     fun getCurrentUser() =
         authService.currentUser()
 
@@ -34,9 +41,14 @@ constructor(
         }
     }
 
-    fun getGrades() =  gradesService.getGrades()
+    fun getGrades() = gradesService.getGrades()
 
-    fun signUPWithEmailAndPassword(newUser: User,checkedPassword:String): Task<Void> {
+    fun getUserData(userId:String) = userService.getUserData(userId)
+
+    fun getSubjectsWithGrade(gradeDocRef: DocumentReference) =
+        subjectsService.getSubjectsWithGrade(gradeDocRef)
+
+    fun signUPWithEmailAndPassword(newUser: User, checkedPassword: String): Task<Void> {
 
         val signUpTask = authService.signUPWithEmailAndPassword(newUser.email, checkedPassword)
 
@@ -55,5 +67,21 @@ constructor(
     fun getCollegeForAUniversity(universityDocRef: DocumentReference) =
         collegesService.getCollegeForAUniversity(universityDocRef)
 
+    fun addNewInquiryWithImage(inquiry: Inquiry, imageFile: File): Task<Void> {
+
+        val inquiryID = inquiriesService.createNewBlankInquiry()
+        val imageFileName = (inquiryID + imageFile.extension)
+        val imageUri = Uri.fromFile(imageFile)
+        val uploadingImageTask = storageService.uploadInquiryImage(imageFileName,imageUri)
+
+        return uploadingImageTask.continueWithTask {
+            val imageLink = it.result?.storage
+            inquiry.image = imageLink?.path.toString()
+            inquiriesService.addNewInquiryWithID( inquiry,inquiryID)
+        }
+    }
+
+    fun addNewInquiryWithoutImage(inquiry: Inquiry) =
+        inquiriesService.addNewInquiry(inquiry)
 
 }

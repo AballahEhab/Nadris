@@ -1,40 +1,76 @@
 package com.example.android.nadris.ui.studentActivity.addPosts
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication.Companion.currentUserLocalData
+import com.example.android.nadris.network.firebase.dtos.Grade
+import com.example.android.nadris.network.firebase.dtos.Inquiry
+import com.example.android.nadris.network.firebase.dtos.Subject
+import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.repository.Repository
+import com.google.firebase.firestore.DocumentReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class AddPostViewModel @Inject constructor(val repository: Repository, @ApplicationContext val context: Context) :
+class AddPostViewModel @Inject constructor(
+    val repository: Repository,
+    @ApplicationContext val context: Context,
+) :
     ViewModel() {
-    var editedDiscussionId:Long? = null
-    var navigateBackToHomeScreen:MutableLiveData<Boolean> =MutableLiveData(false)
-//    var subjects: MutableLiveData<List<SubjectDTO>> = MutableLiveData<List<SubjectDTO>>()
-//    var grades: MutableLiveData<List<GradeDTO>> = MutableLiveData<List<GradeDTO>>()
+    var editedDiscussionId: Long? = null
+    var navigateBackToHomeScreen: MutableLiveData<Boolean> = MutableLiveData(false)
+    var subjects: MutableLiveData<List<Subject>> = MutableLiveData<List<Subject>>()
+    var grades: MutableLiveData<List<Grade>> = MutableLiveData<List<Grade>>()
     var selectedSubject: MutableLiveData<String> = MutableLiveData<String>()
     var question: MutableLiveData<String> = MutableLiveData<String>()
     var imageStrB64: String? = null
+    var imageFile: File? = null
+
+    //    var postDat: String? = null
     val isTeacher = currentUserLocalData!!.Type
-    var gradeId = if (isTeacher) 0 else currentUserLocalData!!.GradeId!!
     private var selectedGrade: MutableLiveData<String> = MutableLiveData<String>()
 
 
     fun setSelectedGrade(grade: String) {
         selectedGrade.value = grade
-        getSubjects()
+        if (!grade.isNullOrEmpty()) getSubjects()
     }
 
     fun getSelectedGrade() = selectedGrade.value
 
     fun addPost() {
 //        val token = firebaseUser?.Token
-//        val subjectId = subjects.value!!.find { it.name == selectedSubject.value }!!.id
+        val subjectRef = subjects.value!!.find { it.name_ar == selectedSubject.value }!!.docRef
+        viewModelScope.launch(Dispatchers.IO) {
+            val inquiry = Inquiry(
+                body = question.value!!,
+                subject = subjectRef,
+                userID = currentUserLocalData?.userID!!,
+            )
 
+            val result =
+                if (imageFile == null) repository.addNewInquiryWithoutImage(inquiry)
+                else repository.addNewInquiryWithImage(inquiry, imageFile!!)
+
+            result.handleRepoResponse(
+                onLoading = {},
+                onError = {
+                    Log.v("post", result.error.toString())
+                },
+                onSuccess = {
+                    Log.v("post", result.data.toString())
+                },
+
+                )
+        }
 //        viewModelScope.launch {
 //            var res = repository.publishPost(
 //                CreatePostModel(subjectId, question.value!!, imageStrB64), TOKEN_PREFIX + token)
@@ -78,25 +114,46 @@ class AddPostViewModel @Inject constructor(val repository: Repository, @Applicat
 
     fun getGrades() {
         if (isTeacher) {
-//            viewModelScope.launch {
-//                var res = repository.getGrades()
-//                res.collect {
-//                    it.handleRepoResponse(
-//                        onLoading = {
-//                        },
-//                        onError = {
-//                        },
-//                        onSuccess = {
-//                            grades.value = it.data!!
-//                        },
-//                    )
-//                }
-//            }
+            viewModelScope.launch(Dispatchers.IO) {
+                val result = repository.getGrades()
+                result.handleRepoResponse(
+                    onLoading = {
+                    },
+                    onError = {
+                        Log.v("jaflsjfs", result.error.toString())
+                    },
+                    onSuccess = {
+                        grades.postValue(result.data)
+                        Log.v("jaflsjfs", result.data.toString())
+                    }
+                )
+            }
         }
     }
 
     fun getSubjects() {
-//        if (isTeacher) gradeId = grades.value!!.find { it.name == selectedGrade.value }!!.id
+        viewModelScope.launch(Dispatchers.IO) {
+            var gradeRef: DocumentReference? = null
+            if (isTeacher) {
+                gradeRef =
+                    grades.value!!.find { it.name_ar == selectedGrade.value }!!.gradeReference!!
+            } else {
+                val result = repository.getUserData(currentUserLocalData?.userID!!)
+                gradeRef = (result.data as User).grade
+
+            }
+            val result = repository.getSubjectsWithGrade(gradeRef!!)
+            result.handleRepoResponse(
+                onLoading = {
+                },
+                onError = {
+                    Log.v("AddPostViewModel", result.error!!)
+                },
+                onSuccess = {
+                    subjects.postValue(result.data!!)
+                },
+            )
+        }
 //        val token = firebaseUser!!.Token
 //        viewModelScope.launch {
 //            var res = repository.getGradeSubjects(gradeId, token)

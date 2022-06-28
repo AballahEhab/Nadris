@@ -11,6 +11,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +23,7 @@ import com.example.android.nadris.databinding.FragmentAddPosBinding
 import com.example.android.nadris.services.Converter
 import com.example.android.nadris.util.LoadImageFromDevice
 import com.example.android.nadris.util.getResizedBitmap
+import com.google.firebase.firestore.FieldValue
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
@@ -53,15 +56,15 @@ class AddPostFragment : Fragment() {
         else
             viewModel.getSubjects()
 
-//        viewModel.grades.observe(viewLifecycleOwner) { list ->
-//            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-//            (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-//        }
-//
-//        viewModel.subjects.observe(viewLifecycleOwner) { list ->
-//            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name })
-//            (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-//        }
+        viewModel.grades.observe(viewLifecycleOwner) { list ->
+            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name_ar })
+            (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        }
+
+        viewModel.subjects.observe(viewLifecycleOwner) { list ->
+            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name_ar })
+            (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        }
 
         viewModel.navigateBackToHomeScreen.observe(viewLifecycleOwner) { navigate ->
             if(navigate) {
@@ -79,6 +82,7 @@ class AddPostFragment : Fragment() {
         binding.publishButton.setOnClickListener {
 
             if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
+//                viewModel.postDat = FieldValue.serverTimestamp().toString()
                 viewModel.addPost()
                 viewModel.navigateBackToHomeScreen()
             } else {
@@ -150,6 +154,8 @@ class AddPostFragment : Fragment() {
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {
                 image = data?.extras?.get("data") as Bitmap
+
+                viewModel.imageFile = data.extras?.get("data") as File
                 try {
                     viewModel.imageStrB64 = converter.convertBitmapToBase64(image!!)
                     binding.pickedImage.setImageBitmap(image)
@@ -166,6 +172,9 @@ class AddPostFragment : Fragment() {
                 val columnIndex = c.getColumnIndex(filePath[0])
                 val picturePath = c.getString(columnIndex)
                 c.close()
+
+                viewModel.imageFile = File(picturePath)
+
                 image = BitmapFactory.decodeFile(picturePath)
                 viewModel.imageStrB64 = converter.convertBitmapToBase64(image!!)
                 binding.pickedImage.setImageBitmap(getResizedBitmap(image!!, 100))

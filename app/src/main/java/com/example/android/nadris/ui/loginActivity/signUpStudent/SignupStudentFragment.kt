@@ -32,7 +32,7 @@ class signupStudentFragment : Fragment() {
         binding = FragmentSignupStudentBinding.inflate(inflater)
         initiate()
         binding.studentViewModel = viewModel
-        viewModel.getSections()
+        viewModel.getGrades()
         binding.lifecycleOwner = this
         setAdapterForSpinners()
         registerObservers()
@@ -114,7 +114,7 @@ class signupStudentFragment : Fragment() {
         }
         viewModel.selectedGrade.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty())
-                viewModel.getSections()
+                viewModel.getGrades()
 
         }
         viewModel.gradesList.observe(viewLifecycleOwner) { list ->

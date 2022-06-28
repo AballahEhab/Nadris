@@ -9,9 +9,8 @@ class UniversitiesServices @Inject constructor(val db: FirebaseFirestore) {
 
     private val universitiesCollection = db.collection("universities")
 
-    fun getAllUniversities(): Task<QuerySnapshot> {
-        val query = universitiesCollection
-        return query.get()
-    }
+    fun getAllUniversities(): Task<QuerySnapshot> =
+        universitiesCollection.get()
+
 
 }

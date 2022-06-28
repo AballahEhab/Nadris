@@ -7,6 +7,7 @@ import android.os.Build
 import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.repository.Repository
 import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.auth.User
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -16,6 +17,7 @@ class NadrisApplication : Application() {
     companion object {
         var instance: NadrisApplication? = null
         var currentUserLocalData : UserData? = null
+        var currentUserData : User? = null
     }
 
     @Inject

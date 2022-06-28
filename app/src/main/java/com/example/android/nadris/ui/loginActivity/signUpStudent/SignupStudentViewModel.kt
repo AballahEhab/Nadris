@@ -187,19 +187,16 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
         _navigateToHomeScreen.value = false
     }
 
-    fun getSections() {
+    fun getGrades() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.getGrades()
             result.handleRepoResponse(
                 onLoading = {
                 },
                 onError = {
-                    Log.v("jaflsjfs", result.error.toString())
                 },
                 onSuccess = {
                     gradesList.postValue(result.data)
-                    gradesList.toString()
-                    Log.v("jaflsjfs", result.data.toString())
                 }
             )
         }

@@ -1,15 +1,12 @@
 package com.example.android.nadris.repository
 
-import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.network.firebase.NetworkObjectMapper
-import com.example.android.nadris.network.firebase.dtos.College
-import com.example.android.nadris.network.firebase.dtos.Grade
-import com.example.android.nadris.network.firebase.dtos.University
-import com.example.android.nadris.network.firebase.dtos.User
+import com.example.android.nadris.network.firebase.dtos.*
 import com.example.android.nadris.util.Result
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.toObject
+import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,11 +16,13 @@ class Repository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
 ) {
 
-    fun getCurrentFirebaseUser() = remoteDataSource.getCurrentUser()
+    fun getCurrentFirebaseUser() =
+        remoteDataSource.getCurrentUser()
 
-    suspend fun getLocalUserData() = localDataSource.getUserData()
+    suspend fun getLocalUserData() =
+        localDataSource.getUserData()
 
-    suspend fun signInWithEmailAndPassword(checkedEmail: String, checkedPassword: String, ): Result<UserData> {
+    suspend fun signInWithEmailAndPassword(checkedEmail: String, checkedPassword: String) =
 
         try {
             val userDataDoc = Tasks.await(remoteDataSource.singInWithEmailAndPassword(checkedEmail,
@@ -37,23 +36,20 @@ class Repository @Inject constructor(
                 ?.let { NetworkObjectMapper.userToDatabaseUser(it) }
                 ?.let { localDataSource.addUserData(it) }
 
-            return Result.Success(localDataSource.getUserData())
+            Result.Success(localDataSource.getUserData())
 
         } catch (throwable: Throwable) {
 
-            return Result.Error(throwable.message!!)
+            Result.Error(throwable.message!!)
         }
 
-        return Result.Error("unexpected error occur")
-    }
-
-    suspend fun getGrades(): Result<MutableList<Grade>> {
+    suspend fun getGrades() =
         try {
             val gradesSnapshots = Tasks.await(remoteDataSource.getGrades())
 
-            var gradeList:MutableList<Grade> = mutableListOf()
+            var gradeList: MutableList<Grade> = mutableListOf()
 
-            for (document in gradesSnapshots){
+            for (document in gradesSnapshots) {
                 val departmentsCollection = document.reference.collection("departments")
                 val departmentsQuery = Tasks.await(departmentsCollection.get())
                 if (!departmentsQuery.isEmpty)
@@ -68,14 +64,13 @@ class Repository @Inject constructor(
                                 gradeList.add(grade)
 
                             }
-                        else{
+                        else {
                             var grade = department.toObject<Grade>()
                             grade.gradeReference = department.reference
                             gradeList.add(grade)
 
                         }
                     }
-
                 else {
                     var grade = document.toObject<Grade>()
                     grade.gradeReference = document.reference
@@ -83,19 +78,35 @@ class Repository @Inject constructor(
                 }
             }
 
-            return Result.Success(gradeList)
+            Result.Success(gradeList)
 
-        }catch(throwable: Throwable){
+        } catch (throwable: Throwable) {
 
-            return Result.Error(throwable.message!!)
+            Result.Error(throwable.message!!)
         }
-        return Result.Error("unexpected error occur")
-    }
 
-    suspend fun createNewUser(user:User,checkedPassword:String): Result<UserData> {
+    suspend fun getSubjectsWithGrade(gradeRef: DocumentReference) =
+        try {
+            val subjectsQuery =
+                Tasks.await(remoteDataSource.getSubjectsWithGrade(gradeRef))
+
+            val collegesList = subjectsQuery.map {
+                val subject = it.toObject<Subject>()
+                subject.docRef = it.reference
+                subject
+            }
+
+            Result.Success(collegesList)
+
+        } catch (e: Exception) {
+            Result.Error(e.message!!)
+
+        }
+
+    suspend fun createNewUser(user: User, checkedPassword: String) =
 
         try {
-             Tasks.await(remoteDataSource.signUPWithEmailAndPassword(user, checkedPassword))
+            Tasks.await(remoteDataSource.signUPWithEmailAndPassword(user, checkedPassword))
 
             var firebaseUser = getCurrentFirebaseUser()
 
@@ -104,19 +115,15 @@ class Repository @Inject constructor(
             user.let { NetworkObjectMapper.userToDatabaseUser(it) }
                 .let { localDataSource.addUserData(it) }
 
-            return Result.Success(localDataSource.getUserData())
+            Result.Success(localDataSource.getUserData())
 
         } catch (throwable: Throwable) {
 
-            return Result.Error(throwable.message!!)
+            Result.Error(throwable.message!!)
         }
 
-        return Result.Error("unexpected error occur")
-    }
-
-    suspend fun getAllUniversities(): Result<List<University>> {
-
-        return try {
+    suspend fun getAllUniversities() =
+        try {
 
             val universitiesQuerySnapshot = Tasks.await(remoteDataSource.getAllUniversities())
 
@@ -128,21 +135,18 @@ class Repository @Inject constructor(
 
             Result.Success(universitiesList)
 
-        }catch (e:Exception){
+        } catch (exception: Exception) {
 
-            Result.Error(e.message!!)
+            Result.Error(exception.message!!)
 
         }
 
-        return Result.Error("unexpected error occur")
-    }
-
-    suspend fun getCollegeForAUniversity(universityDocRef: DocumentReference):Result<List<College>> {
-        return try{
-            val collegesQuery =
+    suspend fun getCollegeForAUniversity(universityDocRef: DocumentReference) =
+        try {
+            val collegesTask =
                 Tasks.await(remoteDataSource.getCollegeForAUniversity(universityDocRef))
 
-            val collegesList = collegesQuery.map {
+            val collegesList = collegesTask.map {
                 val college = it.toObject<College>()
                 college.docRef = it.reference
                 college
@@ -150,18 +154,35 @@ class Repository @Inject constructor(
 
             Result.Success(collegesList)
 
-        }catch (e:Exception){
+        } catch (e: Exception) {
             Result.Error(e.message!!)
-
         }
-        return Result.Error("unexpected error occur")
 
+    suspend fun addNewInquiryWithImage(inquiry: Inquiry, imageFile: File) =
+        try {
+             Tasks.await(remoteDataSource.addNewInquiryWithImage(inquiry, imageFile))
+            Result.Success(inquiry)
+        } catch (exception: Exception) {
+            Result.Error(exception.message!!)
+        }
 
+    suspend fun addNewInquiryWithoutImage(inquiry:Inquiry) =
+    try {
+        Tasks.await(remoteDataSource.addNewInquiryWithoutImage(inquiry))
+        Result.Success(inquiry)
+    } catch (exception: Exception) {
+        Result.Error(exception.message!!)
     }
+    fun getUserData(userId: String) =
+        try {
+            val userDataTask = Tasks.await(remoteDataSource.getUserData(userId))
+            val userData = userDataTask.toObject<User>()
+            Result.Success(userData)
+        } catch (exception: Exception) {
+            Result.Success(exception.message)
+        }
 
 
-
-//    fun getCurrentUser() = Tasks.await(remoteDataSource.currentUser())
 
 //    fun login(loginAccountModel: LoginAccountModel) = postToApiAndSaveToDatabase(
 //        request = { remoteDataSource.login(loginAccountModel) },

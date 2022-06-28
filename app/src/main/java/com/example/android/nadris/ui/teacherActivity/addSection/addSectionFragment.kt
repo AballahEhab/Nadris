@@ -37,7 +37,7 @@ class addSectionFragment : Fragment() {
     lateinit var binding:FragmentAddSectionBinding
 
     //pdf files related attributes
-    private lateinit var renderer:PdfRenderer
+    private var renderer:PdfRenderer? = null
     private var total_pages_num = 0
     private var current_page_index = 0
 
@@ -91,8 +91,7 @@ class addSectionFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         //close PdfRenderer
-        if(renderer !=null)
-            renderer.close()
+        renderer?.close()
     }
 
     private fun setClickListnersForButtons() {
@@ -132,7 +131,7 @@ class addSectionFragment : Fragment() {
 
     private fun showPage(index: Int) {
         renderer?.let {
-            val page = renderer.openPage(index)
+            val page = renderer!!.openPage(index)
             val mBitmap = Bitmap.createBitmap(page.width,page.height, Bitmap.Config.ARGB_8888)
             page.render(mBitmap,null,null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
             binding.imgPreviewPdf.setImageBitmap(mBitmap)
@@ -145,7 +144,7 @@ class addSectionFragment : Fragment() {
         try {
             val parcelFileDescriptor = activity?.baseContext?.contentResolver?.openFileDescriptor(uri!!,"r")
             renderer = PdfRenderer(parcelFileDescriptor!!)
-            total_pages_num = renderer.pageCount
+            total_pages_num = renderer!!.pageCount
             current_page_index = 0
             showPage(current_page_index)
 //            binding.pdfView.fromUri(uri)
