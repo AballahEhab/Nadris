@@ -25,6 +25,8 @@ class AddPostViewModel @Inject constructor(
     @ApplicationContext val context: Context,
 ) :
     ViewModel() {
+
+    private val TAG = "AddPostViewModel"
     var editedDiscussionId: Long? = null
     var navigateBackToHomeScreen: MutableLiveData<Boolean> = MutableLiveData(false)
     var subjects: MutableLiveData<List<Subject>> = MutableLiveData<List<Subject>>()
@@ -63,10 +65,10 @@ class AddPostViewModel @Inject constructor(
             result.handleRepoResponse(
                 onLoading = {},
                 onError = {
-                    Log.v("post", result.error.toString())
+                    Log.v(TAG, result.error.toString())
                 },
                 onSuccess = {
-                    Log.v("post", result.data.toString())
+                    Log.v(TAG, result.data.toString())
                 },
 
                 )

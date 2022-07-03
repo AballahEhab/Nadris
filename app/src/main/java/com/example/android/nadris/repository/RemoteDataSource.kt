@@ -76,7 +76,7 @@ constructor(
 
         return uploadingImageTask.continueWithTask {
             val imageLink = it.result?.storage
-            inquiry.image = imageLink?.path.toString()
+            inquiry.image_path = imageLink?.path.toString()
             inquiriesService.addNewInquiryWithID( inquiry,inquiryID)
         }
     }
