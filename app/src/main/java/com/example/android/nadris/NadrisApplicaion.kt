@@ -1,14 +1,18 @@
 package com.example.android.nadris
 
 import android.app.Application
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.DisplayMetrics
 import com.example.android.nadris.database.models.UserData
 import com.example.android.nadris.repository.Repository
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.auth.User
 import dagger.hilt.android.HiltAndroidApp
+import java.util.*
 import javax.inject.Inject
 
 @HiltAndroidApp
@@ -31,6 +35,7 @@ class NadrisApplication : Application() {
 
         if (instance == null) instance = this
 
+//        setLocale("ar")
     }
 
      fun isNetworkConnected(): Boolean {
@@ -53,5 +58,17 @@ class NadrisApplication : Application() {
             return nwInfo.isConnected
         }
 
+    }
+
+    private fun setLocale(lang: String?) {
+        val myLocale = Locale(lang)
+        val res: Resources = resources
+        val dm: DisplayMetrics = res.displayMetrics
+        val conf: Configuration = res.configuration
+        conf.locale = myLocale
+        res.updateConfiguration(conf, dm)
+//        val refresh = Intent(this, MainActivity::class.java)
+//        finish()
+//        startActivity(refresh)
     }
 }

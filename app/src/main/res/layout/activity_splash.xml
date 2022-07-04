@@ -7,12 +7,59 @@
     tools:context=".ui.SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/nadris_splash_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo_icon" />
+        app:srcCompat="@drawable/ic_logo_icon"
+        tools:visibility="gone" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/spn_lang_sel"
+        style="@style/material_drop_menu"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/sp_gender_teacher_signup"
+        app:helperText="@string/Required1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text=""
+            tools:ignore="LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/select_language_title"
+        android:text="@string/select_language_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/bink"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/spn_lang_sel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/confir_btn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:text="@string/confirm_lang_sel_btn_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spn_lang_sel" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

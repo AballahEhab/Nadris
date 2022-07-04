@@ -18,7 +18,7 @@ class InquiriesService @Inject constructor(val db: FirebaseFirestore) {
         return inquiriesCollection.add(newInquiry)
     }
 
-    fun createNewBlankInquiry() =
+    fun generateId() =
         inquiriesCollection.document().id
 
     fun addNewInquiryWithID(inquiry: Inquiry, inquiryID: String): Task<Void> {

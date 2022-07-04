@@ -184,6 +184,9 @@
     <string name="edit_discussion_menu_item_string">تعديل</string>
     <string name="save_discussion_btn_title">حفظ الاستفسار</string>
     <string name="save_edits">حفظ التعديلات</string>
+    <string name="select_language_title">"من فضلك اختر اللغة "</string>
+    <string name="confirm_lang_sel_btn_title">اختيار</string>
+    <string name="lang_not_sel_msg">من فضلك اختر اللغة</string>
 
 
 </resources>

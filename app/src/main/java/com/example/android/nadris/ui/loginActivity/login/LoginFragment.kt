@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.databinding.FragmentLoginBinding
+import com.example.android.nadris.services.LocaleHelper
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.disableUserInterAction
@@ -66,6 +67,11 @@ class LoginFragment : Fragment() {
             } else
                 enableUserInterAction(activity)
         }
+
+        binding.btnSignIn.setOnClickListener{
+            LocaleHelper.setLocale(requireActivity(),"ar")
+        }
+
 
         return binding.root
 

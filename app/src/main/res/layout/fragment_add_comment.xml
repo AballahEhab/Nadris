@@ -15,57 +15,57 @@
         android:layout_height="match_parent"
         tools:context=".ui.studentActivity.posts.replies.AddCommentFragment">
 
-        <include
-            android:id="@+id/included_post"
-            layout="@layout/item_post_card_cell"
-            app:postData="@{viewmodel.currentPostData}"
-        />
+<!--        <include-->
+<!--            android:id="@+id/included_post"-->
+<!--            layout="@layout/item_post_card_cell"-->
+<!--            app:postData="@{viewmodel.currentPostData}"-->
+<!--        />-->
 
 
-        <LinearLayout
-            android:id="@+id/linear_add_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/included_post">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linear_add_comment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="5"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/included_post">-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
-                style="@style/material_text_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/mid_margin"
-                android:layout_weight="4"
-                android:hint="@string/add_comment"
-            >
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={viewmodel.comment}"
-                />
-            </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/textField"-->
+<!--                style="@style/material_text_input"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="@dimen/mid_margin"-->
+<!--                android:layout_weight="4"-->
+<!--                android:hint="@string/add_comment"-->
+<!--            >-->
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_add_comment"
-                style="@style/material_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/small_margin"
-                android:layout_weight="1"
-                android:onClick="@{()-> viewmodel.sendComment()}"
-                android:text="@string/btn_add_comment"
-                android:textAppearance="@style/material_text_body_small"
-                android:textStyle="normal"
-                app:isVisible="@{viewmodel.sendButtonVisabilty}"/>
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@={viewmodel.comment}"-->
+<!--                />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-        </LinearLayout>
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btn_add_comment"-->
+<!--                style="@style/material_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginEnd="@dimen/small_margin"-->
+<!--                android:layout_weight="1"-->
+<!--                android:onClick="@{()-> viewmodel.sendComment()}"-->
+<!--                android:text="@string/btn_add_comment"-->
+<!--                android:textAppearance="@style/material_text_body_small"-->
+<!--                android:textStyle="normal"-->
+<!--                app:isVisible="@{viewmodel.sendButtonVisabilty}"/>-->
+
+<!--        </LinearLayout>-->
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -78,8 +78,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_add_comment"
             tools:listitem="@layout/item_add_coment"/>
+<!--        app:layout_constraintTop_toBottomOf="@id/linear_add_comment"-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,8 +15,8 @@ data class UserData(
     val Type: Boolean,
     val Gender: Boolean,
     val GradeId: String?,
-    /*val University: String?,
-    val College: String?,*/
+    val UniversityName: String? = null,
+    val CollegeName: String? = null,
 ) {
     fun getFullName() = "$firstName  $lastName"
     fun getUserType() = if(this.Type) "Teacher" else "Student"

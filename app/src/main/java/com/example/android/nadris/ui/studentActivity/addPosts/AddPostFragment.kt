@@ -23,7 +23,6 @@ import com.example.android.nadris.databinding.FragmentAddPosBinding
 import com.example.android.nadris.services.Converter
 import com.example.android.nadris.util.LoadImageFromDevice
 import com.example.android.nadris.util.getResizedBitmap
-import com.google.firebase.firestore.FieldValue
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
@@ -38,14 +37,14 @@ class AddPostFragment : Fragment() {
     }
     private var image: Bitmap? = null
 
-     private val args:AddPostFragmentArgs by navArgs()
+    private val args: AddPostFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
 
-        binding =FragmentAddPosBinding.inflate(layoutInflater, container, false)
+        binding = FragmentAddPosBinding.inflate(layoutInflater, container, false)
 
         binding.addPostViewModel = viewModel
 
@@ -56,33 +55,60 @@ class AddPostFragment : Fragment() {
         else
             viewModel.getSubjects()
 
-        viewModel.grades.observe(viewLifecycleOwner) { list ->
-            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name_ar })
-            (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-        }
+        subscribeToObservers()
 
-        viewModel.subjects.observe(viewLifecycleOwner) { list ->
-            val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name_ar })
-            (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
-        }
+        setClickListenersForButtons()
 
-        viewModel.navigateBackToHomeScreen.observe(viewLifecycleOwner) { navigate ->
-            if(navigate) {
-                findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToPostsFragment())
-                viewModel.navigationBackToHomeScreenDone()
+        if (args.mode.isInEditMode()) enableEditProperties()
 
+        return binding.root
+    }
+
+    private fun enableEditProperties() {
+        viewModel.selectedSubject.value = args.subject
+        viewModel.question.value = args.discussionContent
+        viewModel.editedDiscussionId = args.postId
+
+        binding.publishButton.apply {
+            this.setOnClickListener {
+
+                if (binding.textViewAddQesition.text.toString()
+                        .isNotEmpty() && viewModel.selectedSubject.value != null
+                ) {
+                    viewModel.updatePostAfterEdit()
+                } else {
+                    Toast.makeText(requireContext().applicationContext,
+                        getString(R.string.add_post_requirments),
+                        Toast.LENGTH_SHORT).show()
+                }
             }
-
+            this.text = context.getString(R.string.save_edits)
         }
+
+        binding.imageButton.text = "edit image"
+
+        if (args.hasImage) {
+            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
+                args.postId.toString())
+            if (file.exists()) {
+                val img = BitmapFactory.decodeFile(file.absolutePath)
+                binding.pickedImage.setImageBitmap(img!!)
+                binding.pickedImage.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun setClickListenersForButtons() {
 
         binding.imageButton.setOnClickListener {
-            LoadImageFromDevice.selectImage(requireActivity(),requireContext(),this)
+            LoadImageFromDevice.selectImage(requireActivity(), requireContext(), this)
         }
 
         binding.publishButton.setOnClickListener {
 
-            if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
-//                viewModel.postDat = FieldValue.serverTimestamp().toString()
+            if (binding.textViewAddQesition.text.toString().isNotEmpty()
+                && viewModel.selectedSubject.value != null
+            ) {
                 viewModel.addPost()
                 viewModel.navigateBackToHomeScreen()
             } else {
@@ -91,39 +117,29 @@ class AddPostFragment : Fragment() {
                     Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
-        if(args.mode.isInEditMode()){
-            viewModel.selectedSubject.value = args.subject
-            viewModel.question.value = args.discussionContent
-            viewModel.editedDiscussionId = args.postId
-            binding.publishButton.apply {
-                this.setOnClickListener {
-
-                    if (binding.textViewAddQesition.text.toString().isNotEmpty() && viewModel.selectedSubject.value != null) {
-                        viewModel.updatePostAfterEdit()
-                    } else {
-                        Toast.makeText(requireContext().applicationContext,
-                            getString(R.string.add_post_requirments),
-                            Toast.LENGTH_SHORT).show()
-                    }
-                }
-                this.text = context.getString(R.string.save_edits)
-            }
-            binding.imageButton.text = "edit image"
-
-            if (args.hasImage){
-                    val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
-                        args.postId.toString())
-                    if (file.exists()) {
-                        val img = BitmapFactory.decodeFile(file.absolutePath)
-                        binding.pickedImage.setImageBitmap(img!!)
-                        binding.pickedImage.visibility = View.VISIBLE
-                    }
-                }
-
+    private fun subscribeToObservers() {
+        viewModel.grades.observe(viewLifecycleOwner) { list ->
+            val adapter =
+                ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name_ar })
+            (binding.spGrades.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
         }
 
-        return binding.root
+        viewModel.subjects.observe(viewLifecycleOwner) { list ->
+            val adapter =
+                ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name_ar })
+            (binding.spAddSubject.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
+        }
+
+        viewModel.navigateBackToHomeScreen.observe(viewLifecycleOwner) { navigate ->
+            if (navigate) {
+                findNavController().navigate(AddPostFragmentDirections.actionAddPostFragmentToPostsFragment())
+                viewModel.navigationBackToHomeScreenDone()
+
+            }
+
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -132,19 +148,26 @@ class AddPostFragment : Fragment() {
     ) {
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.permission_granted),
+                    Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.permission_granted),
+                    Toast.LENGTH_SHORT).show()
             }
         } else if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.permission_granted),
+                    Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), getString(R.string.permission_granted), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.permission_granted),
+                    Toast.LENGTH_SHORT).show()
             }
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode != Activity.RESULT_OK) {
@@ -183,7 +206,6 @@ class AddPostFragment : Fragment() {
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
-
 
 
 }

@@ -5,6 +5,7 @@ import com.example.android.nadris.network.firebase.dtos.Inquiry
 import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.network.firebase.services.*
 import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import java.io.File
@@ -69,7 +70,7 @@ constructor(
 
     fun addNewInquiryWithImage(inquiry: Inquiry, imageFile: File): Task<Void> {
 
-        val inquiryID = inquiriesService.createNewBlankInquiry()
+        val inquiryID = inquiriesService.generateId()
         val imageFileName = (inquiryID + imageFile.extension)
         val imageUri = Uri.fromFile(imageFile)
         val uploadingImageTask = storageService.uploadInquiryImage(imageFileName,imageUri)
@@ -83,5 +84,8 @@ constructor(
 
     fun addNewInquiryWithoutImage(inquiry: Inquiry) =
         inquiriesService.addNewInquiry(inquiry)
+
+    fun getAllInquiries() = Tasks.await(inquiriesService.getAllInquiries())
+
 
 }

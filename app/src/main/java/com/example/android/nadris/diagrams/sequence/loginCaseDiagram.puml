@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+actor student as user
+participant login_screen as view
+participant login_viewModel as viewModel
+participant repository  as repository
+
+activate view
+alt app online - login page is visible
+
+    user->view : login
+    view->viewModel :validate inputs
+
+    alt credentials are valid
+        viewModel->repository ** : login with valid \n credentials
+
+        alt request task successful
+            alt credentials are registered
+                repository  ->viewModel  : user data
+            else wrong credentials
+                repository[#red]->viewModel :<font color=red><b>server error message
+
+            end
+
+
+        else request faild
+            repository[#red]->viewModel :<font color=red><b>request error status
+            viewModel[#red]->view :<font color=red><b>request error status
+
+        end
+
+
+    else credentials are not valid
+        viewModel[#red]->view :<font color=red><b>error in credentials
+    end
+
+else app offline
+    view[#blue]->user :<font color=blue><b>show offline icon
+end
+
+
+
+@enduml

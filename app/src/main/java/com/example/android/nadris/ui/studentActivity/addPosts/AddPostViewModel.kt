@@ -11,7 +11,6 @@ import com.example.android.nadris.network.firebase.dtos.Inquiry
 import com.example.android.nadris.network.firebase.dtos.Subject
 import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.repository.Repository
-import com.google.firebase.firestore.DocumentReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -36,7 +35,6 @@ class AddPostViewModel @Inject constructor(
     var imageStrB64: String? = null
     var imageFile: File? = null
 
-    //    var postDat: String? = null
     val isTeacher = currentUserLocalData!!.Type
     private var selectedGrade: MutableLiveData<String> = MutableLiveData<String>()
 
@@ -49,18 +47,18 @@ class AddPostViewModel @Inject constructor(
     fun getSelectedGrade() = selectedGrade.value
 
     fun addPost() {
-//        val token = firebaseUser?.Token
         val subjectRef = subjects.value!!.find { it.name_ar == selectedSubject.value }!!.docRef
         viewModelScope.launch(Dispatchers.IO) {
             val inquiry = Inquiry(
                 body = question.value!!,
                 subject = subjectRef,
-                userID = currentUserLocalData?.userID!!,
-            )
+                userID = currentUserLocalData?.userID!!)
 
             val result =
-                if (imageFile == null) repository.addNewInquiryWithoutImage(inquiry)
-                else repository.addNewInquiryWithImage(inquiry, imageFile!!)
+                if (imageFile == null)
+                    repository.addNewInquiryWithoutImage(inquiry)
+                else
+                    repository.addNewInquiryWithImage(inquiry, imageFile!!)
 
             result.handleRepoResponse(
                 onLoading = {},
@@ -69,25 +67,9 @@ class AddPostViewModel @Inject constructor(
                 },
                 onSuccess = {
                     Log.v(TAG, result.data.toString())
-                },
-
-                )
+                }
+            )
         }
-//        viewModelScope.launch {
-//            var res = repository.publishPost(
-//                CreatePostModel(subjectId, question.value!!, imageStrB64), TOKEN_PREFIX + token)
-//            res.collect {
-//                it?.handleRepoResponse(
-//                    onLoading = {},
-//                    onError = {
-//                        Log.v("post", it.error.toString())
-//                    },
-//                    onSuccess = {
-//                        Log.v("post", it.data.toString())
-//                    },
-//                )
-//            }
-//        }
     }
 
     //todo:update this fun to edit dicussion
@@ -135,15 +117,13 @@ class AddPostViewModel @Inject constructor(
 
     fun getSubjects() {
         viewModelScope.launch(Dispatchers.IO) {
-            var gradeRef: DocumentReference? = null
-            if (isTeacher) {
-                gradeRef =
+            val gradeRef =
+                if (isTeacher)
                     grades.value!!.find { it.name_ar == selectedGrade.value }!!.gradeReference!!
-            } else {
-                val result = repository.getUserData(currentUserLocalData?.userID!!)
-                gradeRef = (result.data as User).grade
-
-            }
+                else {
+                    val result = repository.getUserData(currentUserLocalData?.userID!!)
+                    (result.data as User).grade
+                }
             val result = repository.getSubjectsWithGrade(gradeRef!!)
             result.handleRepoResponse(
                 onLoading = {
@@ -156,22 +136,6 @@ class AddPostViewModel @Inject constructor(
                 },
             )
         }
-//        val token = firebaseUser!!.Token
-//        viewModelScope.launch {
-//            var res = repository.getGradeSubjects(gradeId, token)
-//            res.collect {
-//                it.handleRepoResponse(
-//                    onLoading = {
-//                    },
-//                    onError = {
-//                    },
-//                    onSuccess = {
-//                        subjects.value = it.data!!
-//                    },
-//                )
-//
-//            }
-//        }
     }
 
     fun navigateBackToHomeScreen() {
@@ -180,7 +144,6 @@ class AddPostViewModel @Inject constructor(
 
     fun navigationBackToHomeScreenDone() {
         navigateBackToHomeScreen.value = false
-
     }
 
 

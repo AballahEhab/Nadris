@@ -49,9 +49,9 @@ class FollowProfileFragment : Fragment() {
 
         binding.rvPostsFollowProfile.adapter = adapter
 
-        viewModel.postsProfileList.observe(viewLifecycleOwner) {
-            adapter.differ.submitList(it)
-        }
+//        viewModel.postsProfileList.observe(viewLifecycleOwner) {
+//            adapter.differ.submitList(it)
+//        }
 
 
 //        /**todo: uncomment this code when needed**/

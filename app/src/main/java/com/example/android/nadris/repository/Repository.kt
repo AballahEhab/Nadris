@@ -182,6 +182,17 @@ class Repository @Inject constructor(
             Result.Success(exception.message)
         }
 
+    fun getAllInquiries() =
+        try {
+            val querySnapshot = remoteDataSource.getAllInquiries()
+            val inquiriesList = querySnapshot.map {
+                it.toObject<Inquiry>()
+            }
+            Result.Success(inquiriesList)
+        }catch (exception: Exception) {
+            Result.Error(exception.message!!)
+        }
+
 
 
 //    fun login(loginAccountModel: LoginAccountModel) = postToApiAndSaveToDatabase(

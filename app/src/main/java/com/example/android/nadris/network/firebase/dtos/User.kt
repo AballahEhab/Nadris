@@ -1,12 +1,13 @@
 package com.example.android.nadris.network.firebase.dtos
 
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.IgnoreExtraProperties
 
 
 @IgnoreExtraProperties
 data class User(
-    var id: String = "",
+    @Exclude  var id: String = "",
     val firstName: String = "",
     val lastName: String = "",
     val email: String = "",

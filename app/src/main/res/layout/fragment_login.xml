@@ -115,7 +115,6 @@
                     android:id="@+id/btn_sign_in"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:onClick="@{()-> viewModel.onLoginClicked()}"
                     android:text="@string/btn_sign_in_login"
 
                style="@style/material_btn"

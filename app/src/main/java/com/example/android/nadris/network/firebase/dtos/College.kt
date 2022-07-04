@@ -4,7 +4,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-class College (
+ class College (
     val name_ar:String = "",
     var docRef:DocumentReference? = null ){
 

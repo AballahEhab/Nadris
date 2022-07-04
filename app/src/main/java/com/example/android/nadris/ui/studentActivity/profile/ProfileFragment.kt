@@ -182,7 +182,7 @@ class ProfileFragment : Fragment() {
         viewModel.postsProfileList.observe(viewLifecycleOwner) {
             val adapter = CustomAdapter(postsViewModel)
             binding.rvPostsProfile.adapter = adapter
-            adapter.differ.submitList(it.toList())
+//            adapter.differ.submitList(it.toList())
             Log.i("length", it.size.toString())
         }
 
@@ -195,8 +195,6 @@ class ProfileFragment : Fragment() {
                 binding.imgProfile.setImageBitmap(img!!)
 
             }
-
-
         }
     }
 
