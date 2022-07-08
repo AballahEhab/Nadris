@@ -1,0 +1,2 @@
+jp/wasabeef/richeditor/test/BuildConfig.java
+ jp.wasabeef.richeditor.test.BuildConfig
