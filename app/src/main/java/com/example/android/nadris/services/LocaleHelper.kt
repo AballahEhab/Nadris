@@ -13,7 +13,7 @@ object LocaleHelper {
 
      fun setLocale(activity: Activity, language: String) {
         //save the choosen lanaguage
-         saveToSharedPreference(activity ,language)
+         saveUserSelectionToSharedPreference(activity ,language)
         val myLocale = Locale(language)
         val res: Resources = activity.baseContext.resources
         val dm: DisplayMetrics = res.displayMetrics
@@ -26,12 +26,12 @@ object LocaleHelper {
 
     }
 
-    fun refreshLangSelc(activity: Activity){
+    fun refreshLangSelection(activity: Activity){
         val langSel = getSavedLang(activity)
         setLocale(activity, langSel!!)
     }
 
-    private fun saveToSharedPreference(activity: Activity, lang:String){
+    private fun saveUserSelectionToSharedPreference(activity: Activity, lang:String){
         val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString(activity.getString(R.string.user_lang_pre),lang)
@@ -42,5 +42,7 @@ object LocaleHelper {
         val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
         return sharedPref.getString(activity.getString(R.string.user_lang_pre),null)
     }
+
+
 
 }

@@ -19,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
+    val TAG = "SplashActivity"
     lateinit var binding: ActivitySplashBinding
     lateinit var langSelcArray :Array<String>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
             enableLangSelMode()
             binding.confirBtn.setOnClickListener {
                 val langSelText = binding.spnLangSel.editText?.text.toString()
-                if (langSelText.isNullOrEmpty())
+                if (langSelText.isEmpty())
                         Toast.makeText(this,
                             getString(R.string.lang_not_sel_msg),
                             Toast.LENGTH_SHORT)
@@ -44,7 +45,7 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         } else {
-            LocaleHelper.refreshLangSelc(this)
+            LocaleHelper.refreshLangSelection(this)
             checkForUserAuth()
         }
     }

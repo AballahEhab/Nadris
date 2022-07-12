@@ -206,6 +206,7 @@
     <string name="select_language_title">please select a language</string>
     <string name="confirm_lang_sel_btn_title">choose</string>
     <string name="lang_not_sel_msg">please select a language</string>
+    <string name="retry_checking_connection_btn_title">Retry</string>
     <string-array name="languages">
         <item>English</item>
         <item>العربية</item>

@@ -12,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.databinding.FragmentLoginBinding
-import com.example.android.nadris.services.LocaleHelper
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.disableUserInterAction
@@ -21,6 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+
+    val TAG = "LoginFragment"
 
     lateinit var binding: FragmentLoginBinding
 
@@ -68,20 +69,8 @@ class LoginFragment : Fragment() {
                 enableUserInterAction(activity)
         }
 
-        binding.btnSignIn.setOnClickListener{
-            LocaleHelper.setLocale(requireActivity(),"ar")
-        }
-
-
         return binding.root
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-//        NadrisApplication.currentUserLocalData?.let {
-//            navigateToHomeFragment()
-//        }
     }
 
     private fun navigateToHomeFragment() {
@@ -110,6 +99,4 @@ class LoginFragment : Fragment() {
         }
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
-
 }
