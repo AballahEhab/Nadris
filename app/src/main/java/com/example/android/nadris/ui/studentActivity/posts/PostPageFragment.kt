@@ -1,6 +1,7 @@
 package com.example.android.nadris.ui.studentActivity.posts
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.Mode
 import com.example.android.nadris.databinding.FragmentPostPageBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PostPageFragment() : Fragment() {
+
+    private val TAG = "PostPageFragment"
 
     val viewModel: PostPageViewModel by viewModels()
     lateinit var binding: FragmentPostPageBinding
@@ -31,7 +35,10 @@ class PostPageFragment() : Fragment() {
         initialization()
 
         binding.lifecycleOwner = this.viewLifecycleOwner
+
         binding.postViewModle = viewModel
+
+        subscribeToObservers()
 
         viewModel.getPosts()
 
@@ -54,7 +61,6 @@ class PostPageFragment() : Fragment() {
             viewModel.getPosts()
         }
 
-        subscribeToObservers()
 
         return binding.root
     }
@@ -71,18 +77,54 @@ class PostPageFragment() : Fragment() {
 
     private fun subscribeToObservers() {
 
-        viewModel.postsList.observe(viewLifecycleOwner) {
-            adapter.differ.submitList(it)
+        viewModel.postsResults.observe(viewLifecycleOwner) { result ->
+            result.handleRepoResponse(
+                onPreExecute = {
+                    binding.swipeRefreshLayout.isRefreshing = false
+
+                },
+                onLoading = {
+                    binding.swipeRefreshLayout.isRefreshing = true
+                    result.data?.let { adapter.differ.submitList(it) }
+                },
+                onError = {
+                    Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+                },
+                onSuccess = {
+                    Log.v(TAG, result.data.toString())
+                    viewModel.updatePostsList(result.data!!)
+                    adapter.differ.submitList(result.data)
+                }
+            )
+
         }
 
-        viewModel.navigate_to_add_post.observe(this.viewLifecycleOwner) {
+        viewModel.updatedPostResult.observe(viewLifecycleOwner) { result ->
+            result.handleRepoResponse(
+                onError = {
+                    Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+                },
+                onSuccess = {
+                    viewModel.updateASpecificPost(result.data!!)
+                    adapter.differ.submitList(viewModel.postsList.value)
+                }
+            )
+
+        }
+
+        viewModel.navigateToAddPost.observe(this.viewLifecycleOwner) {
             if (it) {
                 this.findNavController()
-                    .navigate(PostPageFragmentDirections.actionPostsFragmentToAddPostFragment())
+                    .navigate(PostPageFragmentDirections.actionPostsFragmentToAddPostFragment(Mode.CREATE,
+                        "",
+                        "",
+                        "",
+                        ""))
                 viewModel.navigateToAddPostDone()
             }
         }
-
 
         viewModel.destinationProfileEmail.observe(this.viewLifecycleOwner) {
             it?.let { destinationProfileEmail ->
@@ -93,19 +135,14 @@ class PostPageFragment() : Fragment() {
             }
         }
 
-
         viewModel.aPostToEdit.observe(viewLifecycleOwner) { post ->
             post?.let {
                 findNavController().navigate(
                     PostPageFragmentDirections
                         .actionPostsFragmentToAddPostFragment(Mode.EDIT,
-                            post.postId, post.subject, post.content, post.hasImage))
-                viewModel.aPostToEdit.value = null
+                            post.postId, post.subject, post.content, post.imageFilePath!!))
+                viewModel.navigationToEditPostDone()
             }
-        }
-
-        viewModel.postsIsRefreshing.observe(this.viewLifecycleOwner) {
-            binding.swipeRefreshLayout.isRefreshing = it
         }
     }
 

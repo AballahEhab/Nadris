@@ -3,7 +3,7 @@ package com.example.android.nadris.ui.teacherActivity.subjects_teacher
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.database.models.TeacherSubject
+import com.example.android.nadris.database.models.DatabaseTeacherSubject
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SubjectViewModel @Inject constructor(val repository: Repository) : ViewModel() {
-    val isTeacher = NadrisApplication.currentUserLocalData?.Type
+    val isTeacher = NadrisApplication.currentDatabaseUser?.IsATeacher
     val navigateToAddingSectionFragmentEvent = MutableLiveData(false)
-    var list = MutableLiveData<List<TeacherSubject>>()
+    var list = MutableLiveData<List<DatabaseTeacherSubject>>()
 
     fun getdata() {
 //        viewModelScope.launch {

@@ -16,6 +16,7 @@ import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
 import com.example.android.nadris.util.disableUserInterAction
 import com.example.android.nadris.util.enableUserInterAction
+import com.example.android.nadris.util.isVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,11 +40,29 @@ class LoginFragment : Fragment() {
         //using view model to save UI state
         binding.viewModel = viewModel
 
-        viewModel.navigateToHomeScreen.observe(viewLifecycleOwner) {
-            if (it) {
-                navigateToHomeFragment()
-                viewModel.navigateToHomeActivityDone()
-            }
+        viewModel.loginResult.observe(viewLifecycleOwner) { result ->
+            result.handleRepoResponse(
+                onPreExecute = {
+                    binding.progressIndicatorLayer.isVisible(false)
+                    enableUserInterAction(activity)
+                    binding.loginErrorMessage.isVisible(false)
+                },
+                onLoading = {
+                    binding.progressIndicatorLayer.isVisible(true)
+                    disableUserInterAction(activity)
+                    hideKeyboard(this.requireActivity())
+                },
+                onError = {
+                    binding.loginErrorMessage.isVisible(true)
+                    binding.loginErrorMessage.text = result.error
+                },
+                onSuccess = {
+                    NadrisApplication.currentDatabaseUser = result.data
+                    navigateToHomeFragment()
+                    // show data
+                }
+            )
+
         }
 
         viewModel.navigateToCreateAccount.observe(viewLifecycleOwner) {
@@ -61,23 +80,15 @@ class LoginFragment : Fragment() {
             binding.edtPasswordLogin.error = it
         }
 
-        viewModel.showIndicator.observe(this.viewLifecycleOwner) {
-            if (it) {
-                disableUserInterAction(activity)
-                hideKeyboard(this.requireActivity())
-            } else
-                enableUserInterAction(activity)
-        }
-
         return binding.root
 
     }
 
     private fun navigateToHomeFragment() {
         lateinit var directionClass: Class<*>
-        if (NadrisApplication.currentUserLocalData?.Type == true)
+        if (NadrisApplication.currentDatabaseUser?.IsATeacher == true)
             directionClass = StudentMainActivity::class.java
-        else if (NadrisApplication.currentUserLocalData?.Type == false)
+        else if (NadrisApplication.currentDatabaseUser?.IsATeacher == false)
             directionClass = TeacherMainActivity::class.java
 
         startActivity(Intent(requireContext(), directionClass))
@@ -88,7 +99,7 @@ class LoginFragment : Fragment() {
             .navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
     }
 
-    fun hideKeyboard(activity: Activity) {
+    private fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager =
             activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         //Find the currently focused view, so we can grab the correct window token from it.

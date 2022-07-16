@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DatabasePost(
-    @PrimaryKey val postId: Long,
-    var hasImage :Boolean,
+    @PrimaryKey val postId: String,
+    var imageFilePath :String? ,
     var subject: String,
     var content: String,
-    var votesNum:Long,
-    var commentsNum:Long,
+    var votesNum:Int,
+    var commentsNum:Int,
     var time:String,
     var userId:String,
     var name:String,
@@ -28,7 +28,7 @@ data class DatabasePost(
     }
 
     fun updatePost(updatedPost:DatabasePost){
-        this.hasImage =updatedPost.hasImage
+        this.imageFilePath =updatedPost.imageFilePath
         this.subject =updatedPost.subject
         this.content =updatedPost.content
         this.votesNum =updatedPost.votesNum

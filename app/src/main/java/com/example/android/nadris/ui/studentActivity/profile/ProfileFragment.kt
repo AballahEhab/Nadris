@@ -168,7 +168,7 @@ class ProfileFragment : Fragment() {
         viewModel.navigateToLoginPage.observe(viewLifecycleOwner) {
             if(it){
                 requireActivity().startActivity(Intent(requireContext(), SplashActivity::class.java))
-                NadrisApplication.currentUserLocalData = null
+                NadrisApplication.currentDatabaseUser = null
             }
         }
 

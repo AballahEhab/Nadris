@@ -22,7 +22,7 @@
         style="@style/material_drop_menu"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:hint="@string/sp_gender_teacher_signup"
+        android:hint="@string/sp_gender_title"
         app:helperText="@string/Required1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

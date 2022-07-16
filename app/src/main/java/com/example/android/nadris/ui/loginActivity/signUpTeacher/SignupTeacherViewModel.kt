@@ -196,7 +196,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
                             email = email,
                             gender = genderId,
                             phoneNumber = phone,
-                            type = false,
+                            isATeacher = true,
                             university = universityDocRef,
                             college = collegeDocRef
                         ), password1)
@@ -210,32 +210,10 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
                         },
                         onSuccess = {
                             disableProgressBar()
-                            NadrisApplication.currentUserLocalData = result.data
+                            NadrisApplication.currentDatabaseUser = result.data
                             navigateToHomeScreen()
                         },
                     )
-
-//                val response = repository.registerNewTeacherAccount(
-//                    CreateTeacherAccountDataModelModel(
-//                        firstname, lastname, email, password1, phone, genderId, universityId, collegeId)
-//                )
-//                response.collect {
-//
-//                    it?.handleRepoResponse(
-//                        onLoading = {},
-//                        onError = {
-//                            disableProgressBar()
-//                            enableErrorMessage()
-//                            _errorMessage.value = it.error!!
-//                        },
-//                        onSuccess = {
-//                            disableProgressBar()
-//                            NadrisApplication.userData = it.data
-//                            navigateToHomeScreen()
-//                        },
-//                    )
-//
-//                }
             }
         }
 
@@ -259,7 +237,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     }
 
     private fun navigateToHomeScreen() {
-        _navigateToHomeScreen.value = true
+        _navigateToHomeScreen.postValue(true)
     }
 
     fun navigationAfterSuccessfulLoginDone() {

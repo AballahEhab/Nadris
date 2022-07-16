@@ -32,7 +32,7 @@ class ConnectivityMonitor(val context: Context) {
     }
 
      fun checkConnectivity() {
-        _isConnectedToNetwork.value = checkIfDeviceIsConnectedToANetwork(context!!)
+        _isConnectedToNetwork.value = checkIfDeviceIsConnectedToANetwork(context)
         GlobalScope.launch(Dispatchers.IO) {
             _isOnline.postValue(checkIfDeviceIsOnline())
         }

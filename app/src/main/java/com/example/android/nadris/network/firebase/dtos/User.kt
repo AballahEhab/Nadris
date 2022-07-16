@@ -7,7 +7,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class User(
-    @Exclude  var id: String = "",
+    @get:Exclude var id: String = "",
     val firstName: String = "",
     val lastName: String = "",
     val email: String = "",
@@ -15,10 +15,10 @@ data class User(
     val grade: DocumentReference? = null,
     val following_users: List<String> = listOf(),
     val phoneNumber: String = "",
-    val type: Boolean = false,
+    val isATeacher: Boolean = false,
     val university: DocumentReference? = null,
     val college: DocumentReference? = null,
     val imageLink: String = "",
-){
+) {
 
 }

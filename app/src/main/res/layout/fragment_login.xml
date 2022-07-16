@@ -96,13 +96,11 @@
                     android:id="@+id/login_error_message"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.loginRequestErrorMessage}"
                     android:fontFamily="@font/cairo_light"
                     android:textColor="@android:color/holo_red_dark"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    app:isVisible="@{viewModel.errorMessageVisibility}"
                     app:layout_constraintBottom_toTopOf="@+id/btn_sign_in"
                     app:layout_constraintEnd_toEndOf="@id/edt_password_login"
                     app:layout_constraintStart_toStartOf="@id/edt_password_login"
@@ -190,12 +188,12 @@
         </ScrollView>
 
         <FrameLayout
-
+            android:id="@+id/progress_indicator_layer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#7A787878"
             android:translationZ="2dp"
-            app:isVisible="@{viewModel.showIndicator}"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

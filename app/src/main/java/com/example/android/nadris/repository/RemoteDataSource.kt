@@ -2,12 +2,15 @@ package com.example.android.nadris.repository
 
 import android.net.Uri
 import com.example.android.nadris.network.firebase.dtos.Inquiry
+import com.example.android.nadris.network.firebase.dtos.Subject
 import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.network.firebase.services.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.storage.FileDownloadTask
 import java.io.File
 import javax.inject.Inject
 
@@ -23,6 +26,8 @@ constructor(
     private val inquiriesService: InquiriesService,
     private val subjectsService: SubjectsService,
 ) {
+
+    val subjectsList: MutableList<Subject> = mutableListOf()
 
     fun getCurrentUser() =
         authService.currentUser()
@@ -44,7 +49,7 @@ constructor(
 
     fun getGrades() = gradesService.getGrades()
 
-    fun getUserData(userId:String) = userService.getUserData(userId)
+    fun getUserData(userId: String) = userService.getUserData(userId)
 
     fun getSubjectsWithGrade(gradeDocRef: DocumentReference) =
         subjectsService.getSubjectsWithGrade(gradeDocRef)
@@ -71,21 +76,56 @@ constructor(
     fun addNewInquiryWithImage(inquiry: Inquiry, imageFile: File): Task<Void> {
 
         val inquiryID = inquiriesService.generateId()
-        val imageFileName = (inquiryID + imageFile.extension)
+        val imageFileName = (inquiryID + "." + imageFile.extension)
         val imageUri = Uri.fromFile(imageFile)
-        val uploadingImageTask = storageService.uploadInquiryImage(imageFileName,imageUri)
+        val uploadingImageTask = storageService.uploadInquiryImage(imageFileName, imageUri)
 
         return uploadingImageTask.continueWithTask {
             val imageLink = it.result?.storage
             inquiry.image_path = imageLink?.path.toString()
-            inquiriesService.addNewInquiryWithID( inquiry,inquiryID)
+            inquiriesService.addNewInquiryWithID(inquiry, inquiryID)
         }
     }
 
-    fun addNewInquiryWithoutImage(inquiry: Inquiry) =
+    fun addNewInquiryWithoutImage(inquiry: Inquiry): Task<DocumentReference> =
         inquiriesService.addNewInquiry(inquiry)
 
     fun getAllInquiries() = Tasks.await(inquiriesService.getAllInquiries())
+
+    fun getInquiryImage(file: File, imagePath: String, inquiryId: String): FileDownloadTask {
+        return storageService.getInquiryImage(file, imagePath, inquiryId)
+    }
+
+    fun getCommentsForAnInquiry(id: String) {
+        inquiriesService.getCommentsForAnInquiry(id)
+    }
+
+    fun getSubjectWithId(subjectId: String): Subject {
+        var subject = subjectsList.find { it.subject_id == subjectId }
+
+        try {
+            if (subject == null) {
+                val dcSnap = Tasks.await(subjectsService.getSubjectsWithSubjectId(subjectId))
+                subject = dcSnap.toObject<Subject>()
+                subject?.subject_id = dcSnap.id
+                subjectsList.add(subject!!)
+            }
+            return subject
+        } catch (exception: Exception) {
+            throw exception
+        }
+    }
+
+    fun getInquiryWithId(inquiryId: String) =
+        inquiriesService.getInquiryWithId(inquiryId)
+
+    fun setVotedUserIdsForInquiry(inquiryId: String, votedIdsList: MutableList<String>?)  =
+        inquiriesService.setVotedUserIdsForInquiry(inquiryId, votedIdsList)
+
+
+    fun signOut() {
+        authService.signOut()
+    }
 
 
 }

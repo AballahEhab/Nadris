@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class SubjectUnit(
+data class DatabaseSubjectUnit(
     @PrimaryKey val unitId: Long,
     val name: String,
     val icon: Int,
@@ -18,7 +18,7 @@ data class SubjectUnit(
 
 
 @Entity
-data class TeacherSubject(
+data class DatabaseTeacherSubject(
     @PrimaryKey val id: Long,
     val name: String,
     val section: String,
@@ -27,7 +27,7 @@ data class TeacherSubject(
     val teacherName: String,
 )
 @Entity
-data class StudentSubject(
+data class DatabaseStudentSubject(
     @PrimaryKey  val id: Long,
     val name: String,
     val grade: String,
@@ -38,7 +38,7 @@ data class StudentSubject(
     val rate: Long,
 )
 @Entity
-data class Subjects(
+data class DatabaseSubjects(
     @PrimaryKey  val id: Long,
     val name: String,
     val numOfTeachers:Long,

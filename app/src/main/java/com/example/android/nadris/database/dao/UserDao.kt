@@ -2,21 +2,21 @@ package com.example.android.nadris.database.dao
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.database.models.DatabaseUser
 
 @Dao
 interface UserDao {
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertUser(user: UserData)
+    suspend fun insertUser(databaseUser: DatabaseUser)
 
     @Update
-     suspend fun updateUser(user: UserData)
+     suspend fun updateUser(databaseUser: DatabaseUser)
 
-    @Query("SELECT * FROM UserData WHERE dbId = 1")
-     suspend fun getUser(): UserData
+    @Query("SELECT * FROM DatabaseUser WHERE dbId = 1")
+     suspend fun getUser(): DatabaseUser
 
      @Delete
-    suspend fun deleteUser(user:UserData)
+    suspend fun deleteUser(databaseUser:DatabaseUser)
 
 }

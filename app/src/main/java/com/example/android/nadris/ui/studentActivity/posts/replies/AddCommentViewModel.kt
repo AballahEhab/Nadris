@@ -11,7 +11,7 @@ import javax.inject.Inject
 class AddCommentViewModel @Inject constructor(val repo: Repository) : ViewModel() {
 
     val currentPostData = MutableLiveData<DatabasePost>()
-    var postId: Long = 0
+    var postId: String = ""
 //    var commentsList = MutableLiveData<List<CommentModel>>()
     var comment = MutableLiveData<String>()
     var sendButtonVisabilty = MutableLiveData(false)

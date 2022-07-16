@@ -5,43 +5,43 @@ import com.example.android.nadris.database.models.*
 
 @Dao
 interface SubjectDao {
-    @Query("SELECT * FROM TeacherSubject")
-    suspend fun getTeacherSubjects(): List<TeacherSubject>
-    @Query("SELECT * FROM StudentSubject")
-    suspend fun getRegisteredCoursesForAStudent():List<StudentSubject>
+    @Query("SELECT * FROM DatabaseTeacherSubject")
+    suspend fun getTeacherSubjects(): List<DatabaseTeacherSubject>
+    @Query("SELECT * FROM DatabaseStudentSubject")
+    suspend fun getRegisteredCoursesForAStudent():List<DatabaseStudentSubject>
 
-    @Query("SELECT * FROM TeacherSubject where id=:id")
-    suspend fun getSubject(id: Long): TeacherSubject
+    @Query("SELECT * FROM DatabaseTeacherSubject where id=:id")
+    suspend fun getSubject(id: Long): DatabaseTeacherSubject
 
-    @Query("SELECT * FROM Subjects where id=:id")
-    suspend fun getSubjects(id: Long): Subjects
+    @Query("SELECT * FROM DatabaseSubjects where id=:id")
+    suspend fun getSubjects(id: Long): DatabaseSubjects
 
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addRegisteredCoursesForAStudent(list: List<StudentSubject>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTeacherSubjects(list: List<TeacherSubject>)
+    suspend fun addRegisteredCoursesForAStudent(list: List<DatabaseStudentSubject>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSubject(item: TeacherSubject)
+    suspend fun insertTeacherSubjects(list: List<DatabaseTeacherSubject>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSubjects(list: List<Subjects>)
+    suspend fun insertSubject(item: DatabaseTeacherSubject)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUnitLessons(list: List<Lesson>)
-
-    @Query("SELECT * FROM lesson where FKUnitId=:id")
-    suspend fun getUnitLessons(id: Long): List<Lesson>
+    suspend fun insertSubjects(list: List<DatabaseSubjects>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSubjectUnits(list: List<SubjectUnit>)
+    suspend fun insertUnitLessons(list: List<DatabaseLesson>)
+
+    @Query("SELECT * FROM databaselesson where FKUnitId=:id")
+    suspend fun getUnitLessons(id: Long): List<DatabaseLesson>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSubjectUnit(unit: SubjectUnit)
+    suspend fun insertSubjectUnits(list: List<DatabaseSubjectUnit>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSubjectUnit(unitDatabase: DatabaseSubjectUnit)
 
     @Transaction
-    @Query("SELECT * FROM SubjectUnit where subjectId=:subjectId")
-    suspend fun getSubjectUnits(subjectId: Long): List<UnitLessons>
+    @Query("SELECT * FROM DatabaseSubjectUnit where subjectId=:subjectId")
+    suspend fun getSubjectUnits(subjectId: Long): List<DatabaseUnitLessons>
 }

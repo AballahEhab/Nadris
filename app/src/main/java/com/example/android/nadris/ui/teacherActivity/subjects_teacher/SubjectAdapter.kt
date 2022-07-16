@@ -7,19 +7,19 @@ package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
     import androidx.recyclerview.widget.AsyncListDiffer
     import androidx.recyclerview.widget.DiffUtil
     import androidx.recyclerview.widget.RecyclerView
-    import com.example.android.nadris.database.models.TeacherSubject
+    import com.example.android.nadris.database.models.DatabaseTeacherSubject
     import com.example.android.nadris.databinding.ItemRvSubTeacherBinding
     import com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectFragmentDirections
 
 class SubjectAdapter() :
     RecyclerView.Adapter<SubjectAdapter.ViewHolder>() {
 
-    private val differCallback = object : DiffUtil.ItemCallback<TeacherSubject>() {
-        override fun areItemsTheSame(oldItem: TeacherSubject, newItem: TeacherSubject): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseTeacherSubject>() {
+        override fun areItemsTheSame(oldItem: DatabaseTeacherSubject, newItem: DatabaseTeacherSubject): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: TeacherSubject, newItem: TeacherSubject): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseTeacherSubject, newItem: DatabaseTeacherSubject): Boolean {
             return oldItem == newItem
         }
     }

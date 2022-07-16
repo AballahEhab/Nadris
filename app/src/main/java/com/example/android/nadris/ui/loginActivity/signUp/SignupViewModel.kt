@@ -8,39 +8,37 @@ import javax.inject.Inject
 @HiltViewModel
 class SignupViewModel @Inject constructor() : ViewModel() {
 
-    private var _navigate_to_teacher_signUp:MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    val navigate_to_teacher_signUp:MutableLiveData<Boolean> get() = _navigate_to_teacher_signUp
+    private var _navigateToTeacherSignUp:MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    val navigateToTeacherSignUp:MutableLiveData<Boolean> get() = _navigateToTeacherSignUp
 
-    private var _navigate_to_student_signUp:MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    val navigate_to_student_signUp:MutableLiveData<Boolean> get() = _navigate_to_student_signUp
+    private var _navigateToStudentSignUp:MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    val navigateToStudentSignUp:MutableLiveData<Boolean> get() = _navigateToStudentSignUp
 
-    private var _navigate_to_login:MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    val navigate_to_login:MutableLiveData<Boolean> get() = _navigate_to_login
+    private var _navigateToLogin:MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    val navigateToLogin:MutableLiveData<Boolean> get() = _navigateToLogin
 
 
-
-    fun navigate_to_teacher_signUp(){
-        _navigate_to_teacher_signUp.value = true
+    fun navigateToTeacherSignUp(){
+        _navigateToTeacherSignUp.value = true
     }
 
-    fun navigation_to_teacher_signUp_done(){
-        _navigate_to_teacher_signUp.value = false
+    fun navigationTeacherSignUpDone(){
+        _navigateToTeacherSignUp.value = false
     }
 
-    fun navigate_to_student_signUp(){
-        _navigate_to_student_signUp.value = true
+    fun navigateToStudentSignup(){
+        _navigateToStudentSignUp.value = true
     }
 
-    fun navigation_to_student_signUp_done(){
-        _navigate_to_student_signUp.value = false
+    fun navigationToStudentSignupDone(){
+        _navigateToStudentSignUp.value = false
     }
 
-    fun navigate_to_login(){
-        _navigate_to_login.value = true
+    fun navigateToLogin(){
+        _navigateToLogin.value = true
     }
 
-    fun navigation_to_login_done(){
-        _navigate_to_login.value = false
+    fun navigationToLoginDone(){
+        _navigateToLogin.value = false
     }
-
 }

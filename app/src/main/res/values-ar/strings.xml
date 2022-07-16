@@ -187,6 +187,7 @@
     <string name="select_language_title">"من فضلك اختر اللغة "</string>
     <string name="confirm_lang_sel_btn_title">اختيار</string>
     <string name="lang_not_sel_msg">من فضلك اختر اللغة</string>
-
+    <string name="sp_gender_title">النوع</string>
+    <string name="retry_checking_connection_btn_title">"إعادة المحاولة "</string>
 
 </resources>

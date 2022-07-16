@@ -7,6 +7,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 class Subject (
     val grade:DocumentReference? = null ,
     val name_ar:String = "",
-    var docRef:DocumentReference? = null
+    val name_en:String = "",
+    var subject_id:String = ""
     ) {
 }

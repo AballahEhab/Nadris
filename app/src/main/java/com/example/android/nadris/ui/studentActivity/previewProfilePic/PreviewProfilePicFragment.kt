@@ -24,7 +24,7 @@ class PreviewProfilePicFragment : Fragment() {
         val binding =  FragmentPreviewProfilePicBinding.inflate(layoutInflater, container, false)
 
 //        binding.imageButton2.setImageResource(Converter(requireContext().applicationContext).convertFromBase64ToBitmap(null,"profile_photo"))
-        binding.textView2.text = NadrisApplication.currentUserLocalData?.getFullName()
+        binding.textView2.text = NadrisApplication.currentDatabaseUser?.getFullName()
 
 
 

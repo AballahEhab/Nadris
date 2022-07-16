@@ -10,10 +10,10 @@ interface PostDao {
     suspend fun getAllPosts(): List<DatabasePost>
 
     @Query("SELECT * FROM DatabasePost WHERE postId = :postIdP ")
-    fun getPostByPostId(postIdP:Long): Flow<DatabasePost>
+    fun getPostByPostId(postIdP:String): Flow<DatabasePost>
 
     @Query("SELECT postId FROM DatabasePost ")
-    suspend fun getSavedDiscussionsIds(): List<Long>
+    suspend fun getSavedDiscussionsIds(): List<String>
 
     @Update
     suspend fun updateAllSavedDiscussions(discussions:List<DatabasePost>)
@@ -28,6 +28,6 @@ interface PostDao {
     suspend fun insertPost(databasePost: DatabasePost)
 
     @Query("DELETE FROM DatabasePost WHERE postId = :postIdP")
-    suspend fun deleteDiscussion(postIdP:Long)
+    suspend fun deleteDiscussion(postIdP:String)
 
 }

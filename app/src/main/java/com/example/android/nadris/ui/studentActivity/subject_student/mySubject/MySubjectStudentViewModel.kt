@@ -2,7 +2,7 @@ package com.example.android.nadris.ui.studentActivity.subject_student.mySubject
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.nadris.database.models.StudentSubject
+import com.example.android.nadris.database.models.DatabaseStudentSubject
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MySubjectStudentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    var list = MutableLiveData<List<StudentSubject>>()
+    var list = MutableLiveData<List<DatabaseStudentSubject>>()
 
     fun getdata() {
 //        viewModelScope.launch {

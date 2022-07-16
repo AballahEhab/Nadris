@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.DisplayMetrics
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import java.util.*
 
@@ -14,6 +15,7 @@ object LocaleHelper {
      fun setLocale(activity: Activity, language: String) {
         //save the choosen lanaguage
          saveUserSelectionToSharedPreference(activity ,language)
+         NadrisApplication.instance?.lang = language
         val myLocale = Locale(language)
         val res: Resources = activity.baseContext.resources
         val dm: DisplayMetrics = res.displayMetrics

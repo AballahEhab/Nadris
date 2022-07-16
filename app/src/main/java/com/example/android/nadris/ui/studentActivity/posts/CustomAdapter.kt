@@ -4,27 +4,35 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.R
+import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.databinding.ItemPostCardCellBinding
-import com.example.android.nadris.network.firebase.dtos.Inquiry
+import com.example.android.nadris.util.isVisible
+import kotlinx.coroutines.launch
 import java.io.File
 
-class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Adapter<CustomAdapter.PostViewHolder>(),Filterable {
+class CustomAdapter(val postPageViewModel: PostPageViewModel) :
+    RecyclerView.Adapter<CustomAdapter.PostViewHolder>(), Filterable {
 
-    var fullPostsList = listOf<Inquiry>()
+    var fullPostsList = listOf<DatabasePost>()
 
-    private val differCallback = object : DiffUtil.ItemCallback<Inquiry>() {
-        override fun areItemsTheSame(oldItem: Inquiry, newItem: Inquiry): Boolean {
-            return oldItem.id == newItem.id
+    private val differCallback = object : DiffUtil.ItemCallback<DatabasePost>() {
+        override fun areItemsTheSame(oldItem: DatabasePost, newItem: DatabasePost): Boolean {
+            return oldItem.postId == newItem.postId
         }
 
-        override fun areContentsTheSame(oldItem: Inquiry, newItem: Inquiry): Boolean {
+        override fun areContentsTheSame(oldItem: DatabasePost, newItem: DatabasePost): Boolean {
             return oldItem == newItem
         }
 
@@ -43,9 +51,8 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
         val postData = differ.currentList[position]
         var img: Bitmap?
 
-        /**if (postData.image_path !=null ) {
-            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
-                postData.id.toString())
+        if (!postData.imageFilePath.isNullOrEmpty()) {
+            val file = File(postData.imageFilePath)
             if (file.exists()) {
                 img = BitmapFactory.decodeFile(file.absolutePath)
                 holder.binding.imgPost.setImageBitmap(img!!)
@@ -53,114 +60,113 @@ class CustomAdapter(val postPageViewModel: PostPageViewModel) : RecyclerView.Ada
             } else {
                 holder.binding.imgPost.visibility = View.GONE
             }
-        }else {
+        } else {
             holder.binding.imgPost.visibility = View.GONE
-        }*/
+        }
 
         holder.setDataBindingObj(postData)
 
-
-        /**holder.binding.imgReply.setOnClickListener {
+        holder.binding.imgReply.setOnClickListener {
             holder.itemView.findNavController()
-                .navigate(PostPageFragmentDirections.actionPostsFragmentToAddCommentFragment(postData.postId))
-        }*/
-
-        /**
-        holder.binding.imgVote.setOnClickListener {
-
-            postData.toggleVote()
-            notifyItemChanged(position)
-
-            postPageViewModel.vote(postData.postId)
-                .let {
-                    postData.updatePost(it!!)
-                }
+                .navigate(PostPageFragmentDirections.actionPostsFragmentToAddCommentFragment(
+                    postData.postId))
         }
-*/
-        /**holder.binding.bookmark.setOnClickListener {
+
+        holder.binding.imgVote.setOnClickListener {
+            postData.toggleVote()
+                postPageViewModel.voteToPost(postData.postId)
+        }
+
+        holder.binding.bookmark.setOnClickListener {
             postData.toggleBookMark()
 
             postPageViewModel.bookMark(postData)
             notifyItemChanged(position)
-        }*/
+        }
 
-        /**holder.binding.profileImage.setOnClickListener {
-            postPageViewModel.navigateToPublicProfilePage(postData.id)
-        }*/
+        holder.binding.profileImage.setOnClickListener {
+            postPageViewModel.navigateToPublicProfilePage(postData.userId)
+        }
 
-            try{
-                val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
-                    postData.id.toString())
-                val profileImageBitMap = BitmapFactory.decodeFile(file.absolutePath)
-                holder.binding.profileImage.setImageBitmap(profileImageBitMap)
-            }catch (e:Throwable) {
-                Log.e("PostsCustomAdapter", e.message.toString())
-            }
+        try {
+            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
+                postData.userId.toString())
+            val profileImageBitMap = BitmapFactory.decodeFile(file.absolutePath)
+            holder.binding.profileImage.setImageBitmap(profileImageBitMap)
+        } catch (e: Throwable) {
+            Log.e("PostsCustomAdapter", e.message.toString())
+        }
 
-        // todo: this features should be added after testing
-        //  after testing so that user cannot edit or delete but his discussions
-/**        if (NadrisApplication.userData?.id?.equals(postData.userId)!!){
-            holder.binding.discussionMoreOption.isVisible(true)
-            holder.binding.discussionMoreOption.setOnClickListener {
-                val menu = android.widget.PopupMenu(it.context, it)
+        // todo: adding after testing features so that user cannot edit or delete but his discussions
+        NadrisApplication.currentDatabaseUser?.userID?.let {
 
-                menu.inflate(R.menu.discussion_more_options_menu)
-                menu.show()
+            if (it.equals(postData.userId)!!) {
 
-                menu.setOnMenuItemClickListener { menu_item ->
+                holder.binding.discussionMoreOption.isVisible(true)
+                holder.binding.discussionMoreOption.setOnClickListener {
+                    val menu = android.widget.PopupMenu(it.context, it)
 
-                    when (menu_item.itemId) {
-                        R.id.delete_discussion_menu_item -> postPageViewModel.deletepost(postData.postId)
-                        R.id.edit_discussion_menu_item -> postPageViewModel.navigate_to_edit_post(postData)
+                    menu.inflate(R.menu.discussion_more_options_menu)
+                    menu.show()
+
+                    menu.setOnMenuItemClickListener { menu_item ->
+
+                        when (menu_item.itemId) {
+                            R.id.delete_discussion_menu_item -> postPageViewModel.deletePost(
+                                postData.postId)
+                            R.id.edit_discussion_menu_item -> postPageViewModel.navigateToEditPost(
+                                postData)
+                        }
+
+                        false
                     }
 
-                    false
                 }
-
             }
-        }*/
+        }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
-    class PostViewHolder(var binding: ItemPostCardCellBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PostViewHolder(var binding: ItemPostCardCellBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun setDataBindingObj(post: Inquiry) {
+        fun setDataBindingObj(post: DatabasePost) {
             binding.postData = post
         }
     }
 
-    override fun getFilter(): Filter  = searchFilter
+    override fun getFilter(): Filter = searchFilter
 
-        private val searchFilter = object : Filter() {
+    private val searchFilter = object : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
 
             fullPostsList = postPageViewModel.postsList.value!!
 
-            val filteredList = mutableListOf<Inquiry>()
+            val filteredList = mutableListOf<DatabasePost>()
 
-            if(constraint.isNullOrEmpty()){
+            if (constraint.isNullOrEmpty()) {
 
                 filteredList.addAll(fullPostsList)
 
-            }else{
+            } else {
                 val filterKeyWord = constraint.toString().toLowerCase().trim()
-                for(post in fullPostsList){
-                    if(post.body?.toLowerCase()?.contains(filterKeyWord)!!)
+                for (post in fullPostsList) {
+                    if (post.content.toLowerCase().contains(filterKeyWord))
                         filteredList.add(post)
                 }
 
             }
 
             val filterResult = FilterResults()
-            filterResult.values =  filteredList
+            filterResult.values = filteredList
             return filterResult
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-            differ.submitList(results?.values as MutableList<Inquiry>?)
+            differ.submitList(results?.values as MutableList<DatabasePost>?)
         }
 
     }

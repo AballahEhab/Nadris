@@ -32,8 +32,8 @@
         tools:layout="@layout/fragment_add_pos">
         <argument
             android:name="post_id"
-            app:argType="long"
-            android:defaultValue="0L"
+            app:argType="string"
+            android:defaultValue=""
 
             />
 

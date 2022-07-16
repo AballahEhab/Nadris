@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_add_comment">
         <argument
             android:name="postId"
-            app:argType="long" />
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -57,8 +57,8 @@
 
                 <argument
                     android:name="post_id"
-                    app:argType="long"
-                    android:defaultValue="0L"
+                    app:argType="string"
+                    android:defaultValue=""
 
                     />
 
@@ -83,9 +83,9 @@
 
                     />
                 <argument
-                    android:name="hasImage"
-                    app:argType="boolean"
-                    android:defaultValue="false"
+                    android:name="image_path"
+                    app:argType="string"
+                    android:defaultValue=""
 
                     />
         <action

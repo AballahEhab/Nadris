@@ -1,7 +1,7 @@
 package com.example.android.nadris
 
 import android.app.Application
-import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.database.models.DatabaseUser
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.services.ConnectivityMonitor
 import com.google.firebase.FirebaseApp
@@ -14,7 +14,7 @@ class NadrisApplication : Application() {
 
     companion object {
         var instance: NadrisApplication? = null
-        var currentUserLocalData : UserData? = null
+        var currentDatabaseUser : DatabaseUser? = null
         var currentUserData : User? = null
     }
 
@@ -22,6 +22,8 @@ class NadrisApplication : Application() {
     lateinit var repo: Repository
 
     lateinit var connectivityMonitor:ConnectivityMonitor
+
+    var lang : String? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -31,7 +33,6 @@ class NadrisApplication : Application() {
         if (instance == null) instance = this
 
         connectivityMonitor = ConnectivityMonitor(this)
-
 
     }
 }

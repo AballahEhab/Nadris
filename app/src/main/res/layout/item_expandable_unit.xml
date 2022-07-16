@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="unit" type="com.example.android.nadris.database.models.SubjectUnit"/>
+        <variable name="unit" type="com.example.android.nadris.database.models.DatabaseSubjectUnit"/>
         <variable name="adapter" type="com.example.android.nadris.ui.studentActivity.units.LessonItemAdapter"/>
     </data>
     <androidx.cardview.widget.CardView

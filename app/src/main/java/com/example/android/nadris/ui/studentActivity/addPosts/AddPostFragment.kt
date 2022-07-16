@@ -7,7 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,9 +86,8 @@ class AddPostFragment : Fragment() {
 
         binding.imageButton.text = "edit image"
 
-        if (args.hasImage) {
-            val file = File(NadrisApplication.instance?.applicationContext?.cacheDir,
-                args.postId.toString())
+        if (!args.imagePath.isNullOrBlank()) {
+            val file = File(args.imagePath)
             if (file.exists()) {
                 val img = BitmapFactory.decodeFile(file.absolutePath)
                 binding.pickedImage.setImageBitmap(img!!)
@@ -179,12 +177,12 @@ class AddPostFragment : Fragment() {
                 image = data?.extras?.get("data") as Bitmap
 
                 viewModel.imageFile = data.extras?.get("data") as File
-                try {
-                    viewModel.imageStrB64 = converter.convertBitmapToBase64(image!!)
-                    binding.pickedImage.setImageBitmap(image)
-                } catch (e: Exception) {
-                    Log.e("b64", e.message.toString())
-                }
+                binding.pickedImage.setImageBitmap(image)
+//                try {
+//                    viewModel.imageStrB64 = converter.convertBitmapToBase64(image!!)
+//                } catch (e: Exception) {
+//                    Log.e("b64", e.message.toString())
+//                }
             }
             PHOTO_PICKER_REQUEST_CODE -> {
                 val selectedImage = data?.data

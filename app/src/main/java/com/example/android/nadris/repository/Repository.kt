@@ -1,11 +1,15 @@
 package com.example.android.nadris.repository
 
+import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.DatabaseUser
 import com.example.android.nadris.network.firebase.NetworkObjectMapper
 import com.example.android.nadris.network.firebase.dtos.*
 import com.example.android.nadris.util.Result
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.flow.flow
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,25 +26,27 @@ class Repository @Inject constructor(
     suspend fun getLocalUserData() =
         localDataSource.getUserData()
 
-    suspend fun signInWithEmailAndPassword(checkedEmail: String, checkedPassword: String) =
+    fun signInWithEmailAndPassword(checkedEmail: String, checkedPassword: String) =
+        flow {
+            emit(Result.Loading())
+            try {
+                val userDataDoc =
+                    Tasks.await(remoteDataSource.singInWithEmailAndPassword(checkedEmail,
+                        checkedPassword))
 
-        try {
-            val userDataDoc = Tasks.await(remoteDataSource.singInWithEmailAndPassword(checkedEmail,
-                checkedPassword))
+                var userData = userDataDoc.toObject<User>()
 
-            var userData = userDataDoc.toObject<User>()
+                userData?.id = userDataDoc.id
 
-            userData?.id = userDataDoc.id
+                userData
+                    ?.let { NetworkObjectMapper.userToDatabaseUser(it) }
+                    ?.let { localDataSource.addUserData(it) }
 
-            userData
-                ?.let { NetworkObjectMapper.userToDatabaseUser(it) }
-                ?.let { localDataSource.addUserData(it) }
+                emit(Result.Success(localDataSource.getUserData()))
 
-            Result.Success(localDataSource.getUserData())
-
-        } catch (throwable: Throwable) {
-
-            Result.Error(throwable.message!!)
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.localizedMessage!!))
+            }
         }
 
     suspend fun getGrades() =
@@ -89,10 +95,9 @@ class Repository @Inject constructor(
         try {
             val subjectsQuery =
                 Tasks.await(remoteDataSource.getSubjectsWithGrade(gradeRef))
-
             val collegesList = subjectsQuery.map {
                 val subject = it.toObject<Subject>()
-                subject.docRef = it.reference
+                subject.subject_id = it.reference.id
                 subject
             }
 
@@ -160,19 +165,20 @@ class Repository @Inject constructor(
 
     suspend fun addNewInquiryWithImage(inquiry: Inquiry, imageFile: File) =
         try {
-             Tasks.await(remoteDataSource.addNewInquiryWithImage(inquiry, imageFile))
+            Tasks.await(remoteDataSource.addNewInquiryWithImage(inquiry, imageFile))
             Result.Success(inquiry)
         } catch (exception: Exception) {
             Result.Error(exception.message!!)
         }
 
-    suspend fun addNewInquiryWithoutImage(inquiry:Inquiry) =
-    try {
-        Tasks.await(remoteDataSource.addNewInquiryWithoutImage(inquiry))
-        Result.Success(inquiry)
-    } catch (exception: Exception) {
-        Result.Error(exception.message!!)
-    }
+    suspend fun addNewInquiryWithoutImage(inquiry: Inquiry) =
+        try {
+            Tasks.await(remoteDataSource.addNewInquiryWithoutImage(inquiry))
+            Result.Success(inquiry)
+        } catch (exception: Exception) {
+            Result.Error(exception.message!!)
+        }
+
     fun getUserData(userId: String) =
         try {
             val userDataTask = Tasks.await(remoteDataSource.getUserData(userId))
@@ -183,57 +189,113 @@ class Repository @Inject constructor(
         }
 
     fun getAllInquiries() =
-        try {
-            val querySnapshot = remoteDataSource.getAllInquiries()
-            val inquiriesList = querySnapshot.map {
-                it.toObject<Inquiry>()
+        flow {
+            val localInquiries = localDataSource.getInquiries()
+            emit(Result.Loading(localInquiries))
+            try {
+                val querySnapshot = remoteDataSource.getAllInquiries()
+                val inquiriesList = querySnapshot.map {
+                    val inquiry = it.toObject<Inquiry>()
+                    inquiry.id = it.id
+                    inquiry.subjectName = getSubjectName(inquiry.subject_id!!)
+                    if (!inquiry.image_path.isNullOrEmpty())
+                        inquiry.image_File_Path =
+                            getInquiryImage(inquiry.image_path!!, inquiry.id!!).absolutePath
+                    val fullUserName = getFullUserName(inquiry.userID!!)
+                    NetworkObjectMapper.postAsDatabaseModel(inquiry,fullUserName)
+                }
+                emit(Result.Success(inquiriesList))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
             }
-            Result.Success(inquiriesList)
-        }catch (exception: Exception) {
+        }
+
+    private fun getFullUserName(userID: String): String {
+        val userSnapShot = Tasks.await(remoteDataSource.getUserData(userID))
+        val userData = userSnapShot.toObject<User>()
+        return userData?.firstName + " "+userData?.lastName
+    }
+
+    private fun getSubjectName(subjectId: String): String {
+
+        val subject = remoteDataSource.getSubjectWithId(subjectId)
+
+        return if (NadrisApplication.instance?.lang == "ar")
+            subject?.name_ar!!
+        else
+            subject?.name_en!!
+    }
+
+    private fun getComments(id: String) {
+        remoteDataSource.getCommentsForAnInquiry(id)
+    }
+
+    private fun getInquiryImage(imagePath: String, inquiryId: String): File {
+        try {
+            val localeFile = File.createTempFile(inquiryId, "jpg")
+            val task =
+                Tasks.await(remoteDataSource.getInquiryImage(localeFile, imagePath, inquiryId))
+            return localeFile
+        } catch (exception: Exception) {
+            throw exception
+        }
+    }
+
+    fun vote(userID: String?, inquiryId: String): Result<DatabasePost?> {
+        var votedIdsList: MutableList<String>? = null
+
+        try {
+            val task = Tasks.await(getVotedUserIdsForInquiry(inquiryId))
+            votedIdsList = task.toObject<Inquiry>()?.voted_user_ids?.toMutableList()
+        } catch (exception: Exception) {
+            return Result.Error(exception.message!!)
+        }
+
+        if (votedIdsList?.contains(userID)!!) {
+            votedIdsList.remove(userID)
+        } else {
+            votedIdsList.add(userID!!)
+        }
+
+        try{
+            Tasks.await(setVotedUserIdsForInquiry(inquiryId, votedIdsList))
+        }catch (exception:Exception){
+            return Result.Error(exception.message!!)
+        }
+        return try {
+            val docSnapShot = Tasks.await(getInquiryWithId(inquiryId))
+            val inquiry = docSnapShot.toObject<Inquiry>()
+            inquiry?.id = docSnapShot.id
+            inquiry?.subjectName = getSubjectName(inquiry?.subject_id!!)
+            val fullUserName = getFullUserName(inquiry?.userID!!)
+            val databaseInquiry = NetworkObjectMapper.postAsDatabaseModel(inquiry!!, fullUserName)
+            Result.Success(databaseInquiry)
+        } catch (exception: Exception) {
             Result.Error(exception.message!!)
         }
 
+    }
+
+    private fun getInquiryWithId(inquiryId: String) =
+        remoteDataSource.getInquiryWithId(inquiryId)
+
+    private fun setVotedUserIdsForInquiry(inquiryId: String, votedIdsList: MutableList<String>?)  =
+        remoteDataSource.setVotedUserIdsForInquiry(inquiryId, votedIdsList)
 
 
-//    fun login(loginAccountModel: LoginAccountModel) = postToApiAndSaveToDatabase(
-//        request = { remoteDataSource.login(loginAccountModel) },
-//        saveFetchResult = { user -> localDataSource.addUserData(user) },
-//        convertToDatabaseModel = { networkModel ->
-//            NetworkModelsMapper.authModelAsDataBaseModel(networkModel)
-//        }
-//    )
-//
-//    fun registerNewStudentAccount(accountDataModel: CreateStudentAccountDataModelModel) =
-//        postToApiAndSaveToDatabase(
-//            request = { remoteDataSource.createStudentAccount(accountDataModel) },
-//            saveFetchResult = { user -> localDataSource.addUserData(user) },
-//            convertToDatabaseModel = { networkModel ->
-//                NetworkModelsMapper.authModelAsDataBaseModel(networkModel)
-//            }
-//        )
-//
-//    fun registerNewTeacherAccount(createTeacherAccountDataModelModel: CreateTeacherAccountDataModelModel) =
-//        postToApiAndSaveToDatabase(
-//            request = { remoteDataSource.createTeacherAccount(createTeacherAccountDataModelModel) },
-//            saveFetchResult = { user -> localDataSource.addUserData(user) },
-//            convertToDatabaseModel = { networkModel ->
-//                NetworkModelsMapper.authModelAsDataBaseModel(networkModel)
-//            }
-//        )
-//
-//    suspend fun getUser() = localDataSource.getUserData()
-//
-//    fun getPosts(token: String) = getFromApiAndSaveToDataBase(
-//        query = { localDataSource.getAllPosts() },
-//        fetch = { remoteDataSource.getAllPosts(token) },
-//        convertToDatabaseModel = { networkPostsList ->
-//            networkPostsList.map { networkPost ->
-//                NetworkModelsMapper.postAsDatabaseModel(networkPost)
-//            }
-//        },
-//        saveFetchResult = { list_of_posts -> list_of_posts.let { localDataSource.insertPosts(it) } }
-//    )
-//
+    private fun getVotedUserIdsForInquiry(inquiryId: String) =
+        remoteDataSource.getInquiryWithId(inquiryId)
+
+    suspend fun logOut(user: DatabaseUser) =
+        try {
+            localDataSource.deleteUser(user)
+            remoteDataSource.signOut()
+            Result.Success(true)
+        } catch (exception: Exception) {
+            Result.Error(exception.localizedMessage)
+        }
+
+
 //    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
 //
 //        query = { localDataSource.getSubjectUnits(subjectID) },
@@ -433,6 +495,4 @@ class Repository @Inject constructor(
 //        }
 //            return false
 //    }
-
-
 }

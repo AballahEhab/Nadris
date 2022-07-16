@@ -2,21 +2,19 @@ package com.example.android.nadris.ui.studentActivity.subject_student.mySubject
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
-import com.example.android.nadris.database.models.StudentSubject
+import com.example.android.nadris.database.models.DatabaseStudentSubject
 import com.example.android.nadris.databinding.ItemSubjectStudentBinding
 
 class MySubjectAdapter: RecyclerView.Adapter<MySubjectAdapter.ViewHolder>() {
-    private val differCallback = object : DiffUtil.ItemCallback<StudentSubject>(){
-        override fun areItemsTheSame(oldItem: StudentSubject, newItem: StudentSubject): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseStudentSubject>(){
+        override fun areItemsTheSame(oldItem: DatabaseStudentSubject, newItem: DatabaseStudentSubject): Boolean {
             return oldItem.id == newItem.id
         }
-        override fun areContentsTheSame(oldItem: StudentSubject, newItem: StudentSubject): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseStudentSubject, newItem: DatabaseStudentSubject): Boolean {
             return oldItem == newItem
         }
     }

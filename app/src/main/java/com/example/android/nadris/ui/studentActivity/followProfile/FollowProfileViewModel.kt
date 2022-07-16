@@ -3,7 +3,7 @@ package com.example.android.nadris.ui.studentActivity.followProfile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.database.models.DatabasePost
-import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.database.models.DatabaseUser
 import com.example.android.nadris.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FollowProfileViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    val profileData: MutableLiveData<UserData> = MutableLiveData()
+    val profileDatabase: MutableLiveData<DatabaseUser> = MutableLiveData()
 
     var postsProfileList = MutableLiveData<List<DatabasePost>>()
 

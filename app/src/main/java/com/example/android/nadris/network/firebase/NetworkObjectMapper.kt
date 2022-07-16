@@ -1,49 +1,39 @@
 package com.example.android.nadris.network.firebase
 
-import com.example.android.nadris.database.models.UserData
+import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.DatabaseUser
+import com.example.android.nadris.network.firebase.dtos.Inquiry
 import com.example.android.nadris.network.firebase.dtos.User
 
 object NetworkObjectMapper {
+    val TAG = "NetworkObjectMapper"
     fun userToDatabaseUser(user: User) =
-        UserData(
+        DatabaseUser(
             userID = user.id,
             Email= user.email,
             firstName = user.firstName,
             lastName = user.lastName,
             PhoneNumber = user.phoneNumber,
-            Type = user.type,
+            IsATeacher = user.isATeacher,
             Gender = user.gender,
             GradeId = user.grade?.id,
         )
 
-//    fun postAsDatabaseModel(inquiry: Inquiry): DatabasePost {
-//        var hasImage = false
-//        if (!inquiry.image_path.isNullOrEmpty()) {
-//            NadrisApplication.instance?.let {
-//                Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.imgStrB64,
-//                    networkPost.id.toString())
-//            }
-//            hasImage = true
-//        }
-//        if (!networkPost.profilePicBase64.isNullOrEmpty()) {
-//            NadrisApplication.instance?.let {
-//                Converter(it.applicationContext).convertFromBase64ToBitmap(networkPost.profilePicBase64,
-//                    networkPost.userId)
-//            }
-//        }
-//        return DatabasePost(
-//            inquiry.id,
-//            hasImage,
-//            inquiry.subjectName,
-//            inquiry.content,
-//            inquiry.votes,
-//            inquiry.numOfComments,
-//            inquiry.time,
-//            inquiry.userId,
-//            inquiry.name,
-//            inquiry.isVoted,
-//        )
-//    }
+    fun postAsDatabaseModel(inquiry: Inquiry,name:String): DatabasePost =
+        DatabasePost(
+            postId = inquiry.id!!,
+            imageFilePath = inquiry.image_File_Path!!,
+            subject = inquiry.subjectName!!,
+            content = inquiry.body!!,
+            votesNum = inquiry.voted_user_ids.size,
+            commentsNum = inquiry.replies_num,
+            time = inquiry.time.toString(),
+            userId = inquiry.userID!!,
+            name = name,
+            isVoted = inquiry.voted_user_ids.contains(NadrisApplication.currentDatabaseUser?.userID),
+        )
+
 
     /**
     fun authModelAsDataBaseModel(model: AuthModel) = UserData(
@@ -54,6 +44,7 @@ object NetworkObjectMapper {
         PhoneNumber = model.phoneNumber,
         Type = model.type,
         Gender = model.gender,
+
         Exp = model.exp,
         GradeId = model.gradeId,
         University = model.university,

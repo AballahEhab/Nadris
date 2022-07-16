@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.nadris.NadrisApplication.Companion.currentUserLocalData
+import com.example.android.nadris.NadrisApplication.Companion.currentDatabaseUser
 import com.example.android.nadris.network.firebase.dtos.Grade
 import com.example.android.nadris.network.firebase.dtos.Inquiry
 import com.example.android.nadris.network.firebase.dtos.Subject
@@ -26,7 +26,7 @@ class AddPostViewModel @Inject constructor(
     ViewModel() {
 
     private val TAG = "AddPostViewModel"
-    var editedDiscussionId: Long? = null
+    var editedDiscussionId: String? = null
     var navigateBackToHomeScreen: MutableLiveData<Boolean> = MutableLiveData(false)
     var subjects: MutableLiveData<List<Subject>> = MutableLiveData<List<Subject>>()
     var grades: MutableLiveData<List<Grade>> = MutableLiveData<List<Grade>>()
@@ -35,7 +35,7 @@ class AddPostViewModel @Inject constructor(
     var imageStrB64: String? = null
     var imageFile: File? = null
 
-    val isTeacher = currentUserLocalData!!.Type
+    val isTeacher = currentDatabaseUser!!.IsATeacher
     private var selectedGrade: MutableLiveData<String> = MutableLiveData<String>()
 
 
@@ -47,12 +47,12 @@ class AddPostViewModel @Inject constructor(
     fun getSelectedGrade() = selectedGrade.value
 
     fun addPost() {
-        val subjectRef = subjects.value!!.find { it.name_ar == selectedSubject.value }!!.docRef
+        val subjectRef = subjects.value!!.find { it.name_ar == selectedSubject.value }!!.subject_id
         viewModelScope.launch(Dispatchers.IO) {
             val inquiry = Inquiry(
                 body = question.value!!,
-                subject = subjectRef,
-                userID = currentUserLocalData?.userID!!)
+                subject_id = subjectRef,
+                userID = currentDatabaseUser?.userID!!)
 
             val result =
                 if (imageFile == null)
@@ -121,7 +121,7 @@ class AddPostViewModel @Inject constructor(
                 if (isTeacher)
                     grades.value!!.find { it.name_ar == selectedGrade.value }!!.gradeReference!!
                 else {
-                    val result = repository.getUserData(currentUserLocalData?.userID!!)
+                    val result = repository.getUserData(currentDatabaseUser?.userID!!)
                     (result.data as User).grade
                 }
             val result = repository.getSubjectsWithGrade(gradeRef!!)

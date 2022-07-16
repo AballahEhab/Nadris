@@ -6,19 +6,18 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.database.models.Lesson
-import com.example.android.nadris.databinding.FragmentUnitsBinding
+import com.example.android.nadris.database.models.DatabaseLesson
 import com.example.android.nadris.databinding.ItemLessonBinding
 
 class LessonItemAdapter : RecyclerView.Adapter<LessonItemAdapter.LessonItemViewHolder>() {
 
 
-    private val differCallback = object : DiffUtil.ItemCallback<Lesson>() {
-        override fun areItemsTheSame(oldItem: Lesson, newItem: Lesson): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseLesson>() {
+        override fun areItemsTheSame(oldItem: DatabaseLesson, newItem: DatabaseLesson): Boolean {
             return oldItem.lessonID == newItem.lessonID
         }
 
-        override fun areContentsTheSame(oldItem: Lesson, newItem: Lesson): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseLesson, newItem: DatabaseLesson): Boolean {
             return oldItem == newItem
         }
     }

@@ -2,18 +2,21 @@ package com.example.android.nadris.ui.studentActivity.profile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.repository.Repository
+import com.example.android.nadris.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     var imgProfile: MutableLiveData<String?> = MutableLiveData<String?>(null);
-    var nameProfile: MutableLiveData<String> = MutableLiveData<String>(NadrisApplication.currentUserLocalData?.getFullName());
-    var profileType: MutableLiveData<String> = MutableLiveData(if(NadrisApplication.currentUserLocalData?.Type == false) "Student" else "Teacher");
+    var nameProfile: MutableLiveData<String> = MutableLiveData<String>(NadrisApplication.currentDatabaseUser?.getFullName());
+    var profileType: MutableLiveData<String> = MutableLiveData(if(NadrisApplication.currentDatabaseUser?.IsATeacher == false) "Student" else "Teacher");
     var numFollowers: MutableLiveData<Long> = MutableLiveData(0);
     var numFolling: MutableLiveData<Long> = MutableLiveData(0);
 
@@ -81,10 +84,13 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
     }
 
     fun logOut() {
-//        viewModelScope.launch{
-//        NadrisApplication.userData?.let { repository.logOut(it) }
-//    }
-        navigateToLoginPage.value = true
+        viewModelScope.launch{
+        NadrisApplication.currentDatabaseUser?.let {
+            val result = repository.logOut(it)
+            if(result is Result.Success)
+                navigateToLoginPage.postValue(true)
+        }
+    }
     }
 
     fun onProfileImageClicked() {

@@ -28,6 +28,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val savedLangSel = LocaleHelper.getSavedLang(this)
+
         if (savedLangSel == null) {
             enableLangSelMode()
             binding.confirBtn.setOnClickListener {
@@ -88,13 +89,13 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private suspend fun getCurrentUserLocalData() {
-        NadrisApplication.currentUserLocalData =
+        NadrisApplication.currentDatabaseUser =
             NadrisApplication.instance?.repo?.getLocalUserData()
     }
 
     private fun navigateToHomeActivity() {
 
-        when (NadrisApplication.currentUserLocalData?.Type) {
+        when (NadrisApplication.currentDatabaseUser?.IsATeacher) {
             true -> navigateToTeacherMainActivity()
             false -> navigateToStudentHomeActivity()
             else -> navigateToLoginActivity()

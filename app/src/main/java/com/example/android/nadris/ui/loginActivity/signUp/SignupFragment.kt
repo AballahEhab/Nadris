@@ -28,27 +28,26 @@ class SignupFragment : Fragment() {
 
         binding.viewModle = viewModel
 
-        viewModel.navigate_to_teacher_signUp.observe(this.viewLifecycleOwner) {
+        viewModel.navigateToTeacherSignUp.observe(this.viewLifecycleOwner) {
             if (it) {
                 this.findNavController()
                     .navigate(SignupFragmentDirections.actionSignupFragmentToSignupTeacherFragment())
-                viewModel.navigation_to_teacher_signUp_done()
+                viewModel.navigationTeacherSignUpDone()
             }
         }
-        viewModel.navigate_to_student_signUp.observe(this.viewLifecycleOwner) {
+        viewModel.navigateToStudentSignUp.observe(this.viewLifecycleOwner) {
             if (it) {
                 this.findNavController()
                     .navigate(SignupFragmentDirections.actionSignupFragmentToSignupStudentFragment())
-                viewModel.navigation_to_student_signUp_done()
+                viewModel.navigationToStudentSignupDone()
             }
         }
-        viewModel.navigate_to_login.observe(this.viewLifecycleOwner) {
+        viewModel.navigateToLogin.observe(this.viewLifecycleOwner) {
             if (it) {
                 this.findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToLoginFragment())
-                viewModel.navigation_to_login_done()
+                viewModel.navigationToLoginDone()
             }
         }
-
 
         return binding.root
     }

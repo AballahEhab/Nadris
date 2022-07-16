@@ -141,7 +141,7 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
                             gender = genderType,
                             grade = grade,
                             phoneNumber = phone,
-                            type = false,
+                            isATeacher = false,
                         ), password1)
 
                 result.handleRepoResponse(
@@ -154,7 +154,7 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
                     },
                     onSuccess = {
                         disableProgressBar()
-                        NadrisApplication.currentUserLocalData = result.data
+                        NadrisApplication.currentDatabaseUser = result.data
                         navigateToHomeActivity()
                     },
                 )
