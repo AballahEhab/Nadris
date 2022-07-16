@@ -189,5 +189,9 @@
     <string name="lang_not_sel_msg">من فضلك اختر اللغة</string>
     <string name="sp_gender_title">النوع</string>
     <string name="retry_checking_connection_btn_title">"إعادة المحاولة "</string>
+    <string name="enter_your_question">ادخل سؤالك</string>
+    <string name="progressQuiz">1/5</string>
+    <string name="option">اختيار</string>
+    <string name="submit">إرسال</string>
 
 </resources>

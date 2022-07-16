@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+>
+    <data>
+        <variable name="viewModel"
+                  type="com.example.android.nadris.ui.studentActivity.quizzes.QuizViewModel"/>
+    </data>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/small_margin"
+        android:gravity="center"
+        tools:context=".ui.studentActivity.quizzes.QuizFragment">
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            style="@style/material_text_header_small"
+            android:text="@string/enter_your_question"
+            android:textSize="@dimen/_20"
+        />
+        <!--            android:text="@{viewModel.Name.text}"-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mid_margin"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/match_constrain"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="0"
+                android:max="5"
+                android:minHeight="50dp"
+                style="?android:progressBarStyleHorizontal"/>
+            <TextView
+                android:id="@+id/progress_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/progressQuiz"
+                android:textSize="@dimen/_20"
+                android:padding="@dimen/small_margin"
+                style="@style/material_text_body"
+            />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/opt_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/option"
+            android:background="@drawable/question_option"
+            android:padding="@dimen/small_margin"
+            android:textSize="@dimen/_20"
+            android:layout_marginTop="@dimen/mid_margin"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/opt_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mid_margin"
+            android:background="@drawable/question_option"
+            android:gravity="center"
+            android:padding="@dimen/small_margin"
+            android:text="@string/option"
+            android:textSize="@dimen/_20"/>
+
+        <TextView
+            android:id="@+id/opt_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/option"
+            android:background="@drawable/question_option"
+            android:padding="@dimen/small_margin"
+            android:textSize="@dimen/_20"
+            android:layout_marginTop="@dimen/mid_margin"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/opt_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/option"
+            android:background="@drawable/question_option"
+            android:padding="@dimen/small_margin"
+            android:textSize="@dimen/_20"
+            android:layout_marginTop="@dimen/mid_margin"
+            android:gravity="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit"
+            style="@style/material_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mid_margin"
+            android:text="@string/submit"
+            android:textSize="@dimen/mid_text_size"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+</layout>
