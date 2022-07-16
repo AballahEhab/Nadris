@@ -202,6 +202,15 @@
     <string name="progressQuiz">1/5</string>
     <string name="option">option1</string>
     <string name="submit">Submit</string>
+    <string name="add_quiz">add Quiz</string>
+    <string name="question_text">Untitled question</string>
+    <string name="answer_1">answer 1</string>
+    <string name="answer_2">answer 2</string>
+    <string name="answer_3">answer 3</string>
+    <string name="answer_4">answer 4</string>
+    <string name="add_question">add question</string>
+    <string name="answer_location">AnswerLocation</string>
+    <string name="ex_unit_5_lesson_3">ex: unit 5 - lesson 3</string>
 
 
 </resources>

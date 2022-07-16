@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@id/student_quiz">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation"
+            app:startDestination="@id/teacher_quiz">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -12,16 +12,16 @@
         tools:layout="@layout/fragment_post_page">
         <action
             android:id="@+id/action_posts_fragment_to_add_post_fragment"
-            app:destination="@id/add_post_fragment" />
+            app:destination="@id/add_post_fragment"/>
         <action
             android:id="@+id/action_posts_fragment_to_add_comment_fragment"
-            app:destination="@id/add_comment_fragment" />
+            app:destination="@id/add_comment_fragment"/>
         <action
             android:id="@+id/action_posts_fragment_to_public_profile_fragment"
-            app:destination="@id/public_profile_fragment" />
+            app:destination="@id/public_profile_fragment"/>
         <action
             android:id="@+id/action_posts_fragment_to_private_profile_fragment"
-            app:destination="@id/private_profile_fragment" />
+            app:destination="@id/private_profile_fragment"/>
 
 
     </fragment>
@@ -35,7 +35,7 @@
             app:argType="long"
             android:defaultValue="0L"
 
-            />
+        />
 
         <argument
             android:name="subject"
@@ -43,27 +43,27 @@
             app:nullable="true"
             android:defaultValue=""
 
-            />
+        />
         <argument
             android:name="grade"
             app:argType="string"
             android:defaultValue=""
 
-            />
+        />
         <argument
             android:name="discussion_content"
             app:argType="string"
             android:defaultValue=""
 
-            />
+        />
         <argument
             android:name="is_in_edit_view"
             app:argType="boolean"
 
-            />
+        />
         <action
             android:id="@+id/action_add_post_fragment_to_posts_fragment"
-            app:destination="@id/posts_fragment" />
+            app:destination="@id/posts_fragment"/>
     </fragment>
 
     <fragment
@@ -72,7 +72,7 @@
         tools:layout="@layout/fragment_add_comment">
         <argument
             android:name="postId"
-            app:argType="long" />
+            app:argType="long"/>
     </fragment>
 
     <fragment
@@ -81,7 +81,7 @@
         tools:layout="@layout/follow_profile_fragment">
         <argument
             android:name="user_profile_id"
-            app:argType="string" />
+            app:argType="string"/>
     </fragment>
 
     <fragment
@@ -91,10 +91,10 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_private_profile_fragment_to_previewProfilePicFragment"
-            app:destination="@id/previewProfilePicFragment" />
+            app:destination="@id/previewProfilePicFragment"/>
         <action
             android:id="@+id/action_private_profile_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment" />
+            app:destination="@id/settings_fragment"/>
     </fragment>
 
     <fragment
@@ -105,7 +105,7 @@
         <argument
             android:name="imgString64"
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"/>
 
     </fragment>
 
@@ -115,13 +115,13 @@
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
-            app:destination="@id/private_profile_fragment" />
+            app:destination="@id/private_profile_fragment"/>
         <action
             android:id="@+id/action_settings_fragment_to_change_password"
-            app:destination="@id/change_password" />
+            app:destination="@id/change_password"/>
         <action
             android:id="@+id/action_settings_fragment_to_help_fragment"
-            app:destination="@id/help_fragment" />
+            app:destination="@id/help_fragment"/>
     </fragment>
 
     <fragment
@@ -131,7 +131,7 @@
         tools:layout="@layout/fragment_change_password">
         <action
             android:id="@+id/action_change_password_to_settings_fragment"
-            app:destination="@id/settings_fragment" />
+            app:destination="@id/settings_fragment"/>
     </fragment>
 
     <fragment
@@ -140,7 +140,7 @@
         tools:layout="@layout/fragment_help">
         <action
             android:id="@+id/action_help_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment" />
+            app:destination="@id/settings_fragment"/>
     </fragment>
 
     <fragment
@@ -163,7 +163,7 @@
         tools:layout="@layout/fragment_headline_subjects">
         <action
             android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"
-            app:destination="@id/addingSubjectSectionsFragment" />
+            app:destination="@id/addingSubjectSectionsFragment"/>
         <argument android:name="subjectId" app:argType="long"/>
     </fragment>
 
@@ -171,7 +171,7 @@
         android:id="@+id/addingSubjectSectionsFragment"
         android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
         android:label="fragment_adding_subject_sections"
-        tools:layout="@layout/fragment_adding_subject_sections" />
+        tools:layout="@layout/fragment_adding_subject_sections"/>
 
     <fragment
         android:id="@+id/student_subjects_tabs_fragment"
@@ -180,33 +180,40 @@
         tools:layout="@layout/fragment_subject">
         <action
             android:id="@+id/action_subject_fragment_to_subject_Units"
-            app:destination="@id/student_subject_units_fragment" />
+            app:destination="@id/student_subject_units_fragment"/>
         <action
             android:id="@+id/action_subject_fragment_to_student_teachers_for_a_subject_fragment"
-            app:destination="@id/student_teachers_for_a_subject_fragment" />
+            app:destination="@id/student_teachers_for_a_subject_fragment"/>
     </fragment>
     <fragment
-    android:id="@+id/student_quiz"
-    android:name="com.example.android.nadris.ui.studentActivity.quizzes.QuizFragment"
-    android:label="QuizFragment"
-    tools:layout="@layout/quiz_fragment"/>
+        android:id="@+id/student_quiz"
+        android:name="com.example.android.nadris.ui.studentActivity.quizzes.QuizFragment"
+        android:label="QuizFragment"
+        tools:layout="@layout/quiz_fragment"/>
+    <fragment
+        android:id="@+id/teacher_quiz"
+        android:name="com.example.android.nadris.ui.teacherActivity.quiz_teacher.TeacherQuizFragment"
+        android:label="QuizFragment"
+        tools:layout="@layout/teacher_quiz_fragment">
+        <action android:id="@+id/action_teacher_quiz_to_student_quiz" app:destination="@id/student_quiz"/>
+    </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/editDiscussionFragment"-->
-<!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
-<!--        android:label="EditDiscussionFragment" >-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/editDiscussionFragment"-->
+    <!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
+    <!--        android:label="EditDiscussionFragment" >-->
 
-<!--        <argument-->
-<!--            android:name="post_id"-->
-<!--            app:argType="long" />-->
+    <!--        <argument-->
+    <!--            android:name="post_id"-->
+    <!--            app:argType="long" />-->
 
-<!--        <argument-->
-<!--            android:name="subject"-->
-<!--            app:argType="string" />-->
-<!--        <argument-->
-<!--            android:name="discussion_content"-->
-<!--            app:argType="string" />-->
+    <!--        <argument-->
+    <!--            android:name="subject"-->
+    <!--            app:argType="string" />-->
+    <!--        <argument-->
+    <!--            android:name="discussion_content"-->
+    <!--            app:argType="string" />-->
 
-<!--    </fragment>-->
+    <!--    </fragment>-->
 
 </navigation>

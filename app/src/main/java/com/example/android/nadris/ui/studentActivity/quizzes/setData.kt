@@ -1,67 +1,72 @@
 package com.example.android.nadris.ui.studentActivity.quizzes
 
+import com.example.android.nadris.ui.teacherActivity.quiz_teacher.QuizData
+
 object setData {
 
-    const val name:String="name"
-    const val score:String="score"
-
-    fun getQuestion():ArrayList<QuestionData>{
-        var que:ArrayList<QuestionData> = arrayListOf()
-        var question1 = QuestionData(
+    fun getQuestion():MutableList<QuizData>{
+        var que:ArrayList<QuizData> = arrayListOf()
+        var question1 = QuizData(
             1,
             "قال الشاعر:\n" +
                     "إذا كنت في نعمة فارعها فإن المعاصي تزيل النعم\n"+
-            "ميز مما يلي المحل اإلعرابي لجملة \"فارعها \" في الشطر األول.",
+                    "ميز مما يلي المحل اإلعرابي لجملة \"فارعها \" في الشطر األول.",
 
-            "لا محل لها من اإلعراب.",
-            " في محل جر نعت.",
+            answer = mutableListOf("لا محل لها من اإلعراب.",
+                " في محل جر نعت.",
+                " في محل جزم جواب شرط",
+                "في محل نصب خبر كان"),
+            mutableListOf(1,2),
             " في محل جزم جواب شرط",
-            "في محل نصب خبر كان",
-            4
-        )
-        var question2 = QuestionData(
+
+            )
+        var question2 = QuizData(
             2,
             "\"إن ت رد محبة الناس فلن معهم تنل حبهم\".\n" +
                     "بين مما يلي سبب اقتران جواب الشرط بالفاء في الجملة السابقة.",
 
-            "طلبية",
-            "منفية",
+            answer = mutableListOf("طلبية",
+                "منفية",
+                " مبدوءة بجامد",
+                "اسمية"),
+            mutableListOf(2),
             " مبدوءة بجامد",
-            "اسمية",
-            1
         )
-        var question3 = QuestionData(
+        var question3 = QuizData(
             3,
             "قال الشاعر:\n" +
                     "لمن تطلب الدنيا إذا لم ت رد بها سرور مح ِّب أو َمساءة مجرم\n" +
                     "بين المصدر الميمي الوارد في البيت السابق",
 
-            "مساءة.",
-            "محب.",
+            answer = mutableListOf("مساءة.",
+                "محب.",
+                "سرور",
+                "مجرم"),
+            mutableListOf(1,4),
             "سرور",
-            "مجرم",
-            2
         )
-        var question4 = QuestionData(
+        var question4 = QuizData(
             4,
             "من قتل محمد علي ؟",
 
-            "مش عارف",
-            "ايش عرفني",
+            answer = mutableListOf("مش عارف",
+                "ايش عرفني",
+                "لما هكبر هعرف",
+                "ابلغ عن أقرب الناس ليا"),
+            mutableListOf(4),
             "لما هكبر هعرف",
-            "ابلغ عن أقرب الناس ليا",
-            3
         )
 
-        var question5 = QuestionData(
+        var question5 = QuizData(
             5,
             "عارف حاجة في المنهج؟",
 
-            "لا",
-            "لا قوي",
+            answer = mutableListOf("لا",
+                "لا قوي",
+                "بكره اصحابي",
+                "بحب اصحابي قوي"),
+            mutableListOf(1),
             "بكره اصحابي",
-            "بحب اصحابي قوي",
-            4
         )
 
         que.add(question1)

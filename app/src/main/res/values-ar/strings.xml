@@ -188,5 +188,15 @@
     <string name="progressQuiz">1/5</string>
     <string name="option">اختيار</string>
     <string name="submit">إرسال</string>
+    <string name="add_quiz">إضافة اختبار</string>
+    <string name="question_text">سؤال بدون عنوان</string>
+    <string name="answer_1">الخيار رقم 1</string>
+    <string name="answer_2">الخيار رقم 2</string>
+    <string name="answer_3">الخيار رقم 3</string>
+    <string name="answer_4">الخيار رقم 4</string>
+    <string name="add_question">إضافة سؤال</string>
+    <string name="answer_location">مكان الإجابة</string>
+    <string name="ex_unit_5_lesson_3"></string>
+
 
 </resources>

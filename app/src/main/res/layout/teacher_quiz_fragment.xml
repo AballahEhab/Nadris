@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel"
+                  type="com.example.android.nadris.ui.teacherActivity.quiz_teacher.TeacherQuizViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.teacherActivity.quiz_teacher.TeacherQuizFragment">
+
+        <TextView
+            android:id="@+id/tv_my_quize_teacher"
+            style="@style/MaterialAlertDialog.App.Title.Text"
+            android:layout_width="@dimen/match_constrain"
+            android:layout_height="wrap_content"
+            android:text="@string/add_quiz"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/containedButton"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RV_teacher_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/match_constrain"
+            android:layout_margin="8dp"
+            tools:listitem="@layout/quiz_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_my_quize_teacher"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/containedButton"
+            style="@style/material_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:layout_marginEnd="@dimen/mid_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_my_quize_teacher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_my_quize_teacher"
+            app:layout_constraintTop_toTopOf="@id/tv_my_quize_teacher"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:contentDescription="@string/add_question"
+            android:text="@string/add_question"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/mid_margin"
+            app:srcCompat="@drawable/ic_add"/>
+        <!--    <TextView-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:id="@+id/questionText1"-->
+        <!--        app:layout_constraintTop_toBottomOf="@id/RV_teacher_quiz"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+
+        <!--    />-->
+        <!--    <TextView-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:id="@+id/questionText2"-->
+        <!--        app:layout_constraintTop_toBottomOf="@id/questionText1"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--    />-->
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
