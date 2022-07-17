@@ -1,15 +1,18 @@
 package com.example.android.nadris.ui.studentActivity.settings
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSettingsBinding
+import com.example.android.nadris.services.LocaleHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class SettingsFragment : Fragment() {
@@ -43,10 +46,12 @@ class SettingsFragment : Fragment() {
         }
 
         binding.tvNightMode.setOnClickListener {
+            showThemOptionsDialog()
 
         }
 
         binding.tvChangeLanguage.setOnClickListener {
+            showLanguageOptionsDialog()
 
         }
 
@@ -76,6 +81,53 @@ class SettingsFragment : Fragment() {
 
             }.show()
     }
+
+    private fun showLanguageOptionsDialog() {
+
+        val dialogBuilder= MaterialAlertDialogBuilder(requireContext())
+        var options :Array<out String>
+        lateinit var onOptionsClick: (DialogInterface?, Int)-> Unit
+
+        options = resources.getStringArray(R.array.LanguageOptions)
+        onOptionsClick = { dialog, item ->
+            when (options[item]) {
+                options[0] -> LocaleHelper.setLocale(requireActivity(), "en")
+                options[1] -> LocaleHelper.setLocale(requireActivity(), "ar")
+
+            }
+        }
+        dialogBuilder.setItems(options,onOptionsClick).show()
+
+    }
+    private fun showThemOptionsDialog() {
+        val dialogBuilder= MaterialAlertDialogBuilder(requireContext())
+        var options :Array<out String>
+        lateinit var onOptionsClick: (DialogInterface?, Int)-> Unit
+
+        options = resources.getStringArray(R.array.ThemOptions)
+        onOptionsClick = { dialog, item ->
+            when (options[item]) {
+                options[0] -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        //delegate.applyDayNight()
+                }
+                options[1] -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    //delegate.applyDayNight()
+                }
+                options[2] -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    //delegate.applyDayNight()
+                }
+            }
+        }
+        dialogBuilder.setItems(options,onOptionsClick).show()
+    }
+
+
+}
+
+
 //    private fun buildDialog() {
 //        val builder = AlertDialog.Builder(this.requireContext(), R.style.WelcomeStyle)
 //        val inflater = layoutInflater
@@ -98,4 +150,3 @@ class SettingsFragment : Fragment() {
 
 
 
-}

@@ -160,6 +160,15 @@
         <item>take photo</item>
         <item>upload photo</item>
     </string-array>
+    <string-array name="LanguageOptions">
+        <item>English</item>
+        <item>عربي</item>
+    </string-array>
+    <string-array name="ThemOptions">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System default</item>
+    </string-array>
     <string name="dlg_add_photo_title">Add Photo</string>
     <string name="add_post_requirments">Subject and question are required</string>
     <string name="permission_granted">permission Granted</string>
