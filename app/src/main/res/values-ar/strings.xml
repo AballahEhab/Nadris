@@ -204,5 +204,9 @@
     <string name="ex_unit_5_lesson_3"></string>
     <string name="post_bookmarked_successfully">تم الحفظ</string>
     <string name="cant_bookmark_post">"حدث خطا لم يتم الحفظ "</string>
+    <string name="teacher">مدرس</string>
+    <string name="student">طالب</string>
+    <string name="user_lang_pre">"إختيار اللغه "</string>
+
 
 </resources>
