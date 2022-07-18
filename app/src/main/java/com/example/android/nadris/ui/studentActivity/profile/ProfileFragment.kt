@@ -186,6 +186,7 @@ class ProfileFragment : Fragment() {
             Log.i("length", it.size.toString())
         }
 
+
         viewModel.imgProfile.observe(viewLifecycleOwner) { profileImgStr64 ->
             if (profileImgStr64 == null) {
                 binding.imgProfile.setImageResource(R.drawable.ic_user)

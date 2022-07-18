@@ -169,6 +169,14 @@
         <item>Dark</item>
         <item>System default</item>
     </string-array>
+    <string-array name="ChangeClass">
+        <item>prep first</item>
+        <item>prep second</item>
+        <item>prep third</item>
+        <item>High school first</item>
+        <item>High school second</item>
+        <item>High school third</item>
+    </string-array>
     <string name="dlg_add_photo_title">Add Photo</string>
     <string name="add_post_requirments">Subject and question are required</string>
     <string name="permission_granted">permission Granted</string>

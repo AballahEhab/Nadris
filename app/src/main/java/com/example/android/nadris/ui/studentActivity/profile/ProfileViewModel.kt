@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    var imgProfile: MutableLiveData<String?> = MutableLiveData<String?>(null);
+    var imgProfile : MutableLiveData<String?> = MutableLiveData<String?>(null);
     var nameProfile: MutableLiveData<String> = MutableLiveData<String>(NadrisApplication.currentDatabaseUser?.getFullName());
     var profileType: MutableLiveData<String> = MutableLiveData(if(NadrisApplication.currentDatabaseUser?.IsATeacher == false) "Student" else "Teacher");
     var numFollowers: MutableLiveData<Long> = MutableLiveData(0);

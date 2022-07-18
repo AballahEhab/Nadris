@@ -130,6 +130,10 @@
         <action
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
             app:destination="@id/private_profile_fragment" />
+        <action
+            android:id="@+id/action_settings_fragment_to_change_password"
+            app:destination="@id/change_password2" />
+
     </fragment>
 
     <fragment
@@ -208,6 +212,14 @@
         android:name="com.example.android.nadris.ui.teacherActivity.addSection.addSectionFragment"
         android:label="fragment_add_section"
         tools:layout="@layout/fragment_add_section" />
+    <fragment
+        android:id="@+id/change_password2"
+        android:name="com.example.android.nadris.Change_password"
+        android:label="Change_password" >
+        <action
+            android:id="@+id/action_change_password_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
+    </fragment>
 
     <!--    <fragment-->
 <!--        android:id="@+id/editDiscussionFragment"-->

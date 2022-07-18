@@ -18,18 +18,28 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
+class
+SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
+    //the value will valid in method
     var firstname: String = ""
     var lastname: String = ""
     var email: String = ""
     var password1: String = ""
     var password2: String = ""
     var phone: String = ""
+
     var genderList: ArrayList<String> = ArrayList()
     val selectedGender: MutableLiveData<String> = MutableLiveData<String>("")
+
+    // this list return from api fir base
     var gradesList: MutableLiveData<List<Grade>> = MutableLiveData<List<Grade>>()
     var selectedGrade: MutableLiveData<String> = MutableLiveData<String>()
+
+
+
+    //variable is tru when have error and show in errorEnabled  set value in method valid
+    //variable indicator error
 
     private var _firstnameHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val firstnameHaveError get() = _firstnameHaveError
@@ -68,6 +78,10 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
     private var _errorMessageVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
 
+
+
+    //method valid call afterTextChanged
+
     fun validFirstName() {
         _firstnameHaveError.value = firstname.isEmpty() || (firstname.length < 3)
     }
@@ -102,6 +116,11 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
 
     }
 
+
+
+
+
+//when click on sinup botton
     fun onSignUpClicked() {
         disableErrorMessage()
         validFirstName()
@@ -122,6 +141,7 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
                 || _ganderHaveError.value!!
                 || _gradeHaveError.value!!
 
+    //todo
         if (!isDataNotValid) {
             enableProgressBar()
             val genderType = genderList.indexOf(selectedGender.value) == 0
@@ -187,6 +207,11 @@ class SignupStudentViewModel @Inject constructor(val repository: Repository) : V
         _navigateToHomeScreen.value = false
     }
 
+
+
+
+
+// get Grades list and pass to gradesList vriable
     fun getGrades() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.getGrades()

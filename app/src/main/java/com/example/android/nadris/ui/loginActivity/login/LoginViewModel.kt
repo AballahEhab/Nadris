@@ -17,9 +17,9 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     var email: MutableLiveData<String> = MutableLiveData("")
-    var emailErrorMessage: MutableLiveData<String?> = MutableLiveData<String?>()
+    var emailErrorMessage : MutableLiveData<String?> = MutableLiveData<String?>()
 
-    var password: MutableLiveData<String> = MutableLiveData("")
+    var password : MutableLiveData<String> = MutableLiveData("")
     var passwordErrorMessage: MutableLiveData<String?> = MutableLiveData<String?>()
 
     private var _navigateToCreateAccount: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -58,6 +58,8 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
             }
     }
 
+
+
     fun onCreateAccountClicked() {
         _navigateToCreateAccount.value = true
     }
@@ -65,6 +67,9 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
     fun navigationToCreateAccountDone() {
         _navigateToCreateAccount.value = false
     }
+
+
+
 
     /** TODO: to be enabled when adding login with facebook and google*/
     fun onLoginByGoogleClick() {

@@ -12,9 +12,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSettingsBinding
+import com.example.android.nadris.network.firebase.dtos.Grade
 import com.example.android.nadris.services.LocaleHelper
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsFragment : Fragment() {
 
     private lateinit var binding:FragmentSettingsBinding
@@ -32,27 +35,24 @@ class SettingsFragment : Fragment() {
                 .navigate(SettingsFragmentDirections.actionSettingsFragmentToPrivateProfileFragment())
         }
 
-        binding.tvEditProfile.setOnClickListener {
-
-        }
 
         binding.tvChangePassword.setOnClickListener {
             this.findNavController()
-                .navigate(SettingsFragmentDirections.actionSettingsFragmentToHelpFragment())
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToChangePassword())
+
         }
 
         binding.tvChangeClass.setOnClickListener {
-            showAlertDailog("ChangeClass","هل تريد تغيير الصف الدراسي")
+            // todo ChangeClass with api 
+            showChangeClassOptionsDialog()
         }
 
         binding.tvNightMode.setOnClickListener {
             showThemOptionsDialog()
-
         }
 
         binding.tvChangeLanguage.setOnClickListener {
             showLanguageOptionsDialog()
-
         }
 
         binding.tvHelp.setOnClickListener {
@@ -61,26 +61,10 @@ class SettingsFragment : Fragment() {
 
         }
 
-        binding.tvSignOut.setOnClickListener {
-            showAlertDailog("SignOut","هل تريد تسجيل الدخول")
-        }
-
-
 
         return binding.root
     }
-    fun showAlertDailog(Alert :String,message:String){
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(Alert)
-            .setMessage(message)
-            .setNegativeButton("no"){dialog,which ->
-                dialog.dismiss()
-            }
-            .setPositiveButton("yes"){dialog ,which ->
-                // code log out
 
-            }.show()
-    }
 
     private fun showLanguageOptionsDialog() {
 
@@ -97,12 +81,12 @@ class SettingsFragment : Fragment() {
             }
         }
         dialogBuilder.setItems(options,onOptionsClick).show()
-
     }
+
     private fun showThemOptionsDialog() {
         val dialogBuilder= MaterialAlertDialogBuilder(requireContext())
         var options :Array<out String>
-        lateinit var onOptionsClick: (DialogInterface?, Int)-> Unit
+        lateinit var onOptionsClick: (DialogInterface?, Int)-> Unit;
 
         options = resources.getStringArray(R.array.ThemOptions)
         onOptionsClick = { dialog, item ->
@@ -113,39 +97,43 @@ class SettingsFragment : Fragment() {
                 }
                 options[1] -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    //delegate.applyDayNight()
+
                 }
                 options[2] -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                    //delegate.applyDayNight()
+
                 }
             }
         }
         dialogBuilder.setItems(options,onOptionsClick).show()
     }
 
+    private fun showChangeClassOptionsDialog() {
+
+//        var gradesList = listOf<Grade>()
+//        viewModel.gradesList.observe(viewLifecycleOwner){it->
+//            it?.let {
+//                gradesList = it
+//            }
+//        }
+        viewModel.getGradestest()
+        var gradesList = viewModel.gradesListstest
+
+        val dialogBuilder= MaterialAlertDialogBuilder(requireContext())
+       // var options :Array<out String>
+        var options = gradesList.map {
+            it.name_ar
+        }
+        lateinit var onOptionsClick: (DialogInterface?, Int)-> Unit;
+        onOptionsClick = { dialog, item ->
+            viewModel.setGrade(gradesList[item].id)
+//            dialog?.dismiss()
+        }
+        dialogBuilder.setItems(options.toTypedArray(),onOptionsClick).show()
+    }
 
 }
 
-
-//    private fun buildDialog() {
-//        val builder = AlertDialog.Builder(this.requireContext(), R.style.WelcomeStyle)
-//        val inflater = layoutInflater
-//        builder.setTitle("Enter Tag")
-//        val dialogLayout = inflater.inflate(R.layout.dialog, null)
-//        val editText = dialogLayout.findViewById<EditText>(R.id.dialogEditText)
-//        builder.setView(dialogLayout)
-//
-//        builder.setPositiveButton("OK") { _, _ ->
-//            if (editText.text.toString().isNotEmpty()) {
-//                viewModel.addTag(Tag(0, editText.text.toString()))
-//            } else {
-//                Toast.makeText(context, "Can not save empty Tag"
-//                        + editText.text.toString(), Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//        builder.show()
-//    }
 
 
 

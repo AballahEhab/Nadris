@@ -52,13 +52,7 @@
             android:layout_margin="@dimen/small_margin"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_edit_profile"
-                style="@style/material_text_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/tiny_margin"
-                android:text="@string/tv_edit_profile"/>
+
 
             <TextView
                 android:id="@+id/tv_change_password"
@@ -66,7 +60,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/tiny_margin"
-                
                 android:text="@string/tv_change_password" />
 
             <TextView
@@ -101,13 +94,6 @@
                 android:layout_margin="@dimen/tiny_margin"
                 android:text="@string/tv_help"/>
 
-            <TextView
-                android:id="@+id/tv_sign_out"
-                style="@style/material_text_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/tiny_margin"
-                android:text="@string/tv_sign_out"/>
 
 
         </LinearLayout>

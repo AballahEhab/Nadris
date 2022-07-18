@@ -5,6 +5,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 class Grade (
+    var id:String?=null,
     val grade:String = "",
     val level:String = "",
     val department:String = "",
