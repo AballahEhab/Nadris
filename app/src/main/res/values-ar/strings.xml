@@ -189,5 +189,7 @@
     <string name="lang_not_sel_msg">من فضلك اختر اللغة</string>
     <string name="sp_gender_title">النوع</string>
     <string name="retry_checking_connection_btn_title">"إعادة المحاولة "</string>
+    <string name="post_bookmarked_successfully">تم الحفظ</string>
+    <string name="cant_bookmark_post">"حدث خطا لم يتم الحفظ "</string>
 
 </resources>

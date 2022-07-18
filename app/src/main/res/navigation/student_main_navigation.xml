@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/posts_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.viewPosts.PostPageFragment"
         android:label="@string/posts_fragment_label"
         tools:layout="@layout/fragment_post_page">
         <action
@@ -26,9 +26,10 @@
 
     </fragment>
 
+<!--    TODO:to be reviewed-->
     <fragment
         android:id="@+id/add_post_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.addPosts.AddPostFragment"
         tools:layout="@layout/fragment_add_pos">
         <argument
             android:name="post_id"
@@ -68,16 +69,16 @@
 
     <fragment
         android:id="@+id/add_comment_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.replies.AddCommentFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.viewPosts.replies.AddCommentFragment"
         tools:layout="@layout/fragment_add_comment">
         <argument
             android:name="postId"
-            app:argType="long" />
+            app:argType="string" />
     </fragment>
 
     <fragment
         android:id="@+id/public_profile_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.followProfile.FollowProfileFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.followProfile.FollowProfileFragment"
         tools:layout="@layout/follow_profile_fragment">
         <argument
             android:name="user_profile_id"
@@ -99,7 +100,7 @@
 
     <fragment
         android:id="@+id/previewProfilePicFragment"
-        android:name="com.example.android.nadris.ui.studentActivity.previewProfilePic.PreviewProfilePicFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.previewProfilePic.PreviewProfilePicFragment"
         android:label="fragment_preview_profile_pic"
         tools:layout="@layout/fragment_preview_profile_pic">
         <argument
@@ -111,7 +112,7 @@
 
     <fragment
         android:id="@id/settings_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.settings.SettingsFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.profile.settings.SettingsFragment"
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
@@ -136,7 +137,7 @@
 
     <fragment
         android:id="@+id/help_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.settings.help.HelpFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.profile.settings.help.HelpFragment"
         tools:layout="@layout/fragment_help">
         <action
             android:id="@+id/action_help_fragment_to_settings_fragment"
@@ -145,7 +146,7 @@
 
     <fragment
         android:id="@+id/student_teachers_for_a_subject_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.select_teacher.TeachersCoursesFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.subject_student.select_teacher.TeachersCoursesFragment"
         android:label="TeachersCoursesFragment"
         tools:layout="@layout/fragment_teachers_courses">
 
@@ -159,19 +160,10 @@
 
     <fragment
         android:id="@+id/student_subject_units_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.headlineSubject.HeadlineSubjectsFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.subject_student.units.HeadlineSubjectsFragment"
         tools:layout="@layout/fragment_headline_subjects">
-        <action
-            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"
-            app:destination="@id/addingSubjectSectionsFragment" />
-        <argument android:name="subjectId" app:argType="long"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/addingSubjectSectionsFragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
-        android:label="fragment_adding_subject_sections"
-        tools:layout="@layout/fragment_adding_subject_sections" />
 
     <fragment
         android:id="@+id/student_subjects_tabs_fragment"
@@ -185,23 +177,5 @@
             android:id="@+id/action_subject_fragment_to_student_teachers_for_a_subject_fragment"
             app:destination="@id/student_teachers_for_a_subject_fragment" />
     </fragment>
-
-<!--    <fragment-->
-<!--        android:id="@+id/editDiscussionFragment"-->
-<!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
-<!--        android:label="EditDiscussionFragment" >-->
-
-<!--        <argument-->
-<!--            android:name="post_id"-->
-<!--            app:argType="long" />-->
-
-<!--        <argument-->
-<!--            android:name="subject"-->
-<!--            app:argType="string" />-->
-<!--        <argument-->
-<!--            android:name="discussion_content"-->
-<!--            app:argType="string" />-->
-
-<!--    </fragment>-->
 
 </navigation>

@@ -1,9 +1,11 @@
 package com.example.android.nadris.network.firebase
 
 import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.data.models.CommentModel
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.database.models.DatabaseUser
 import com.example.android.nadris.network.firebase.dtos.Inquiry
+import com.example.android.nadris.network.firebase.dtos.Reply
 import com.example.android.nadris.network.firebase.dtos.User
 
 object NetworkObjectMapper {
@@ -18,12 +20,14 @@ object NetworkObjectMapper {
             IsATeacher = user.isATeacher,
             Gender = user.gender,
             GradeId = user.grade?.id,
+            profileImagePath = user.image_File_Path,
         )
 
     fun postAsDatabaseModel(inquiry: Inquiry,name:String): DatabasePost =
         DatabasePost(
             postId = inquiry.id!!,
             imageFilePath = inquiry.image_File_Path!!,
+            userImageFilePath = inquiry.userProfileImagePah,
             subject = inquiry.subjectName!!,
             content = inquiry.body!!,
             votesNum = inquiry.voted_user_ids.size,
@@ -32,6 +36,14 @@ object NetworkObjectMapper {
             userId = inquiry.userID!!,
             name = name,
             isVoted = inquiry.voted_user_ids.contains(NadrisApplication.currentDatabaseUser?.userID),
+        )
+
+    fun replyAsUIModel(reply:Reply) =
+        CommentModel(
+            reply.replyId!!,
+            reply.replyBody!!,
+            reply.userFullName!!,
+            reply.time.toString()
         )
 
 

@@ -7,13 +7,13 @@
 
         <variable
             name="postViewModle"
-            type="com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel" />
+            type="com.example.android.nadris.ui.studentActivity.posts.viewPosts.PostPageViewModel" />
     </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.studentActivity.posts.PostPageFragment">
+            tools:context="com.example.android.nadris.ui.studentActivity.posts.viewPosts.PostPageFragment">
 
             <LinearLayout
                 android:id="@+id/l1"

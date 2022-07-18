@@ -2,6 +2,7 @@ package com.example.android.nadris.repository
 
 import android.net.Uri
 import com.example.android.nadris.network.firebase.dtos.Inquiry
+import com.example.android.nadris.network.firebase.dtos.Reply
 import com.example.android.nadris.network.firebase.dtos.Subject
 import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.network.firebase.services.*
@@ -9,6 +10,7 @@ import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FileDownloadTask
 import java.io.File
@@ -81,24 +83,30 @@ constructor(
         val uploadingImageTask = storageService.uploadInquiryImage(imageFileName, imageUri)
 
         return uploadingImageTask.continueWithTask {
-            val imageLink = it.result?.storage
-            inquiry.image_path = imageLink?.path.toString()
+            inquiry.image_path = it.result?.storage?.path.toString()
             inquiriesService.addNewInquiryWithID(inquiry, inquiryID)
         }
     }
 
+    fun addNewReply(reply: Reply,inquiryId: String): Task<Void> =
+        inquiriesService.addNewReplyWithID(reply,inquiryId)
+
+
     fun addNewInquiryWithoutImage(inquiry: Inquiry): Task<DocumentReference> =
         inquiriesService.addNewInquiry(inquiry)
 
-    fun getAllInquiries() = Tasks.await(inquiriesService.getAllInquiries())
+    fun getAllInquiries() :Task<QuerySnapshot> = inquiriesService.getAllInquiries()
 
-    fun getInquiryImage(file: File, imagePath: String, inquiryId: String): FileDownloadTask {
-        return storageService.getInquiryImage(file, imagePath, inquiryId)
-    }
+    fun getInquiryImage(file: File, imagePath: String,): FileDownloadTask =
+         storageService.getInquiryImage(file, imagePath)
 
-    fun getCommentsForAnInquiry(id: String) {
+    fun getProfileImage(file: File, imagePath: String): FileDownloadTask =
+         storageService.getProfileImage(file, imagePath)
+
+
+    fun getCommentsForAnInquiry(id: String) :Task<QuerySnapshot> =
         inquiriesService.getCommentsForAnInquiry(id)
-    }
+
 
     fun getSubjectWithId(subjectId: String): Subject {
         var subject = subjectsList.find { it.subject_id == subjectId }
@@ -123,9 +131,13 @@ constructor(
         inquiriesService.setVotedUserIdsForInquiry(inquiryId, votedIdsList)
 
 
+    fun incrementReplies(inquiryId: String)  =
+        inquiriesService.incrementReplies(inquiryId)
+
+
+
     fun signOut() {
         authService.signOut()
     }
-
 
 }

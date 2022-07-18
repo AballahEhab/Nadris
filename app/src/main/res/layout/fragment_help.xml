@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.ui.studentActivity.settings.help.HelpViewModel" />
+            type="com.example.android.nadris.ui.studentActivity.profile.settings.help.HelpViewModel" />
 
     </data>
 
@@ -14,7 +14,7 @@
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.studentActivity.settings.help.HelpFragment">
+        tools:context=".ui.studentActivity.profile.settings.help.HelpFragment">
 
         <LinearLayout
             android:id="@+id/line1"

@@ -1,86 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="kotlin.text.StringsKt" />
+
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.ui.studentActivity.posts.replies.AddCommentViewModel"/>
+            type="com.example.android.nadris.ui.studentActivity.posts.viewPosts.replies.AddCommentViewModel" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.studentActivity.posts.replies.AddCommentFragment">
+        android:layout_height="match_parent">
 
-<!--        <include-->
-<!--            android:id="@+id/included_post"-->
-<!--            layout="@layout/item_post_card_cell"-->
-<!--            app:postData="@{viewmodel.currentPostData}"-->
-<!--        />-->
-
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/linear_add_comment"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:weightSum="5"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/included_post">-->
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/textField"-->
-<!--                style="@style/material_text_input"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/mid_margin"-->
-<!--                android:layout_weight="4"-->
-<!--                android:hint="@string/add_comment"-->
-<!--            >-->
-
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@={viewmodel.comment}"-->
-<!--                />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/btn_add_comment"-->
-<!--                style="@style/material_btn"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginEnd="@dimen/small_margin"-->
-<!--                android:layout_weight="1"-->
-<!--                android:onClick="@{()-> viewmodel.sendComment()}"-->
-<!--                android:text="@string/btn_add_comment"-->
-<!--                android:textAppearance="@style/material_text_body_small"-->
-<!--                android:textStyle="normal"-->
-<!--                app:isVisible="@{viewmodel.sendButtonVisabilty}"/>-->
-
-<!--        </LinearLayout>-->
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RV_comment"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_8sdp"
-            android:padding="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_add_coment"/>
-<!--        app:layout_constraintTop_toBottomOf="@id/linear_add_comment"-->
+            android:layout_height="wrap_content"
+            tools:context="com.example.android.nadris.ui.studentActivity.posts.viewPosts.replies.AddCommentFragment">
+
+            <include
+                android:id="@+id/included_post"
+                layout="@layout/item_post_card_cell"
+                app:postData="@{viewmodel.currentPostData}" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/linear_add_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/included_post">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textField"
+                    style="@style/material_text_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mid_margin"
+                    android:layout_weight="4"
+                    android:hint="@string/add_comment">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewmodel.newComment}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_comment"
+                    style="@style/material_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/small_margin"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.sendComment()}"
+                    android:text="@string/btn_add_comment"
+                    android:textAppearance="@style/material_text_body_small"
+                    android:textStyle="normal"
+                    app:isVisible="@{!StringsKt.isBlank(viewmodel.newComment)}" />
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RV_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_add_comment"
+                tools:listitem="@layout/item_add_coment" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

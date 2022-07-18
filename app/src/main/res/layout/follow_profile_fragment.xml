@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.ui.studentActivity.followProfile.FollowProfileViewModel" />
+            type="com.example.android.nadris.ui.studentActivity.posts.followProfile.FollowProfileViewModel" />
 
 
     </data>
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:isVisible="@{!viewmodel.isLoading}"
-            tools:context=".ui.studentActivity.followProfile.FollowProfileFragment">
+            tools:context=".ui.studentActivity.posts.followProfile.FollowProfileFragment">
 
 
             <com.google.android.material.imageview.ShapeableImageView

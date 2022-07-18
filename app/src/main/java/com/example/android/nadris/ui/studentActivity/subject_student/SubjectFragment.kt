@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSubjectBinding
-import com.example.android.nadris.ui.studentActivity.subject_student.mySubject.MySubjectStudentFragment
+import com.example.android.nadris.ui.studentActivity.subject_student.myCourses.MySubjectStudentFragment
+import com.example.android.nadris.ui.studentActivity.subject_student.exploreCourses.SubjectsRvFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

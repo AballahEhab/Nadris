@@ -8,6 +8,7 @@ import com.example.android.nadris.network.firebase.dtos.*
 import com.example.android.nadris.util.Result
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.flow.flow
 import java.io.File
@@ -20,6 +21,7 @@ class Repository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
 ) {
 
+    //users functions
     fun getCurrentFirebaseUser() =
         remoteDataSource.getCurrentUser()
 
@@ -34,9 +36,7 @@ class Repository @Inject constructor(
                     Tasks.await(remoteDataSource.singInWithEmailAndPassword(checkedEmail,
                         checkedPassword))
 
-                var userData = userDataDoc.toObject<User>()
-
-                userData?.id = userDataDoc.id
+                var userData = getUserDataObjFromDocSnapShot(userDataDoc)
 
                 userData
                     ?.let { NetworkObjectMapper.userToDatabaseUser(it) }
@@ -47,65 +47,6 @@ class Repository @Inject constructor(
             } catch (exception: Exception) {
                 emit(Result.Error(exception.localizedMessage!!))
             }
-        }
-
-    suspend fun getGrades() =
-        try {
-            val gradesSnapshots = Tasks.await(remoteDataSource.getGrades())
-
-            var gradeList: MutableList<Grade> = mutableListOf()
-
-            for (document in gradesSnapshots) {
-                val departmentsCollection = document.reference.collection("departments")
-                val departmentsQuery = Tasks.await(departmentsCollection.get())
-                if (!departmentsQuery.isEmpty)
-                    for (department in departmentsQuery) {
-                        val divisionsCollection = department.reference.collection("divisions")
-                        val divisionsQuery = Tasks.await(divisionsCollection.get())
-
-                        if (!divisionsQuery.isEmpty)
-                            for (division in divisionsQuery) {
-                                var grade = division.toObject<Grade>()
-                                grade.gradeReference = division.reference
-                                gradeList.add(grade)
-
-                            }
-                        else {
-                            var grade = department.toObject<Grade>()
-                            grade.gradeReference = department.reference
-                            gradeList.add(grade)
-
-                        }
-                    }
-                else {
-                    var grade = document.toObject<Grade>()
-                    grade.gradeReference = document.reference
-                    gradeList.add(grade)
-                }
-            }
-
-            Result.Success(gradeList)
-
-        } catch (throwable: Throwable) {
-
-            Result.Error(throwable.message!!)
-        }
-
-    suspend fun getSubjectsWithGrade(gradeRef: DocumentReference) =
-        try {
-            val subjectsQuery =
-                Tasks.await(remoteDataSource.getSubjectsWithGrade(gradeRef))
-            val collegesList = subjectsQuery.map {
-                val subject = it.toObject<Subject>()
-                subject.subject_id = it.reference.id
-                subject
-            }
-
-            Result.Success(collegesList)
-
-        } catch (e: Exception) {
-            Result.Error(e.message!!)
-
         }
 
     suspend fun createNewUser(user: User, checkedPassword: String) =
@@ -127,7 +68,119 @@ class Repository @Inject constructor(
             Result.Error(throwable.message!!)
         }
 
-    suspend fun getAllUniversities() =
+    fun getUserData(userId: String) =
+        try {
+            Result.Success(getUserDataObj(userId))
+        } catch (exception: Exception) {
+            Result.Success(exception.message)
+        }
+
+    private fun getProfileImage(imagePath: String, userID: String): File {
+        try {
+            val localeFile = File.createTempFile(userID, ".jpg")
+            val task =
+                Tasks.await(remoteDataSource.getProfileImage(localeFile, imagePath))
+            return localeFile
+        } catch (exception: Exception) {
+            throw exception
+        }
+    }
+
+    private fun getUserDataObj(userID: String): User? {
+        try {
+            val userSnapShot = Tasks.await(remoteDataSource.getUserData(userID))
+            return getUserDataObjFromDocSnapShot(userSnapShot)
+
+        } catch (exception: Exception) {
+            throw exception
+        }
+    }
+
+    private fun getUserDataObjFromDocSnapShot(userSnapShot: DocumentSnapshot?): User? {
+        val userdata = userSnapShot?.toObject<User>()
+        userdata?.id = userSnapShot?.id!!
+        if (!userdata?.image_path.isNullOrEmpty())
+            userdata?.image_File_Path =
+                getProfileImage(userdata?.image_path!!, userdata?.id!!).absolutePath
+
+        return userdata
+    }
+
+
+    suspend fun logOut(user: DatabaseUser) =
+        try {
+            localDataSource.deleteUser(user)
+            remoteDataSource.signOut()
+            Result.Success(true)
+        } catch (exception: Exception) {
+            Result.Error(exception.localizedMessage)
+        }
+
+
+    //grades and subjects functions
+    fun getGrades() =
+        try {
+            val gradesSnapshots = Tasks.await(remoteDataSource.getGrades())
+
+            var gradeList: MutableList<Grade> = mutableListOf()
+
+            for (document in gradesSnapshots) {
+                val departmentsCollection = document.reference.collection("departments")
+                val departmentsQuery = Tasks.await(departmentsCollection.get())
+                if (!departmentsQuery.isEmpty)
+                    for (department in departmentsQuery) {
+                        val divisionsCollection = department.reference.collection("divisions")
+                        val divisionsQuery = Tasks.await(divisionsCollection.get())
+
+                        if (!divisionsQuery.isEmpty)
+                            for (division in divisionsQuery) {
+                                var grade = division.toObject<Grade>()
+                                grade.id = division.id
+                                grade.gradeReference = division.reference
+                                gradeList.add(grade)
+
+                            }
+                        else {
+                            var grade = department.toObject<Grade>()
+                            grade.id = department.id
+                            grade.gradeReference = department.reference
+                            gradeList.add(grade)
+
+                        }
+                    }
+                else {
+                    var grade = document.toObject<Grade>()
+                    grade.id = document.id
+                    grade.gradeReference = document.reference
+                    gradeList.add(grade)
+                }
+            }
+
+            Result.Success(gradeList)
+
+        } catch (throwable: Throwable) {
+
+            Result.Error(throwable.message!!)
+        }
+
+    fun getSubjectsWithGrade(gradeRef: DocumentReference) =
+        try {
+            val subjectsQuery =
+                Tasks.await(remoteDataSource.getSubjectsWithGrade(gradeRef))
+            val collegesList = subjectsQuery.map {
+                val subject = it.toObject<Subject>()
+                subject.subject_id = it.reference.id
+                subject
+            }
+
+            Result.Success(collegesList)
+
+        } catch (e: Exception) {
+            Result.Error(e.message!!)
+
+        }
+
+    fun getAllUniversities() =
         try {
 
             val universitiesQuerySnapshot = Tasks.await(remoteDataSource.getAllUniversities())
@@ -146,7 +199,7 @@ class Repository @Inject constructor(
 
         }
 
-    suspend fun getCollegeForAUniversity(universityDocRef: DocumentReference) =
+    fun getCollegeForAUniversity(universityDocRef: DocumentReference) =
         try {
             val collegesTask =
                 Tasks.await(remoteDataSource.getCollegeForAUniversity(universityDocRef))
@@ -163,59 +216,6 @@ class Repository @Inject constructor(
             Result.Error(e.message!!)
         }
 
-    suspend fun addNewInquiryWithImage(inquiry: Inquiry, imageFile: File) =
-        try {
-            Tasks.await(remoteDataSource.addNewInquiryWithImage(inquiry, imageFile))
-            Result.Success(inquiry)
-        } catch (exception: Exception) {
-            Result.Error(exception.message!!)
-        }
-
-    suspend fun addNewInquiryWithoutImage(inquiry: Inquiry) =
-        try {
-            Tasks.await(remoteDataSource.addNewInquiryWithoutImage(inquiry))
-            Result.Success(inquiry)
-        } catch (exception: Exception) {
-            Result.Error(exception.message!!)
-        }
-
-    fun getUserData(userId: String) =
-        try {
-            val userDataTask = Tasks.await(remoteDataSource.getUserData(userId))
-            val userData = userDataTask.toObject<User>()
-            Result.Success(userData)
-        } catch (exception: Exception) {
-            Result.Success(exception.message)
-        }
-
-    fun getAllInquiries() =
-        flow {
-            val localInquiries = localDataSource.getInquiries()
-            emit(Result.Loading(localInquiries))
-            try {
-                val querySnapshot = remoteDataSource.getAllInquiries()
-                val inquiriesList = querySnapshot.map {
-                    val inquiry = it.toObject<Inquiry>()
-                    inquiry.id = it.id
-                    inquiry.subjectName = getSubjectName(inquiry.subject_id!!)
-                    if (!inquiry.image_path.isNullOrEmpty())
-                        inquiry.image_File_Path =
-                            getInquiryImage(inquiry.image_path!!, inquiry.id!!).absolutePath
-                    val fullUserName = getFullUserName(inquiry.userID!!)
-                    NetworkObjectMapper.postAsDatabaseModel(inquiry,fullUserName)
-                }
-                emit(Result.Success(inquiriesList))
-            } catch (exception: Exception) {
-                emit(Result.Error(exception.message!!))
-            }
-        }
-
-    private fun getFullUserName(userID: String): String {
-        val userSnapShot = Tasks.await(remoteDataSource.getUserData(userID))
-        val userData = userSnapShot.toObject<User>()
-        return userData?.firstName + " "+userData?.lastName
-    }
-
     private fun getSubjectName(subjectId: String): String {
 
         val subject = remoteDataSource.getSubjectWithId(subjectId)
@@ -226,20 +226,85 @@ class Repository @Inject constructor(
             subject?.name_en!!
     }
 
-    private fun getComments(id: String) {
-        remoteDataSource.getCommentsForAnInquiry(id)
+
+    //inquiry functions
+    fun addNewInquiryWithImage(inquiry: Inquiry, imageFile: File) =
+        try {
+            Tasks.await(remoteDataSource.addNewInquiryWithImage(inquiry, imageFile))
+            Result.Success(inquiry)
+        } catch (exception: Exception) {
+            Result.Error(exception.message!!)
+        }
+
+    fun addNewInquiryWithoutImage(inquiry: Inquiry) =
+        try {
+            Tasks.await(remoteDataSource.addNewInquiryWithoutImage(inquiry))
+            Result.Success(inquiry)
+        } catch (exception: Exception) {
+            Result.Error(exception.message!!)
+        }
+
+    fun getAllInquiries() =
+        flow {
+            val localInquiries = localDataSource.getAllPosts()
+            emit(Result.Loading(localInquiries))
+            try {
+                val querySnapshot = Tasks.await(remoteDataSource.getAllInquiries())
+                val inquiriesList = querySnapshot.map {
+                    getPostDataFromDocumentSnapShot(it)
+                }
+                emit(Result.Success(inquiriesList))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
+            }
+        }
+
+    private fun getPostDataFromDocumentSnapShot(docSnapshot: DocumentSnapshot?): DatabasePost {
+        try {
+            val inquiry = docSnapshot?.toObject<Inquiry>()
+            inquiry?.id = docSnapshot?.id
+            inquiry?.subjectName = getSubjectName(inquiry?.subject_id!!)
+            val userData = getUserDataObj(inquiry.userID!!)
+
+            if (!inquiry.image_path.isNullOrEmpty())
+                inquiry.image_File_Path =
+                    getInquiryImage(inquiry.image_path!!, inquiry.id!!).absolutePath
+
+            if (!userData?.image_path.isNullOrEmpty())
+                inquiry.userProfileImagePah =
+                    getProfileImage(userData?.image_path!!, userData.id).absolutePath
+
+            return NetworkObjectMapper.postAsDatabaseModel(inquiry,
+                userData?.firstName + " " + userData?.lastName)
+        } catch (exception: Exception) {
+            throw exception
+        }
     }
+
+    fun getInquiryAsResultWithId(inquiryId: String) =
+        flow {
+            emit(Result.Loading())
+            try {
+                val querySnapshot = Tasks.await(remoteDataSource.getInquiryWithId(inquiryId))
+                val inquiry = getPostDataFromDocumentSnapShot(querySnapshot)
+                emit(Result.Success(inquiry))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
+            }
+        }
 
     private fun getInquiryImage(imagePath: String, inquiryId: String): File {
         try {
             val localeFile = File.createTempFile(inquiryId, "jpg")
-            val task =
-                Tasks.await(remoteDataSource.getInquiryImage(localeFile, imagePath, inquiryId))
+            Tasks.await(remoteDataSource.getInquiryImage(localeFile, imagePath))
             return localeFile
         } catch (exception: Exception) {
             throw exception
         }
     }
+
+    private fun getInquiryAsDocSnapWithId(inquiryId: String) =
+        remoteDataSource.getInquiryWithId(inquiryId)
 
     fun vote(userID: String?, inquiryId: String): Result<DatabasePost?> {
         var votedIdsList: MutableList<String>? = null
@@ -257,18 +322,15 @@ class Repository @Inject constructor(
             votedIdsList.add(userID!!)
         }
 
-        try{
+        try {
             Tasks.await(setVotedUserIdsForInquiry(inquiryId, votedIdsList))
-        }catch (exception:Exception){
+        } catch (exception: Exception) {
             return Result.Error(exception.message!!)
         }
+
         return try {
-            val docSnapShot = Tasks.await(getInquiryWithId(inquiryId))
-            val inquiry = docSnapShot.toObject<Inquiry>()
-            inquiry?.id = docSnapShot.id
-            inquiry?.subjectName = getSubjectName(inquiry?.subject_id!!)
-            val fullUserName = getFullUserName(inquiry?.userID!!)
-            val databaseInquiry = NetworkObjectMapper.postAsDatabaseModel(inquiry!!, fullUserName)
+            val docSnapShot = Tasks.await(getInquiryAsDocSnapWithId(inquiryId))
+            val databaseInquiry = getPostDataFromDocumentSnapShot(docSnapShot)
             Result.Success(databaseInquiry)
         } catch (exception: Exception) {
             Result.Error(exception.message!!)
@@ -276,23 +338,53 @@ class Repository @Inject constructor(
 
     }
 
-    private fun getInquiryWithId(inquiryId: String) =
-        remoteDataSource.getInquiryWithId(inquiryId)
-
-    private fun setVotedUserIdsForInquiry(inquiryId: String, votedIdsList: MutableList<String>?)  =
+    private fun setVotedUserIdsForInquiry(inquiryId: String, votedIdsList: MutableList<String>?) =
         remoteDataSource.setVotedUserIdsForInquiry(inquiryId, votedIdsList)
-
 
     private fun getVotedUserIdsForInquiry(inquiryId: String) =
         remoteDataSource.getInquiryWithId(inquiryId)
 
-    suspend fun logOut(user: DatabaseUser) =
-        try {
-            localDataSource.deleteUser(user)
-            remoteDataSource.signOut()
-            Result.Success(true)
-        } catch (exception: Exception) {
-            Result.Error(exception.localizedMessage)
+
+    //replies functions
+    fun getReplies(InquiryId: String) =
+        flow {
+            emit(Result.Loading())
+            try {
+                val querySnapShot = Tasks.await(remoteDataSource.getCommentsForAnInquiry(InquiryId))
+                val repliesList = querySnapShot.map {
+                    val reply = it.toObject<Reply>()
+                    reply.replyId = it.id
+
+                    val userData = getUserDataObj(reply.userId!!)
+                    reply.userFullName = userData?.firstName + " " + userData?.lastName
+                    NetworkObjectMapper.replyAsUIModel(reply)
+                }
+                emit(Result.Success(repliesList))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
+            }
+        }
+
+    fun addNewReply(reply: Reply, postId: String) =
+        flow {
+            emit(Result.Loading())
+            try {
+                Tasks.await(remoteDataSource.addNewReply(reply, postId))
+                Tasks.await(remoteDataSource.incrementReplies(postId))
+                emit(Result.Success(true))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
+            }
+        }
+
+    suspend fun bookMarkAPost(post: DatabasePost) =
+        flow {
+            try {
+                localDataSource.insertPost(post)
+                emit(Result.Success(true))
+            }catch (exception:Exception){
+                emit(Result.Error(exception.message!!))
+            }
         }
 
 

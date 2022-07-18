@@ -56,6 +56,5 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun insertSubjects(list: List<DatabaseSubjects>) = subjectDao.insertSubjects(list)
 
     suspend fun getSubjectsWithGrade(id : Long) = subjectDao.getSubjects(id)
-    suspend fun getInquiries() =
-        postDao.getAllPosts()
+
 }
