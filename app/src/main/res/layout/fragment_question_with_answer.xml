@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel"
+                  type="com.example.android.nadris.ui.studentActivity.quizzes.QuizViewModel"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.studentActivity.quizzes.resultQuiz.questionWithAnswer.QuestionWithAnswerFragment">
+
+    <TextView
+        android:id="@+id/Title_text"
+        android:layout_width="@dimen/match_constrain"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/BackButton"
+        android:layout_marginStart="@dimen/small_margin"
+        android:text="@string/modal_answer"
+        android:gravity="center"
+        style="@style/MaterialAlertDialog.App.Title.Text"
+    />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_answer_quiz"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/match_constrain"
+        android:layout_margin="@dimen/small_margin"
+        tools:listitem="@layout/item_question_with_answer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Title_text"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/BackButton"
+        style="@style/material_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_txt"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/mid_margin"
+        app:layout_constraintBottom_toBottomOf="@id/Title_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/Title_text"
+        app:layout_constraintTop_toTopOf="@id/Title_text"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -18,4 +18,8 @@
     <dimen name="progress">70dp</dimen>
     <dimen name="_20">20sp</dimen>
     <dimen name="xxlarge_margin">64dp</dimen>
+    <dimen name="_52">52dp</dimen>
+    <dimen name="_23">23dp</dimen>
+    <dimen name="_21">21dp</dimen>
+    <dimen name="_16">16dp</dimen>
 </resources>

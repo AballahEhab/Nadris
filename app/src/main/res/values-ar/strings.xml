@@ -201,7 +201,26 @@
     <string name="answer_4">الخيار رقم 4</string>
     <string name="add_question">إضافة سؤال</string>
     <string name="answer_location">مكان الإجابة</string>
-    <string name="ex_unit_5_lesson_3"></string>
+    <string name="ex_unit_5_lesson_3">مثال : عنوان العنصر -درس 2 - الوحدة ال3</string>
+    <string name="result">النتائج</string>
+    <string name="result_congrats">برافو! انت سجلت 84 من 100</string>
+    <string name="we_know_you_have_inside_you_ntry_hard_next_time">نحن نعلم إنه يوجد لديك طاقة جيدة للتعلم فحاول بجد المرة المقبلة</string>
+    <string name="report">التقرير</string>
+    <string name="quiz_answers">إجابات الاختبار</string>
+    <string name="go_to_home">الصفحة الرئيسية</string>
+    <string name="user_lang_pre">selectedLanguage</string>
+    <string name="teacher">Teacher</string>
+    <string name="student">Student</string>
+    <string name="result_percent">100%</string>
+    <string name="modal_answer">نموذج الإجابة</string>
+    <string name="feedback">التقييم</string>
+    <string name="correct_answers">الإجابات الصحيحة</string>
+    <string name="wrong_answers">الإجابات الخطأ</string>
+    <string name="n_a">N/A</string>
+    <string name="message_list">من أسرار النجاح أن تواجه العقبات والصعاب وأنت ثابت مثل الطير حينما تحل عليه العواصف , وأنار الله درب كل مجتهد، وفقكم لكل ما فيه الخير لكم، ولكل شئ تحبوه , وإن التركيز هو الأساس لكي تنجح في أي شئ في حياتك, وعندما لا تجد الطريق المؤدي إلى النجاح سيكون عليك أن تبتكره, وإن كلمة ولكن ليست موجودة في قاموس الناجحين, وإذا أردت أن تتغلب على الهزيمة فعليك بالانتصار, وعليك أن تؤمن بموهبتك لكي تُحقق النجاح، و يجب أن تتمسك بها من أجل أن تتفوق, وإن الفشل هو تلك الهزيمة المؤقتة التي يمكنك بعدها أن تخلق فرص النجاح الحقيقية.</string>
+    <string name="info_message">الرجاءالإطلاع علي التعليمات ومذاكرتها بجد للحصول علي اكبر درجة في المستقبل:</string>
+    <string name="num_zero">0</string>
+    <string name="text_progress">60</string>
 
 
 </resources>

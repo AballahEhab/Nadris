@@ -6,22 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.QuizFragmentBinding
+import com.example.android.nadris.ui.teacherActivity.quiz_teacher.TeacherQuizFragmentDirections
 import com.example.android.nadris.util.isVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class QuizFragment : Fragment() {
     val TAG = "StudentQuizFragment"
-    val viewModel: QuizViewModel by viewModels()
+    val viewModel: QuizViewModel by activityViewModels()
     private lateinit var binding: QuizFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+
         inflater.inflate(R.layout.quiz_fragment, container, false)
         binding = QuizFragmentBinding.inflate(inflater)
         binding.viewModel = viewModel
@@ -59,54 +63,13 @@ class QuizFragment : Fragment() {
                 viewModel.selecedOption.remove(4)
             }
         }
+        if(binding.submit.text=="FINISH"){
+            binding.submit.setOnClickListener{
+                val action = QuizFragmentDirections.actionStudentQuizToResultQuiz()
+                findNavController().navigate(action)
+            }
+        }
 
-
-
-
-//            binding.RBAnswer4.setOnCheckedChangeListener { buttonView, isChecked ->
-//                val checked4: Boolean = binding.RBAnswer4.isChecked
-//                if (checked4) {
-//                    viewModel.selecedOption.add(4)
-//                } else {
-//                    viewModel.selecedOption.remove(4)
-//                }
-//            }
-
-
-
-
-
-
-
-//        binding.submit.setOnClickListener {
-//            if (viewModel.selecedOption.isNotEmpty()) {
-//                if (viewModel.selecedOption.containsAll(question.correct_ans)) {
-//                    for (num in viewModel.selecedOption) {
-//
-//                    }
-//                } else {
-//                    viewModel.score++;
-//
-//                }
-//                for (num1 in viewModel.selecedOption) {
-//
-//                }
-//
-//                if (viewModel.currentPosition == viewModel.questionList!!.size) {
-//                    binding.submit.text = "FINISH"
-//                } else {
-//                    binding.submit.text = "Go to Next"
-//                }
-//            } else {
-//                viewModel.currentPosition++
-//                when {
-//                    viewModel.currentPosition <= viewModel.questionList!!.size -> {
-//                        setQuestion()
-//                    }
-//                }
-//            }
-//            viewModel.selecedOption.clear()
-//        }
         return binding.root
     }
 
@@ -157,21 +120,23 @@ class QuizFragment : Fragment() {
                 }
                 if (viewModel.selecedOption.containsAll(question.correct_ans)) {
                     viewModel.score++
-                    binding.RBAnswer1.isChecked = false
-                    binding.RBAnswer2.isChecked = false
-                    binding.RBAnswer3.isChecked = false
-                    binding.RBAnswer4.isChecked = false
-                    viewModel.currentPosition++
                 } else {
                     viewModel.wrongQuestion.add(viewModel.currentPosition)
-                    binding.RBAnswer1.isChecked = false
-                    binding.RBAnswer2.isChecked = false
-                    binding.RBAnswer3.isChecked = false
-                    binding.RBAnswer4.isChecked = false
-                    viewModel.currentPosition++
                 }
+                ++viewModel.currentPosition
+
+                if(viewModel.currentPosition > viewModel.questionList!!.size){
+
+                    val action = QuizFragmentDirections.actionStudentQuizToResultQuiz()
+                    findNavController().navigate(action) }
+
+                binding.RBAnswer1.isChecked = false
+                binding.RBAnswer2.isChecked = false
+                binding.RBAnswer3.isChecked = false
+                binding.RBAnswer4.isChecked = false
                 if (viewModel.currentPosition == viewModel.questionList!!.size) {
                     binding.submit.text = "FINISH"
+
                 } else {
                     binding.submit.text = "Go to Next"
                 }
@@ -191,31 +156,41 @@ class QuizFragment : Fragment() {
             binding.CBAnswer3.isVisible(true)
             binding.CBAnswer4.isVisible(true)
             binding.submit.setOnClickListener {
+                //
                 if (viewModel.selecedOption.containsAll(question.correct_ans)) {
                     viewModel.score++
-                    binding.CBAnswer1.isChecked = false
-                    binding.CBAnswer2.isChecked = false
-                    binding.CBAnswer3.isChecked = false
-                    binding.CBAnswer4.isChecked = false
-                    ++viewModel.currentPosition
                 } else {
                     viewModel.wrongQuestion.add(viewModel.currentPosition)
-                    binding.CBAnswer1.isChecked = false
-                    binding.CBAnswer2.isChecked = false
-                    binding.CBAnswer3.isChecked = false
-                    binding.CBAnswer4.isChecked = false
-                    ++viewModel.currentPosition
+
                 }
+                ++viewModel.currentPosition
+
+                if(viewModel.currentPosition > viewModel.questionList!!.size){
+
+                    val action = QuizFragmentDirections.actionStudentQuizToResultQuiz()
+                    findNavController().navigate(action) }
+
+
+
+                binding.CBAnswer1.isChecked = false
+                binding.CBAnswer2.isChecked = false
+                binding.CBAnswer3.isChecked = false
+                binding.CBAnswer4.isChecked = false
+
+
+
+
                 if (viewModel.currentPosition == viewModel.questionList!!.size) {
                     binding.submit.text = "FINISH"
                 } else {
                     binding.submit.text = "Go to Next"
                 }
-                when {
-                    viewModel.currentPosition <= viewModel.questionList!!.size -> {
+
+
+                    if(viewModel.currentPosition <= viewModel.questionList!!.size )
                         setQuestion()
-                    }
-                }
+
+
             }
         }
 
