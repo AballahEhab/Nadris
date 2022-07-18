@@ -75,7 +75,7 @@ class ChangePasswordViewModel @Inject constructor(val repository: Repository) : 
     // send old password and new password to api and get result
     // call in on cliclk save botton
 
-//    fun onSaveClicked() {
+//    fun onSaveChangeisClicked() {
 //
 //        validateOldPassword()
 //        validPassword1()

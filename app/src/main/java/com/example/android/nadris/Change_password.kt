@@ -40,11 +40,16 @@ class Change_password : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-          //viewModel.onSaveClicked()
-
+          //viewModel.onSaveChangeisClicked()
+            resultChngeObservers()
 
         }
 
+
+
+        return binding.root
+    }
+    private fun resultChngeObservers(){
         viewModel.changePasswordResult.observe(viewLifecycleOwner){
             it.handleRepoResponse(
                 onPreExecute = {
@@ -60,13 +65,12 @@ class Change_password : Fragment() {
                 },
                 onSuccess = {
                     Toast.makeText(requireContext(),"تم تغيير الرقم كلمه المرور  ",Toast.LENGTH_SHORT).show()
-
+                    this.findNavController()
+                        .navigate(Change_passwordDirections.actionChangePasswordToSettingsFragment())
 
                 }
             )
         }
-
-        return binding.root
     }
 
     //pass error in old password to helperText
