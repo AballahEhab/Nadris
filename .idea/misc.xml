@@ -215,10 +215,12 @@
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_unit_subjects.xml" value="0.2" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/menu/student_bottom_navigation_menu.xml" value="0.1" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/menu/teacher_bottom_navigation_menu.xml" value="0.1" />
+        <entry key="..\:/projectmobileapp/Nadris/app/src/main/res/layout/fragment_feedback.xml" value="0.20416666666666666" />
+        <entry key="..\:/projectmobileapp/Nadris/app/src/main/res/layout/fragment_question_with_answer.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -40,11 +40,13 @@
     <string name="textView_other">other</string>
     <string name="textView_teacher_signup">Teacher</string>
     <string name="textView_HaveAccount_SignIn">Do you have account?</string>
-    <string name="textView_account_login"> <u>Login</u></string>
+    <string name="textView_account_login">
+        <u>Login</u>
+    </string>
     <string name="wrong_OTB_text_dialog">Worng OTP</string>
     <string name="back_txt">Back</string>
     <string name="next_txt">next</string>
-    <string name="num_zero" translatable="false">0</string>
+    <string name="num_zero">0</string>
     <string name="num_one">1</string>
     <string name="num_two">2</string>
     <string name="num_three">3</string>
@@ -115,14 +117,14 @@
     <string name="TvChoseTeachers">choose a teacher</string>
     <string name="btn_joining">join</string>
     <string name="tv_name_subject_phyiscs">physics</string>
-    <string name="tv_count_student_on_all_subjects">160 </string>
-    <string name="tv_count_teacher_on_all_subjects">15 </string>
+    <string name="tv_count_student_on_all_subjects">160</string>
+    <string name="tv_count_teacher_on_all_subjects">15</string>
     <string name="tv_item_st_count">student</string>
     <string name="tv_item_teach_count">teacher</string>
     <string name="tv_name_teachers">mohamed mostafa</string>
     <string name="tv_content_description">Explanation and references</string>
     <string name="tv_add_teacher">add</string>
-    <string name="tv_star">* * * </string>
+    <string name="tv_star">* * *</string>
     <string name="tv_evaluation">4.8</string>
     <string name="my_course">subjects</string>
     <string name="add_subject">add subject</string>
@@ -134,8 +136,8 @@
     <string name="btn_add_new_subject">add subject</string>
     <string name="autoCompleteTV_choose_subjects">choose subject</string>
     <string name="autoCompleteTV_choose_semester">choose grade</string>
-    <string name="content_comment">أستاذ شاطر جدا ومجتهد ومهتم  بالطالب لأقصي درجه </string>
-    <string name="name_acount_add_comment">محمد مصطفي </string>
+    <string name="content_comment">أستاذ شاطر جدا ومجتهد ومهتم بالطالب لأقصي درجه</string>
+    <string name="name_acount_add_comment">محمد مصطفي</string>
     <string name="add_comment">add reply</string>
     <string name="title_activity_login">Login activity</string>
     <string name="btn_add_comment">go</string>
@@ -238,6 +240,24 @@
     <string name="add_question">add question</string>
     <string name="answer_location">AnswerLocation</string>
     <string name="ex_unit_5_lesson_3">ex: unit 5 - lesson 3</string>
+    <string name="result">Result</string>
+    <string name="result_congrats">Yay! you scored 84 out 100</string>
+    <string name="we_know_you_have_inside_you_ntry_hard_next_time">We know you have 🔥 inside you...\nTry hard next
+        time
+    </string>
+    <string name="report">Report</string>
+    <string name="quiz_answers">Quiz Answers</string>
+    <string name="go_to_home">Go to home</string>
+    <string name="result_percent">100%</string>
+    <string name="modal_answer">Modal answer</string>
+    <string name="feedback">Feedback</string>
+    <string name="correct_answers">Correct answers</string>
+    <string name="wrong_answers">wrong answers</string>
+    <string name="n_a">N/A</string>
+    <string name="message_list">One of the secrets of success is to face obstacles and difficulties while you are steadfast like a bird when storms descend upon it, and God has illuminated the path of every diligent, and guided you to everything that is good for you, and for everything you love, and that focus is the basis to succeed in anything in your life, and when you do not find the path that leads To success you will have to invent it, and the word but is not found in the dictionary of the successful, and if you want to overcome defeat, you have to win, and you have to believe in your talent in order to achieve success, and you must stick to it in order to excel, and failure is that temporary defeat that You can then create the real chances of success.
+    </string>
+    <string name="info_message">Please check the guidance and study hard to get a higher score next time</string>
+    <string name="text_progress">60</string>
 
 
 </resources>

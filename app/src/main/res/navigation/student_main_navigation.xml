@@ -190,13 +190,43 @@
         android:id="@+id/student_quiz"
         android:name="com.example.android.nadris.ui.studentActivity.quizzes.QuizFragment"
         android:label="QuizFragment"
-        tools:layout="@layout/quiz_fragment"/>
+        tools:layout="@layout/quiz_fragment">
+        <action android:id="@+id/action_student_quiz_to_result_quiz" app:destination="@id/result_quiz"/>
+    </fragment>
     <fragment
         android:id="@+id/teacher_quiz"
         android:name="com.example.android.nadris.ui.teacherActivity.quiz_teacher.TeacherQuizFragment"
         android:label="QuizFragment"
         tools:layout="@layout/teacher_quiz_fragment">
         <action android:id="@+id/action_teacher_quiz_to_student_quiz" app:destination="@id/student_quiz"/>
+    </fragment>
+    <fragment
+    android:id="@+id/result_quiz"
+    android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.ResultFragment"
+    android:label="Result quiz"
+    tools:layout="@layout/result_fragment">
+
+
+        <action android:id="@+id/action_result_quiz_to_posts_fragment" app:destination="@id/posts_fragment"/>
+        <action android:id="@+id/action_result_quiz_to_question_with_answer"
+                app:destination="@id/question_with_answer"/>
+        <action android:id="@+id/action_result_quiz_to_Feedback_page" app:destination="@id/Feedback_page"/>
+    </fragment>
+    <fragment
+    android:id="@+id/question_with_answer"
+    android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.questionWithAnswer.QuestionWithAnswerFragment"
+    android:label="Quiz answer"
+    tools:layout="@layout/fragment_question_with_answer">
+
+        <action android:id="@+id/action_question_with_answer_to_result_quiz" app:destination="@id/result_quiz"/>
+    </fragment>
+    <fragment
+    android:id="@+id/Feedback_page"
+    android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.feedbackSheet.FeedbackFragment"
+    android:label="Quiz feedback"
+    tools:layout="@layout/fragment_feedback"
+    >
+        <action android:id="@+id/action_Feedback_page_to_result_quiz" app:destination="@id/result_quiz"/>
     </fragment>
 
 </navigation>

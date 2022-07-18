@@ -16,7 +16,7 @@ object setData {
                 " في محل جر نعت.",
                 " في محل جزم جواب شرط",
                 "في محل نصب خبر كان"),
-            mutableListOf(1,2),
+            mutableListOf(1),
             " في محل جزم جواب شرط",
 
             )
@@ -29,7 +29,7 @@ object setData {
                 "منفية",
                 " مبدوءة بجامد",
                 "اسمية"),
-            mutableListOf(2),
+            mutableListOf(2,4),
             " مبدوءة بجامد",
         )
         var question3 = QuizData(
@@ -42,7 +42,7 @@ object setData {
                 "محب.",
                 "سرور",
                 "مجرم"),
-            mutableListOf(1,4),
+            mutableListOf(4),
             "سرور",
         )
         var question4 = QuizData(
