@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
+package com.example.android.nadris.ui.teacherActivity.addingNewCourse
 
 
     import android.view.LayoutInflater
@@ -9,7 +9,7 @@ package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
     import androidx.recyclerview.widget.RecyclerView
     import com.example.android.nadris.database.models.DatabaseTeacherSubject
     import com.example.android.nadris.databinding.ItemRvSubTeacherBinding
-    import com.example.android.nadris.ui.teacherActivity.subjects_teacher.SubjectFragmentDirections
+    import com.example.android.nadris.ui.teacherActivity.myCourses.SubjectFragmentDirections
 
 class SubjectAdapter() :
     RecyclerView.Adapter<SubjectAdapter.ViewHolder>() {

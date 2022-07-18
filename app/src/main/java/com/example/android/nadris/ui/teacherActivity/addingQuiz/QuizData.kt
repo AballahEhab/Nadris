@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.teacherActivity.quiz_teacher
+package com.example.android.nadris.ui.teacherActivity.addingQuiz
 
 data class QuizData(
     var id: Int,

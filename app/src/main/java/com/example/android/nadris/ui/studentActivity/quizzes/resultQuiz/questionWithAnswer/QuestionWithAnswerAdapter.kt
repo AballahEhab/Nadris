@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.ItemQuestionWithAnswerBinding
-import com.example.android.nadris.ui.teacherActivity.quiz_teacher.QuizData
+import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
 
 
 class QuestionWithAnswerAdapter(context: Context):RecyclerView.Adapter<QuestionWithAnswerAdapter.ViewHolder>() {

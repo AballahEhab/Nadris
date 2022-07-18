@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.teacherActivity.choosingNewSubjects
+package com.example.android.nadris.ui.teacherActivity.addingNewCourse
 
 import android.os.Bundle
 import android.view.LayoutInflater

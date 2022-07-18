@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="viewModel"
-                  type="com.example.android.nadris.ui.teacherActivity.quiz_teacher.TeacherQuizViewModel"/>
+                  type="com.example.android.nadris.ui.teacherActivity.addingQuiz.TeacherQuizViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.teacherActivity.quiz_teacher.TeacherQuizFragment">
+        tools:context=".ui.teacherActivity.addingQuiz.TeacherQuizFragment">
 
         <TextView
             android:id="@+id/tv_my_quize_teacher"

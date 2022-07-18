@@ -146,7 +146,7 @@
 
     <fragment
         android:id="@+id/student_teachers_for_a_subject_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.subject_student.select_teacher.TeachersCoursesFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.subject_student.selectTeacherForASubject.TeachersCoursesFragment"
         android:label="TeachersCoursesFragment"
         tools:layout="@layout/fragment_teachers_courses">
 
@@ -195,7 +195,7 @@
     </fragment>
     <fragment
         android:id="@+id/teacher_quiz"
-        android:name="com.example.android.nadris.ui.teacherActivity.quiz_teacher.TeacherQuizFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.TeacherQuizFragment"
         android:label="QuizFragment"
         tools:layout="@layout/teacher_quiz_fragment">
         <action android:id="@+id/action_teacher_quiz_to_student_quiz" app:destination="@id/student_quiz"/>

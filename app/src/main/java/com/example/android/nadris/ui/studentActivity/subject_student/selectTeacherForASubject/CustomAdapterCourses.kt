@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.ItemRvTeachersBinding
-import com.example.android.nadris.ui.studentActivity.subject_student.select_teacher.TeachersCoursesViewModel
+import com.example.android.nadris.ui.studentActivity.subject_student.selectTeacherForASubject.TeachersCoursesViewModel
 import com.example.android.nadris.util.isVisible
 
 class CustomAdapterCourses(val viewModel:TeachersCoursesViewModel) : RecyclerView.Adapter<CustomAdapterCourses.Viewholder>() {

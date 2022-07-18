@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.subject_student.select_teacher
+package com.example.android.nadris.ui.studentActivity.subject_student.selectTeacherForASubject
 
 import androidx.lifecycle.ViewModel
 import com.example.android.nadris.repository.Repository

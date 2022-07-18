@@ -1,6 +1,6 @@
 package com.example.android.nadris.ui.studentActivity.quizzes
 
-import com.example.android.nadris.ui.teacherActivity.quiz_teacher.QuizData
+import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
 
 object setData {
 

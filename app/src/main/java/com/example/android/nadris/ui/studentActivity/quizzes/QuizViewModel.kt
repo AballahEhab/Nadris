@@ -1,11 +1,7 @@
 package com.example.android.nadris.ui.studentActivity.quizzes
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.nadris.repository.Repository
-import com.example.android.nadris.ui.teacherActivity.quiz_teacher.QuizData
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
 
 
 class QuizViewModel:ViewModel() {

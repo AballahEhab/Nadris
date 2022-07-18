@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.studentActivity.units
+package com.example.android.nadris.ui.teacherActivity.courseUnits
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

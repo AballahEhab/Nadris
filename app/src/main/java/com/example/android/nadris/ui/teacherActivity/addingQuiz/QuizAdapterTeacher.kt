@@ -1,10 +1,8 @@
-package com.example.android.nadris.ui.teacherActivity.quiz_teacher
+package com.example.android.nadris.ui.teacherActivity.addingQuiz
 
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil

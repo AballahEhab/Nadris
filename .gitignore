@@ -7,7 +7,7 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-/.idea/misc.xmll
+/.idea/misc.xml
 .DS_Store
 /build
 /captures
@@ -17,3 +17,4 @@ local.properties
 /.idea/vcs.xml
 /.idea/runConfigurations.xml
 /.idea/deploymentTargetDropDown.xml
+/richeditor/build/generated/source/buildConfig/debug/jp/wasabeef/richeditor/BuildConfig.java

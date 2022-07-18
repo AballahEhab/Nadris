@@ -1,8 +1,6 @@
-package com.example.android.nadris.ui.teacherActivity.subjects_teacher
+package com.example.android.nadris.ui.teacherActivity.myCourses
 
 import android.os.Bundle
-import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSubTeacherRvBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputLayout
-import com.example.android.nadris.ui.teacherActivity.choosingNewSubjects.SubjectAdapter
+import com.example.android.nadris.ui.teacherActivity.addingNewCourse.SubjectAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
