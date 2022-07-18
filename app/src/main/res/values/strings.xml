@@ -210,6 +210,8 @@
     <string name="sp_gender_title">gender</string>
     <string name="teacher">Teacher</string>
     <string name="student">Student</string>
+    <string name="post_bookmarked_successfully">"bookmarked "</string>
+    <string name="cant_bookmark_post">somthing post can\'t be bookmarked</string>
     <string-array name="languages">
         <item>English</item>
         <item>العربية</item>

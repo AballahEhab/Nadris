@@ -3,51 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@id/addSectionFragment">
-<!--    Todo: revert start destination back to/teacher_my_subjects_fragment -->
+    app:startDestination="@id/posts_fragment">
 
     <fragment
         android:id="@+id/posts_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.PostPageFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.viewPosts.PostPageFragment"
         android:label="@string/posts_fragment_label"
         tools:layout="@layout/fragment_post_page">
 
         <action
-            android:id="@+id/action_posts_fragment_to_public_profile_fragment"
-            app:destination="@id/public_profile_fragment" />
+            android:id="@+id/action_posts_fragment_to_add_post_fragment"
+            app:destination="@id/add_post_fragment" />
         <action
             android:id="@+id/action_posts_fragment_to_add_comment_fragment"
             app:destination="@id/add_comment_fragment" />
         <action
-            android:id="@+id/action_posts_fragment_to_add_post_fragment"
-            app:destination="@id/add_post_fragment" />
+            android:id="@+id/action_posts_fragment_to_public_profile_fragment"
+            app:destination="@id/public_profile_fragment" />
         <action
             android:id="@+id/action_posts_fragment_to_private_profile_fragment"
             app:destination="@id/private_profile_fragment" />
 
     </fragment>
 
-    <fragment
-        android:id="@+id/public_profile_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.followProfile.FollowProfileFragment"
-        tools:layout="@layout/follow_profile_fragment">
-        <argument
-            android:name="user_profile_id"
-            app:argType="string" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/add_comment_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.posts.replies.AddCommentFragment"
-        tools:layout="@layout/fragment_add_comment">
-        <argument
-            android:name="postId"
-            app:argType="string" />
-    </fragment>
-
+<!--    TODO:to be reviewed-->
     <fragment
         android:id="@+id/add_post_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.addPosts.AddPostFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.addPosts.AddPostFragment"
         tools:layout="@layout/fragment_add_pos">
 
         <argument
@@ -55,43 +37,61 @@
             app:argType="com.example.android.nadris.Mode"
             android:defaultValue="CREATE" />
 
-                <argument
-                    android:name="post_id"
-                    app:argType="string"
-                    android:defaultValue=""
+        <argument
+            android:name="post_id"
+            app:argType="string"
+            android:defaultValue=""
 
-                    />
+            />
 
-                <argument
-                    android:name="subject"
-                    app:argType="string"
-                    android:defaultValue=""
+        <argument
+            android:name="subject"
+            app:argType="string"
+            android:defaultValue=""
 
-                    />
+            />
 
-<!--        todo: grade user only with teacher -->
-<!--                <argument-->
-<!--                    android:name="grade"-->
-<!--                    app:argType="string"-->
-<!--                    android:defaultValue=""-->
+        <!--        todo: grade user only with teacher -->
+        <!--                <argument-->
+        <!--                    android:name="grade"-->
+        <!--                    app:argType="string"-->
+        <!--                    android:defaultValue=""-->
 
-<!--                    />-->
-                <argument
-                    android:name="discussion_content"
-                    app:argType="string"
-                    android:defaultValue=""
+        <!--                    />-->
+        <argument
+            android:name="discussion_content"
+            app:argType="string"
+            android:defaultValue=""
 
-                    />
-                <argument
-                    android:name="image_path"
-                    app:argType="string"
-                    android:defaultValue=""
+            />
+        <argument
+            android:name="image_path"
+            app:argType="string"
+            android:defaultValue=""
 
-                    />
+            />
         <action
             android:id="@+id/action_add_post_fragment_to_posts_fragment"
             app:destination="@id/posts_fragment" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/add_comment_fragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.viewPosts.replies.AddCommentFragment"
+        tools:layout="@layout/fragment_add_comment">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/public_profile_fragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.followProfile.FollowProfileFragment"
+        tools:layout="@layout/follow_profile_fragment">
+        <argument
+            android:name="user_profile_id"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -110,7 +110,7 @@
 
     <fragment
         android:id="@+id/previewProfilePicFragment"
-        android:name="com.example.android.nadris.ui.studentActivity.previewProfilePic.PreviewProfilePicFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.posts.previewProfilePic.PreviewProfilePicFragment"
         android:label="fragment_preview_profile_pic"
         tools:layout="@layout/fragment_preview_profile_pic">
         <argument
@@ -121,7 +121,7 @@
 
     <fragment
         android:id="@+id/settings_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.settings.SettingsFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.profile.settings.SettingsFragment"
         tools:layout="@layout/fragment_settings">
 
         <action
@@ -134,7 +134,7 @@
 
     <fragment
         android:id="@+id/help_fragment"
-        android:name="com.example.android.nadris.ui.studentActivity.settings.help.HelpFragment"
+        android:name="com.example.android.nadris.ui.studentActivity.profile.settings.help.HelpFragment"
         tools:layout="@layout/fragment_help">
 
         <action

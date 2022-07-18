@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class DatabasePost(
     @PrimaryKey val postId: String,
     var imageFilePath :String? ,
+    var userImageFilePath :String? ,
     var subject: String,
     var content: String,
     var votesNum:Int,

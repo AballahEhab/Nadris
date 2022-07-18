@@ -18,7 +18,9 @@ data class User(
     val isATeacher: Boolean = false,
     val university: DocumentReference? = null,
     val college: DocumentReference? = null,
-    val imageLink: String = "",
-) {
+    val image_path: String = "",
+    @get:Exclude var image_File_Path: String? = "",
+
+    ) {
 
 }

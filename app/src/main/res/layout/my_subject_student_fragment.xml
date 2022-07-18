@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.ui.studentActivity.subject_student.mySubject.MySubjectStudentViewModel"/>
+            type="com.example.android.nadris.ui.studentActivity.subject_student.myCourses.MySubjectStudentViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

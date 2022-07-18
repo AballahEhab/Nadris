@@ -22,8 +22,8 @@ import com.example.android.nadris.*
 import com.example.android.nadris.databinding.FragmentProfileBinding
 import com.example.android.nadris.services.Converter
 import com.example.android.nadris.ui.SplashActivity
-import com.example.android.nadris.ui.studentActivity.posts.CustomAdapter
-import com.example.android.nadris.ui.studentActivity.posts.PostPageViewModel
+import com.example.android.nadris.ui.studentActivity.posts.viewPosts.CustomAdapter
+import com.example.android.nadris.ui.studentActivity.posts.viewPosts.PostPageViewModel
 import com.example.android.nadris.util.LoadImageFromDevice
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -129,30 +129,32 @@ class ProfileFragment : Fragment() {
     private fun showImageOptionsDialog() {
 
         val dialogBuilder= MaterialAlertDialogBuilder(requireContext())
+
         var options :Array<out String>
+
         lateinit var onOptionsClick: (DialogInterface?,Int)-> Unit
 
         if(viewModel.imgProfile.value == null) {
+
             options = resources.getStringArray(R.array.null_image_click_options)
+
             onOptionsClick = { dialog, item ->
                 when (options[item]) {
                     options[0] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
                     options[1] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
                 }
                 }
+
         }else{
+
             options = resources.getStringArray(R.array.image_click_options)
+
             onOptionsClick = { dialog, item ->
                 when (options[item]) {
                     options[0] -> navigateToPreviewImageFragment()
-                    options[1] -> LoadImageFromDevice.takePhoto(requireActivity(),
-                        requireContext(),
-                        this)
-                    options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(),
-                        requireContext(),
-                        this)
+                    options[1] -> LoadImageFromDevice.takePhoto(requireActivity(), requireContext(), this)
+                    options[2] -> LoadImageFromDevice.uploadPhoto(requireActivity(), requireContext(), this)
                     options[3] -> viewModel.removePhoto()
-
                 }
             }
         }

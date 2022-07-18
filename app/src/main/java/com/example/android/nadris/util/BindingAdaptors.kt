@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.android.nadris.R
 
 @BindingAdapter("isVisible")
 fun View.isVisible(visible:Boolean){
@@ -15,7 +14,7 @@ fun View.isVisible(visible:Boolean){
 }
 
 @BindingAdapter("stringRecourse", "formatterInput")
-fun TextView.textWithFormat(stringRecourse:Int, /*vararg*/ formatterInput:Long){
+fun TextView.textWithFormat(stringRecourse:Int, /*vararg*/ formatterInput:Any){
     this.text = String.format(context.getString(stringRecourse),formatterInput)
 }
 

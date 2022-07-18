@@ -6,7 +6,7 @@
 <data>
     <variable
         name="viewmodel"
-        type="com.example.android.nadris.ui.studentActivity.subject_student.SubjectsRvFragmentViewModel" />
+        type="com.example.android.nadris.ui.studentActivity.subject_student.exploreCourses.SubjectsRvFragmentViewModel" />
 </data>
 <FrameLayout
     android:layout_width="match_parent"

@@ -13,7 +13,11 @@ class Inquiry(
     @get:Exclude var image_File_Path: String? = "",
     var voted_user_ids: List<String> = listOf(),
     val subject_id: String? = null,
+    @get:Exclude var userProfileImagePah: String? = null,
     @get:Exclude var subjectName: String? = null,
     @ServerTimestamp var time: Date? = null,
     val userID: String? = null,
-    @get:Exclude var id: String? = null)
+    @get:Exclude var id: String? = null){
+
+
+}

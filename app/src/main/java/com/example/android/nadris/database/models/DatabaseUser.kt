@@ -19,6 +19,7 @@ data class DatabaseUser(
     val GradeId: String?,
     val UniversityName: String? = null,
     val CollegeName: String? = null,
+    val profileImagePath: String? = null,
 ) {
     fun getFullName() = "$firstName  $lastName"
 

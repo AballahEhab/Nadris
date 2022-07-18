@@ -30,9 +30,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nadris">
         <activity
-            android:name=".ui.testactivity.TestActivity"
-            />
-        <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
             android:noHistory="true">
