@@ -201,7 +201,6 @@
     <string name="answer_4">الخيار رقم 4</string>
     <string name="add_question">إضافة سؤال</string>
     <string name="answer_location">مكان الإجابة</string>
-    <string name="ex_unit_5_lesson_3"></string>
     <string name="post_bookmarked_successfully">تم الحفظ</string>
     <string name="cant_bookmark_post">"حدث خطا لم يتم الحفظ "</string>
     <string name="teacher">مدرس</string>
@@ -214,9 +213,6 @@
     <string name="report">التقرير</string>
     <string name="quiz_answers">إجابات الاختبار</string>
     <string name="go_to_home">الصفحة الرئيسية</string>
-    <string name="user_lang_pre">selectedLanguage</string>
-    <string name="teacher">Teacher</string>
-    <string name="student">Student</string>
     <string name="result_percent">100%</string>
     <string name="modal_answer">نموذج الإجابة</string>
     <string name="feedback">التقييم</string>
