@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.android.nadris.R
-import com.example.utils.YouTubeConfig
+import com.giants.utils.YouTubeConfig
 import com.example.android.nadris.databinding.AddContentFragmentBinding
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
