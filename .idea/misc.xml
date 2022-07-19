@@ -215,8 +215,11 @@
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/layout/item_unit_subjects.xml" value="0.2" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/menu/student_bottom_navigation_menu.xml" value="0.1" />
         <entry key="..\:/prog/CS_Project/Android/app/src/main/res/menu/teacher_bottom_navigation_menu.xml" value="0.1" />
+        <entry key="..\:/projectmobileapp/Nadris/app/src/main/res/layout/add_content_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/projectmobileapp/Nadris/app/src/main/res/layout/fragment_feedback.xml" value="0.20416666666666666" />
         <entry key="..\:/projectmobileapp/Nadris/app/src/main/res/layout/fragment_question_with_answer.xml" value="0.20416666666666666" />
+        <entry key="..\:/projectmobileapp/Nadris/app/src/main/res/layout/quiz_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/projectmobileapp/Nadris/app/src/main/res/layout/youtube.xml" value="0.14945652173913043" />
       </map>
     </option>
   </component>

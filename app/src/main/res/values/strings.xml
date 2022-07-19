@@ -258,6 +258,9 @@
     </string>
     <string name="info_message">Please check the guidance and study hard to get a higher score next time</string>
     <string name="text_progress">60</string>
+    <string name="record_audio">record audio</string>
+    <string name="upload_pdf">upload PDf</string>
+    <string name="text_editor">Text editor</string>
 
 
 </resources>

@@ -223,6 +223,9 @@
     <string name="info_message">الرجاءالإطلاع علي التعليمات ومذاكرتها بجد للحصول علي اكبر درجة في المستقبل:</string>
     <string name="num_zero">0</string>
     <string name="text_progress">60</string>
+    <string name="record_audio">تسجيل صوتي</string>
+    <string name="upload_pdf">تحميل مستند pdf</string>
+    <string name="text_editor">محرر نصوص</string>
 
 
 </resources>
