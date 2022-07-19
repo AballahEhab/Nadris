@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
-import com.example.android.nadris.database.models.DatabaseStudentSubject
+import com.example.android.nadris.database.models.DatabaseStudentCourse
 import com.example.android.nadris.network.firebase.dtos.Course
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.Result
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MySubjectStudentViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    var list = MutableLiveData<List<DatabaseStudentSubject>>()
+    var list = MutableLiveData<List<DatabaseStudentCourse>>()
     var coursesResultList = MutableLiveData<Result<List<Course>>>()
 
     fun getCoursesCurrentUserSubscribedTo() {

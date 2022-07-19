@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
-import com.example.android.nadris.database.models.DatabaseStudentSubject
+import com.example.android.nadris.database.models.DatabaseStudentCourse
 import com.example.android.nadris.databinding.ItemSubjectStudentBinding
 
 class MySubjectAdapter: RecyclerView.Adapter<MySubjectAdapter.ViewHolder>() {
-    private val differCallback = object : DiffUtil.ItemCallback<DatabaseStudentSubject>(){
-        override fun areItemsTheSame(oldItem: DatabaseStudentSubject, newItem: DatabaseStudentSubject): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseStudentCourse>(){
+        override fun areItemsTheSame(oldItem: DatabaseStudentCourse, newItem: DatabaseStudentCourse): Boolean {
             return oldItem.id == newItem.id
         }
-        override fun areContentsTheSame(oldItem: DatabaseStudentSubject, newItem: DatabaseStudentSubject): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseStudentCourse, newItem: DatabaseStudentCourse): Boolean {
             return oldItem == newItem
         }
     }

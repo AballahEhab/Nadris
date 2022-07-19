@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSubTeacherRvBinding
-import com.example.android.nadris.ui.teacherActivity.addingNewCourse.SubjectAdapter
+import com.example.android.nadris.network.firebase.NetworkObjectMapper
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,12 +27,17 @@ class SubjectFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
         inflater.inflate(R.layout.fragment_sub_teacher_rv, container, false)
+
         binding = FragmentSubTeacherRvBinding.inflate(inflater)
 
         binding.viewmodel = viewModel
-        viewModel.getdata()
+
+        viewModel.getCoursesCurrentUserSubscribedTo()
+
         setupRV()
+
         binding.fabAddSubject.setOnClickListener {
             val action = SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment()
             findNavController().navigate(action)
@@ -70,6 +76,30 @@ class SubjectFragment : Fragment() {
             }
         }
              **/
+
+        viewModel.coursesResultList.observe(viewLifecycleOwner){result->
+            result.handleRepoResponse(
+                onPreExecute = {
+
+                },
+                onLoading = {
+                },
+                onError = {
+                    Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+                },
+                onSuccess = {
+                    result.data?.let {
+                            viewModel.list.value = result.data.map {
+                                NetworkObjectMapper.NetworkCourseAsTeacherCourse(it)
+                            }
+                    } ?: Snackbar.make( binding.root,
+                        resources.getString(R.string.my_coures_error),
+                        Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            )
+        }
 
         return binding.root
     }

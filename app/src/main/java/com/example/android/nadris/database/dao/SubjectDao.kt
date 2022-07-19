@@ -5,26 +5,26 @@ import com.example.android.nadris.database.models.*
 
 @Dao
 interface SubjectDao {
-    @Query("SELECT * FROM DatabaseTeacherSubject")
-    suspend fun getTeacherSubjects(): List<DatabaseTeacherSubject>
-    @Query("SELECT * FROM DatabaseStudentSubject")
-    suspend fun getRegisteredCoursesForAStudent():List<DatabaseStudentSubject>
+    @Query("SELECT * FROM DatabaseTeacherCourse")
+    suspend fun getTeacherSubjects(): List<DatabaseTeacherCourse>
+    @Query("SELECT * FROM DatabaseStudentCourse")
+    suspend fun getRegisteredCoursesForAStudent():List<DatabaseStudentCourse>
 
-    @Query("SELECT * FROM DatabaseTeacherSubject where id=:id")
-    suspend fun getSubject(id: Long): DatabaseTeacherSubject
+    @Query("SELECT * FROM DatabaseTeacherCourse where courseId=:id")
+    suspend fun getSubject(id: Long): DatabaseTeacherCourse
 
     @Query("SELECT * FROM DatabaseSubjects where id=:id")
     suspend fun getSubjects(id: Long): DatabaseSubjects
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addRegisteredCoursesForAStudent(list: List<DatabaseStudentSubject>)
+    suspend fun addRegisteredCoursesForAStudent(list: List<DatabaseStudentCourse>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTeacherSubjects(list: List<DatabaseTeacherSubject>)
+    suspend fun insertTeacherSubjects(list: List<DatabaseTeacherCourse>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSubject(item: DatabaseTeacherSubject)
+    suspend fun insertSubject(item: DatabaseTeacherCourse)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSubjects(list: List<DatabaseSubjects>)

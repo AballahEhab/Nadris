@@ -31,11 +31,11 @@ class LocalDataSource @Inject constructor(private val nadrisDatabase: NadrisData
     suspend fun getSavedDiscussionsIds() = postDao.getSavedDiscussionsIds()
     suspend fun updateAllSavedDiscussions(discussions:List<DatabasePost>) = postDao.updateAllSavedDiscussions(discussions)
 
-    suspend fun insertTeacherSubjects(list: List<DatabaseTeacherSubject>) = subjectDao.insertTeacherSubjects(list)
+    suspend fun insertTeacherSubjects(list: List<DatabaseTeacherCourse>) = subjectDao.insertTeacherSubjects(list)
 
-    suspend fun addRegisteredCoursesForAStudent(list: List<DatabaseStudentSubject>)=subjectDao.addRegisteredCoursesForAStudent(list)
+    suspend fun addRegisteredCoursesForAStudent(list: List<DatabaseStudentCourse>)=subjectDao.addRegisteredCoursesForAStudent(list)
 
-    suspend fun insertSubject(item: DatabaseTeacherSubject) = subjectDao.insertSubject(item)
+    suspend fun insertSubject(item: DatabaseTeacherCourse) = subjectDao.insertSubject(item)
 
     suspend fun getSubjects() = subjectDao.getTeacherSubjects()
     suspend fun getRegisteredCoursesForAStudent()=subjectDao.getRegisteredCoursesForAStudent();

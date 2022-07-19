@@ -51,7 +51,7 @@ class MySubjectStudentFragment : Fragment() {
                     result.data?.let {
                         it?.let {
                             viewModel.list.value = result.data.map {
-                                NetworkObjectMapper.courseAsDataBaseModel(it)
+                                NetworkObjectMapper.NetworkCourseAsStudentCourse(it)
                             }
                         }
                     } ?: Snackbar.make( binding.root,

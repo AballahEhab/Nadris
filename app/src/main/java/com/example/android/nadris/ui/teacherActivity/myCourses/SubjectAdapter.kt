@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.teacherActivity.addingNewCourse
+package com.example.android.nadris.ui.teacherActivity.myCourses
 
 
     import android.view.LayoutInflater
@@ -7,19 +7,19 @@ package com.example.android.nadris.ui.teacherActivity.addingNewCourse
     import androidx.recyclerview.widget.AsyncListDiffer
     import androidx.recyclerview.widget.DiffUtil
     import androidx.recyclerview.widget.RecyclerView
-    import com.example.android.nadris.database.models.DatabaseTeacherSubject
+    import com.example.android.nadris.R
+    import com.example.android.nadris.database.models.DatabaseTeacherCourse
     import com.example.android.nadris.databinding.ItemRvSubTeacherBinding
-    import com.example.android.nadris.ui.teacherActivity.myCourses.SubjectFragmentDirections
 
 class SubjectAdapter() :
     RecyclerView.Adapter<SubjectAdapter.ViewHolder>() {
 
-    private val differCallback = object : DiffUtil.ItemCallback<DatabaseTeacherSubject>() {
-        override fun areItemsTheSame(oldItem: DatabaseTeacherSubject, newItem: DatabaseTeacherSubject): Boolean {
-            return oldItem.id == newItem.id
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseTeacherCourse>() {
+        override fun areItemsTheSame(oldItem: DatabaseTeacherCourse, newItem: DatabaseTeacherCourse): Boolean {
+            return oldItem.courseId == newItem.courseId
         }
 
-        override fun areContentsTheSame(oldItem: DatabaseTeacherSubject, newItem: DatabaseTeacherSubject): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseTeacherCourse, newItem: DatabaseTeacherCourse): Boolean {
             return oldItem == newItem
         }
     }
@@ -40,14 +40,13 @@ class SubjectAdapter() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = differ.currentList[position]
-        holder.binding.tvNameSubjectTeacher.text = data.name
+        holder.binding.tvNameSubjectTeacher.text = data.subjectName
         holder.binding.numOfStudents.text = ""
-        holder.binding.tvClass.text = data.grade
-        holder.binding.tvSemester.text = data.term
+        holder.binding.tvClass.text = data.gradeName
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherSubjectUnitsFragment(data.id))
+            it.findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherSubjectUnitsFragment(data.courseId))
         }
-        //  holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
+          holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
     }
 
     class ViewHolder(var binding: ItemRvSubTeacherBinding) : RecyclerView.ViewHolder(binding.root) {

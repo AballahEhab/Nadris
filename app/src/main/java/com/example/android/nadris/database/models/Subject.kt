@@ -18,16 +18,14 @@ data class DatabaseSubjectUnit(
 
 
 @Entity
-data class DatabaseTeacherSubject(
-    @PrimaryKey val id: String,
-    val name: String,
-    val section: String,
-    val term: String,
-    val grade: String,
-    val teacherName: String,
-)
+data class DatabaseTeacherCourse(
+    @PrimaryKey val courseId: String,
+    val subjectName: String,
+    val gradeName: String,
+    val numOfStudents:Int,
+    )
 @Entity
-data class DatabaseStudentSubject(
+data class DatabaseStudentCourse(
     @PrimaryKey  val id: String,
     val name: String,
     val grade: String,
