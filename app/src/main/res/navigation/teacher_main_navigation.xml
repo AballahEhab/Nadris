@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation2"
-    app:startDestination="@id/posts_fragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation2"
+            app:startDestination="@id/addContentFragment">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -13,20 +13,20 @@
 
         <action
             android:id="@+id/action_posts_fragment_to_add_post_fragment"
-            app:destination="@id/add_post_fragment" />
+            app:destination="@id/add_post_fragment"/>
         <action
             android:id="@+id/action_posts_fragment_to_add_comment_fragment"
-            app:destination="@id/add_comment_fragment" />
+            app:destination="@id/add_comment_fragment"/>
         <action
             android:id="@+id/action_posts_fragment_to_public_profile_fragment"
-            app:destination="@id/public_profile_fragment" />
+            app:destination="@id/public_profile_fragment"/>
         <action
             android:id="@+id/action_posts_fragment_to_private_profile_fragment"
-            app:destination="@id/private_profile_fragment" />
+            app:destination="@id/private_profile_fragment"/>
 
     </fragment>
 
-<!--    TODO:to be reviewed-->
+    <!--    TODO:to be reviewed-->
     <fragment
         android:id="@+id/add_post_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.posts.addPosts.AddPostFragment"
@@ -35,21 +35,21 @@
         <argument
             android:name="mode"
             app:argType="com.example.android.nadris.Mode"
-            android:defaultValue="CREATE" />
+            android:defaultValue="CREATE"/>
 
         <argument
             android:name="post_id"
             app:argType="string"
             android:defaultValue=""
 
-            />
+        />
 
         <argument
             android:name="subject"
             app:argType="string"
             android:defaultValue=""
 
-            />
+        />
 
         <!--        todo: grade user only with teacher -->
         <!--                <argument-->
@@ -63,16 +63,16 @@
             app:argType="string"
             android:defaultValue=""
 
-            />
+        />
         <argument
             android:name="image_path"
             app:argType="string"
             android:defaultValue=""
 
-            />
+        />
         <action
             android:id="@+id/action_add_post_fragment_to_posts_fragment"
-            app:destination="@id/posts_fragment" />
+            app:destination="@id/posts_fragment"/>
 
     </fragment>
 
@@ -82,7 +82,7 @@
         tools:layout="@layout/fragment_add_comment">
         <argument
             android:name="postId"
-            app:argType="string" />
+            app:argType="string"/>
     </fragment>
 
     <fragment
@@ -91,7 +91,7 @@
         tools:layout="@layout/follow_profile_fragment">
         <argument
             android:name="user_profile_id"
-            app:argType="string" />
+            app:argType="string"/>
     </fragment>
 
     <fragment
@@ -101,10 +101,10 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_private_profile_fragment_to_previewProfilePicFragment"
-            app:destination="@id/previewProfilePicFragment" />
+            app:destination="@id/previewProfilePicFragment"/>
         <action
             android:id="@+id/action_private_profile_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment" />
+            app:destination="@id/settings_fragment"/>
 
     </fragment>
 
@@ -116,7 +116,7 @@
         <argument
             android:name="imgString64"
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"/>
     </fragment>
 
     <fragment
@@ -126,10 +126,10 @@
 
         <action
             android:id="@+id/action_settings_fragment_to_help_fragment"
-            app:destination="@id/help_fragment" />
+            app:destination="@id/help_fragment"/>
         <action
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
-            app:destination="@id/private_profile_fragment" />
+            app:destination="@id/private_profile_fragment"/>
     </fragment>
 
     <fragment
@@ -139,7 +139,7 @@
 
         <action
             android:id="@+id/action_help_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment" />
+            app:destination="@id/settings_fragment"/>
     </fragment>
 
     <fragment
@@ -151,10 +151,10 @@
 
         <action
             android:id="@+id/action_teacher_my_subjects_fragment_to_teacher_add_new_subject_fragment"
-            app:destination="@id/teacher_add_new_subject_fragment" />
+            app:destination="@id/teacher_add_new_subject_fragment"/>
         <action
             android:id="@+id/action_teacher_my_subjects_fragment_to_teacher_subject_units_fragment"
-            app:destination="@id/teacher_subject_units_fragment" />
+            app:destination="@id/teacher_subject_units_fragment"/>
 
     </fragment>
 
@@ -165,7 +165,7 @@
 
         <action
             android:id="@+id/action_teacher_add_new_subject_fragment_to_teacher_my_subjects_fragment"
-            app:destination="@id/teacher_my_subjects_fragment" />
+            app:destination="@id/teacher_my_subjects_fragment"/>
     </fragment>
 
     <fragment
@@ -174,13 +174,13 @@
         tools:layout="@layout/fragment_units">
         <argument
             android:name="subjectId"
-            app:argType="string" />
+            app:argType="string"/>
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
-            app:destination="@id/adding_sections_fragment" />
+            app:destination="@id/adding_sections_fragment"/>
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_addSectionFragment"
-            app:destination="@id/addSectionFragment" />
+            app:destination="@id/addSectionFragment"/>
     </fragment>
 
     <fragment
@@ -191,41 +191,42 @@
         <argument
             android:name="num_of_sections"
             android:defaultValue="1"
-            app:argType="integer" />
+            app:argType="integer"/>
         <argument
             android:name="unit_num"
-            app:argType="integer" />
+            app:argType="integer"/>
         <argument
             android:name="lesson_num"
-            app:argType="integer" />
+            app:argType="integer"/>
         <argument
             android:name="lesson_name"
             app:argType="string"
-            />
+        />
     </fragment>
     <fragment
         android:id="@+id/addSectionFragment"
         android:name="com.example.android.nadris.ui.teacherActivity.addSection.addSectionFragment"
         android:label="fragment_add_section"
-        tools:layout="@layout/fragment_add_section" />
+        tools:layout="@layout/fragment_add_section"/>
     <fragment
         android:id="@+id/addContentFragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addcontent.addContentFragment"
-        android:label="addContentFragment" />
+        android:name="com.example.android.nadris.ui.teacherActivity.addContent.addContentFragment"
+        android:label="addContentFragment"
+        tools:layout="@layout/add_content_fragment"/>
 
     <!--    <fragment-->
-<!--        android:id="@+id/editDiscussionFragment"-->
-<!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
-<!--        android:label="EditDiscussionFragment" >-->
-<!--        <argument-->
-<!--            android:name="post_id"-->
-<!--            app:argType="long" />-->
+    <!--        android:id="@+id/editDiscussionFragment"-->
+    <!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
+    <!--        android:label="EditDiscussionFragment" >-->
+    <!--        <argument-->
+    <!--            android:name="post_id"-->
+    <!--            app:argType="long" />-->
 
-<!--        <argument-->
-<!--            android:name="subject"-->
-<!--            app:argType="string" />-->
-<!--        <argument-->
-<!--            android:name="discussion_content"-->
-<!--            app:argType="string" />-->
-<!--    </fragment>-->
+    <!--        <argument-->
+    <!--            android:name="subject"-->
+    <!--            app:argType="string" />-->
+    <!--        <argument-->
+    <!--            android:name="discussion_content"-->
+    <!--            app:argType="string" />-->
+    <!--    </fragment>-->
 </navigation>
