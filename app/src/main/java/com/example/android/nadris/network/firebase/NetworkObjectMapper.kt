@@ -3,7 +3,9 @@ package com.example.android.nadris.network.firebase
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.data.models.CommentModel
 import com.example.android.nadris.database.models.DatabasePost
+import com.example.android.nadris.database.models.DatabaseStudentSubject
 import com.example.android.nadris.database.models.DatabaseUser
+import com.example.android.nadris.network.firebase.dtos.Course
 import com.example.android.nadris.network.firebase.dtos.Inquiry
 import com.example.android.nadris.network.firebase.dtos.Reply
 import com.example.android.nadris.network.firebase.dtos.User
@@ -44,6 +46,18 @@ object NetworkObjectMapper {
             reply.replyBody!!,
             reply.userFullName!!,
             reply.time.toString()
+        )
+
+    fun courseAsDataBaseModel(course: Course)   =
+        DatabaseStudentSubject(
+            id = course.id ,
+            name = course.subjectName ,
+            grade= "",
+            teacherName = course.teacherName ,
+            section = "",
+            term = "",
+            progress = 0L ,
+            rate = 0L
         )
 
 

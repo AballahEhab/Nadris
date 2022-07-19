@@ -7,13 +7,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.STORAGE" />
 
     <queries>
         <intent>
@@ -29,10 +28,12 @@
         android:roundIcon="@drawable/ic_logo_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nadris">
+
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
             android:noHistory="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,22 +41,24 @@
             </intent-filter>
 
         </activity>
+
         <activity
             android:name=".ui.studentActivity.StudentMainActivity"
             android:label="@string/title_activity_student_home" />
+
         <activity
             android:name=".ui.teacherActivity.TeacherMainActivity"
-            android:label="@string/title_activity_teacher">
-        </activity>
+            android:label="@string/title_activity_teacher"></activity>
+
         <activity
             android:name=".ui.loginActivity.MainActivity"
             android:label="@string/title_activity_login"
-            android:noHistory="true"
-            />
+            android:noHistory="true" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

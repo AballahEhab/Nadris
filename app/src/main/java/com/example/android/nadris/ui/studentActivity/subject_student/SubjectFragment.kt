@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSubjectBinding
-import com.example.android.nadris.ui.studentActivity.subject_student.myCourses.MySubjectStudentFragment
 import com.example.android.nadris.ui.studentActivity.subject_student.exploreCourses.SubjectsRvFragment
+import com.example.android.nadris.ui.studentActivity.subject_student.myCourses.MySubjectStudentFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,8 +25,8 @@ class SubjectFragment :Fragment() {
     }
     private fun setUpTabs(){
         val adapter = ViewPageAdapter(childFragmentManager)
-        adapter.addFragment(SubjectsRvFragment(),"Explore")
-        adapter.addFragment(MySubjectStudentFragment(),"YourSubject")
+        adapter.addFragment(SubjectsRvFragment(),resources.getString(R.string.explore_courses_title))
+        adapter.addFragment(MySubjectStudentFragment(),resources.getString(R.string.my_courses_title))
         binding.viewPager.adapter = adapter
         binding.tabs.setupWithViewPager(binding.viewPager)
         binding.tabs.getTabAt(0)

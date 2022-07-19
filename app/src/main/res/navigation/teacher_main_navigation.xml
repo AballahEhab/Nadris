@@ -174,7 +174,7 @@
         tools:layout="@layout/fragment_units">
         <argument
             android:name="subjectId"
-            app:argType="long" />
+            app:argType="string" />
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
             app:destination="@id/adding_sections_fragment" />

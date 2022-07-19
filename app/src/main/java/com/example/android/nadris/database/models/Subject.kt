@@ -19,7 +19,7 @@ data class DatabaseSubjectUnit(
 
 @Entity
 data class DatabaseTeacherSubject(
-    @PrimaryKey val id: Long,
+    @PrimaryKey val id: String,
     val name: String,
     val section: String,
     val term: String,
@@ -28,7 +28,7 @@ data class DatabaseTeacherSubject(
 )
 @Entity
 data class DatabaseStudentSubject(
-    @PrimaryKey  val id: Long,
+    @PrimaryKey  val id: String,
     val name: String,
     val grade: String,
     val section: String,
@@ -39,7 +39,7 @@ data class DatabaseStudentSubject(
 )
 @Entity
 data class DatabaseSubjects(
-    @PrimaryKey  val id: Long,
+    @PrimaryKey  val id: String,
     val name: String,
     val numOfTeachers:Long,
     val icon: Int,

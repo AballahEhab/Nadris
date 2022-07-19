@@ -24,9 +24,10 @@ constructor(
     private val gradesService: GradesService,
     private val universitiesServices: UniversitiesServices,
     private val collegesService: CollegesService,
-    private val storageService: StorageService,
     private val inquiriesService: InquiriesService,
     private val subjectsService: SubjectsService,
+    private val coursesService: CoursesService,
+    private val storageService: StorageService,
 ) {
 
     val subjectsList: MutableList<Subject> = mutableListOf()
@@ -139,5 +140,9 @@ constructor(
     fun signOut() {
         authService.signOut()
     }
+
+    fun getCoursesWithIds(coursesIds: List<String>) =
+        coursesService.getCoursesWithIds(coursesIds)
+
 
 }

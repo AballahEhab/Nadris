@@ -9,7 +9,7 @@ import javax.inject.Inject
 class TeachersCoursesViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 //     var list = MutableLiveData<List<TeachersCoursesDTO>>()
 //    val currentCourseData = MutableLiveData<TeachersCoursesDTO>()
-    var subjectId: Long = 0
+    var subjectId: String = ""
     var courseId: Long = 0
     var isJoin: Boolean = false
 

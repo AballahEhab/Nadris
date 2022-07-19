@@ -86,7 +86,7 @@ class Repository @Inject constructor(
         }
     }
 
-    private fun getUserDataObj(userID: String): User? {
+     fun getUserDataObj(userID: String): User? {
         try {
             val userSnapShot = Tasks.await(remoteDataSource.getUserData(userID))
             return getUserDataObjFromDocSnapShot(userSnapShot)
@@ -225,6 +225,24 @@ class Repository @Inject constructor(
         else
             subject?.name_en!!
     }
+
+
+    //courses functions
+    fun getCurrentUserSubscribedCourses(coursesIds:List<String>) =
+        flow{
+            try{
+                val task = Tasks.await(remoteDataSource.getCoursesWithIds(coursesIds))
+                val coursesList = task.map {
+                    val course = it.toObject<Course>()
+                    course.subjectName= getSubjectName(course.subjectId)
+                    course.teacherName= getUserDataObj(course.ownerTeacherID).let { it?.firstName +""+it?.lastName }
+                    course
+                }
+                emit(Result.Success(coursesList))
+            }catch (exception:Exception){
+                emit(Result.Error(exception.message!!))
+            }
+        }
 
 
     //inquiry functions

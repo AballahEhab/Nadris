@@ -2,10 +2,10 @@ package com.example.android.nadris
 
 import android.app.Application
 import com.example.android.nadris.database.models.DatabaseUser
+import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.services.ConnectivityMonitor
 import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.auth.User
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 

@@ -1,13 +1,19 @@
 package com.example.android.nadris.network.firebase.dtos
 
-import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentId
+import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.IgnoreExtraProperties
-import com.google.type.Date
+import com.google.firebase.firestore.ServerTimestamp
 
 @IgnoreExtraProperties
 class Course (
-    val grade:DocumentReference,
+    @set:DocumentId @get:Exclude var id: String = "",
+    val gradeID:String= "",
     val ownerTeacherID:String = "",
-    val subject:String = "",
-    val subjectReference:DocumentReference ,
-    val timeCreated:Date)
+    val subjectId:String = "",
+    @get:Exclude var subjectName:String = "",
+    @get:Exclude var teacherName:String = "",
+    val subscribedStudentsIds:List<String> = listOf(),
+    val coursesSubscribedProgress:List<Int> = listOf(),
+    @ServerTimestamp val timeCreated:java.util.Date? = null
+    )

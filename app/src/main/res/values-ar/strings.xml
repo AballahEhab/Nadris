@@ -205,7 +205,6 @@
     <string name="cant_bookmark_post">"حدث خطا لم يتم الحفظ "</string>
     <string name="teacher">مدرس</string>
     <string name="student">طالب</string>
-    <string name="user_lang_pre">"إختيار اللغه "</string>
     <string name="ex_unit_5_lesson_3">مثال : عنوان العنصر -درس 2 - الوحدة ال3</string>
     <string name="result">النتائج</string>
     <string name="result_congrats">برافو! انت سجلت 84 من 100</string>
@@ -223,6 +222,9 @@
     <string name="info_message">الرجاءالإطلاع علي التعليمات ومذاكرتها بجد للحصول علي اكبر درجة في المستقبل:</string>
     <string name="num_zero">0</string>
     <string name="text_progress">60</string>
+    <string name="my_courses_title">"مقرراتى الدراسة "</string>
+    <string name="explore_courses_title">استكشاف</string>
+    <string name="my_coures_error">"حدث خطأ لم نستع الوصول لمقرراتك الدراسية "</string>
 
 
 </resources>

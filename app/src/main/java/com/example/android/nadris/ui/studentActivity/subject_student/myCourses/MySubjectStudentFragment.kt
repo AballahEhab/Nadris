@@ -10,26 +10,61 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.MySubjectStudentFragmentBinding
+import com.example.android.nadris.network.firebase.NetworkObjectMapper
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MySubjectStudentFragment : Fragment() {
+
     private val viewModel: MySubjectStudentViewModel by viewModels()
     private lateinit var adapter: MySubjectAdapter
     private lateinit var binding: MySubjectStudentFragmentBinding
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+
          inflater.inflate(R.layout.my_subject_student_fragment, container, false)
+
         binding = MySubjectStudentFragmentBinding.inflate(inflater)
+
         binding.viewmodel = viewModel
-        viewModel.getdata()
+
+        viewModel.getCoursesCurrentUserSubscribedTo()
+
         setupRV()
+
+        viewModel.coursesResultList.observe(viewLifecycleOwner){result->
+            result.handleRepoResponse(
+                onPreExecute = {
+
+                },
+                onLoading = {
+                },
+                onError = {
+                    Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+                },
+                onSuccess = {
+                    result.data?.let {
+                        it?.let {
+                            viewModel.list.value = result.data.map {
+                                NetworkObjectMapper.courseAsDataBaseModel(it)
+                            }
+                        }
+                    } ?: Snackbar.make( binding.root,
+                        resources.getString(R.string.my_coures_error),
+                        Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            )
+        }
+
         return binding.root
     }
+
     private fun setupRV(){
         adapter = MySubjectAdapter()
         binding.rvSubjectStudent.layoutManager =

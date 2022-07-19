@@ -53,9 +53,9 @@
         android:name="com.example.android.nadris.ui.loginActivity.signUpStudent.signupStudentFragment"
         android:label="signup_student_fragment"
         tools:layout="@layout/fragment_signup_student">
+                <action android:id="@+id/action_signupStudentFragment_to_signupFragment"
+                        app:destination="@id/signupFragment"/>
 
-        <!--        <action android:id="@+id/action_signupStudentFragment_to_signupFragment"-->
-        <!--                app:destination="@id/signupFragment"/>-->
         <action
             android:id="@+id/action_signupStudentFragment_to_PhoneFragment"
             app:destination="@id/phoneFragment" />

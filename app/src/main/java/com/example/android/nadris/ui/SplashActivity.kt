@@ -81,11 +81,17 @@ class SplashActivity : AppCompatActivity() {
         if (firebaseUser == null)
             navigateToLoginActivity()
         else {
-            CoroutineScope(Dispatchers.Main).launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 getCurrentUserLocalData()
+                getRemoteUserData()
                 navigateToHomeActivity()
             }
         }
+    }
+
+    private fun getRemoteUserData() {
+        NadrisApplication.currentUserData =
+            NadrisApplication.instance?.repo?.getUserDataObj(NadrisApplication.currentDatabaseUser?.userID!!)
     }
 
     private suspend fun getCurrentUserLocalData() {

@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UnitsViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     val units = MutableLiveData<List<DatabaseUnitLessons>>()
-    var subjectId: Long = 0
+    var subjectId: String = ""
 
     fun getData() {
 //        viewModelScope.launch {

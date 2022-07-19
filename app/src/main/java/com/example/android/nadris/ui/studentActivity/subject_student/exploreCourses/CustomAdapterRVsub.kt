@@ -3,24 +3,30 @@ package com.example.android.nadris.ui.studentActivity.subject_student.exploreCou
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.databinding.ItemRvSubjectsBinding
+import com.example.android.nadris.network.firebase.dtos.Subject
+import com.example.android.nadris.ui.studentActivity.subject_student.SubjectFragmentDirections
 
 class customAdapterRVsub()
     : RecyclerView.Adapter<customAdapterRVsub.ViewHolder>() {
 
-//    packagerivate val differCallback=object : DiffUtil.ItemCallback<SubjectDTO>(){
-//        override fun areItemsTheSame(oldItem: SubjectDTO, newItem: SubjectDTO): Boolean {
-//            return oldItem.id == newItem.id
-//        }
-//
-//        override fun areContentsTheSame(oldItem: SubjectDTO, newItem: SubjectDTO): Boolean {
-//            return oldItem == newItem
-//        }
-//
-//    }
+    private val differCallback=object : DiffUtil.ItemCallback<Subject>(){
+        override fun areItemsTheSame(oldItem: Subject, newItem: Subject): Boolean {
+            return oldItem.subject_id == newItem.subject_id
+        }
 
-//    val differ = AsyncListDiffer(this, differCallback)
+        override fun areContentsTheSame(oldItem: Subject, newItem: Subject): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
@@ -32,23 +38,21 @@ class customAdapterRVsub()
     }
 
     override fun getItemCount(): Int {
-//        return differ.currentList.size
+        return differ.currentList.size
         return 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        val data = differ.currentList[position]
+        val data = differ.currentList[position]
 
-//        holder.binding.tvNameSubject.text = data.name
-//        holder.binding.numberOfTeachers.text = data.numOfTeachers.toString()
+        holder.binding.tvNameSubject.text = if(NadrisApplication.instance?.lang == "eng") data.name_en else data.name_ar
+        holder.binding.numberOfTeachers.text = data.numOfTeachersHaveCourseForSubject.toString()
         holder.itemView.setOnClickListener {
-//           it.findNavController().navigate(SubjectFragmentDirections.actionSubjectFragmentToStudentTeachersForASubjectFragment(data.id))
+           it.findNavController().navigate(SubjectFragmentDirections.actionSubjectFragmentToStudentTeachersForASubjectFragment(data.subject_id))
         }
 
     }
 
 
-    class ViewHolder(var binding: ItemRvSubjectsBinding) : RecyclerView.ViewHolder(binding.root){
-
-    }
+    class ViewHolder(var binding: ItemRvSubjectsBinding) : RecyclerView.ViewHolder(binding.root)
 }

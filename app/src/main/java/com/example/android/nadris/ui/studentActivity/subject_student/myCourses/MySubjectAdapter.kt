@@ -47,9 +47,9 @@ class MySubjectAdapter: RecyclerView.Adapter<MySubjectAdapter.ViewHolder>() {
 //                setNegativeButton("No"){negative,_ ->
 //                    negative.dismiss()
 //                }
-////                setPositiveButton("Yes"){positive,_ ->
-////                    startActivity()
-////                }
+//                setPositiveButton("Yes"){positive,_ ->
+//                    startActivity()
+//                }
 //            }
 //        }
     }
