@@ -244,6 +244,8 @@
     <string name="add_question">add question</string>
     <string name="answer_location">AnswerLocation</string>
     <string name="ex_unit_5_lesson_3">ex: unit 5 - lesson 3</string>
+    <string name="_30_100">30/100</string>
+    <string name="lv">LV</string>
 
 
 </resources>

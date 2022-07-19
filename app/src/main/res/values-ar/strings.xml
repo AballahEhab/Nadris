@@ -68,7 +68,7 @@
     <string name="reply">الرد %o</string>
     <string name="_1">(1)</string>
     <string name="save">حفظ</string>
-    <string name="storage_permission_text">This app needs access to your storage.</string>
+    <string name="storage_permission_text">يحتاج هذا التطبيق إلى الوصول إلى التخزين الخاص بك</string>
 
 
     <string-array name="university">
@@ -96,6 +96,19 @@
         <item>الأحياء</item>
         <item>الكيمياء</item>
         <item>الفيزياء</item>
+    </string-array>
+    <string-array name="ThemOptions">
+        <item>الوضع النهاري</item>
+        <item>الوضع الليلي</item>
+        <item>النظام الافتراضي</item>
+    </string-array>
+    <string-array name="ChangeClass">
+        <item>الصف الاول الاعدادي</item>
+        <item>الصف الثاني الاعدادي</item>
+        <item>الصف الثالث الاعدادي</item>
+        <item>الصف الاول الثانوي</item>
+        <item>الصف الثاني الثانوي</item>
+        <item>الصف الثالث الثانوي</item>
     </string-array>
     <string name="title_activity_teacher">TeacherActivity</string>
     <string name="student_home_title">الرئيسه</string>
@@ -205,6 +218,8 @@
     <string name="teacher">مدرس</string>
     <string name="student">طالب</string>
     <string name="user_lang_pre">"إختيار اللغه "</string>
+    <string name="_30_100">30/100</string>
+    <string name="lv"> LV </string>
 
 
 </resources>

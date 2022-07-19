@@ -53,6 +53,8 @@ class ProfileFragment : Fragment() {
 
         viewModel.getLastActivity()
 
+        viewModel.getCheckStudentOrTeacher()
+
         binding.rvPostsProfile.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
@@ -62,7 +64,28 @@ class ProfileFragment : Fragment() {
         }
 
         subscribeToObservers()
+        getProgressBarData()
         return binding.root
+    }
+    //set value of progres
+    fun getProgressBarData(){
+        viewModel.getnumProgressBar_api()
+        viewModel.getnumProgressBarMaxValue_api()
+        viewModel.getnumLevelStudent_api()
+
+        viewModel.numProgressBarValue.observe(viewLifecycleOwner){
+            binding.progressBarProfile.progress = viewModel.numProgressBarValue.value!!
+        }
+        viewModel.numProgressBarMaxValue.observe(viewLifecycleOwner){
+            binding.progressBarProfile.max = viewModel.numProgressBarMaxValue.value!!
+        }
+        viewModel.numLevelStudent.observe(viewLifecycleOwner){
+            binding.tvNumLevelProfile.text =viewModel.numLevelStudent.value!!.toString()
+        }
+        var valueOfProgres =viewModel.numProgressBarValue.value!!.toString()
+        var maxValueOfProgres =viewModel.numProgressBarMaxValue.value!!.toString()
+        binding.tvValueProgresProfile.text =valueOfProgres+"/"+maxValueOfProgres
+
     }
 
     override fun onRequestPermissionsResult(
