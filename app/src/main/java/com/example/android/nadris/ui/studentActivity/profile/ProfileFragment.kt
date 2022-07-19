@@ -53,7 +53,7 @@ class ProfileFragment : Fragment() {
 
         viewModel.getLastActivity()
 
-        viewModel.getCheckStudentOrTeacher()
+        viewModel.getProfileTybe()
 
         binding.rvPostsProfile.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)

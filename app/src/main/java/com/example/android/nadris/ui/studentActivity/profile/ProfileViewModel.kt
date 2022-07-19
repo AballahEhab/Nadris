@@ -48,8 +48,9 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
         //todo please get value of level student and set value to  variable = _numLevelStudent
 
     }
-    fun getCheckStudentOrTeacher(){
-        if(NadrisApplication.currentDatabaseUser?.IsATeacher == false){
+
+    fun getProfileTybe(){
+        if (profileType.value=="Student"){
             //Student
             _CheckStudentOrTeacher.value=true
         }else{
