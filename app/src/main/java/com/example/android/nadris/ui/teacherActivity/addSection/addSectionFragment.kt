@@ -4,22 +4,24 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.pdf.PdfRenderer
 import android.media.MediaPlayer
 import android.media.MediaRecorder
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentAddSectionBinding
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
+import com.google.android.youtube.player.YouTubePlayerFragment
 import java.io.IOException
 private const val LOG_TAG = "addSectionFragment"
 const val REQUEST_AUDIO_PERMISSION_CODE = 1
@@ -42,6 +44,11 @@ class addSectionFragment : Fragment() {
     private var current_page_index = 0
 
 
+
+    private val developerKey =  "AIzaSyCgkE7GGrY9Op4GEr61xs3u_xPznsUaaFo"
+    val VIDEO_ID = "qSWPwbzepBQ"
+
+
     //recording audio related applyAttributes
     private var  fileName= ""
     private var recorder: MediaRecorder? = null
@@ -60,6 +67,29 @@ class addSectionFragment : Fragment() {
 
         setClickListnersForButtons()
 
+        val onInitializedListener: YouTubePlayer.OnInitializedListener =
+            object : YouTubePlayer.OnInitializedListener {
+                override fun onInitializationSuccess(
+                    provider: YouTubePlayer.Provider,
+                    youTubePlayer: YouTubePlayer,
+                    b: Boolean,
+                ) {
+                    youTubePlayer.loadVideo(VIDEO_ID)
+                }
+
+                override fun onInitializationFailure(
+                    provider: YouTubePlayer.Provider,
+                    youTubeInitializationResult: YouTubeInitializationResult,
+                ) {
+                    Log.v(TAG,youTubeInitializationResult.name)
+                }
+            }
+
+
+        val youTubePlayerFragment =
+            requireActivity().fragmentManager!!.findFragmentById(R.id.youTube_fr) as YouTubePlayerFragment?
+        youTubePlayerFragment!!.initialize(developerKey, onInitializedListener)
+
 
         return binding.root
     }
@@ -71,7 +101,7 @@ class addSectionFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == OPEN_DOCUMENT_REQUEST_CODE && resultCode == Activity.RESULT_OK){
             data?.data?.let {uri ->
-                openDocument(uri)
+//                openDocument(uri)
             }
         }
 
@@ -98,12 +128,12 @@ class addSectionFragment : Fragment() {
         binding.btnPick.setOnClickListener {
             openDocumentPicker()
         }
-        binding.btnNext.setOnClickListener {
-            showNextPage()
-        }
-        binding.btnPrev.setOnClickListener {
-            showPreviousPage()
-        }
+//        binding.btnNext.setOnClickListener {
+//            showNextPage()
+//        }
+//        binding.btnPrev.setOnClickListener {
+//            showPreviousPage()
+//        }
         binding.imgBtnStartRecording.setOnClickListener {
             startRecording()
         }
@@ -129,46 +159,46 @@ class addSectionFragment : Fragment() {
         startActivityForResult(intent, OPEN_DOCUMENT_REQUEST_CODE)
     }
 
-    private fun showPage(index: Int) {
-        renderer?.let {
-            val page = renderer!!.openPage(index)
-            val mBitmap = Bitmap.createBitmap(page.width,page.height, Bitmap.Config.ARGB_8888)
-            page.render(mBitmap,null,null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-            binding.imgPreviewPdf.setImageBitmap(mBitmap)
-            page.close();
-            binding.txtPageCount.text = (index+1).toString() + "/" + total_pages_num
-        }
-    }
-
-    private fun openDocument(uri: Uri) {
-        try {
-            val parcelFileDescriptor = activity?.baseContext?.contentResolver?.openFileDescriptor(uri!!,"r")
-            renderer = PdfRenderer(parcelFileDescriptor!!)
-            total_pages_num = renderer!!.pageCount
-            current_page_index = 0
-            showPage(current_page_index)
-//            binding.pdfView.fromUri(uri)
-
-
-        }catch (throwable:Throwable){
-            Log.e(TAG,throwable.message.toString())
-        }
-    }
-
-    private fun showNextPage() {
-        if(current_page_index < total_pages_num-1) {
-            current_page_index++
-            showPage(current_page_index)
-        }
-    }
-    
-    private fun showPreviousPage() {
-        if(current_page_index >0) {
-            current_page_index--
-            showPage(current_page_index)
-        }
-    }
-    
+//    private fun showPage(index: Int) {
+//        renderer?.let {
+//            val page = renderer!!.openPage(index)
+//            val mBitmap = Bitmap.createBitmap(page.width,page.height, Bitmap.Config.ARGB_8888)
+//            page.render(mBitmap,null,null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+//            binding.imgPreviewPdf.setImageBitmap(mBitmap)
+//            page.close();
+//            binding.txtPageCount.text = (index+1).toString() + "/" + total_pages_num
+//        }
+//    }
+//
+//    private fun openDocument(uri: Uri) {
+//        try {
+//            val parcelFileDescriptor = activity?.baseContext?.contentResolver?.openFileDescriptor(uri!!,"r")
+//            renderer = PdfRenderer(parcelFileDescriptor!!)
+//            total_pages_num = renderer!!.pageCount
+//            current_page_index = 0
+//            showPage(current_page_index)
+////            binding.pdfView.fromUri(uri)
+//
+//
+//        }catch (throwable:Throwable){
+//            Log.e(TAG,throwable.message.toString())
+//        }
+//    }
+//
+//    private fun showNextPage() {
+//        if(current_page_index < total_pages_num-1) {
+//            current_page_index++
+//            showPage(current_page_index)
+//        }
+//    }
+//
+//    private fun showPreviousPage() {
+//        if(current_page_index >0) {
+//            current_page_index--
+//            showPage(current_page_index)
+//        }
+//    }
+//
 
 
     // recording and playing audio functions

@@ -208,6 +208,10 @@
         android:name="com.example.android.nadris.ui.teacherActivity.addSection.addSectionFragment"
         android:label="fragment_add_section"
         tools:layout="@layout/fragment_add_section" />
+    <fragment
+        android:id="@+id/addContentFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addcontent.addContentFragment"
+        android:label="addContentFragment" />
 
     <!--    <fragment-->
 <!--        android:id="@+id/editDiscussionFragment"-->

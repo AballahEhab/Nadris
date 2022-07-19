@@ -259,6 +259,9 @@
     <string name="my_courses_title">my courses</string>
     <string name="explore_courses_title">explore</string>
     <string name="my_coures_error">"something went wrong can't view your courses "</string>
+    <string name="text_editor">text editor</string>
+    <string name="upload_pdf">upuload pdf</string>
+    <string name="record_audio">record audio</string>
 
 
 </resources>
