@@ -70,8 +70,8 @@
             android:textSize="@dimen/mid_text_size"
             android:textStyle="bold"/>
         <fragment
-            android:name="com.google.android.youtube.player.YouTubePlayerFragment"
             android:id="@+id/youTube_fr"
+            android:name="com.google.android.youtube.player.YouTubePlayerFragment"
             android:layout_width="@dimen/match_constrain"
             android:layout_height="200dp"
             app:layout_constraintBottom_toTopOf="@+id/audio"

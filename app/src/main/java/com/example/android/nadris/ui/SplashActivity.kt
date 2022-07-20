@@ -14,8 +14,8 @@ import com.example.android.nadris.services.LocaleHelper
 import com.example.android.nadris.ui.loginActivity.MainActivity
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.ui.teacherActivity.TeacherMainActivity
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
@@ -81,7 +81,7 @@ class SplashActivity : AppCompatActivity() {
         if (firebaseUser == null)
             navigateToLoginActivity()
         else {
-            CoroutineScope(Dispatchers.IO).launch {
+            GlobalScope.launch(Dispatchers.IO) {
                 getCurrentUserLocalData()
                 getRemoteUserData()
                 navigateToHomeActivity()

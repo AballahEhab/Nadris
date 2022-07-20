@@ -1,12 +1,10 @@
 package com.example.android.nadris.ui.teacherActivity.addContent
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.AddContentFragmentBinding
@@ -18,9 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class addContentFragment : Fragment() {
     val viewModel: AddContentViewModel by viewModels()
-    private lateinit var binding:AddContentFragmentBinding
-    val developerKey =  "AIzaSyCgkE7GGrY9Op4GEr61xs3u_xPznsUaaFo"
-    val VIDEO_ID = "qSWPwbzepBQ"
+    private lateinit var binding: AddContentFragmentBinding
+    val developerKey = "AIzaSyBSpymPuRHcpD8_NPTRbEVkM4_ik7mwUiY"
+    val VIDEO_ID = "ih0oeJLA1Pg"
     val TAG = "MaintActivity"
 
 
@@ -28,9 +26,10 @@ class addContentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        inflater.inflate(R.layout.add_content_fragment, container, false)
-        binding = AddContentFragmentBinding.inflate(inflater)
-        binding.viewModel=viewModel
+        binding = AddContentFragmentBinding.inflate(layoutInflater, container, false)
+
+        binding.viewModel = viewModel
+
         val onInitializedListener: YouTubePlayer.OnInitializedListener =
             object : YouTubePlayer.OnInitializedListener {
                 override fun onInitializationSuccess(
@@ -42,21 +41,18 @@ class addContentFragment : Fragment() {
                 }
 
                 override fun onInitializationFailure(
-                   provider: YouTubePlayer.Provider,
-                   youTubeInitializationResult: YouTubeInitializationResult,
+                    provider: YouTubePlayer.Provider,
+                    youTubeInitializationResult: YouTubeInitializationResult,
                 ) {
-                    Log.v(TAG,youTubeInitializationResult.name)
-               }
+                }
             }
 
-
- val youTubePlayerFragment =
-     requireActivity().fragmentManager!!.findFragmentById(R.id.youTube_fr) as YouTubePlayerFragment?
-    youTubePlayerFragment!!.initialize(developerKey, onInitializedListener)
+        val youTubePlayerFragment =
+            requireActivity().fragmentManager!!.findFragmentById(R.id.youTube_fr) as YouTubePlayerFragment?
+        youTubePlayerFragment!!.initialize(developerKey, onInitializedListener)
 
         return binding.root
     }
-
 
 
 }
