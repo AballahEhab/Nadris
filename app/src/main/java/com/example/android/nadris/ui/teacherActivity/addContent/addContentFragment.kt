@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.AddContentFragmentBinding
+import com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.ResultFragmentDirections
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerFragment
@@ -15,10 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class addContentFragment : Fragment() {
-    val viewModel: AddContentViewModel by viewModels()
+    val viewModel: AddContentViewModel by activityViewModels()
     private lateinit var binding: AddContentFragmentBinding
-    val developerKey = "AIzaSyBSpymPuRHcpD8_NPTRbEVkM4_ik7mwUiY"
-    val VIDEO_ID = "ih0oeJLA1Pg"
     val TAG = "MaintActivity"
 
 
@@ -29,7 +30,22 @@ class addContentFragment : Fragment() {
         binding = AddContentFragmentBinding.inflate(layoutInflater, container, false)
 
         binding.viewModel = viewModel
+        binding.video.setOnClickListener {
+            val action = addContentFragmentDirections.actionAddContentFragmentToAddAudioFragment()
+            findNavController().navigate(action)
+        }
+        binding.audio.setOnClickListener {
+            val action = addContentFragmentDirections.actionAddContentFragmentToAddLinkVideoFragment()
+            findNavController().navigate(action)
+        }
 
+            youtubePlay()
+
+
+        return binding.root
+    }
+
+    fun youtubePlay() {
         val onInitializedListener: YouTubePlayer.OnInitializedListener =
             object : YouTubePlayer.OnInitializedListener {
                 override fun onInitializationSuccess(
@@ -37,7 +53,7 @@ class addContentFragment : Fragment() {
                     youTubePlayer: YouTubePlayer,
                     b: Boolean,
                 ) {
-                    youTubePlayer.loadVideo(VIDEO_ID)
+                    youTubePlayer.loadVideo(viewModel.VIDEO_ID)
                 }
 
                 override fun onInitializationFailure(
@@ -49,9 +65,7 @@ class addContentFragment : Fragment() {
 
         val youTubePlayerFragment =
             requireActivity().fragmentManager!!.findFragmentById(R.id.youTube_fr) as YouTubePlayerFragment?
-        youTubePlayerFragment!!.initialize(developerKey, onInitializedListener)
-
-        return binding.root
+        youTubePlayerFragment!!.initialize(viewModel.developerKey, onInitializedListener)
     }
 
 

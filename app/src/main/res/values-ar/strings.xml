@@ -228,5 +228,6 @@
     <string name="record_audio">تسجيل صوتي</string>
     <string name="upload_pdf">تحميل مستند pdf</string>
     <string name="text_editor">محرر نصوص</string>
+    <string name="add_link_video_youtube">لينك فيديو اليوتيوب </string>
 
 </resources>
