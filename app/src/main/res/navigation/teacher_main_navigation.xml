@@ -228,7 +228,7 @@
                 app:destination="@id/addContentFragment"/>
 
     </dialog>
-    <fragment
+    <dialog
         android:id="@+id/addAudioFragment"
         android:name="com.example.android.nadris.ui.teacherActivity.addContent.bottomSheetRecord.addRecordFragment"
         android:label="addRecordFragment"
@@ -236,7 +236,7 @@
 
         <action android:id="@+id/action_addAudioFragment_to_addContentFragment"
                 app:destination="@id/addContentFragment"/>
-    </fragment>
+    </dialog>
 
 
     <!--    <fragment-->
