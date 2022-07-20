@@ -47,7 +47,7 @@ SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewMod
     private var _lastnameHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val lastnameHaveError get() = _lastnameHaveError
 
-    private var _emailHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    private var _emailHaveError : MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val emailHaveError get() = _emailHaveError
 
     private var _password1HaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)

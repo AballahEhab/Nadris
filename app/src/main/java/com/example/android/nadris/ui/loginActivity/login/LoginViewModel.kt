@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.loginActivity.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,6 +28,15 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
 
     private var _loginResult: MutableLiveData<Result<DatabaseUser>> = MutableLiveData()
     val loginResult: LiveData<Result<DatabaseUser>> get() = _loginResult
+
+    private var _emailHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    val emailHaveError get() = _emailHaveError
+
+    fun validEmail() {
+        _emailHaveError.value = !Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches()
+    }
+
+
 
 
     private fun validateEmail() {

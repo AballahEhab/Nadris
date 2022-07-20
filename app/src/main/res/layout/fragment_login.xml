@@ -57,6 +57,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/edt_E_mail_or_Phone_hint"
                     android:layout_marginTop="16dp"
+                    app:errorEnabled="@{viewModel.emailHaveError}"
+                    app:helperText="@string/Required1"
+                    app:endIconMode="clear_text"
                     app:layout_constraintBottom_toTopOf="@id/edt_password_login"
                     app:layout_constraintEnd_toEndOf="@id/textView_Welcome_login"
                     app:layout_constraintStart_toStartOf="@id/textView_Welcome_login"
@@ -66,6 +69,7 @@
                         android:id="@+id/email_ed_txt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:afterTextChanged="@{()->viewModel.validEmail()}"
                         android:inputType="textEmailAddress"
                         android:text="@={viewModel.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +82,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cairo_light"
                     android:hint="@string/edt_password_login"
+                    app:endIconMode="password_toggle"
                     android:layout_marginTop="8dp"
                     app:layout_constraintBottom_toTopOf="@id/login_error_message"
                     app:layout_constraintEnd_toEndOf="@id/material_email_or_phone"
