@@ -3,18 +3,6 @@ package com.example.android.nadris.database.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-data class DatabaseSubjectUnit(
-    @PrimaryKey val unitId: Long,
-    val name: String,
-    val icon: Int,
-    val subjectId: Long,
-    var lessonsVisibility: Boolean = false, // true = visible = unit expanded
-) {
-    fun toggleExpandUnit() {
-        lessonsVisibility = !lessonsVisibility
-    }
-}
 
 
 @Entity
@@ -22,7 +10,9 @@ data class DatabaseTeacherCourse(
     @PrimaryKey val courseId: String,
     val subjectName: String,
     val gradeName: String,
+    val teacherName: String,
     val numOfStudents:Int,
+    val teacherImagePath:String,
     )
 @Entity
 data class DatabaseStudentCourse(

@@ -10,9 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.CustomAdapterCourses
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentTeachersCoursesBinding
+import com.example.android.nadris.network.firebase.NetworkObjectMapper
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,8 +31,33 @@ class TeachersCoursesFragment : Fragment() {
         inflater.inflate(R.layout.fragment_teachers_courses, container, false)
         binding = FragmentTeachersCoursesBinding.inflate(inflater)
         viewModel.subjectId = args.subjectId
-        viewModel.getdata()
+        viewModel.getCoursesWithSubject()
         setupRV()
+
+        viewModel.coursesResultList.observe(viewLifecycleOwner){result->
+            result.handleRepoResponse(
+                onPreExecute = {
+
+                },
+                onLoading = {
+                },
+                onError = {
+                    Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+                },
+                onSuccess = {
+                    result.data?.let {
+
+                            viewModel.list.value = result.data.map {
+                                NetworkObjectMapper.NetworkCourseAsTeachersCoursesModel(it)
+                            }
+                    } ?: Snackbar.make( binding.root,
+                        resources.getString(R.string.my_coures_error),
+                        Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            )
+        }
         return binding.root
     }
 
@@ -45,9 +71,9 @@ class TeachersCoursesFragment : Fragment() {
         binding.RVTeachers.adapter= adapter
 
         activity?.let {
-//            viewModel.list.observe(viewLifecycleOwner) {
-////                adapter.differ.submitList(it)
-//            }
+            viewModel.list.observe(viewLifecycleOwner) {
+                adapter.differ.submitList(it)
+            }
         }
 
 

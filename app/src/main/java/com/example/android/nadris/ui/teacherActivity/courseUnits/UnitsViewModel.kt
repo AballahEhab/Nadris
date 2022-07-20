@@ -2,30 +2,30 @@ package com.example.android.nadris.ui.teacherActivity.courseUnits
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.nadris.database.models.DatabaseUnitLessons
+import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.database.models.DatabaseCourseUnitWithLessons
+import com.example.android.nadris.network.firebase.dtos.Unit
 import com.example.android.nadris.repository.Repository
+import com.example.android.nadris.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UnitsViewModel @Inject constructor(val repository: Repository) : ViewModel() {
-    val units = MutableLiveData<List<DatabaseUnitLessons>>()
-    var subjectId: String = ""
 
-    fun getData() {
-//        viewModelScope.launch {
-//            val unitFlow = repository.getSubjectUnit(subjectId, TOKEN_PREFIX + NadrisApplication.userData?.Token)
-//
-//            unitFlow.collect {
-//                it.handleRepoResponse(
-//                    onLoading = {},
-//                    onError = {
-//                        units.value = it.data!!
-//                    },
-//                    onSuccess = {
-//                        units.value = it.data!!
-//                    })
-//            }
-//        }
+    val unitsList = MutableLiveData<List<DatabaseCourseUnitWithLessons>>()
+    val unitsListResult = MutableLiveData<Result<List<Unit>>>()
+
+    var courseId: String = ""
+
+    fun getCourseUnits() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getCourseUnit(courseId).collect {
+                unitsListResult.postValue(it)
+            }
+        }
     }
 }

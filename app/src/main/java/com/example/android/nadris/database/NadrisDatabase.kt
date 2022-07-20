@@ -11,11 +11,11 @@ import com.example.android.nadris.database.models.*
 @Database(entities = [DatabaseUser::class,
     DatabasePost::class,
     DatabaseSubject::class,
-    DatabaseLesson::class,
+    DatabaseCourseLesson::class,
     DatabaseTeacherCourse::class,
     DatabaseStudentCourse::class,
     DatabaseSubjects::class,
-    DatabaseSubjectUnit::class],
+    DatabaseCourseUnit::class],
     version = 1,
     exportSchema = false)
 abstract class NadrisDatabase : RoomDatabase() {

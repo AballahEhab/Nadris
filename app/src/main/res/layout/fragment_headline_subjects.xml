@@ -8,7 +8,7 @@
 
         <variable
             name="viewmodel"
-            type="com.example.android.nadris.ui.studentActivity.subject_student.units.HeadlineSubjectsViewModel"/>
+            type="com.example.android.nadris.ui.studentActivity.posts.viewPosts.PostPageViewModel"/>
     </data>
 
     <FrameLayout

@@ -70,6 +70,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_splash.xml" value="0.21458333333333332" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_studnet_main_acitivity.xml" value="0.24256410256410257" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_teacher_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/add_content_fragment.xml" value="0.264" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/follow_profile_fragment.xml" value="0.240625" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_add_comment.xml" value="0.40963855421686746" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_add_pos.xml" value="0.1" />
@@ -84,6 +85,7 @@
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_signup.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_signup_student.xml" value="0.4" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_signup_teacher.xml" value="0.264" />
+        <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_sub_teacher_rv.xml" value="0.24010416666666667" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_subject.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_subjects_rv.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_teachers_courses.xml" value="0.26197916666666665" />
@@ -173,6 +175,16 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/layout_input.xml" value="0.1" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/my_subject_student_fragment.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/menu/discussion_more_options_menu.xml" value="0.26197916666666665" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_main.xml" value="0.17239583333333333" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_teacher_main.xml" value="0.1" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/add_content_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_add_section.xml" value="0.2" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_adding_subject_sections.xml" value="0.176" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_headline_subjects.xml" value="0.32425742574257427" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/item_expandable_unit.xml" value="0.12129629629629629" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/item_rv_teachers.xml" value="0.3296296296296296" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/test.xml" value="0.12604166666666666" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/youtube.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/add_post_fragment.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Nadris/app/src/main/res/layout/cardcell.xml" value="0.33" />
@@ -220,7 +232,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

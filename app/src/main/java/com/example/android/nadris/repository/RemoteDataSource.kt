@@ -1,10 +1,9 @@
 package com.example.android.nadris.repository
 
 import android.net.Uri
-import com.example.android.nadris.network.firebase.dtos.Inquiry
-import com.example.android.nadris.network.firebase.dtos.Reply
-import com.example.android.nadris.network.firebase.dtos.Subject
-import com.example.android.nadris.network.firebase.dtos.User
+import com.example.android.nadris.data.models.LessonDTO
+import com.example.android.nadris.network.firebase.dtos.*
+import com.example.android.nadris.network.firebase.dtos.Unit
 import com.example.android.nadris.network.firebase.services.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
@@ -89,23 +88,23 @@ constructor(
         }
     }
 
-    fun addNewReply(reply: Reply,inquiryId: String): Task<Void> =
-        inquiriesService.addNewReplyWithID(reply,inquiryId)
+    fun addNewReply(reply: Reply, inquiryId: String): Task<Void> =
+        inquiriesService.addNewReplyWithID(reply, inquiryId)
 
 
     fun addNewInquiryWithoutImage(inquiry: Inquiry): Task<DocumentReference> =
         inquiriesService.addNewInquiry(inquiry)
 
-    fun getAllInquiries() :Task<QuerySnapshot> = inquiriesService.getAllInquiries()
+    fun getAllInquiries(): Task<QuerySnapshot> = inquiriesService.getAllInquiries()
 
-    fun getInquiryImage(file: File, imagePath: String,): FileDownloadTask =
-         storageService.getInquiryImage(file, imagePath)
+    fun getInquiryImage(file: File, imagePath: String): FileDownloadTask =
+        storageService.getInquiryImage(file, imagePath)
 
     fun getProfileImage(file: File, imagePath: String): FileDownloadTask =
-         storageService.getProfileImage(file, imagePath)
+        storageService.getProfileImage(file, imagePath)
 
 
-    fun getCommentsForAnInquiry(id: String) :Task<QuerySnapshot> =
+    fun getCommentsForAnInquiry(id: String): Task<QuerySnapshot> =
         inquiriesService.getCommentsForAnInquiry(id)
 
 
@@ -128,13 +127,12 @@ constructor(
     fun getInquiryWithId(inquiryId: String) =
         inquiriesService.getInquiryWithId(inquiryId)
 
-    fun setVotedUserIdsForInquiry(inquiryId: String, votedIdsList: MutableList<String>?)  =
+    fun setVotedUserIdsForInquiry(inquiryId: String, votedIdsList: MutableList<String>?) =
         inquiriesService.setVotedUserIdsForInquiry(inquiryId, votedIdsList)
 
 
-    fun incrementReplies(inquiryId: String)  =
+    fun incrementReplies(inquiryId: String) =
         inquiriesService.incrementReplies(inquiryId)
-
 
 
     fun signOut() {
@@ -145,4 +143,26 @@ constructor(
         coursesService.getCoursesWithIds(coursesIds)
 
 
+    fun getCoursesWithGradeId(gradeIdS: String) =
+        coursesService.getCoursesWithSubjectIds(gradeIdS)
+
+    suspend fun getCourseUnits(courseID: String) : List<Unit> =
+        try{
+            Tasks
+                .await(coursesService.getCourseUnits(courseID))
+                .map { unitQueryDoc ->
+                    unitQueryDoc.toObject<Unit>().apply {
+                        this.unitId = unitQueryDoc.id
+                        Tasks
+                            .await(coursesService.getLessonsCollection(unitQueryDoc.reference))
+                            .map { lessonQueryDoc ->
+                                lessonQueryDoc.toObject<LessonDTO>().apply {
+                                    this.lessonId = lessonQueryDoc.id
+                                }
+                            }
+                    }
+                }
+        }catch (exception:Exception){
+            throw exception
+        }
 }

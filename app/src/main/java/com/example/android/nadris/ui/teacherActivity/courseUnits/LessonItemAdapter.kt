@@ -6,18 +6,19 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.database.models.DatabaseLesson
+import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.database.models.DatabaseCourseLesson
 import com.example.android.nadris.databinding.ItemLessonBinding
 
 class LessonItemAdapter : RecyclerView.Adapter<LessonItemAdapter.LessonItemViewHolder>() {
 
 
-    private val differCallback = object : DiffUtil.ItemCallback<DatabaseLesson>() {
-        override fun areItemsTheSame(oldItem: DatabaseLesson, newItem: DatabaseLesson): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseCourseLesson>() {
+        override fun areItemsTheSame(oldItem: DatabaseCourseLesson, newItem: DatabaseCourseLesson): Boolean {
             return oldItem.lessonID == newItem.lessonID
         }
 
-        override fun areContentsTheSame(oldItem: DatabaseLesson, newItem: DatabaseLesson): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseCourseLesson, newItem: DatabaseCourseLesson): Boolean {
             return oldItem == newItem
         }
     }
@@ -35,11 +36,26 @@ class LessonItemAdapter : RecyclerView.Adapter<LessonItemAdapter.LessonItemViewH
         holder.binding.lessonTitle.text = lessonData.lessonName
 
         holder.binding.root.setOnClickListener {
-            it.findNavController().navigate(UnitsFragmentDirections.actionTeacherSubjectUnitsFragmentToAddingSectionsFragment(5,0,position,lessonData.lessonName))
+            if (NadrisApplication.currentDatabaseUser?.IsATeacher!!)
+                it.findNavController()
+                    .navigate(UnitsFragmentDirections.actionTeacherSubjectUnitsFragmentToAddingSectionsFragment(
+                        5,
+                        0,
+                        position,
+                        lessonData.lessonName))
+            else
+                it.findNavController() // please change this to navigate to viewLesson page
+                    .navigate(UnitsFragmentDirections.actionTeacherSubjectUnitsFragmentToAddingSectionsFragment(
+                        5,
+                        0,
+                        position,
+                        lessonData.lessonName))
+
         }
     }
 
     override fun getItemCount() = differ.currentList.size
 
-    class LessonItemViewHolder(val binding: ItemLessonBinding) : RecyclerView.ViewHolder(binding.root)
+    class LessonItemViewHolder(val binding: ItemLessonBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }

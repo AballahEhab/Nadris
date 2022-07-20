@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.database.models.DatabaseUnitLessons
+import com.example.android.nadris.database.models.DatabaseCourseUnitWithLessons
 import com.example.android.nadris.databinding.ItemExpandableUnitBinding
 import com.example.android.nadris.util.isVisible
 
@@ -14,12 +14,12 @@ class UnitItemAdapter (val viewModel: UnitsViewModel) :
     RecyclerView.Adapter<UnitItemAdapter.UnitItemViewHolder>() {
     var expandedItemIndex: Int = -1
 
-    private val differCallback = object : DiffUtil.ItemCallback<DatabaseUnitLessons>() {
-        override fun areItemsTheSame(oldItem: DatabaseUnitLessons, newItem: DatabaseUnitLessons): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseCourseUnitWithLessons>() {
+        override fun areItemsTheSame(oldItem: DatabaseCourseUnitWithLessons, newItem: DatabaseCourseUnitWithLessons): Boolean {
             return oldItem.unitDatabase.unitId == newItem.unitDatabase.unitId
         }
 
-        override fun areContentsTheSame(oldItem: DatabaseUnitLessons, newItem: DatabaseUnitLessons): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseCourseUnitWithLessons, newItem: DatabaseCourseUnitWithLessons): Boolean {
             return oldItem == newItem
         }
     }
@@ -44,20 +44,24 @@ class UnitItemAdapter (val viewModel: UnitsViewModel) :
         if (unit.lessonsVisibility && holder.binding.lessonsList.adapter == null) {
             val adapter = LessonItemAdapter()
             holder.binding.lessonsList.adapter = adapter
-            adapter.differ.submitList(unitData.databaseLessons)
+            adapter.differ.submitList(unitData.databaseCourseLessons)
     }
 
         holder.binding.root.setOnClickListener {
-            if (expandedItemIndex == -1) {
-                expandedItemIndex = position
-                toggleUnitExpansion()
-            } else if (expandedItemIndex == position) {
-                toggleUnitExpansion()
-                expandedItemIndex = -1
-            } else {
-                toggleUnitExpansion()
-                expandedItemIndex = position
-                toggleUnitExpansion()
+            when (expandedItemIndex) {
+                -1 -> {
+                    expandedItemIndex = position
+                    toggleUnitExpansion()
+                }
+                position -> {
+                    toggleUnitExpansion()
+                    expandedItemIndex = -1
+                }
+                else -> {
+                    toggleUnitExpansion()
+                    expandedItemIndex = position
+                    toggleUnitExpansion()
+                }
             }
         }
     }

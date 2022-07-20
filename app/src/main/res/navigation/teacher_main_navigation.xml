@@ -154,7 +154,7 @@
             app:destination="@id/teacher_add_new_subject_fragment" />
         <action
             android:id="@+id/action_teacher_my_subjects_fragment_to_teacher_subject_units_fragment"
-            app:destination="@id/teacher_subject_units_fragment" />
+            app:destination="@id/teacher_course_units_fragment" />
 
     </fragment>
 
@@ -169,11 +169,11 @@
     </fragment>
 
     <fragment
-        android:id="@+id/teacher_subject_units_fragment"
+        android:id="@+id/teacher_course_units_fragment"
         android:name="com.example.android.nadris.ui.teacherActivity.courseUnits.UnitsFragment"
         tools:layout="@layout/fragment_units">
         <argument
-            android:name="subjectId"
+            android:name="courseId"
             app:argType="string" />
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
@@ -208,10 +208,7 @@
         android:name="com.example.android.nadris.ui.teacherActivity.addSection.addSectionFragment"
         android:label="fragment_add_section"
         tools:layout="@layout/fragment_add_section" />
-    <fragment
-        android:id="@+id/addContentFragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addcontent.addContentFragment"
-        android:label="addContentFragment" />
+
 
     <!--    <fragment-->
 <!--        android:id="@+id/editDiscussionFragment"-->

@@ -9,6 +9,7 @@ import com.example.android.nadris.util.Result
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.flow.flow
 import java.io.File
@@ -134,25 +135,19 @@ class Repository @Inject constructor(
 
                         if (!divisionsQuery.isEmpty)
                             for (division in divisionsQuery) {
-                                var grade = division.toObject<Grade>()
-                                grade.id = division.id
-                                grade.gradeReference = division.reference
-                                gradeList.add(grade)
+                                val grade = getGradeFromDocumentSnapShot(division)
+                                gradeList.add(grade!!)
 
                             }
                         else {
-                            var grade = department.toObject<Grade>()
-                            grade.id = department.id
-                            grade.gradeReference = department.reference
-                            gradeList.add(grade)
+                            val grade = getGradeFromDocumentSnapShot(department)
+                            gradeList.add(grade!!)
 
                         }
                     }
                 else {
-                    var grade = document.toObject<Grade>()
-                    grade.id = document.id
-                    grade.gradeReference = document.reference
-                    gradeList.add(grade)
+                    val grade = getGradeFromDocumentSnapShot(document)
+                    gradeList.add(grade!!)
                 }
             }
 
@@ -163,13 +158,20 @@ class Repository @Inject constructor(
             Result.Error(throwable.message!!)
         }
 
+    private fun getGradeFromDocumentSnapShot(docSnapshot: QueryDocumentSnapshot?): Grade? {
+        val grade = docSnapshot?.toObject<Grade>()
+        grade?.id = docSnapshot?.id
+        grade?.gradeReference = docSnapshot?.reference
+        return grade
+    }
+
     fun getSubjectsWithGrade(gradeRef: DocumentReference) =
         try {
             val subjectsQuery =
                 Tasks.await(remoteDataSource.getSubjectsWithGrade(gradeRef))
             val collegesList = subjectsQuery.map {
                 val subject = it.toObject<Subject>()
-                subject.subject_id = it.reference.id
+                subject.subject_id = it.id
                 subject
             }
 
@@ -234,6 +236,7 @@ class Repository @Inject constructor(
                 val task = Tasks.await(remoteDataSource.getCoursesWithIds(coursesIds))
                 val coursesList = task.map {
                     val course = it.toObject<Course>()
+                    course.courseId = it.id
                     course.subjectName= getSubjectName(course.subjectId)
                     course.teacherName= getUserDataObj(course.ownerTeacherID).let { it?.firstName +""+it?.lastName }
                     course
@@ -243,6 +246,37 @@ class Repository @Inject constructor(
                 emit(Result.Error(exception.message!!))
             }
         }
+
+    fun getCoursesWithSubjectId(subjectId: String) =
+        flow{
+            try{
+                val task = Tasks.await(remoteDataSource.getCoursesWithGradeId(subjectId))
+                val coursesList = task.map {
+                    val gradesList = getGrades().data
+                    val course = it.toObject<Course>()
+                    course.courseId = it.id
+                    course.subjectName= getSubjectName(course.subjectId)
+                    course.teacherName= getUserDataObj(course.ownerTeacherID).let { it?.firstName +""+it?.lastName }
+                    val grade = gradesList?.find { it.gradeReference == course.gradeId }
+                    course.gradeName = if (NadrisApplication.instance?.lang == "ar") grade?.name_ar!! else grade?.name_ar!!
+                    course
+                }
+                emit(Result.Success(coursesList))
+            }catch (exception:Exception){
+                emit(Result.Error(exception.message!!))
+            }
+        }
+
+    suspend fun getCourseUnit(courseId:String) =
+        flow{
+            try{
+                val unitsList= remoteDataSource.getCourseUnits(courseId)
+                emit(Result.Success(unitsList))
+            }catch (exception:Exception){
+                emit(Result.Error(exception.message!!))
+            }
+        }
+
 
 
     //inquiry functions

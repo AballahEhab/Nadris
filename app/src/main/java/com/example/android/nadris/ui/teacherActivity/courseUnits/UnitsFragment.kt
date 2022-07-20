@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentUnitsBinding
+import com.example.android.nadris.network.firebase.NetworkObjectMapper
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,18 +23,51 @@ class UnitsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        inflater.inflate(R.layout.fragment_units, container, false)
-        binding = FragmentUnitsBinding.inflate(inflater)
+        binding = FragmentUnitsBinding.inflate(layoutInflater, container, false)
+
 
         binding.lifecycleOwner = this.viewLifecycleOwner
-        viewModel.subjectId = args.subjectId
+        viewModel.courseId = args.courseId
         binding.viewmodel = viewModel
-        viewModel.getData()
+
+        viewModel.getCourseUnits()
+
         binding.adapter = UnitItemAdapter(viewModel)
 
-        viewModel.units.observe(viewLifecycleOwner) {
+        viewModel.unitsList.observe(viewLifecycleOwner) {
             binding.adapter!!.differ.submitList(it)
         }
+
+        viewModel.unitsListResult.observe(viewLifecycleOwner){result->
+            result.handleRepoResponse(
+                onPreExecute = {
+//                    binding.swipeRefreshLayout.isRefreshing = false
+
+                },
+                onLoading = {
+//                    binding.swipeRefreshLayout.isRefreshing = true
+//                    result.data?.let {
+//                        adapter.differ.submitList(it)
+//                        binding.swipeRefreshLayout.isRefreshing = false
+//                    }
+                },
+                onError = {
+                    Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+                },
+                onSuccess = {
+//                    Log.v(TAG, result.data.toString())
+                    viewModel.unitsList.value = result.data?.map {unit->
+                            val lessonList =unit.lessons.map {lesson->
+                                 NetworkObjectMapper.lessonAsDataBaseLesson(lesson,unit.unitId)
+                            }
+                            NetworkObjectMapper.unitAsDataBaseUnit(unit,lessonList,R.drawable.icon_physics)
+
+                    }
+                }
+            )
+        }
+
 
         return binding.root
     }

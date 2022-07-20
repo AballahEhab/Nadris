@@ -8,7 +8,7 @@
 
         <variable
             name="unit"
-            type="com.example.android.nadris.database.models.DatabaseSubjectUnit" />
+            type="com.example.android.nadris.database.models.DatabaseCourseUnit" />
 
         <variable
             name="adapter"
