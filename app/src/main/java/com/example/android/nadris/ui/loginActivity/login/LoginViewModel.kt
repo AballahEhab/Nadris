@@ -29,14 +29,6 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
     private var _loginResult: MutableLiveData<Result<DatabaseUser>> = MutableLiveData()
     val loginResult: LiveData<Result<DatabaseUser>> get() = _loginResult
 
-    private var _emailHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    val emailHaveError get() = _emailHaveError
-
-    fun validEmail() {
-        _emailHaveError.value = !Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches()
-    }
-
-
 
 
     private fun validateEmail() {
@@ -67,9 +59,6 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
                 }
             }
     }
-
-
-
     fun onCreateAccountClicked() {
         _navigateToCreateAccount.value = true
     }
@@ -79,15 +68,20 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
     }
 
 
-
+    fun onLoginByFacebookClick() {
+//    _navigateToHomeScreen.value = true
+    }
 
     /** TODO: to be enabled when adding login with facebook and google*/
     fun onLoginByGoogleClick() {
 //    _navigateToHomeScreen.value = true
     }
 
-    fun onLoginByFacebookClick() {
-//    _navigateToHomeScreen.value = true
+    private var _emailHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    val emailHaveError get() = _emailHaveError
+
+    fun validEmail() {
+        _emailHaveError.value = !Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches()
     }
 
 }
