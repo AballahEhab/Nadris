@@ -3,6 +3,7 @@ package com.example.android.nadris.ui.studentActivity.subject_student.selectTeac
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.data.models.TeachersCoursesModel
 import com.example.android.nadris.network.firebase.dtos.Course
 import com.example.android.nadris.repository.Repository
@@ -20,6 +21,9 @@ class TeachersCoursesViewModel @Inject constructor(val repository: Repository) :
     var courseId: Long = 0
     var subjectId: String = ""
 
+    var subscribeAStudentToACourseResult = MutableLiveData<Result<Boolean>>()
+
+
     /*var isJoin: Boolean = false
     val currentCourseData = MutableLiveData<TeachersCoursesDTO>()*/
 
@@ -32,24 +36,13 @@ class TeachersCoursesViewModel @Inject constructor(val repository: Repository) :
         }
     }
 
-    fun registerAStudentInACourse(id: String) {
-//        viewModelScope.launch {
-//            var result=repository.registerAStudentInACourse(CourseID(id),TOKEN_PREFIX + NadrisApplication.userData?.Token)
-//            result.collect{
-//
-//               it.handleRepoResponse(
-//                   onLoading= {
-//
-//                   },
-//                   onError= {
-//                       Log.v("comments responce", it.data.toString())
-//                   },
-//                   onSuccess= {
-//
-//                   },
-//               )
-//            }
-//        }
+    fun subscribeAStudentToACourse(selectedCourseID: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.subScribeToACourse(selectedCourseID,NadrisApplication.currentDatabaseUser?.userID!!).collect{
+                subscribeAStudentToACourseResult.postValue(it)
+            }
+
+        }
     }
 
 }

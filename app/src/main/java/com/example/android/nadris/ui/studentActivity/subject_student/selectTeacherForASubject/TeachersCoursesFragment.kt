@@ -58,6 +58,28 @@ class TeachersCoursesFragment : Fragment() {
                 }
             )
         }
+
+        viewModel.subscribeAStudentToACourseResult.observe(viewLifecycleOwner){result->
+            result.handleRepoResponse(
+                onPreExecute = {
+
+                },
+                onLoading = {
+                },
+                onError = {
+                    Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+                },
+                onSuccess = {
+                    result.data?.let {
+
+                    } ?: Snackbar.make( binding.root,
+                        resources.getString(R.string.my_coures_error),
+                        Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            )
+        }
         return binding.root
     }
 

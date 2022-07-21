@@ -27,7 +27,7 @@ class UnitsFragment : Fragment() {
 
 
         binding.lifecycleOwner = this.viewLifecycleOwner
-        viewModel.courseId = args.courseId
+        viewModel.courseId = args.subjectId
         binding.viewmodel = viewModel
 
         viewModel.getCourseUnits()
@@ -59,7 +59,8 @@ class UnitsFragment : Fragment() {
 //                    Log.v(TAG, result.data.toString())
                     viewModel.unitsList.value = result.data?.map {unit->
                             val lessonList =unit.lessons.map {lesson->
-                                 NetworkObjectMapper.lessonAsDataBaseLesson(lesson,unit.unitId)
+                                val lesson = NetworkObjectMapper.lessonAsDataBaseLesson(lesson,unit.unitId)
+                                NetworkObjectMapper.lassonAsDatabaseLessonWithSections(lesson,listOf())
                             }
                             NetworkObjectMapper.unitAsDataBaseUnit(unit,lessonList,R.drawable.icon_physics)
 

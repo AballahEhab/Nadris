@@ -257,7 +257,7 @@ class Repository @Inject constructor(
                     course.courseId = it.id
                     course.subjectName= getSubjectName(course.subjectId)
                     course.teacherName= getUserDataObj(course.ownerTeacherID).let { it?.firstName +""+it?.lastName }
-                    val grade = gradesList?.find { it.gradeReference == course.gradeId }
+                    val grade = gradesList?.find { it.gradeReference == course.gradeRef }
                     course.gradeName = if (NadrisApplication.instance?.lang == "ar") grade?.name_ar!! else grade?.name_ar!!
                     course
                 }
@@ -438,6 +438,16 @@ class Repository @Inject constructor(
                 emit(Result.Error(exception.message!!))
             }
         }
+
+    fun subScribeToACourse(selectedCourseID: String, userID: String) =
+        flow {
+        try {
+            remoteDataSource.subscribeToCourse(selectedCourseID,userID)
+            emit(Result.Success(true))
+        }catch (exception:Exception){
+            emit(Result.Error(exception.message!!))
+        }
+    }
 
 
 //    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(

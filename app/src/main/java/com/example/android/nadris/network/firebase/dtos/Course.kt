@@ -8,10 +8,11 @@ import com.google.firebase.firestore.ServerTimestamp
 @IgnoreExtraProperties
 class Course(
     @get:Exclude var courseId: String = "",
-    val gradeId: DocumentReference? = null,
+    val gradeRef: DocumentReference? = null,
     val ownerTeacherID: String = "",
     val subjectId: String = "",
     val subscribedStudentsIds: List<String> = listOf(),
+    val subscribedStudentsRatings: List<Int> = listOf(),
     @ServerTimestamp val timeCreated: java.util.Date? = null,
 //    val coursesSubscribedProgress:List<Int> = listOf(),
 //    @get: Exclude var isJoined:Boolean = false,

@@ -22,10 +22,12 @@ class MySubjectStudentViewModel @Inject constructor(val repository: Repository) 
 
     fun getCoursesCurrentUserSubscribedTo() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getCurrentUserSubscribedCourses(NadrisApplication.currentUserData?.coursesSubscribedIds!!)
-                .collect {
-                    coursesResultList.postValue(it)
-                }
+            val coursesSubscribedIds = NadrisApplication.currentUserData?.coursesSubscribedIds!!
+            if(!coursesSubscribedIds.isNullOrEmpty())
+                repository.getCurrentUserSubscribedCourses(coursesSubscribedIds)
+                    .collect {
+                        coursesResultList.postValue(it)
+                    }
         }
     }
     fun unsubscribeFromACourse(id: Long) {

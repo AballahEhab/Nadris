@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.database.models.DatabaseCourseUnitWithLessons
+import com.example.android.nadris.database.models.DatabaseCourseUnitWithLessonsAndSections
 import com.example.android.nadris.databinding.ItemExpandableUnitBinding
 import com.example.android.nadris.util.isVisible
 
@@ -14,12 +14,12 @@ class UnitItemAdapter (val viewModel: UnitsViewModel) :
     RecyclerView.Adapter<UnitItemAdapter.UnitItemViewHolder>() {
     var expandedItemIndex: Int = -1
 
-    private val differCallback = object : DiffUtil.ItemCallback<DatabaseCourseUnitWithLessons>() {
-        override fun areItemsTheSame(oldItem: DatabaseCourseUnitWithLessons, newItem: DatabaseCourseUnitWithLessons): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<DatabaseCourseUnitWithLessonsAndSections>() {
+        override fun areItemsTheSame(oldItem: DatabaseCourseUnitWithLessonsAndSections, newItem: DatabaseCourseUnitWithLessonsAndSections): Boolean {
             return oldItem.unitDatabase.unitId == newItem.unitDatabase.unitId
         }
 
-        override fun areContentsTheSame(oldItem: DatabaseCourseUnitWithLessons, newItem: DatabaseCourseUnitWithLessons): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseCourseUnitWithLessonsAndSections, newItem: DatabaseCourseUnitWithLessonsAndSections): Boolean {
             return oldItem == newItem
         }
     }
@@ -44,7 +44,10 @@ class UnitItemAdapter (val viewModel: UnitsViewModel) :
         if (unit.lessonsVisibility && holder.binding.lessonsList.adapter == null) {
             val adapter = LessonItemAdapter()
             holder.binding.lessonsList.adapter = adapter
-            adapter.differ.submitList(unitData.databaseCourseLessons)
+            val lessons = unitData.databaseCourseLessons.map{
+                it.Lesson
+            }
+            adapter.differ.submitList(lessons)
     }
 
         holder.binding.root.setOnClickListener {

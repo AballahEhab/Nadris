@@ -169,9 +169,9 @@
         tools:layout="@layout/fragment_units">
         <argument android:name="subjectId" app:argType="string"/>
 
-        <action
-            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"
-            app:destination="@id/addingSubjectSectionsFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"-->
+<!--            app:destination="@id/addingSubjectSectionsFragment" />-->
     </fragment>
 
 

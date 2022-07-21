@@ -54,7 +54,7 @@ class CustomAdapterCourses(val viewModel:TeachersCoursesViewModel) : RecyclerVie
 //        img = BitmapFactory.decodeFile(file.absolutePath)
         if(!data.isStudentJoined ) {
             holder.binding.tvAddTeacher.setOnClickListener {
-                viewModel.registerAStudentInACourse(data.courseId)
+                viewModel.subscribeAStudentToACourse(data.courseId)
                 holder.binding.tvAddTeacher.isVisible(true)
             }
         }else{
@@ -66,7 +66,11 @@ class CustomAdapterCourses(val viewModel:TeachersCoursesViewModel) : RecyclerVie
 //        holder.binding.ivTeachers.setImageBitmap(img!!)
 
         holder.binding.ivTeachers.setOnClickListener{
-            it.findNavController().navigate(TeachersCoursesFragmentDirections.actionStudentTeachersForASubjectFragmentToPublicProfileFragment(data.teacherId))
+//            it.findNavController().navigate(TeachersCoursesFragmentDirections.actionStudentTeachersForASubjectFragmentToPublicProfileFragment(data.teacherId))
+        }
+
+        holder.itemView.setOnClickListener {
+            it.findNavController().navigate(TeachersCoursesFragmentDirections.actionStudentTeachersForASubjectFragmentToStudentSubjectUnitsFragment(data.courseId))
         }
 
         holder.itemView.setOnClickListener {

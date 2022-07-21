@@ -87,9 +87,9 @@ class LoginFragment : Fragment() {
     private fun navigateToHomeFragment() {
         lateinit var directionClass: Class<*>
         if (NadrisApplication.currentDatabaseUser?.IsATeacher == true)
-            directionClass = StudentMainActivity::class.java
-        else if (NadrisApplication.currentDatabaseUser?.IsATeacher == false)
             directionClass = TeacherMainActivity::class.java
+        else if (NadrisApplication.currentDatabaseUser?.IsATeacher == false)
+            directionClass = StudentMainActivity::class.java
 
         startActivity(Intent(requireContext(), directionClass))
     }

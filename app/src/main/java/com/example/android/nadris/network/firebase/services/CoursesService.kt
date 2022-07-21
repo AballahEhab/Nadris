@@ -1,10 +1,7 @@
 package com.example.android.nadris.network.firebase.services
 
 import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FieldPath
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import javax.inject.Inject
 
 class CoursesService @Inject constructor(val db: FirebaseFirestore) {
@@ -14,6 +11,11 @@ class CoursesService @Inject constructor(val db: FirebaseFirestore) {
     fun getCoursesWithIds(coursesIds: List<String>) =
         coursesCollection
             .whereIn(FieldPath.documentId(), coursesIds)
+            .get()
+
+    fun getCoursesWithId(coursesId: String) =
+        coursesCollection
+            .document(coursesId)
             .get()
 
 
@@ -31,5 +33,15 @@ class CoursesService @Inject constructor(val db: FirebaseFirestore) {
     fun getLessonsCollection(unitDocRef: DocumentReference) =
         unitDocRef.collection("lessons")
             .get()
+
+    fun registerStudentToACourse(
+        studentID: String,
+        courseID: String,
+    ): Task<Void> {
+        val updatedFields = mapOf("subscribedStudentsIds" to FieldValue.arrayUnion(studentID),"subscribedStudentsRatings" to FieldValue.arrayUnion(0))
+
+       return coursesCollection.document(courseID).update(updatedFields)
+
+    }
 
 }

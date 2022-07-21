@@ -2,7 +2,6 @@ package com.example.android.nadris.network.firebase
 
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.data.models.CommentModel
-import com.example.android.nadris.data.models.LessonDTO
 import com.example.android.nadris.data.models.TeachersCoursesModel
 import com.example.android.nadris.database.models.*
 import com.example.android.nadris.network.firebase.dtos.*
@@ -80,15 +79,20 @@ object NetworkObjectMapper {
             isStudentJoined = course.subscribedStudentsIds.contains(NadrisApplication.currentDatabaseUser?.userID)
         )
 
+
     fun lessonAsDataBaseLesson(lesson: LessonDTO, unitId: String) =
         DatabaseCourseLesson(
             lessonID = lesson.lessonId,
             lessonName = lesson.name,
             FKUnitId = unitId
         )
+    fun lassonAsDatabaseLessonWithSections(lesson: DatabaseCourseLesson, sections: List<DatabaseSection>) =
+        DatabaseCourseLessonWithSections(
+            Lesson = lesson,
+            sections = sections        )
 
-    fun unitAsDataBaseUnit(unit: Unit, lessonList: List<DatabaseCourseLesson>, iconId: Int) =
-        DatabaseCourseUnitWithLessons(
+    fun unitAsDataBaseUnit(unit: Unit, lessonList: List<DatabaseCourseLessonWithSections>, iconId: Int) =
+        DatabaseCourseUnitWithLessonsAndSections(
             DatabaseCourseUnit(
                 unitId = unit.unitId,
                 name = unit.name,

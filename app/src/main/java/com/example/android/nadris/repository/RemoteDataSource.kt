@@ -1,7 +1,6 @@
 package com.example.android.nadris.repository
 
 import android.net.Uri
-import com.example.android.nadris.data.models.LessonDTO
 import com.example.android.nadris.network.firebase.dtos.*
 import com.example.android.nadris.network.firebase.dtos.Unit
 import com.example.android.nadris.network.firebase.services.*
@@ -143,6 +142,10 @@ constructor(
         coursesService.getCoursesWithIds(coursesIds)
 
 
+    fun getCoursesWithId(coursesId: String) =
+        coursesService.getCoursesWithId(coursesId)
+
+
     fun getCoursesWithGradeId(gradeIdS: String) =
         coursesService.getCoursesWithSubjectIds(gradeIdS)
 
@@ -153,7 +156,7 @@ constructor(
                 .map { unitQueryDoc ->
                     unitQueryDoc.toObject<Unit>().apply {
                         this.unitId = unitQueryDoc.id
-                        Tasks
+                        this.lessons = Tasks
                             .await(coursesService.getLessonsCollection(unitQueryDoc.reference))
                             .map { lessonQueryDoc ->
                                 lessonQueryDoc.toObject<LessonDTO>().apply {
@@ -165,4 +168,14 @@ constructor(
         }catch (exception:Exception){
             throw exception
         }
+
+    fun subscribeToCourse(selectedCourseID: String, userID: String) =
+        coursesService
+            .registerStudentToACourse(userID,selectedCourseID)
+            .continueWithTask {
+            userService.addCourseIdToStudentData(selectedCourseID,userID)
+        }
+
+
+
 }

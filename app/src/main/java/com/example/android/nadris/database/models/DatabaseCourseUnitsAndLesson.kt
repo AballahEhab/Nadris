@@ -24,9 +24,27 @@ data class DatabaseCourseLesson(
     val FKUnitId: String,
 )
 
-data class DatabaseCourseUnitWithLessons(
+@Entity
+data class DatabaseSection(
+    val lessonId:String,
+    val videoUrl:String,
+    val audioFilePath:String,
+    val formattedText:String,
+    val FKLessonId:String
+)
+
+
+data class DatabaseCourseLessonWithSections(
+    @Embedded val Lesson:DatabaseCourseLesson,
+    @Relation(parentColumn = "lessonID", entityColumn = "FKLessonId")
+    val sections: List<DatabaseSection>,
+)
+
+
+
+data class DatabaseCourseUnitWithLessonsAndSections(
     @Embedded
     val unitDatabase: DatabaseCourseUnit,
-    @Relation(parentColumn = "unitId", entityColumn = "FKUnitId")
-    val databaseCourseLessons: List<DatabaseCourseLesson>,
+    @Relation( entity = DatabaseCourseLesson::class, parentColumn = "unitId", entityColumn = "FKUnitId")
+    val databaseCourseLessons: List<DatabaseCourseLessonWithSections>,
 )
