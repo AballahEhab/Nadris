@@ -17,10 +17,12 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
 
 import com.example.android.nadris.databinding.FragmentAddRecordBinding
 import com.example.android.nadris.ui.teacherActivity.addContent.AddContentViewModel
+import com.example.android.nadris.ui.teacherActivity.addContent.addContentFragmentDirections
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
@@ -36,7 +38,7 @@ class addRecordFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentAddRecordBinding
 
     //recording audio related applyAttributes
-    private var  fileName= ""
+
     private var recorder: MediaRecorder? = null
     private var player: MediaPlayer? = null
     private var permissions: Array<String> = arrayOf(Manifest.permission.RECORD_AUDIO)
@@ -70,21 +72,8 @@ class addRecordFragment : BottomSheetDialogFragment() {
         player = null
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        //close PdfRenderer
-//        renderer?.close()
-//    }
     private fun setClickListnersForButtons() {
-//        binding.btnPick.setOnClickListener {
-//            openDocumentPicker()
-//        }
-//        binding.btnNext.setOnClickListener {
-//            showNextPage()
-//        }
-//        binding.btnPrev.setOnClickListener {
-//            showPreviousPage()
-//        }
+
         binding.imgBtRecord.setOnClickListener {
             prepareRecording()
             startRecording()
@@ -95,13 +84,17 @@ class addRecordFragment : BottomSheetDialogFragment() {
         }
 //
         binding.imgViewPlay.setOnClickListener {
-            if (!isPlaying && fileName != null) {
+            if (!isPlaying && viewModel.fileName != null) {
                 isPlaying = true
                 startPlaying()
             } else {
                 isPlaying = false
                 stopPlaying()
             }
+        }
+        binding.submit.setOnClickListener {
+            val action = addRecordFragmentDirections.actionAddAudioFragmentToAddContentFragment()
+            findNavController().navigate(action)
         }
 
     }
@@ -120,7 +113,7 @@ class addRecordFragment : BottomSheetDialogFragment() {
 
     private fun getFilePathToSaveRecords(){
         // Record to the external cache directory for visibility
-        fileName = "${requireContext().externalCacheDir?.absolutePath}/audiorecordtest.3gp"
+        viewModel.fileName = "${requireContext().externalCacheDir?.absolutePath}/audiorecordtest.3gp"
     }
 
     private fun requestPermissionsForRecordingAudio() {
@@ -170,7 +163,7 @@ class addRecordFragment : BottomSheetDialogFragment() {
             recorder = MediaRecorder().apply {
                 setAudioSource(MediaRecorder.AudioSource.MIC)
                 setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-                setOutputFile(fileName)
+                setOutputFile(viewModel.fileName)
                 setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
 
                 try {
@@ -207,7 +200,7 @@ class addRecordFragment : BottomSheetDialogFragment() {
     private fun startPlaying() {
         player = MediaPlayer().apply {
             try {
-                setDataSource(fileName)
+                setDataSource(viewModel.fileName)
                 prepare()
                 start()
             } catch (e: IOException) {

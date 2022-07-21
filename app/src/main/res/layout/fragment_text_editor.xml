@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
@@ -39,7 +40,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_undo" />
+                app:srcCompat="@drawable/ic_undo" />
 
             <ImageButton
                 android:id="@+id/action_redo"
@@ -48,7 +49,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_redo" />
+                app:srcCompat="@drawable/ic_redo" />
 
             <ImageButton
                 android:id="@+id/action_bold"
@@ -57,7 +58,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_bold" />
+                app:srcCompat="@drawable/ic_bold" />
 
             <ImageButton
                 android:id="@+id/action_italic"
@@ -66,7 +67,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_italic" />
+                app:srcCompat="@drawable/ic_italic" />
 
             <ImageButton
                 android:id="@+id/action_subscript"
@@ -75,7 +76,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_subscript" />
+                app:srcCompat="@drawable/ic_subscript" />
 
             <ImageButton
                 android:id="@+id/action_superscript"
@@ -84,7 +85,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_superscript" />
+                app:srcCompat="@drawable/ic_superscript" />
 
             <ImageButton
                 android:id="@+id/action_strikethrough"
@@ -102,7 +103,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_underline" />
+                app:srcCompat="@drawable/ic_underline" />
 
 <!--            <ImageButton-->
 <!--                android:id="@+id/action_heading1"-->
@@ -162,7 +163,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_text_color" />
+                app:srcCompat="@drawable/ic_text_color" />
 
 <!--            <ImageButton-->
 <!--                android:id="@+id/action_bg_color"-->
@@ -180,7 +181,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_indent_1" />
+                app:srcCompat="@drawable/ic_indent_1" />
 
             <ImageButton
                 android:id="@+id/action_outdent"
@@ -189,7 +190,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_outdent" />
+                app:srcCompat="@drawable/ic_outdent" />
 
             <ImageButton
                 android:id="@+id/action_align_left"
@@ -198,7 +199,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_align_left" />
+                app:srcCompat="@drawable/ic_align_left" />
 
             <ImageButton
                 android:id="@+id/action_align_center"
@@ -207,7 +208,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_align_center" />
+                app:srcCompat="@drawable/ic_align_center" />
 
             <ImageButton
                 android:id="@+id/action_align_right"
@@ -216,7 +217,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_align_right" />
+                app:srcCompat="@drawable/ic_align_right" />
 
             <ImageButton
                 android:id="@+id/action_insert_bullets"
@@ -225,7 +226,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_table_of_content" />
+                app:srcCompat="@drawable/ic_table_of_content" />
 
             <ImageButton
                 android:id="@+id/action_insert_numbers"
@@ -234,7 +235,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_numbered_list" />
+                app:srcCompat="@drawable/ic_numbered_list" />
 
 <!--            <ImageButton-->
 <!--                android:id="@+id/action_blockquote"-->
@@ -252,7 +253,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_image" />
+                app:srcCompat="@drawable/ic_image" />
 
 
             <ImageButton
@@ -262,7 +263,7 @@
                 android:background="@null"
                 android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_youtube_logo" />
+                app:srcCompat="@drawable/ic_youtube_logo" />
 
 
         </LinearLayout>

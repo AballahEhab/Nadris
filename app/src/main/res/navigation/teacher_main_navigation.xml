@@ -218,6 +218,8 @@
 
         <action android:id="@+id/action_addContentFragment_to_addAudioFragment"
                 app:destination="@id/addAudioFragment"/>
+        <action android:id="@+id/action_addContentFragment_to_textEditorFragment"
+                app:destination="@id/textEditorFragment"/>
     </fragment>
     <dialog
         android:id="@+id/addLinkVideoFragment"
@@ -237,6 +239,13 @@
         <action android:id="@+id/action_addAudioFragment_to_addContentFragment"
                 app:destination="@id/addContentFragment"/>
     </dialog>
+    <fragment
+    android:id="@+id/textEditorFragment"
+    tools:layout="@layout/fragment_text_editor"
+    android:label="textEditorFragment"
+    android:name="com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragment">
+
+    </fragment>
 
 
     <!--    <fragment-->
