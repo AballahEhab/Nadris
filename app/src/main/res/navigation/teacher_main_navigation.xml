@@ -178,9 +178,12 @@
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
             app:destination="@id/adding_sections_fragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_teacher_subject_units_fragment_to_addSectionFragment"-->
+<!--            app:destination="@id/addSectionFragment" />-->
         <action
-            android:id="@+id/action_teacher_subject_units_fragment_to_addSectionFragment"
-            app:destination="@id/addSectionFragment" />
+            android:id="@+id/action_teacher_course_units_fragment_to_addContentFragment"
+            app:destination="@id/addContentFragment" />
     </fragment>
 
     <fragment
