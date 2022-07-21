@@ -59,6 +59,9 @@ class CustomAdapterCourses(val viewModel:TeachersCoursesViewModel) : RecyclerVie
             }
         }else{
             holder.binding.tvAddTeacher.isVisible(false)
+            holder.itemView.setOnClickListener {
+            it.findNavController().navigate(TeachersCoursesFragmentDirections.actionStudentTeachersForASubjectFragmentToStudentSubjectUnitsFragment(data.courseId))
+            }
         }
 
         holder.binding.tvNameTeachers.text = data.teacherName
@@ -73,9 +76,7 @@ class CustomAdapterCourses(val viewModel:TeachersCoursesViewModel) : RecyclerVie
             it.findNavController().navigate(TeachersCoursesFragmentDirections.actionStudentTeachersForASubjectFragmentToStudentSubjectUnitsFragment(data.courseId))
         }
 
-        holder.itemView.setOnClickListener {
-//            it.findNavController().navigate(TeachersCoursesFragmentDirections.actionStudentTeachersForASubjectFragmentToStudentSubjectUnitsFragment(data.courseId))
-        }
+
     }
 
 
