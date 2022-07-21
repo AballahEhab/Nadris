@@ -22,6 +22,7 @@ class TeachersCoursesViewModel @Inject constructor(val repository: Repository) :
     var subjectId: String = ""
 
     var subscribeAStudentToACourseResult = MutableLiveData<Result<Boolean>>()
+    var navigateToUnitsPageForCourse = MutableLiveData<String?>()
 
 
     /*var isJoin: Boolean = false
@@ -40,10 +41,12 @@ class TeachersCoursesViewModel @Inject constructor(val repository: Repository) :
         viewModelScope.launch(Dispatchers.IO) {
             repository.subScribeToACourse(selectedCourseID,NadrisApplication.currentDatabaseUser?.userID!!).collect{
                 subscribeAStudentToACourseResult.postValue(it)
+                navigateToUnitsPageForCourse.postValue(selectedCourseID)
             }
 
         }
     }
+
 
 }
 

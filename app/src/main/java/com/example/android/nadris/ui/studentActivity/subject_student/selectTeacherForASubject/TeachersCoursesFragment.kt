@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ class TeachersCoursesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         inflater.inflate(R.layout.fragment_teachers_courses, container, false)
@@ -34,7 +35,7 @@ class TeachersCoursesFragment : Fragment() {
         viewModel.getCoursesWithSubject()
         setupRV()
 
-        viewModel.coursesResultList.observe(viewLifecycleOwner){result->
+        viewModel.coursesResultList.observe(viewLifecycleOwner) { result ->
             result.handleRepoResponse(
                 onPreExecute = {
 
@@ -48,10 +49,10 @@ class TeachersCoursesFragment : Fragment() {
                 onSuccess = {
                     result.data?.let {
 
-                            viewModel.list.value = result.data.map {
-                                NetworkObjectMapper.NetworkCourseAsTeachersCoursesModel(it)
-                            }
-                    } ?: Snackbar.make( binding.root,
+                        viewModel.list.value = result.data.map {
+                            NetworkObjectMapper.NetworkCourseAsTeachersCoursesModel(it)
+                        }
+                    } ?: Snackbar.make(binding.root,
                         resources.getString(R.string.my_coures_error),
                         Snackbar.LENGTH_LONG)
                         .show()
@@ -59,7 +60,7 @@ class TeachersCoursesFragment : Fragment() {
             )
         }
 
-        viewModel.subscribeAStudentToACourseResult.observe(viewLifecycleOwner){result->
+        viewModel.subscribeAStudentToACourseResult.observe(viewLifecycleOwner) { result ->
             result.handleRepoResponse(
                 onPreExecute = {
 
@@ -73,24 +74,31 @@ class TeachersCoursesFragment : Fragment() {
                 onSuccess = {
                     result.data?.let {
 
-                    } ?: Snackbar.make( binding.root,
+                    } ?: Snackbar.make(binding.root,
                         resources.getString(R.string.my_coures_error),
                         Snackbar.LENGTH_LONG)
                         .show()
                 }
             )
+        }
+
+        viewModel.navigateToUnitsPageForCourse.observe(viewLifecycleOwner) { courseId ->
+            courseId?.let {
+                findNavController().navigate(TeachersCoursesFragmentDirections.actionStudentTeachersForASubjectFragmentToStudentSubjectUnitsFragment(courseId))
+            viewModel.navigateToUnitsPageForCourse.value = null
+            }
+
         }
         return binding.root
     }
 
-
-    private fun setupRV(){
-        adapter= CustomAdapterCourses(viewModel)
-        binding.RVTeachers.layoutManager=
+    private fun setupRV() {
+        adapter = CustomAdapterCourses(viewModel)
+        binding.RVTeachers.layoutManager =
             LinearLayoutManager(
                 requireContext(),
-                RecyclerView.VERTICAL,false)
-        binding.RVTeachers.adapter= adapter
+                RecyclerView.VERTICAL, false)
+        binding.RVTeachers.adapter = adapter
 
         activity?.let {
             viewModel.list.observe(viewLifecycleOwner) {
@@ -98,8 +106,6 @@ class TeachersCoursesFragment : Fragment() {
             }
         }
 
-
     }
-
 
 }
