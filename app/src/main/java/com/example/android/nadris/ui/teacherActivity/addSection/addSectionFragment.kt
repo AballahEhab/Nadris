@@ -67,28 +67,28 @@ class addSectionFragment : Fragment() {
 
         setClickListnersForButtons()
 
-        val onInitializedListener: YouTubePlayer.OnInitializedListener =
-            object : YouTubePlayer.OnInitializedListener {
-                override fun onInitializationSuccess(
-                    provider: YouTubePlayer.Provider,
-                    youTubePlayer: YouTubePlayer,
-                    b: Boolean,
-                ) {
-                    youTubePlayer.loadVideo(VIDEO_ID)
-                }
-
-                override fun onInitializationFailure(
-                    provider: YouTubePlayer.Provider,
-                    youTubeInitializationResult: YouTubeInitializationResult,
-                ) {
-                    Log.v(TAG,youTubeInitializationResult.name)
-                }
-            }
-
-
-        val youTubePlayerFragment =
-            requireActivity().fragmentManager!!.findFragmentById(R.id.youTube_fr) as YouTubePlayerFragment?
-        youTubePlayerFragment!!.initialize(developerKey, onInitializedListener)
+//        val onInitializedListener: YouTubePlayer.OnInitializedListener =
+//            object : YouTubePlayer.OnInitializedListener {
+//                override fun onInitializationSuccess(
+//                    provider: YouTubePlayer.Provider,
+//                    youTubePlayer: YouTubePlayer,
+//                    b: Boolean,
+//                ) {
+//                    youTubePlayer.loadVideo(VIDEO_ID)
+//                }
+//
+//                override fun onInitializationFailure(
+//                    provider: YouTubePlayer.Provider,
+//                    youTubeInitializationResult: YouTubeInitializationResult,
+//                ) {
+//                    Log.v(TAG,youTubeInitializationResult.name)
+//                }
+//            }
+//
+//
+//        val youTubePlayerFragment =
+//            requireActivity().fragmentManager!!.findFragmentById(R.id.youTube_fr) as YouTubePlayerFragment?
+//        youTubePlayerFragment!!.initialize(developerKey, onInitializedListener)
 
 
         return binding.root

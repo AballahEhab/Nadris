@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
                     val selectedItemIndex = langSelcArray.indexOf(langSelText)
                     val selectedLangCode = if (selectedItemIndex == 0) "en" else "ar"
                     LocaleHelper.setLocale(this, selectedLangCode)
-//                    disableLangSelMode()
+                    disableLangSelMode()
                 }
             }
         } else {
@@ -81,7 +81,7 @@ class SplashActivity : AppCompatActivity() {
         if (firebaseUser == null)
             navigateToLoginActivity()
         else {
-            CoroutineScope( Dispatchers.IO).launch  {
+            CoroutineScope(Dispatchers.IO).launch {
                 getCurrentUserLocalData()
                 getRemoteUserData()
                 navigateToHomeActivity()

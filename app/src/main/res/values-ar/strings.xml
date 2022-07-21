@@ -225,6 +225,9 @@
     <string name="my_courses_title">"مقرراتى الدراسة "</string>
     <string name="explore_courses_title">استكشاف</string>
     <string name="my_coures_error">"حدث خطأ لم نستع الوصول لمقرراتك الدراسية "</string>
-
+    <string name="record_audio">تسجيل صوتي</string>
+    <string name="upload_pdf">تحميل مستند pdf</string>
+    <string name="text_editor">محرر نصوص</string>
+    <string name="add_link_video_youtube">لينك فيديو اليوتيوب </string>
 
 </resources>

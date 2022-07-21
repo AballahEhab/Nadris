@@ -207,7 +207,45 @@
         android:id="@+id/addSectionFragment"
         android:name="com.example.android.nadris.ui.teacherActivity.addSection.addSectionFragment"
         android:label="fragment_add_section"
-        tools:layout="@layout/fragment_add_section" />
+        tools:layout="@layout/fragment_add_section"/>
+    <fragment
+        android:id="@+id/addContentFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addContent.addContentFragment"
+        android:label="addContentFragment"
+        tools:layout="@layout/add_content_fragment">
+        <action android:id="@+id/action_addContentFragment_to_addLinkVideoFragment"
+                app:destination="@id/addLinkVideoFragment"/>
+
+        <action android:id="@+id/action_addContentFragment_to_addAudioFragment"
+                app:destination="@id/addAudioFragment"/>
+        <action android:id="@+id/action_addContentFragment_to_textEditorFragment"
+                app:destination="@id/textEditorFragment"/>
+    </fragment>
+    <dialog
+        android:id="@+id/addLinkVideoFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addContent.bottonSheetVideo.addLinkVideoFragment"
+        android:label="addLinkVideoFragment"
+        tools:layout="@layout/fragment_add_link_video">
+        <action android:id="@+id/action_addLinkVideoFragment_to_addContentFragment"
+                app:destination="@id/addContentFragment"/>
+
+    </dialog>
+    <dialog
+        android:id="@+id/addAudioFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addContent.bottomSheetRecord.addRecordFragment"
+        android:label="addRecordFragment"
+        tools:layout="@layout/fragment_add_record">
+
+        <action android:id="@+id/action_addAudioFragment_to_addContentFragment"
+                app:destination="@id/addContentFragment"/>
+    </dialog>
+    <fragment
+    android:id="@+id/textEditorFragment"
+    tools:layout="@layout/fragment_text_editor"
+    android:label="textEditorFragment"
+    android:name="com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragment">
+
+    </fragment>
 
 
     <!--    <fragment-->

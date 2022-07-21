@@ -242,7 +242,8 @@
     <string name="ex_unit_5_lesson_3">ex: unit 5 - lesson 3</string>
     <string name="result">Result</string>
     <string name="result_congrats">Yay! you scored 84 out 100</string>
-    <string name="we_know_you_have_inside_you_ntry_hard_next_time">We know you have 🔥 inside you…\nTry hard next time</string>
+    <string name="we_know_you_have_inside_you_ntry_hard_next_time">We know you have 🔥 inside you…\nTry hard next time
+    </string>
     <string name="report">Report</string>
     <string name="quiz_answers">Quiz Answers</string>
     <string name="go_to_home">Go to home</string>
@@ -252,7 +253,14 @@
     <string name="correct_answers">Correct answers</string>
     <string name="wrong_answers">wrong answers</string>
     <string name="n_a">N/A</string>
-    <string name="message_list">One of the secrets of success is to face obstacles and difficulties while you are steadfast like a bird when storms descend upon it, and God has illuminated the path of every diligent, and guided you to everything that is good for you, and for everything you love, and that focus is the basis to succeed in anything in your life, and when you do not find the path that leads To success you will have to invent it, and the word but is not found in the dictionary of the successful, and if you want to overcome defeat, you have to win, and you have to believe in your talent in order to achieve success, and you must stick to it in order to excel, and failure is that temporary defeat that You can then create the real chances of success.
+    <string name="message_list">One of the secrets of success is to face obstacles and difficulties while you are
+        steadfast like a bird when storms descend upon it, and God has illuminated the path of every diligent, and
+        guided you to everything that is good for you, and for everything you love, and that focus is the basis to
+        succeed in anything in your life, and when you do not find the path that leads To success you will have to
+        invent it, and the word but is not found in the dictionary of the successful, and if you want to overcome
+        defeat, you have to win, and you have to believe in your talent in order to achieve success, and you must stick
+        to it in order to excel, and failure is that temporary defeat that You can then create the real chances of
+        success.
     </string>
     <string name="info_message">Please check the guidance and study hard to get a higher score next time</string>
     <string name="text_progress">60</string>
@@ -262,6 +270,9 @@
     <string name="text_editor">text editor</string>
     <string name="upload_pdf">upuload pdf</string>
     <string name="record_audio">record audio</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_link_video_youtube">add link video Youtube</string>
 
 
 </resources>
