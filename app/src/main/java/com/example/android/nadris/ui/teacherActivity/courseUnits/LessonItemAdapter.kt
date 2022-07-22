@@ -14,11 +14,17 @@ class LessonItemAdapter : RecyclerView.Adapter<LessonItemAdapter.LessonItemViewH
 
 
     private val differCallback = object : DiffUtil.ItemCallback<DatabaseCourseLesson>() {
-        override fun areItemsTheSame(oldItem: DatabaseCourseLesson, newItem: DatabaseCourseLesson): Boolean {
+        override fun areItemsTheSame(
+            oldItem: DatabaseCourseLesson,
+            newItem: DatabaseCourseLesson,
+        ): Boolean {
             return oldItem.lessonID == newItem.lessonID
         }
 
-        override fun areContentsTheSame(oldItem: DatabaseCourseLesson, newItem: DatabaseCourseLesson): Boolean {
+        override fun areContentsTheSame(
+            oldItem: DatabaseCourseLesson,
+            newItem: DatabaseCourseLesson,
+        ): Boolean {
             return oldItem == newItem
         }
     }

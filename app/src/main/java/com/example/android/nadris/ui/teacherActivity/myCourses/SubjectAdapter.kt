@@ -3,6 +3,7 @@ package com.example.android.nadris.ui.teacherActivity.myCourses
 
     import android.view.LayoutInflater
     import android.view.ViewGroup
+    import androidx.navigation.findNavController
     import androidx.recyclerview.widget.AsyncListDiffer
     import androidx.recyclerview.widget.DiffUtil
     import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +44,7 @@ class SubjectAdapter() :
         holder.binding.numOfStudents.text = ""
         holder.binding.tvClass.text = data.gradeName
         holder.itemView.setOnClickListener {
-//            it.findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherSubjectUnitsFragment(data.courseId))
+            it.findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherSubjectUnitsFragment(data.courseId))
         }
           holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
     }

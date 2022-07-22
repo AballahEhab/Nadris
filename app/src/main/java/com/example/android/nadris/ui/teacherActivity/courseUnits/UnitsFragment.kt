@@ -27,7 +27,7 @@ class UnitsFragment : Fragment() {
 
 
         binding.lifecycleOwner = this.viewLifecycleOwner
-        viewModel.courseId = args.subjectId
+        viewModel.courseId = args.courseId
         binding.viewmodel = viewModel
 
         viewModel.getCourseUnits()
@@ -62,7 +62,7 @@ class UnitsFragment : Fragment() {
                                 val lesson = NetworkObjectMapper.lessonAsDataBaseLesson(lesson,unit.unitId)
                                 NetworkObjectMapper.lassonAsDatabaseLessonWithSections(lesson,listOf())
                             }
-                            NetworkObjectMapper.unitAsDataBaseUnit(unit,lessonList,R.drawable.icon_physics)
+                            NetworkObjectMapper.unitAsDataBaseUnit(unit,lessonList,R.drawable.ic_google)
 
                     }
                 }
