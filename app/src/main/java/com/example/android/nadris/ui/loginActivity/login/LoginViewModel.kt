@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.database.models.DatabaseUser
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.*
@@ -73,6 +74,12 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
 
     fun onLoginByFacebookClick() {
 //    _navigateToHomeScreen.value = true
+    }
+
+    fun getFirebaseUserData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            NadrisApplication.currentUserData = repository.getUserDataObj(NadrisApplication.currentDatabaseUser?.userID!!)
+        }
     }
 
 }

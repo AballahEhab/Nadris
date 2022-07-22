@@ -6,16 +6,15 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.DisplayMetrics
-import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import java.util.*
 
 object LocaleHelper {
+    private var _languageUpdated = false
+    val languageUpdated get() = _languageUpdated
 
-     fun setLocale(activity: Activity, language: String) {
-        //save the choosen lanaguage
-         saveUserSelectionToSharedPreference(activity ,language)
-         NadrisApplication.instance?.lang = language
+    fun setLocale(activity: Activity, language: String) {
+        saveUserSelectionToSharedPreference(activity,language)
         val myLocale = Locale(language)
         val res: Resources = activity.baseContext.resources
         val dm: DisplayMetrics = res.displayMetrics
@@ -23,28 +22,26 @@ object LocaleHelper {
         conf.locale = myLocale
         res.updateConfiguration(conf, dm)
         val refresh = Intent(activity.baseContext, activity.javaClass)
+        _languageUpdated = true
         activity.finish()
         activity.startActivity(refresh)
 
     }
 
-    fun refreshLangSelection(activity: Activity){
+    fun refreshLangSelection(activity: Activity) {
         val langSel = getSavedLang(activity)
         setLocale(activity, langSel!!)
     }
 
-    private fun saveUserSelectionToSharedPreference(activity: Activity, lang:String){
+    private fun saveUserSelectionToSharedPreference(activity: Activity, lang: String) {
         val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
-        editor.putString(activity.getString(R.string.user_lang_pre),lang)
+        editor.putString(activity.getString(R.string.user_lang_pre), lang)
         editor.apply()
     }
 
-     fun getSavedLang(activity: Activity): String? {
+    fun getSavedLang(activity: Activity): String? {
         val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
-        return sharedPref.getString(activity.getString(R.string.user_lang_pre),null)
+        return sharedPref.getString(activity.getString(R.string.user_lang_pre), null)
     }
-
-
-
 }
