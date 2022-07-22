@@ -90,6 +90,7 @@ class ProfileViewModel @Inject constructor(val repository: Repository) : ViewMod
             if(result is Result.Success)
                 navigateToLoginPage.postValue(true)
         }
+            NadrisApplication.currentDatabaseUser = null
     }
     }
 

@@ -172,9 +172,9 @@
         android:id="@+id/teacher_course_units_fragment"
         android:name="com.example.android.nadris.ui.teacherActivity.courseUnits.UnitsFragment"
         tools:layout="@layout/fragment_units">
-<!--        <argument-->
-<!--            android:name="courseId"-->
-<!--            app:argType="string" />-->
+        <argument
+            android:name="courseId"
+            app:argType="string" />
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
             app:destination="@id/adding_sections_fragment" />
@@ -188,7 +188,7 @@
 
     <fragment
         android:id="@+id/adding_sections_fragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddLessonSectionsFragment"
         android:label="@string/adding_subject_sections_label"
         tools:layout="@layout/fragment_adding_subject_sections">
         <argument

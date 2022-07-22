@@ -176,6 +176,4 @@ constructor(
             userService.addCourseIdToStudentData(selectedCourseID,userID)
         }
 
-
-
 }

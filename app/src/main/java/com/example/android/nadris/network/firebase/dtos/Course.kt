@@ -19,6 +19,5 @@ class Course(
     @get:Exclude var subjectName: String = "",
     @get:Exclude var teacherName: String = "",
     @get:Exclude var gradeName: String = "",
-    @get: Exclude var teacherImagePath: String = "",
-
-    )
+    @get: Exclude var teacherImagePath: String = ""
+)

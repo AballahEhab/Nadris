@@ -25,7 +25,7 @@ class SubjectViewModel @Inject constructor(val repository: Repository) : ViewMod
 
     fun getCoursesCurrentUserSubscribedTo() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getCurrentUserSubscribedCourses(NadrisApplication.currentUserData?.coursesSubscribedIds!!)
+            repository.getCurrentUserSubscribedCourses(NadrisApplication.currentUserData?.myCourses!!)
                 .collect {
                     coursesResultList.postValue(it)
                 }

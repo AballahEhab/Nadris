@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-            app:startDestination="@id/student_quiz">
+            app:startDestination="@id/teacher_quiz">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -199,6 +199,13 @@
         android:label="QuizFragment"
         tools:layout="@layout/quiz_fragment">
         <action android:id="@+id/action_student_quiz_to_result_quiz" app:destination="@id/result_quiz"/>
+    </fragment>
+    <fragment
+        android:id="@+id/teacher_quiz"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.TeacherQuizFragment"
+        android:label="QuizFragment"
+        tools:layout="@layout/teacher_quiz_fragment">
+        <action android:id="@+id/action_teacher_quiz_to_student_quiz" app:destination="@id/student_quiz"/>
     </fragment>
     <fragment
     android:id="@+id/result_quiz"
