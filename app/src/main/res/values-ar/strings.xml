@@ -229,5 +229,11 @@
     <string name="upload_pdf">تحميل مستند pdf</string>
     <string name="text_editor">محرر نصوص</string>
     <string name="add_link_video_youtube">لينك فيديو اليوتيوب </string>
+    <string name="quiz">Quiz</string>
+    <string name="quizzes">اختبارات</string>
+    <string name="titlequiz">عنوان الاختبار</string>
+    <string name="questions">سؤال</string>
+    <string name="teacherName">اسم المدرس</string>
+    <string name="title_the_quiz">عنوان الاختبار</string>
 
 </resources>

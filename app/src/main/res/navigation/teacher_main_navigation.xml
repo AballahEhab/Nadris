@@ -249,6 +249,22 @@
     android:name="com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragment">
 
     </fragment>
+    <fragment
+    android:id="@+id/Quizzes_fragment"
+    tools:layout="@layout/item_gender_list"
+    android:label="QuizzesFragment"
+    android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment">
+
+        <action android:id="@+id/action_Quizzes_fragment_to_add_quiz" app:destination="@id/add_quiz"/>
+    </fragment>
+    <fragment
+    android:id="@+id/add_quiz"
+    tools:layout="@layout/teacher_quiz_fragment"
+    android:label="addQuiz"
+    android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz.TeacherQuizFragment">
+
+        <action android:id="@+id/action_add_quiz_to_Quizzes_fragment" app:destination="@id/Quizzes_fragment"/>
+    </fragment>
 
 
     <!--    <fragment-->

@@ -27,11 +27,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_name_teachers"
                 app:srcCompat="@drawable/ic_user"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-
             />
 
             <TextView
@@ -59,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/material_text_body_small"
+                android:layout_marginStart="@dimen/small_margin"
                 android:text="@string/tv_item_st_count"
                 app:layout_constraintStart_toEndOf="@id/num_of_students"
                 app:layout_constraintTop_toTopOf="@id/num_of_students"
@@ -86,10 +85,11 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:rating="3.5"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/small_margin"
                 app:layout_constraintBottom_toBottomOf="@id/tv_student"
                 app:layout_constraintStart_toEndOf="@id/tv_student"
-                app:layout_constraintTop_toTopOf="@id/tv_student" />
+                app:layout_constraintTop_toTopOf="@id/tv_student"
+                tools:targetApi="lollipop"/>
 
             <TextView
                 android:id="@+id/tv_evaluation"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tv_evaluation"
                 style="@style/material_text_body_small"
-                android:layout_margin="@dimen/small_margin"
+                android:layout_marginStart="@dimen/small_margin"
                 app:layout_constraintBottom_toBottomOf="@id/tv_star"
                 app:layout_constraintStart_toEndOf="@id/tv_star"
                 app:layout_constraintTop_toTopOf="@id/tv_star"/>

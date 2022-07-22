@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.teacherActivity.addingQuiz
+package com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz
 
 
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.QuizItemBinding
+import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
 
 class QuizAdapterTeacher(val viewModel: TeacherQuizViewModel) : RecyclerView.Adapter<QuizAdapterTeacher.ViewHolder>() {
     private val differCallback = object : DiffUtil.ItemCallback<QuizData>() {

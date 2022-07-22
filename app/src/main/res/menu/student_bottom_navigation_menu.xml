@@ -12,9 +12,15 @@
         android:title="@string/student_subjects_title" />
 
     <item
+        android:id="@+id/Quizzes_fragment"
+        android:icon="@drawable/icon_quiz"
+        android:title="@string/quiz"/>
+    <item
         android:id="@+id/private_profile_fragment"
         android:icon="@drawable/ic_user"
         android:title="@string/profile" />
+
+
 
 
 

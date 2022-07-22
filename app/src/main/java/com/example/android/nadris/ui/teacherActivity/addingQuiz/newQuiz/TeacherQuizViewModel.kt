@@ -1,7 +1,8 @@
-package com.example.android.nadris.ui.teacherActivity.addingQuiz
+package com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
 import javax.inject.Inject
 import javax.inject.Singleton
 

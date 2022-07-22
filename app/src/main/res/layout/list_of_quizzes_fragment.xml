@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.nadris.ui.teacherActivity.addingQuiz.ListOfQuizzesViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.teacherActivity.addingQuiz.listOfQuizzesFragment">
+    <TextView
+        android:id="@+id/tv_my_quize_teacher"
+        style="@style/MaterialAlertDialog.App.Title.Text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/match_constrain"
+        android:text="@string/quizzes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_quiz_teacher"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/item_quiz_card"
+        android:layout_height="@dimen/match_constrain"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_quize_teacher"
+    />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        isVisible="@{viewModel.isTeacher()}"
+        android:layout_margin="@dimen/mid_margin"
+        android:contentDescription="@string/add_explain_subject"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_add" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
