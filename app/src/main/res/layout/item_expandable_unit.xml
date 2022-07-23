@@ -61,7 +61,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lessons_list"
                 android:layout_width="match_parent"
@@ -74,6 +73,7 @@
                 app:layout_constraintStart_toStartOf="@id/unit_icon"
                 app:layout_constraintTop_toBottomOf="@+id/unit_icon"
                 tools:listitem="@layout/item_lesson" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -156,13 +156,14 @@ constructor(
                 .map { unitQueryDoc ->
                     unitQueryDoc.toObject<Unit>().apply {
                         this.unitId = unitQueryDoc.id
-                        this.lessons = Tasks
+                        val lessons = Tasks
                             .await(coursesService.getLessonsCollection(unitQueryDoc.reference))
                             .map { lessonQueryDoc ->
                                 lessonQueryDoc.toObject<LessonDTO>().apply {
                                     this.lessonId = lessonQueryDoc.id
                                 }
                             }
+                        this.lessons = lessons
                     }
                 }
         }catch (exception:Exception){
@@ -175,5 +176,15 @@ constructor(
             .continueWithTask {
             userService.addCourseIdToStudentData(selectedCourseID,userID)
         }
+
+    fun createCourse(course: Course) =
+        coursesService.addNewCourse(course)
+
+    fun addCourseIdToTeacherData(coursesId: String,userId: String) =
+        userService.addCourseIdToTeacherData(coursesId,userId)
+
+    fun generateCourseId(): String =
+        coursesService.generateCourseId()
+
 
 }

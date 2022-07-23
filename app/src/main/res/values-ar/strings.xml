@@ -156,6 +156,10 @@
         <item>اختر من المعرض</item>
         <item>إلغاء</item>
     </string-array>
+    <string-array name="term_list">
+        <item>الترم الاول</item>
+        <item>الترم الثانى</item>
+    </string-array>
     <string name="dlg_add_photo_title">إضافة صورة</string>
     <string name="add_post_requirments">المادة والسؤال ضروريان</string>
     <string name="permission_granted">تم منح الإذن</string>
@@ -252,5 +256,6 @@
     <string name="questions">سؤال</string>
     <string name="teacherName">اسم المدرس</string>
     <string name="title_the_quiz">عنوان الاختبار</string>
+    <string name="course_added_successfully">تم إضافة الكورس بنجاح</string>
 
 </resources>

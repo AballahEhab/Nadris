@@ -1,5 +1,6 @@
 package com.example.android.nadris.network.firebase.services
 
+import com.example.android.nadris.network.firebase.dtos.Course
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
 import javax.inject.Inject
@@ -31,7 +32,8 @@ class CoursesService @Inject constructor(val db: FirebaseFirestore) {
             .get()
 
     fun getLessonsCollection(unitDocRef: DocumentReference) =
-        unitDocRef.collection("lessons")
+        unitDocRef
+            .collection("lessons")
             .get()
 
     fun registerStudentToACourse(
@@ -43,5 +45,12 @@ class CoursesService @Inject constructor(val db: FirebaseFirestore) {
        return coursesCollection.document(courseID).update(updatedFields)
 
     }
+
+    fun addNewCourse(course: Course) =
+        coursesCollection.document(course.courseId).set(course)
+
+    fun generateCourseId(): String  =
+        coursesCollection.document().id
+
 
 }

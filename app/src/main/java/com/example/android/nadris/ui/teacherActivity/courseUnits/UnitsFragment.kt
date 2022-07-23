@@ -38,31 +38,28 @@ class UnitsFragment : Fragment() {
             binding.adapter!!.differ.submitList(it)
         }
 
-        viewModel.unitsListResult.observe(viewLifecycleOwner){result->
+        viewModel.unitsListResult.observe(viewLifecycleOwner) { result ->
             result.handleRepoResponse(
                 onPreExecute = {
-//                    binding.swipeRefreshLayout.isRefreshing = false
-
+                    viewModel.disableLoading()
                 },
                 onLoading = {
-//                    binding.swipeRefreshLayout.isRefreshing = true
-//                    result.data?.let {
-//                        adapter.differ.submitList(it)
-//                        binding.swipeRefreshLayout.isRefreshing = false
-//                    }
+                    viewModel.enableLoading()
                 },
                 onError = {
                     Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
                         .show()
                 },
                 onSuccess = {
-//                    Log.v(TAG, result.data.toString())
-                    viewModel.unitsList.value = result.data?.map {unit->
-                            val lessonList =unit.lessons.map {lesson->
-                                val lesson = NetworkObjectMapper.lessonAsDataBaseLesson(lesson,unit.unitId)
-                                NetworkObjectMapper.lassonAsDatabaseLessonWithSections(lesson,listOf())
-                            }
-                            NetworkObjectMapper.unitAsDataBaseUnit(unit,lessonList,R.drawable.ic_google)
+                    viewModel.unitsList.value = result.data?.map { unit ->
+                        val lessonList = unit.lessons.map { lesson ->
+                            val lesson =
+                                NetworkObjectMapper.lessonAsDataBaseLesson(lesson, unit.unitId)
+                            NetworkObjectMapper.lassonAsDatabaseLessonWithSections(lesson, listOf())
+                        }
+                        NetworkObjectMapper.unitAsDataBaseUnit(unit,
+                            lessonList,
+                            R.drawable.ic_google)
 
                     }
                 }

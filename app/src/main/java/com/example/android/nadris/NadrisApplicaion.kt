@@ -35,4 +35,8 @@ class NadrisApplication : Application() {
         connectivityMonitor = ConnectivityMonitor(this)
 
     }
+
+    fun updateUserFirebaseUser() {
+        currentUserData = repo.getUserDataObj(currentDatabaseUser?.userID!!)
+    }
 }

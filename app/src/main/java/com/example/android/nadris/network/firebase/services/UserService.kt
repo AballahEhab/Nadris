@@ -26,4 +26,9 @@ class UserService @Inject constructor(val db: FirebaseFirestore) {
         return usersCollection.document(userID).update(updatedFields)
     }
 
+    fun addCourseIdToTeacherData(coursesId: String, userId: String): Task<Void> {
+        val updatedFields = mapOf("myCourses" to FieldValue.arrayUnion(coursesId))
+        return usersCollection.document(userId).update(updatedFields)
+    }
+
 }

@@ -11,13 +11,13 @@ class Course(
     val gradeRef: DocumentReference? = null,
     val ownerTeacherID: String = "",
     val subjectId: String = "",
+    val term: Boolean = false,
     val subscribedStudentsIds: List<String> = listOf(),
     val subscribedStudentsRatings: List<Int> = listOf(),
     @ServerTimestamp val timeCreated: java.util.Date? = null,
-//    val coursesSubscribedProgress:List<Int> = listOf(),
 //    @get: Exclude var isJoined:Boolean = false,
     @get:Exclude var subjectName: String = "",
     @get:Exclude var teacherName: String = "",
     @get:Exclude var gradeName: String = "",
-    @get: Exclude var teacherImagePath: String = ""
+    @get: Exclude var teacherImagePath: String = "",
 )

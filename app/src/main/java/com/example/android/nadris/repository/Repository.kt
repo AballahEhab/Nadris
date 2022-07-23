@@ -87,7 +87,7 @@ class Repository @Inject constructor(
         }
     }
 
-     fun getUserDataObj(userID: String): User? {
+    fun getUserDataObj(userID: String): User? {
         try {
             val userSnapShot = Tasks.await(remoteDataSource.getUserData(userID))
             return getUserDataObjFromDocSnapShot(userSnapShot)
@@ -128,8 +128,11 @@ class Repository @Inject constructor(
             for (document in gradesSnapshots) {
                 val departmentsCollection = document.reference.collection("departments")
                 val departmentsQuery = Tasks.await(departmentsCollection.get())
+
                 if (!departmentsQuery.isEmpty)
+
                     for (department in departmentsQuery) {
+
                         val divisionsCollection = department.reference.collection("divisions")
                         val divisionsQuery = Tasks.await(divisionsCollection.get())
 
@@ -156,6 +159,50 @@ class Repository @Inject constructor(
         } catch (throwable: Throwable) {
 
             Result.Error(throwable.message!!)
+        }
+
+    fun getGradesWithFlows() =
+        flow {
+            emit(Result.Loading())
+            try {
+                val gradesSnapshots = Tasks.await(remoteDataSource.getGrades())
+
+                var gradeList: MutableList<Grade> = mutableListOf()
+
+                for (document in gradesSnapshots) {
+                    val departmentsCollection = document.reference.collection("departments")
+                    val departmentsQuery = Tasks.await(departmentsCollection.get())
+
+                    if (!departmentsQuery.isEmpty)
+
+                        for (department in departmentsQuery) {
+
+                            val divisionsCollection = department.reference.collection("divisions")
+                            val divisionsQuery = Tasks.await(divisionsCollection.get())
+
+                            if (!divisionsQuery.isEmpty)
+                                for (division in divisionsQuery) {
+                                    val grade = getGradeFromDocumentSnapShot(division)
+                                    gradeList.add(grade!!)
+
+                                }
+                            else {
+                                val grade = getGradeFromDocumentSnapShot(department)
+                                gradeList.add(grade!!)
+
+                            }
+                        }
+                    else {
+                        val grade = getGradeFromDocumentSnapShot(document)
+                        gradeList.add(grade!!)
+                    }
+                }
+
+                emit(Result.Success(gradeList))
+
+            } catch (throwable: Throwable) {
+                emit(Result.Error(throwable.message!!))
+            }
         }
 
     private fun getGradeFromDocumentSnapShot(docSnapshot: QueryDocumentSnapshot?): Grade? {
@@ -230,53 +277,55 @@ class Repository @Inject constructor(
 
 
     //courses functions
-    fun getCurrentUserSubscribedCourses(coursesIds:List<String>) =
-        flow{
-            try{
+    fun getCurrentUserSubscribedCourses(coursesIds: List<String>) =
+        flow {
+            try {
                 val task = Tasks.await(remoteDataSource.getCoursesWithIds(coursesIds))
                 val coursesList = task.map {
                     val course = it.toObject<Course>()
                     course.courseId = it.id
-                    course.subjectName= getSubjectName(course.subjectId)
-                    course.teacherName= getUserDataObj(course.ownerTeacherID).let { it?.firstName +""+it?.lastName }
+                    course.subjectName = getSubjectName(course.subjectId)
+                    course.teacherName =
+                        getUserDataObj(course.ownerTeacherID).let { it?.firstName + "" + it?.lastName }
                     course
                 }
                 emit(Result.Success(coursesList))
-            }catch (exception:Exception){
+            } catch (exception: Exception) {
                 emit(Result.Error(exception.message!!))
             }
         }
 
     fun getCoursesWithSubjectId(subjectId: String) =
-        flow{
-            try{
+        flow {
+            try {
                 val task = Tasks.await(remoteDataSource.getCoursesWithGradeId(subjectId))
                 val coursesList = task.map {
                     val gradesList = getGrades().data
                     val course = it.toObject<Course>()
                     course.courseId = it.id
-                    course.subjectName= getSubjectName(course.subjectId)
-                    course.teacherName= getUserDataObj(course.ownerTeacherID).let { it?.firstName +""+it?.lastName }
+                    course.subjectName = getSubjectName(course.subjectId)
+                    course.teacherName =
+                        getUserDataObj(course.ownerTeacherID).let { it?.firstName + "" + it?.lastName }
                     val grade = gradesList?.find { it.gradeReference == course.gradeRef }
-                    course.gradeName = if (NadrisApplication.instance?.lang == "ar") grade?.name_ar!! else grade?.name_ar!!
+                    course.gradeName =
+                        if (NadrisApplication.instance?.lang == "ar") grade?.name_ar!! else grade?.name_ar!!
                     course
                 }
                 emit(Result.Success(coursesList))
-            }catch (exception:Exception){
+            } catch (exception: Exception) {
                 emit(Result.Error(exception.message!!))
             }
         }
 
-    suspend fun getCourseUnit(courseId:String) =
-        flow{
-            try{
-                val unitsList= remoteDataSource.getCourseUnits(courseId)
+    suspend fun getCourseUnit(courseId: String) =
+        flow {
+            try {
+                val unitsList = remoteDataSource.getCourseUnits(courseId)
                 emit(Result.Success(unitsList))
-            }catch (exception:Exception){
+            } catch (exception: Exception) {
                 emit(Result.Error(exception.message!!))
             }
         }
-
 
 
     //inquiry functions
@@ -434,21 +483,36 @@ class Repository @Inject constructor(
             try {
                 localDataSource.insertPost(post)
                 emit(Result.Success(true))
-            }catch (exception:Exception){
+            } catch (exception: Exception) {
                 emit(Result.Error(exception.message!!))
             }
         }
 
     fun subScribeToACourse(selectedCourseID: String, userID: String) =
         flow {
-        try {
-            remoteDataSource.subscribeToCourse(selectedCourseID,userID)
-            emit(Result.Success(true))
-        }catch (exception:Exception){
-            emit(Result.Error(exception.message!!))
+            try {
+                remoteDataSource.subscribeToCourse(selectedCourseID, userID)
+                emit(Result.Success(true))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
+            }
         }
-    }
 
+    fun createNewCourse(course: Course) =
+        flow{
+            emit(Result.Loading())
+            try {
+                val courseId = remoteDataSource.generateCourseId()
+                course.courseId = courseId
+                val task = remoteDataSource.createCourse(course).continueWithTask {
+                    remoteDataSource.addCourseIdToTeacherData(courseId,course.ownerTeacherID)
+                }
+                 Tasks.await(task)
+                emit(Result.Success(true))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
+            }
+        }
 
 //    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
 //

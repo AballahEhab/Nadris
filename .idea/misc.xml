@@ -175,15 +175,18 @@
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/layout_input.xml" value="0.1" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/layout/my_subject_student_fragment.xml" value="0.26197916666666665" />
         <entry key="..\:/Media/deskop/Nadris/app/src/main/res/menu/discussion_more_options_menu.xml" value="0.26197916666666665" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.227" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_main.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_splash.xml" value="0.259375" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/activity_teacher_main.xml" value="0.1" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/add_content_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_add_new_subject.xml" value="0.264" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_add_section.xml" value="0.2" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_adding_subject_sections.xml" value="0.176" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_headline_subjects.xml" value="0.32425742574257427" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/fragment_sub_teacher_rv.xml" value="0.27291666666666664" />
-        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/item_expandable_unit.xml" value="0.12129629629629629" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/item_expandable_unit.xml" value="0.2" />
+        <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/item_gender_list.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/item_rv_teachers.xml" value="0.264" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/test.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/Abdallah Ehab/Documents/AndroidSudioProjectjects/naitve/my proj/Nadris/app/src/main/res/layout/youtube.xml" value="0.12604166666666666" />

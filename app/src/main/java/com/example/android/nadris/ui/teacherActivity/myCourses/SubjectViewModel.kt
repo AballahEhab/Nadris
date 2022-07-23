@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.teacherActivity.myCourses
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,7 +24,11 @@ class SubjectViewModel @Inject constructor(val repository: Repository) : ViewMod
     var list = MutableLiveData<List<DatabaseTeacherCourse>>()
     var coursesResultList = MutableLiveData<Result<List<Course>>>()
 
+    private val _loadingState: MutableLiveData<Boolean> = MutableLiveData(true)
+    val loadingState: LiveData<Boolean> get() = _loadingState
+
     fun getCoursesCurrentUserSubscribedTo() {
+        enableLoading()
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCurrentUserSubscribedCourses(NadrisApplication.currentUserData?.myCourses!!)
                 .collect {
@@ -31,6 +36,7 @@ class SubjectViewModel @Inject constructor(val repository: Repository) : ViewMod
                 }
         }
     }
+
 
     fun navigateToAddingSectionFragment() {
         navigateToAddingSectionFragmentEvent.value = true
@@ -40,4 +46,12 @@ class SubjectViewModel @Inject constructor(val repository: Repository) : ViewMod
         navigateToAddingSectionFragmentEvent.value = false
     }
 
+    fun enableLoading() {
+        _loadingState.value = true
     }
+
+    fun disableLoading() {
+        _loadingState.value = false
+    }
+
+}

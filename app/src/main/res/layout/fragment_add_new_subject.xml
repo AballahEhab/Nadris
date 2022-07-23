@@ -3,121 +3,143 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewmodel"
             type="com.example.android.nadris.ui.teacherActivity.addingNewCourse.AddNewSubjectViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.teacherActivity.addingNewCourse.AddNewSubjectFragment">
-        <!--Create a TextInputLayout and choose the style,
-           for now we are choosing the OutlinedBox ExposedDropdownMenu   -->
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/choose_class"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <!-- Inside text input layout add
-                  an auto complete text view
-                    and make its input type to none-->
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTV_choose_class"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            app:indicatorColor="@color/bink"
+            android:indeterminate="true"
+            isVisible="@{viewmodel.loadingState}"
+            />
 
-                android:layout_weight="1"
-                android:inputType="none"
-                android:hint="@string/autoCompleteTV_choose_class"
-                android:text="@={viewmodel.selectedGrade}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/choose_subjects"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/page_content_parent_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choose_class">
+            android:layout_height="match_parent"
+            tools:context=".ui.teacherActivity.addingNewCourse.AddNewSubjectFragment">
+            <!--Create a TextInputLayout and choose the style,
+               for now we are choosing the OutlinedBox ExposedDropdownMenu   -->
 
-            <!-- Inside text input layout add
-                  an auto complete text view
-                    and make its input type to none-->
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTV_choose_subjects"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/choose_class"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:inputType="none"
-                android:hint="@string/autoCompleteTV_choose_subjects"
-                android:text="@={viewmodel.selectedSubject}" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <!-- Inside text input layout add
+                      an auto complete text view
+                        and make its input type to none-->
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTV_choose_class"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
 
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:hint="@string/autoCompleteTV_choose_class" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/term_menu"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choose_subjects">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Inside text input layout add
-                  an auto complete text view
-                    and make its input type to none-->
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTV_choose_semester"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/choose_subjects"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:inputType="none"
-                android:hint="@string/autoCompleteTV_choose_semester"
-                android:text="@={viewmodel.selectedTerm}" />
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choose_class">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <!-- Inside text input layout add
+                      an auto complete text view
+                        and make its input type to none-->
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTV_choose_subjects"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:hint="@string/autoCompleteTV_choose_subjects"
+                     />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add_new_subject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:fontFamily="@font/cairo_light"
-            android:text="@string/btn_add_new_subject"
-            android:textSize="24sp"
-            app:backgroundTint="@color/bink"
-            app:cornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/term_menu" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_back_to_sub_teacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="@string/back_txt"
-            android:fontFamily="@font/cairo_light"
-            android:textSize="18dp"
-            android:background="@color/backwhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.055"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/term_menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choose_subjects">
+
+                <!-- Inside text input layout add
+                      an auto complete text view
+                        and make its input type to none-->
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTV_choose_semester"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:hint="@string/autoCompleteTV_choose_semester"
+                     />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_new_subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/cairo_light"
+                android:text="@string/btn_add_new_subject"
+                android:textSize="24sp"
+                app:backgroundTint="@color/bink"
+                app:cornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/term_menu"
+                android:enabled="@{viewmodel.addBtnEnabled}"
+                android:onClick="@{()->viewmodel.createCourse()}"
+                />
+
+            <TextView
+                android:id="@+id/tv_back_to_sub_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="@string/back_txt"
+                android:fontFamily="@font/cairo_light"
+                android:textSize="18dp"
+                android:background="@color/backwhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.055"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 </layout>

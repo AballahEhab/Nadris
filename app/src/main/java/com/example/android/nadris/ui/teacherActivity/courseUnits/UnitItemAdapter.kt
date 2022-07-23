@@ -33,22 +33,25 @@ class UnitItemAdapter (val viewModel: UnitsViewModel) :
     }
 
     override fun onBindViewHolder(holder: UnitItemViewHolder, position: Int) {
+
         val unitData = differ.currentList[position]
+
         val unit = unitData.unitDatabase
+
         holder.binding.unit = unit
 
          holder.binding.unitIcon.setImageResource(unitData.unitDatabase.icon)
 
+        holder.binding.lessonsList.adapter = LessonItemAdapter()
 
-        holder.binding.lessonsList.isVisible(unit.lessonsVisibility)
-        if (unit.lessonsVisibility && holder.binding.lessonsList.adapter == null) {
-            val adapter = LessonItemAdapter()
-            holder.binding.lessonsList.adapter = adapter
+        if (unit.lessonsVisibility) {
             val lessons = unitData.databaseCourseLessons.map{
                 it.Lesson
             }
-            adapter.differ.submitList(lessons)
-    }
+            (holder.binding.lessonsList.adapter as LessonItemAdapter).differ.submitList(lessons)
+        }
+
+        holder.binding.lessonsList.isVisible(unit.lessonsVisibility)
 
         holder.binding.root.setOnClickListener {
             when (expandedItemIndex) {
