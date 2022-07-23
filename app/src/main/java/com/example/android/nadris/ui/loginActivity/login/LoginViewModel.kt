@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.loginActivity.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,9 +18,9 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     var email: MutableLiveData<String> = MutableLiveData("")
-    var emailErrorMessage: MutableLiveData<String?> = MutableLiveData<String?>()
+    var emailErrorMessage : MutableLiveData<String?> = MutableLiveData<String?>()
 
-    var password: MutableLiveData<String> = MutableLiveData("")
+    var password : MutableLiveData<String> = MutableLiveData("")
     var passwordErrorMessage: MutableLiveData<String?> = MutableLiveData<String?>()
 
     private var _navigateToCreateAccount: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -27,6 +28,7 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
 
     private var _loginResult: MutableLiveData<Result<DatabaseUser>> = MutableLiveData()
     val loginResult: LiveData<Result<DatabaseUser>> get() = _loginResult
+
 
 
     private fun validateEmail() {
@@ -57,7 +59,6 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
                 }
             }
     }
-
     fun onCreateAccountClicked() {
         _navigateToCreateAccount.value = true
     }
@@ -66,13 +67,21 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
         _navigateToCreateAccount.value = false
     }
 
+
+    fun onLoginByFacebookClick() {
+//    _navigateToHomeScreen.value = true
+    }
+
     /** TODO: to be enabled when adding login with facebook and google*/
     fun onLoginByGoogleClick() {
 //    _navigateToHomeScreen.value = true
     }
 
-    fun onLoginByFacebookClick() {
-//    _navigateToHomeScreen.value = true
+    private var _emailHaveError: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    val emailHaveError get() = _emailHaveError
+
+    fun validEmail() {
+        _emailHaveError.value = !Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches()
     }
 
 }

@@ -20,7 +20,7 @@ class signupStudentFragment : Fragment() {
 
     val viewModel: SignupStudentViewModel by viewModels()
     private lateinit var binding: FragmentSignupStudentBinding
-    private lateinit var gradesLevels: Array<String>
+    //private lateinit var gradesLevels: Array<String>
     private lateinit var genderAdapter: ArrayAdapter<String>
 //    private lateinit var gradesAdapter: ArrayAdapter<String>
 
@@ -30,8 +30,11 @@ class signupStudentFragment : Fragment() {
     ): View {
         inflater.inflate(R.layout.fragment_signup_student, container, false)
         binding = FragmentSignupStudentBinding.inflate(inflater)
+
         initiate()
+
         binding.studentViewModel = viewModel
+
         viewModel.getGrades()
         binding.lifecycleOwner = this
         setAdapterForSpinners()
@@ -40,11 +43,9 @@ class signupStudentFragment : Fragment() {
         return binding.root
     }
 
-    private fun setAdapterForSpinners() {
-        (binding.spGenderStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(genderAdapter)!!
-//        (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(gradesAdapter)!!
-    }
 
+
+    //initiate array from GenderList
     private fun initiate() {
         viewModel.genderList.addAll(resources.getStringArray(R.array.GenderList))
 //        grade = resources.getStringArray(R.array.GradeList)
@@ -54,6 +55,16 @@ class signupStudentFragment : Fragment() {
 //        gradesAdapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, gradesLevels)
 
     }
+
+
+// set Adapter For Spinners to show grade list
+    private fun setAdapterForSpinners() {
+        (binding.spGenderStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(genderAdapter)!!
+//        (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(gradesAdapter)!!
+    }
+
+
+    //pass error to helperText
 
     private fun registerObservers() {
         this.viewModel.firstnameHaveError.observe(viewLifecycleOwner) {

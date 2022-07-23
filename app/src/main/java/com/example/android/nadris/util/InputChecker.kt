@@ -26,14 +26,14 @@ fun matchPasswords(password1: String, password2: String): InputError? {
         InputError.EMPTY_FIELD
 
 }
-
+//sure an email match pattern
 fun matchEmailPattern(email: String): InputError? {
     return if (email.matches(Patterns.EMAIL_ADDRESS.toRegex()))
         null
     else
         InputError.NOT_AN_EMAIL_FORMAT
 }
-
+ //check for password on SpecialLetter -LowerLetter -UpperLetter -Empty ) and  return errorFlag
 fun checkPassword(password: String): InputError? {
     var errorFlag = checkPasswordLength(password)
 

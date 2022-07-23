@@ -72,10 +72,13 @@ class LoginFragment : Fragment() {
             }
         }
 
+        //lesson the error in email and pass to helper text edt_email
+        //emailErrorMessage  get vaue from getErrorMessage when execute method validateEmail()
         viewModel.emailErrorMessage.observe(viewLifecycleOwner) {
             binding.materialEmailOrPhone.error = it
         }
 
+        //lesson the error in email and pass to helper text edt_email
         viewModel.passwordErrorMessage.observe(viewLifecycleOwner) {
             binding.edtPasswordLogin.error = it
         }
@@ -84,6 +87,7 @@ class LoginFragment : Fragment() {
 
     }
 
+    //known the account Teacher or student and navigate to student flow or teacher flow
     private fun navigateToHomeFragment() {
         lateinit var directionClass: Class<*>
         if (NadrisApplication.currentDatabaseUser?.IsATeacher == true)
@@ -94,6 +98,7 @@ class LoginFragment : Fragment() {
         startActivity(Intent(requireContext(), directionClass))
     }
 
+    //when create new account
     private fun navigateToSignUpFragment() {
         this.findNavController()
             .navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())

@@ -108,21 +108,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     }
 
     fun validPassword1() {
-
         passwordErrorType = checkPassword(password1)
-
-//        if (password1.length < 8) {
-//            passwordErrorType = PasswordError.SHORT_PASSWORD
-//        }
-//        if (!password1.matches(".*[A-Z].*".toRegex())) {
-//            passwordErrorType = PasswordError.NOT_CONTAIN_UPPERCASE
-//        }
-//        if (!password1.matches(".*[a-z].*".toRegex())) {
-//            passwordErrorType = PasswordError.NOT_CONTAIN_LOWER_CASE
-//        }
-//        if (!password1.matches(".*[@#!\$%^&+=].*".toRegex())) {
-//            passwordErrorType = PasswordError.NOT_CONTAIN_SPECIAL_CHARACTER
-//        }
         _password1HaveError.value = passwordErrorType != null
 
     }
@@ -140,9 +126,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
     }
 
     fun validateSubject() {
-
         _subjectsHaveError.value = selectedSubject.value?.isEmpty()
-
     }
 
     fun validateCollegeField() {
@@ -165,6 +149,7 @@ class SignupTeacherViewModel @Inject constructor(val repository: Repository) : V
         validateUniversityFieldInput()
         validateCollegeField()
 
+        //the data is not valid if on or more have true
         val isDataNotValid = _firstnameHaveError.value!!
                 || _lastnameHaveError.value!!
                 || _emailHaveError.value!!

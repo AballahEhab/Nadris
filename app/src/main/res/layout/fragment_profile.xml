@@ -17,15 +17,17 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_profile"
+            style="@style/circleImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="@dimen/mid_margin"
-            style="@style/circleImageView"
             android:onClick="@{()->viewmodel.onProfileImageClicked()}"
+            app:layout_constraintBottom_toTopOf="@id/tv_name_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_name_profile">
+            app:layout_constraintVertical_bias="0.51"
+            app:srcCompat="@drawable/ic_logo_icon">
 
         </com.google.android.material.imageview.ShapeableImageView>
 
@@ -36,21 +38,82 @@
             android:layout_height="wrap_content"
             android:text="@{viewmodel.nameProfile}"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/specialty_profile"
             app:layout_constraintEnd_toEndOf="@+id/img_profile"
+            app:layout_constraintHorizontal_bias="0.522"
             app:layout_constraintStart_toStartOf="@+id/img_profile"
             app:layout_constraintTop_toBottomOf="@+id/img_profile"
-            app:layout_constraintBottom_toTopOf="@id/specialty_profile" />
+
+            tools:text="Mohamed Mustafa" />
 
         <TextView
             android:id="@+id/specialty_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewmodel.profileType}"
+            style="@style/material_text_body"
             app:layout_constraintEnd_toEndOf="@id/tv_name_profile"
             app:layout_constraintStart_toStartOf="@id/tv_name_profile"
             app:layout_constraintTop_toBottomOf="@id/tv_name_profile"
-            app:layout_constraintBottom_toTopOf="@id/tv_num_followers" />
+            app:layout_constraintBottom_toTopOf="@id/progress_bar_profile"
+            tools:text="@string/student" />
 
+        <TextView
+            android:id="@+id/tv_level_profile"
+            android:text="@string/lv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            app:isVisible="@{viewmodel.CheckStudentOrTeacher}"
+            app:layout_constraintEnd_toStartOf="@id/tv_num_level_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/specialty_profile"
+            app:layout_constraintStart_toEndOf="@+id/specialty_profile"
+            app:layout_constraintTop_toTopOf="@+id/specialty_profile"
+            />
+
+        <TextView
+            android:id="@+id/tv_num_level_profile"
+            style="@style/material_text_body"
+            android:text="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/small_margin"
+            app:isVisible="@{viewmodel.CheckStudentOrTeacher}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_level_profile"
+            app:layout_constraintStart_toEndOf="@+id/tv_level_profile"
+
+            app:layout_constraintTop_toTopOf="@+id/tv_level_profile"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="2" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_profile"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="@dimen/match_constrain"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/mid_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:progress="60"
+            android:max="100"
+            android:minHeight="50dp"
+            app:isVisible="@{viewmodel.CheckStudentOrTeacher}"
+            app:layout_constraintBottom_toTopOf="@id/tv_num_followers"
+            app:layout_constraintEnd_toStartOf="@id/tv_value_progres_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/specialty_profile" />
+
+        <TextView
+            android:id="@+id/tv_value_progres_profile"
+            android:text="@string/_30_100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/mid_margin"
+            app:isVisible="@{viewmodel.CheckStudentOrTeacher}"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_bar_profile"
+            app:layout_constraintStart_toEndOf="@id/progress_bar_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/progress_bar_profile" />
         <TextView
             android:id="@+id/tv_posts"
             android:layout_width="wrap_content"
@@ -69,7 +132,8 @@
             android:text="@{Integer.toString(viewmodel.postsProfileList.size())}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
+            app:layout_constraintTop_toTopOf="@+id/tv_num_followers"
+            tools:text="10"/>
 
         <TextView
             android:id="@+id/tv_followers"
@@ -90,8 +154,9 @@
             android:text="@{Long.toString(viewmodel.numFollowers)}"
             app:layout_constraintEnd_toStartOf="@+id/tv_num_folloing"
             app:layout_constraintStart_toEndOf="@+id/tv_num_posts"
-            app:layout_constraintTop_toBottomOf="@+id/specialty_profile"
-            app:layout_constraintBottom_toTopOf="@id/tv_followers" />
+            app:layout_constraintTop_toBottomOf="@+id/progress_bar_profile"
+            app:layout_constraintBottom_toTopOf="@id/tv_followers"
+            tools:text="46"/>
 
         <TextView
             android:id="@+id/tv_following"
@@ -111,7 +176,8 @@
             android:text="@{Long.toString(viewmodel.numFollowers)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_num_followers"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_num_followers" />
+            app:layout_constraintTop_toTopOf="@+id/tv_num_followers"
+            tools:text="25"/>
 
         <TextView
             android:id="@+id/last_activities"
@@ -164,6 +230,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_settings_24" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

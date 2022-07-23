@@ -238,7 +238,6 @@
                     app:layout_constraintBottom_toTopOf="@id/signup_error_message"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-
                     app:layout_constraintTop_toBottomOf="@+id/edt_password_1_student_signup">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -280,8 +279,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-
-
                     app:layout_constraintTop_toBottomOf="@+id/signup_error_message"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

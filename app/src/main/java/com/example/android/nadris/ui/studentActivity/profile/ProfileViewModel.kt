@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.R
 import com.example.android.nadris.database.models.DatabasePost
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.Result
@@ -14,11 +15,49 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    var imgProfile: MutableLiveData<String?> = MutableLiveData<String?>(null);
-    var nameProfile: MutableLiveData<String> = MutableLiveData<String>("NadrisApplication.currentDatabaseUser?.getFullName()");
+    var imgProfile : MutableLiveData<String?> = MutableLiveData<String?>(null);
+    var nameProfile: MutableLiveData<String> = MutableLiveData<String>(NadrisApplication.currentDatabaseUser?.getFullName());
     var profileType: MutableLiveData<String> = MutableLiveData(if(NadrisApplication.currentDatabaseUser?.IsATeacher == false) "Student" else "Teacher");
+
+
     var numFollowers: MutableLiveData<Long> = MutableLiveData(0);
+
+
+    private var _numProgressBarValue: MutableLiveData<Int> = MutableLiveData<Int>(50);
+    val numProgressBarValue get() = _numProgressBarValue
+
+    private var _numProgressBarMaxValue: MutableLiveData<Int> = MutableLiveData(150);
+    val numProgressBarMaxValue get() = _numProgressBarMaxValue
+
+    private var _numLevelStudent: MutableLiveData<Int> = MutableLiveData(4);
+    val numLevelStudent get()=_numLevelStudent
+
     var numFolling: MutableLiveData<Long> = MutableLiveData(0);
+
+    private var _CheckStudentOrTeacher :MutableLiveData<Boolean> = MutableLiveData(true)
+    val CheckStudentOrTeacher get() = _CheckStudentOrTeacher
+
+    fun getnumProgressBar_api(){
+        //todo please get value of pint in solve quize and set value to ProgressBar in variable = _numProgressBarValue
+    }
+    fun getnumProgressBarMaxValue_api(){
+        //todo please get value of max value ProgressBar and set value to variable = _ProgressBarMaxValue
+
+    }
+    fun getnumLevelStudent_api(){
+        //todo please get value of level student and set value to  variable = _numLevelStudent
+
+    }
+
+    fun getProfileTybe(){
+        if (profileType.value=="Student"){
+            //Student
+            _CheckStudentOrTeacher.value=true
+        }else{
+            //Teacher
+            _CheckStudentOrTeacher.value=false
+        }
+    }
 
 
 

@@ -118,11 +118,11 @@
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
             app:destination="@id/private_profile_fragment"/>
         <action
-            android:id="@+id/action_settings_fragment_to_change_password"
-            app:destination="@id/change_password"/>
-        <action
             android:id="@+id/action_settings_fragment_to_help_fragment"
             app:destination="@id/help_fragment"/>
+        <action
+            android:id="@+id/action_settings_fragment_to_change_password"
+            app:destination="@id/change_password" />
     </fragment>
 
     <fragment
