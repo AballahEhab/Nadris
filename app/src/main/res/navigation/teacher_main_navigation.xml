@@ -188,7 +188,7 @@
 
     <fragment
         android:id="@+id/adding_sections_fragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddLessonSectionsFragment"
         android:label="@string/adding_subject_sections_label"
         tools:layout="@layout/fragment_adding_subject_sections">
         <argument
@@ -248,6 +248,22 @@
     android:label="textEditorFragment"
     android:name="com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragment">
 
+    </fragment>
+    <fragment
+    android:id="@+id/Quizzes_fragment"
+    tools:layout="@layout/item_gender_list"
+    android:label="QuizzesFragment"
+    android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment">
+
+        <action android:id="@+id/action_Quizzes_fragment_to_add_quiz" app:destination="@id/add_quiz"/>
+    </fragment>
+    <fragment
+    android:id="@+id/add_quiz"
+    tools:layout="@layout/teacher_quiz_fragment"
+    android:label="addQuiz"
+    android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz.TeacherQuizFragment">
+
+        <action android:id="@+id/action_add_quiz_to_Quizzes_fragment" app:destination="@id/Quizzes_fragment"/>
     </fragment>
 
 

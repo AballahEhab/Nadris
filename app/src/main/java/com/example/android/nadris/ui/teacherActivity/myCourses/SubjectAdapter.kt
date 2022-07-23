@@ -42,9 +42,9 @@ class SubjectAdapter() :
         holder.binding.tvNameSubjectTeacher.text = data.subjectName
         holder.binding.numOfStudents.text = ""
         holder.binding.tvClass.text = data.gradeName
-        holder.itemView.setOnClickListener {
+//        holder.itemView.setOnClickListener {
 //            it.findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherSubjectUnitsFragment(data.courseId))
-        }
+//        }
           holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
     }
 

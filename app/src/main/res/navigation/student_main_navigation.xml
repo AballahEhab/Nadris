@@ -167,7 +167,7 @@
         android:id="@+id/student_subject_units_fragment"
         android:name="com.example.android.nadris.ui.teacherActivity.courseUnits.UnitsFragment"
         tools:layout="@layout/fragment_units">
-        <argument android:name="subjectId" app:argType="string"/>
+        <argument android:name="courseId" app:argType="string"/>
 
 <!--        <action-->
 <!--            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"-->
@@ -177,7 +177,7 @@
 
     <fragment
         android:id="@+id/addingSubjectSectionsFragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddingSubjectSectionsFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingSections.AddLessonSectionsFragment"
         android:label="fragment_adding_subject_sections"
         tools:layout="@layout/fragment_adding_subject_sections" />
 
@@ -200,13 +200,7 @@
         tools:layout="@layout/quiz_fragment">
         <action android:id="@+id/action_student_quiz_to_result_quiz" app:destination="@id/result_quiz"/>
     </fragment>
-    <fragment
-        android:id="@+id/teacher_quiz"
-        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.TeacherQuizFragment"
-        android:label="QuizFragment"
-        tools:layout="@layout/teacher_quiz_fragment">
-        <action android:id="@+id/action_teacher_quiz_to_student_quiz" app:destination="@id/student_quiz"/>
-    </fragment>
+
     <fragment
     android:id="@+id/result_quiz"
     android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.ResultFragment"

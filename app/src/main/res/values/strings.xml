@@ -278,11 +278,15 @@
     <string name="text_editor">text editor</string>
     <string name="upload_pdf">upuload pdf</string>
     <string name="record_audio">record audio</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_link_video_youtube">add link video Youtube</string>
     <string name="_30_100">30/100</string>
     <string name="lv">LV</string>
+    <string name="quiz">Quiz</string>
+    <string name="quizzes">Quizzes</string>
+    <string name="titlequiz">titleQuiz</string>
+    <string name="questions">Questions</string>
+    <string name="teacherName">teacherName</string>
+    <string name="title_the_quiz">title the quiz</string>
 
 
 </resources>

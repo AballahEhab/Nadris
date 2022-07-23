@@ -22,7 +22,6 @@ data class User(
     val image_path: String = "",
     @get:Exclude var image_File_Path: String? = "",
     val coursesSubscribedIds: List<String> = listOf(),
-
-    ) {
-
-}
+    val coursesSubscribedProgress: List<Int> = listOf(),
+    val myCourses: List<String> = listOf(),
+)

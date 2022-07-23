@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
 >
 
@@ -13,16 +13,15 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/img_sub_teach"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/match_constrain"
+                android:layout_width="111dp"
+                android:layout_height="160dp"
+                android:layout_margin="@dimen/mid_margin"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_margin="@dimen/mid_margin"
-                app:layout_constraintEnd_toStartOf="@id/tv_name_subject_teacher"
                 app:srcCompat="@drawable/ic_user"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
             />
 
             <TextView
@@ -53,14 +52,16 @@
                 android:id="@+id/rBar"
                 android:layout_width="@dimen/match_constrain"
                 android:layout_height="wrap_content"
-                android:theme="@style/Widget.AppCompat.RatingBar.Small"
                 android:numStars="5"
+                android:rating="3.5"
+                style="@android:style/Widget.Material.RatingBar.Small"
                 android:layout_marginStart="@dimen/mid_margin"
                 android:progressTint="@color/colorSecondary"
                 android:layout_marginBottom="@dimen/xlarge_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_evaluation"
-                app:layout_constraintStart_toEndOf="@id/img_sub_teach"/>
+                app:layout_constraintStart_toEndOf="@id/img_sub_teach"
+                tools:targetApi="lollipop"/>
 
             <TextView
                 android:id="@+id/tv_evaluation"

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.database.models.DatabaseUser
 import com.example.android.nadris.repository.Repository
 import com.example.android.nadris.util.*
@@ -82,6 +83,12 @@ class LoginViewModel @Inject constructor(val repository: Repository) : ViewModel
 
     fun validEmail() {
         _emailHaveError.value = !Patterns.EMAIL_ADDRESS.matcher(email.toString()).matches()
+    }
+
+    fun getFirebaseUserData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            NadrisApplication.currentUserData = repository.getUserDataObj(NadrisApplication.currentDatabaseUser?.userID!!)
+        }
     }
 
 }

@@ -21,7 +21,7 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/V_search"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/match_constrain"
                 android:layout_margin="16dp"
                 android:alpha="0.7"
                 android:fadingEdge="horizontal"
@@ -33,21 +33,23 @@
 
             <TextView
                 android:id="@+id/tv_teachers"
-                android:layout_width="192dp"
-                android:layout_height="48dp"
-                android:layout_margin="16dp"
                 style="@style/material_text_header_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mid_margin"
+                android:layout_marginStart="@dimen/mid_margin"
                 android:text="@string/TvChoseTeachers"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RV_teachers"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_margin="8dp"
+                android:layout_height="@dimen/match_constrain"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginStart="@dimen/mid_margin"
+                android:layout_marginEnd="@dimen/mid_margin"
                 tools:listitem="@layout/item_rv_teachers"
                 app:layout_constraintTop_toBottomOf="@+id/V_search"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -46,8 +46,12 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         } else {
+            disableLangSelMode()
+            if(LocaleHelper.languageUpdated )
+                checkForUserAuth()
+            else
             LocaleHelper.refreshLangSelection(this)
-            checkForUserAuth()
+
         }
     }
 

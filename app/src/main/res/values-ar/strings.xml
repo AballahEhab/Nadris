@@ -246,5 +246,11 @@
     <string name="_30_100">30/100</string>
     <string name="lv"> LV </string>
 
+    <string name="quiz">Quiz</string>
+    <string name="quizzes">اختبارات</string>
+    <string name="titlequiz">عنوان الاختبار</string>
+    <string name="questions">سؤال</string>
+    <string name="teacherName">اسم المدرس</string>
+    <string name="title_the_quiz">عنوان الاختبار</string>
 
 </resources>

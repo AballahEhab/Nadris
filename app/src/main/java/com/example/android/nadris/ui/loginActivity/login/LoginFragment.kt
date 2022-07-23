@@ -58,6 +58,7 @@ class LoginFragment : Fragment() {
                 },
                 onSuccess = {
                     NadrisApplication.currentDatabaseUser = result.data
+                     viewModel.getFirebaseUserData()
                     navigateToHomeFragment()
                     // show data
                 }

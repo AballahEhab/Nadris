@@ -1,4 +1,4 @@
-package com.example.android.nadris.ui.teacherActivity.addingQuiz
+package com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,7 +41,7 @@ class TeacherQuizFragment : Fragment() {
             viewModel.addQuestion()
         }
         binding.containedButton.setOnClickListener {
-            val action = TeacherQuizFragmentDirections.actionTeacherQuizToStudentQuiz()
+            val action = TeacherQuizFragmentDirections.actionAddQuizToQuizzesFragment()
             findNavController().navigate(action)
         }
         return binding.root
