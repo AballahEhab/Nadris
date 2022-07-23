@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 class SplashActivity : AppCompatActivity() {
     val TAG = "SplashActivity"
     lateinit var binding: ActivitySplashBinding
-    lateinit var langSelcArray :Array<String>
+    lateinit var langSelectArray :Array<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
@@ -39,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT)
                             .show()
                 else {
-                    val selectedItemIndex = langSelcArray.indexOf(langSelText)
+                    val selectedItemIndex = langSelectArray.indexOf(langSelText)
                     val selectedLangCode = if (selectedItemIndex == 0) "en" else "ar"
                     LocaleHelper.setLocale(this, selectedLangCode)
                     disableLangSelMode()
@@ -60,9 +60,9 @@ class SplashActivity : AppCompatActivity() {
         binding.selectLanguageTitle.visibility = View.VISIBLE
         binding.spnLangSel.visibility = View.VISIBLE
         binding.confirBtn.visibility = View.VISIBLE
-        langSelcArray =  resources.getStringArray(R.array.languages)
+        langSelectArray =  resources.getStringArray(R.array.languages)
         val adapter = ArrayAdapter(this,
-            R.layout.item_gender_list,langSelcArray)
+            R.layout.item_gender_list,langSelectArray)
         (binding.spnLangSel.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
 
     }

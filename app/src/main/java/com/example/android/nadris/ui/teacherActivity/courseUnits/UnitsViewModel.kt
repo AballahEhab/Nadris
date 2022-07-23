@@ -1,5 +1,6 @@
 package com.example.android.nadris.ui.teacherActivity.courseUnits
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,14 +19,24 @@ class UnitsViewModel @Inject constructor(val repository: Repository) : ViewModel
 
     val unitsList = MutableLiveData<List<DatabaseCourseUnitWithLessonsAndSections>>()
     val unitsListResult = MutableLiveData<Result<List<Unit>>>()
+    private val _loadingState: MutableLiveData<Boolean> = MutableLiveData(true)
+    val loadingState: LiveData<Boolean> get() = _loadingState
 
     var courseId: String = ""
 
     fun getCourseUnits() {
+        enableLoading()
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCourseUnit(courseId).collect {
                 unitsListResult.postValue(it)
             }
         }
+    }
+
+     fun enableLoading() {
+        _loadingState.value = true
+    }
+     fun disableLoading() {
+        _loadingState.value = false
     }
 }

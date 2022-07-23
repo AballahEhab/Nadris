@@ -14,10 +14,20 @@
             type="com.example.android.nadris.ui.teacherActivity.courseUnits.UnitsViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.teacherActivity.courseUnits.UnitsFragment">
+        android:orientation="vertical">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/bink"
+            android:indeterminate="true"
+            isVisible="@{viewmodel.loadingState}"
+            />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/units_rv"
@@ -25,6 +35,8 @@
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_expandable_unit" />
-    </FrameLayout>
+            tools:listitem="@layout/item_expandable_unit"
+            isVisible="@{!viewmodel.loadingState}"
+            />
+    </LinearLayout>
 </layout>

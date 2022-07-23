@@ -21,7 +21,7 @@ class SubjectFragment : Fragment() {
     private val viewModel: SubjectViewModel by viewModels()
     private lateinit var adapter: SubjectAdapter
     private lateinit var binding: FragmentSubTeacherRvBinding
-    private  var   numOfSections:Int  = 0
+    private var numOfSections: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +32,8 @@ class SubjectFragment : Fragment() {
 
         binding = FragmentSubTeacherRvBinding.inflate(inflater)
 
+        binding.lifecycleOwner = this.viewLifecycleOwner
+
         binding.viewmodel = viewModel
 
         viewModel.getCoursesCurrentUserSubscribedTo()
@@ -39,50 +41,52 @@ class SubjectFragment : Fragment() {
         setupRV()
 
         binding.fabAddSubject.setOnClickListener {
-            val action = SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment()
+            val action =
+                SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment()
             findNavController().navigate(action)
         }
 
-            /** todo: to be moved to on lesson click
-            MaterialAlertDialogBuilder(requireContext())
-                .setMessage("please set The number of sections")
-                .setPositiveButton("add"
-                ) { dialogInterface, i ->
-                    try{
-                        numOfSections = inputLayout.editText?.text.toString().toInt()
-                    }catch (e:Throwable) {
-                        e.message?.let { it1 -> Log.e("error", it1) }
-                    }
-                }
-                .setNegativeButton("cancel"
-                ) { dialogInterface, i ->
-                    viewModel.navigateToAddingSectionFragment()
+        /** todo: to be moved to on lesson click
+        MaterialAlertDialogBuilder(requireContext())
+        .setMessage("please set The number of sections")
+        .setPositiveButton("add"
+        ) { dialogInterface, i ->
+        try{
+        numOfSections = inputLayout.editText?.text.toString().toInt()
+        }catch (e:Throwable) {
+        e.message?.let { it1 -> Log.e("error", it1) }
+        }
+        }
+        .setNegativeButton("cancel"
+        ) { dialogInterface, i ->
+        viewModel.navigateToAddingSectionFragment()
 
-                }.setNeutralButton("neural"
-                ) { dialogInterface, i ->
-                    viewModel.navigateToAddingSectionFragment()
+        }.setNeutralButton("neural"
+        ) { dialogInterface, i ->
+        viewModel.navigateToAddingSectionFragment()
 
-                }
+        }
 
-                .setView(inputView)
-                .show()
+        .setView(inputView)
+        .show()
 
 
         viewModel.navigateToAddingSectionFragmentEvent.observe(viewLifecycleOwner){
-            if(it) {
+        if(it) {
 
-                findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment())
-                viewModel.navigateToAddingSectionFragmentDone()
-            }
+        findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment())
+        viewModel.navigateToAddingSectionFragmentDone()
         }
-             **/
+        }
+         **/
 
-        viewModel.coursesResultList.observe(viewLifecycleOwner){result->
+        viewModel.coursesResultList.observe(viewLifecycleOwner) { result ->
             result.handleRepoResponse(
                 onPreExecute = {
-
+                    viewModel.disableLoading()
                 },
                 onLoading = {
+                    viewModel.enableLoading()
                 },
                 onError = {
                     Snackbar.make(binding.root, result.error!!, Snackbar.LENGTH_LONG)
@@ -90,10 +94,10 @@ class SubjectFragment : Fragment() {
                 },
                 onSuccess = {
                     result.data?.let {
-                            viewModel.list.value = result.data.map {
-                                NetworkObjectMapper.NetworkCourseAsTeacherCourse(it)
-                            }
-                    } ?: Snackbar.make( binding.root,
+                        viewModel.list.value = result.data.map {
+                            NetworkObjectMapper.NetworkCourseAsTeacherCourse(it)
+                        }
+                    } ?: Snackbar.make(binding.root,
                         resources.getString(R.string.my_coures_error),
                         Snackbar.LENGTH_LONG)
                         .show()
@@ -105,13 +109,13 @@ class SubjectFragment : Fragment() {
     }
 
 
-    private fun setupRV(){
+    private fun setupRV() {
         adapter = SubjectAdapter()
         binding.rvSubjectTeacher.layoutManager =
             LinearLayoutManager(
                 requireContext(),
                 RecyclerView.VERTICAL, false)
-        binding.rvSubjectTeacher.adapter= adapter
+        binding.rvSubjectTeacher.adapter = adapter
 
         activity?.let {
             viewModel.list.observe(viewLifecycleOwner) {
