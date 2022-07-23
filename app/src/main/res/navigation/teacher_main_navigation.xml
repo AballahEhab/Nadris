@@ -26,7 +26,7 @@
 
     </fragment>
 
-<!--    TODO:to be reviewed-->
+    <!--    TODO:to be reviewed-->
     <fragment
         android:id="@+id/add_post_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.posts.addPosts.AddPostFragment"
@@ -34,20 +34,20 @@
 
         <argument
             android:name="mode"
-            app:argType="com.example.android.nadris.Mode"
-            android:defaultValue="CREATE" />
+            android:defaultValue="CREATE"
+            app:argType="com.example.android.nadris.Mode" />
 
         <argument
             android:name="post_id"
-            app:argType="string"
             android:defaultValue=""
+            app:argType="string"
 
             />
 
         <argument
             android:name="subject"
-            app:argType="string"
             android:defaultValue=""
+            app:argType="string"
 
             />
 
@@ -60,14 +60,14 @@
         <!--                    />-->
         <argument
             android:name="discussion_content"
-            app:argType="string"
             android:defaultValue=""
+            app:argType="string"
 
             />
         <argument
             android:name="image_path"
-            app:argType="string"
             android:defaultValue=""
+            app:argType="string"
 
             />
         <action
@@ -130,6 +130,19 @@
         <action
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
             app:destination="@id/private_profile_fragment" />
+        <action
+            android:id="@+id/action_settings_fragment_to_change_password"
+            app:destination="@id/change_password" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/change_password"
+        android:name="com.example.android.nadris.Change_password"
+        android:label="Change_password"
+        tools:layout="@layout/fragment_change_password">
+        <action
+            android:id="@+id/action_change_password_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
     </fragment>
 
     <fragment
@@ -175,18 +188,21 @@
         android:id="@+id/teacher_course_units_fragment"
         android:name="com.example.android.nadris.ui.teacherActivity.courseUnits.UnitsFragment"
         tools:layout="@layout/fragment_units">
-<!--        <argument-->
-<!--            android:name="courseId"-->
-<!--            app:argType="string" />-->
+
+        <argument
+            android:name="courseId"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_teacher_subject_units_fragment_to_adding_sections_fragment"
             app:destination="@id/adding_sections_fragment" />
-<!--        <action-->
-<!--            android:id="@+id/action_teacher_subject_units_fragment_to_addSectionFragment"-->
-<!--            app:destination="@id/addSectionFragment" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_teacher_subject_units_fragment_to_addSectionFragment"-->
+        <!--            app:destination="@id/addSectionFragment" />-->
         <action
             android:id="@+id/action_teacher_course_units_fragment_to_addContentFragment"
             app:destination="@id/addContentFragment" />
+
     </fragment>
 
     <fragment
@@ -206,83 +222,106 @@
             app:argType="integer" />
         <argument
             android:name="lesson_name"
-            app:argType="string"
-            />
+            app:argType="string" />
+        <action
+            android:id="@+id/action_adding_sections_fragment_self"
+            app:destination="@id/adding_sections_fragment" />
+        <action
+            android:id="@+id/action_adding_sections_fragment_to_addLinkVideoFragment"
+            app:destination="@id/addLinkVideoFragment" />
+        <action
+            android:id="@+id/action_adding_sections_fragment_to_addAudioFragment"
+            app:destination="@id/addAudioFragment" />
+        <action
+            android:id="@+id/action_adding_sections_fragment_to_textEditorFragment"
+            app:destination="@id/textEditorFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/addSectionFragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addSection.addSectionFragment"
-        android:label="fragment_add_section"
-        tools:layout="@layout/fragment_add_section"/>
+
     <fragment
         android:id="@+id/addContentFragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addContent.addContentFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addContent.AddContentFragment"
         android:label="addContentFragment"
         tools:layout="@layout/add_content_fragment">
-        <action android:id="@+id/action_addContentFragment_to_addLinkVideoFragment"
-                app:destination="@id/addLinkVideoFragment"/>
 
-        <action android:id="@+id/action_addContentFragment_to_addAudioFragment"
-                app:destination="@id/addAudioFragment"/>
-        <action android:id="@+id/action_addContentFragment_to_textEditorFragment"
-                app:destination="@id/textEditorFragment"/>
+        <action
+            android:id="@+id/action_addContentFragment_to_addLinkVideoFragment"
+            app:destination="@id/addLinkVideoFragment" />
+
+        <action
+            android:id="@+id/action_addContentFragment_to_addAudioFragment"
+            app:destination="@id/addAudioFragment" />
+        <action
+            android:id="@+id/action_addContentFragment_to_textEditorFragment"
+            app:destination="@id/textEditorFragment" />
+
     </fragment>
+
     <dialog
         android:id="@+id/addLinkVideoFragment"
         android:name="com.example.android.nadris.ui.teacherActivity.addContent.bottonSheetVideo.addLinkVideoFragment"
         android:label="addLinkVideoFragment"
         tools:layout="@layout/fragment_add_link_video">
-        <action android:id="@+id/action_addLinkVideoFragment_to_addContentFragment"
-                app:destination="@id/addContentFragment"/>
+
+        <action
+            android:id="@+id/action_addLinkVideoFragment_to_addContentFragment"
+            app:destination="@id/addContentFragment" />
 
     </dialog>
+
     <dialog
         android:id="@+id/addAudioFragment"
         android:name="com.example.android.nadris.ui.teacherActivity.addContent.bottomSheetRecord.addRecordFragment"
         android:label="addRecordFragment"
         tools:layout="@layout/fragment_add_record">
 
-        <action android:id="@+id/action_addAudioFragment_to_addContentFragment"
-                app:destination="@id/addContentFragment"/>
+        <action
+            android:id="@+id/action_addAudioFragment_to_addContentFragment"
+            app:destination="@id/addContentFragment" />
     </dialog>
+
     <fragment
-    android:id="@+id/textEditorFragment"
-    tools:layout="@layout/fragment_text_editor"
-    android:label="textEditorFragment"
-    android:name="com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragment">
+        android:id="@+id/textEditorFragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.textEditor.TextEditorFragment"
+        android:label="textEditorFragment"
+        tools:layout="@layout/fragment_text_editor">
 
     </fragment>
-    <fragment
-    android:id="@+id/Quizzes_fragment"
-    tools:layout="@layout/item_gender_list"
-    android:label="QuizzesFragment"
-    android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment">
 
-        <action android:id="@+id/action_Quizzes_fragment_to_add_quiz" app:destination="@id/add_quiz"/>
+    <fragment
+        android:id="@+id/Quizzes_fragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment"
+        android:label="QuizzesFragment"
+        tools:layout="@layout/item_gender_list">
+
+        <action
+            android:id="@+id/action_Quizzes_fragment_to_add_quiz"
+            app:destination="@id/add_quiz" />
     </fragment>
     <fragment
-    android:id="@+id/add_quiz"
-    tools:layout="@layout/teacher_quiz_fragment"
-    android:label="addQuiz"
-    android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz.TeacherQuizFragment">
+        android:id="@+id/add_quiz"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz.TeacherQuizFragment"
+        android:label="addQuiz"
+        tools:layout="@layout/teacher_quiz_fragment">
 
-        <action android:id="@+id/action_add_quiz_to_Quizzes_fragment" app:destination="@id/Quizzes_fragment"/>
+        <action
+            android:id="@+id/action_add_quiz_to_Quizzes_fragment"
+            app:destination="@id/Quizzes_fragment" />
     </fragment>
 
 
     <!--    <fragment-->
-<!--        android:id="@+id/editDiscussionFragment"-->
-<!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
-<!--        android:label="EditDiscussionFragment" >-->
-<!--        <argument-->
-<!--            android:name="post_id"-->
-<!--            app:argType="long" />-->
+    <!--        android:id="@+id/editDiscussionFragment"-->
+    <!--        android:name="com.example.android.nadris.ui.studentActivity.editDiscussion.EditDiscussionFragment"-->
+    <!--        android:label="EditDiscussionFragment" >-->
+    <!--        <argument-->
+    <!--            android:name="post_id"-->
+    <!--            app:argType="long" />-->
 
-<!--        <argument-->
-<!--            android:name="subject"-->
-<!--            app:argType="string" />-->
-<!--        <argument-->
-<!--            android:name="discussion_content"-->
-<!--            app:argType="string" />-->
-<!--    </fragment>-->
+    <!--        <argument-->
+    <!--            android:name="subject"-->
+    <!--            app:argType="string" />-->
+    <!--        <argument-->
+    <!--            android:name="discussion_content"-->
+    <!--            app:argType="string" />-->
+    <!--    </fragment>-->
 </navigation>

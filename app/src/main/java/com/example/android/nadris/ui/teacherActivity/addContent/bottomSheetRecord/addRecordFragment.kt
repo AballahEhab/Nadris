@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +18,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.R
-
 import com.example.android.nadris.databinding.FragmentAddRecordBinding
 import com.example.android.nadris.ui.teacherActivity.addContent.AddContentViewModel
-import com.example.android.nadris.ui.teacherActivity.addContent.addContentFragmentDirections
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
@@ -122,7 +119,7 @@ class addRecordFragment : BottomSheetDialogFragment() {
         ActivityCompat.requestPermissions(
             requireActivity(),
             arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            com.example.android.nadris.ui.teacherActivity.addSection.REQUEST_AUDIO_PERMISSION_CODE
+            REQUEST_AUDIO_PERMISSION_CODE
         )
     }
 
@@ -135,7 +132,7 @@ class addRecordFragment : BottomSheetDialogFragment() {
         // this method is called when user will
         // grant the permission for audio recording.
         when (requestCode) {
-            com.example.android.nadris.ui.teacherActivity.addSection.REQUEST_AUDIO_PERMISSION_CODE -> if (grantResults.size > 0) {
+            REQUEST_AUDIO_PERMISSION_CODE -> if (grantResults.isNotEmpty()) {
                 val permissionToRecord = grantResults[0] == PackageManager.PERMISSION_GRANTED
                 val permissionToStore = grantResults[1] == PackageManager.PERMISSION_GRANTED
                 if (permissionToRecord && permissionToStore) {

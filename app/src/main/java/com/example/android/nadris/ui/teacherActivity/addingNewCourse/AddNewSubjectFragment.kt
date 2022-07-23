@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentAddNewSubjectBinding
-import com.example.android.nadris.util.isVisible
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,9 +25,7 @@ class AddNewSubjectFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        inflater.inflate(R.layout.fragment_add_new_subject, container, false)
-
-        binding = FragmentAddNewSubjectBinding.inflate(inflater)
+        binding = FragmentAddNewSubjectBinding.inflate(layoutInflater, container, false)
 
         binding.lifecycleOwner = this.viewLifecycleOwner
 

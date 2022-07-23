@@ -41,6 +41,40 @@ class LessonItemAdapter : RecyclerView.Adapter<LessonItemAdapter.LessonItemViewH
         val lessonData = differ.currentList[position]
         holder.binding.lessonTitle.text = lessonData.lessonName
 
+        /** todo: to be moved to on lesson click
+        MaterialAlertDialogBuilder(requireContext())
+        .setMessage("please set The number of sections")
+        .setPositiveButton("add"
+        ) { dialogInterface, i ->
+        try{
+        numOfSections = inputLayout.editText?.text.toString().toInt()
+        }catch (e:Throwable) {
+        e.message?.let { it1 -> Log.e("error", it1) }
+        }
+        }
+        .setNegativeButton("cancel"
+        ) { dialogInterface, i ->
+        viewModel.navigateToAddingSectionFragment()
+
+        }.setNeutralButton("neural"
+        ) { dialogInterface, i ->
+        viewModel.navigateToAddingSectionFragment()
+
+        }
+
+        .setView(inputView)
+        .show()
+
+
+        viewModel.navigateToAddingSectionFragmentEvent.observe(viewLifecycleOwner){
+        if(it) {
+
+        findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherAddNewSubjectFragment())
+        viewModel.navigateToAddingSectionFragmentDone()
+        }
+        }
+         **/
+
         holder.binding.root.setOnClickListener {
             if (NadrisApplication.currentDatabaseUser?.IsATeacher!!)
                 it.findNavController()

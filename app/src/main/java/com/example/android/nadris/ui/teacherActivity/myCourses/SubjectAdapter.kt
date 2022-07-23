@@ -1,24 +1,31 @@
 package com.example.android.nadris.ui.teacherActivity.myCourses
 
 
-    import android.view.LayoutInflater
-    import android.view.ViewGroup
-    import androidx.recyclerview.widget.AsyncListDiffer
-    import androidx.recyclerview.widget.DiffUtil
-    import androidx.recyclerview.widget.RecyclerView
-    import com.example.android.nadris.R
-    import com.example.android.nadris.database.models.DatabaseTeacherCourse
-    import com.example.android.nadris.databinding.ItemRvSubTeacherBinding
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.R
+import com.example.android.nadris.database.models.DatabaseTeacherCourse
+import com.example.android.nadris.databinding.ItemRvSubTeacherBinding
 
 class SubjectAdapter() :
     RecyclerView.Adapter<SubjectAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<DatabaseTeacherCourse>() {
-        override fun areItemsTheSame(oldItem: DatabaseTeacherCourse, newItem: DatabaseTeacherCourse): Boolean {
+        override fun areItemsTheSame(
+            oldItem: DatabaseTeacherCourse,
+            newItem: DatabaseTeacherCourse,
+        ): Boolean {
             return oldItem.courseId == newItem.courseId
         }
 
-        override fun areContentsTheSame(oldItem: DatabaseTeacherCourse, newItem: DatabaseTeacherCourse): Boolean {
+        override fun areContentsTheSame(
+            oldItem: DatabaseTeacherCourse,
+            newItem: DatabaseTeacherCourse,
+        ): Boolean {
             return oldItem == newItem
         }
     }
@@ -42,10 +49,10 @@ class SubjectAdapter() :
         holder.binding.tvNameSubjectTeacher.text = data.subjectName
         holder.binding.numOfStudents.text = ""
         holder.binding.tvClass.text = data.gradeName
-//        holder.itemView.setOnClickListener {
-//            it.findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherSubjectUnitsFragment(data.courseId))
-//        }
-          holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
+        holder.itemView.setOnClickListener {
+            it.findNavController().navigate(SubjectFragmentDirections.actionTeacherMySubjectsFragmentToTeacherSubjectUnitsFragment(data.courseId))
+        }
+        holder.binding.imgSubTeach.setImageResource(R.drawable.ic_user)
     }
 
     class ViewHolder(var binding: ItemRvSubTeacherBinding) : RecyclerView.ViewHolder(binding.root) {

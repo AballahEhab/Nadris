@@ -33,7 +33,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     val viewModel: ProfileViewModel by viewModels()
-    val postsViewModel: PostPageViewModel by viewModels()
+    private val postsViewModel: PostPageViewModel by viewModels()
     private var image: Bitmap? = null
     private lateinit var converter: Converter
 
@@ -82,9 +82,9 @@ class ProfileFragment : Fragment() {
         viewModel.numLevelStudent.observe(viewLifecycleOwner){
             binding.tvNumLevelProfile.text =viewModel.numLevelStudent.value!!.toString()
         }
-        var valueOfProgres =viewModel.numProgressBarValue.value!!.toString()
-        var maxValueOfProgres =viewModel.numProgressBarMaxValue.value!!.toString()
-        binding.tvValueProgresProfile.text =valueOfProgres+"/"+maxValueOfProgres
+        var valueOfProgress =viewModel.numProgressBarValue.value!!.toString()
+        var maxValueOfProgress =viewModel.numProgressBarMaxValue.value!!.toString()
+        binding.tvValueProgresProfile.text =valueOfProgress+"/"+maxValueOfProgress
 
     }
 

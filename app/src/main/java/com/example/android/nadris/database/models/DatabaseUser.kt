@@ -1,7 +1,9 @@
 package com.example.android.nadris.database.models
 
+import android.content.Context
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.android.nadris.R
 
 
 @Entity
@@ -19,19 +21,19 @@ data class DatabaseUser(
     val CollegeName: String? = null,
     val profileImagePath: String? = null,
 ) {
-//    fun getFullName() = "$firstName  $lastName"
-//
-//    fun getUserType(context: Context): String {
-//        val resourceId = if (this.IsATeacher)
-//            R.string.teacher
-//        else
-//            R.string.student
-//    return context.resources.getString(resourceId)
-//    }
-//
-//    override fun toString(): String {
-//        return "UserData(dbId=$dbId, userID='$userID', Email='$Email', firstName='$firstName', lastName='$lastName', PhoneNumber='$PhoneNumber', Type=$IsATeacher, Gender=$Gender, GradeId=$GradeId)"
-//    }
+    fun getFullName() = "$firstName  $lastName"
+
+    fun getUserType(context: Context): String {
+        val resourceId = if (this.IsATeacher)
+            R.string.teacher
+        else
+            R.string.student
+    return context.resources.getString(resourceId)
+    }
+
+    override fun toString(): String {
+        return "UserData(dbId=$dbId, userID='$userID', Email='$Email', firstName='$firstName', lastName='$lastName', PhoneNumber='$PhoneNumber', Type=$IsATeacher, Gender=$Gender, GradeId=$GradeId)"
+    }
 
 }
 

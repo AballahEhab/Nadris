@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.teacherActivity.addContent.addContentFragment">
+            tools:context=".ui.teacherActivity.addContent.AddContentFragment">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/video"
@@ -134,18 +134,19 @@
                 android:layout_marginStart="@dimen/mid_margin"
                 android:textSize="@dimen/mid_text_size"
                 android:textStyle="bold"/>
+
             <fragment
                 android:id="@+id/youTube_fr"
                 android:name="com.google.android.youtube.player.YouTubePlayerFragment"
-                android:layout_width="@dimen/match_constrain"
+                android:layout_width="2dp"
                 android:visibility="gone"
-                android:layout_height="200dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/video"
+                android:layout_height="6dp"
                 android:layout_marginTop="@dimen/large_margin"
                 android:layout_marginEnd="@dimen/mid_margin"
-                android:layout_marginStart="@dimen/mid_margin"/>
+                android:layout_marginStart="@dimen/mid_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/video" />
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/pdf_viwe"
                 android:layout_height="wrap_content"
