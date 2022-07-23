@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -148,7 +149,7 @@ class AddNewSubjectFragment : Fragment() {
     }
 
     private fun setPageVisibility(visibility: Boolean) {
-        binding.pageContentParentView.isVisible(visibility)
+        binding.pageContentParentView.isVisible=visibility
     }
 
 }

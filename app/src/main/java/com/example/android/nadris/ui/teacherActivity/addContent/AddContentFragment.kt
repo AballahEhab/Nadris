@@ -36,7 +36,7 @@ private const val OPEN_DOCUMENT_REQUEST_CODE = 99
 @AndroidEntryPoint
 class AddContentFragment : Fragment() {
     val viewModel: AddContentViewModel by activityViewModels()
-    private lateinit var binding: com.example.android.nadris.databinding.AddContentFragmentBinding
+    private lateinit var binding: AddContentFragmentBinding
     private val TAG = "AddContentFragment"
 
     //pdf files related attributes
@@ -59,14 +59,10 @@ class AddContentFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-
-
-        setClickListnersForButtons()
-
+        setClickListenersForButtons()
 
         return binding.root
     }
-
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -76,8 +72,6 @@ class AddContentFragment : Fragment() {
                 openDocument(uri)
             }
         }
-
-
     }
 
     override fun onStop() {
@@ -96,7 +90,7 @@ class AddContentFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun setClickListnersForButtons() {
+    private fun setClickListenersForButtons() {
         binding.uploadPDF.setOnClickListener {
             openDocumentPicker()
             binding.pdfViwe.visibility = View.VISIBLE
@@ -114,7 +108,8 @@ class AddContentFragment : Fragment() {
 
         binding.audio.setOnClickListener {
             binding.recordView.visibility = View.VISIBLE
-            val action = AddLessonSectionsFragmentDirections.actionAddingSectionsFragmentToAddAudioFragment()
+            val action =
+                AddLessonSectionsFragmentDirections.actionAddingSectionsFragmentToAddAudioFragment()
             findNavController().navigate(action)
             binding.audio.visibility = View.GONE
         }
@@ -143,7 +138,8 @@ class AddContentFragment : Fragment() {
 
         binding.textEditor.setOnClickListener {
             binding.uploadPDF.visibility = View.GONE
-            val action = AddLessonSectionsFragmentDirections.actionAddingSectionsFragmentToTextEditorFragment()
+            val action =
+                AddLessonSectionsFragmentDirections.actionAddingSectionsFragmentToTextEditorFragment()
             findNavController().navigate(action)
 
         }
