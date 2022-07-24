@@ -115,11 +115,7 @@ class QuizAdapterTeacher(val viewModel: TeacherQuizViewModel) : RecyclerView.Ada
             }
         }
 
-
-
     }
-
-
 
     class ViewHolder(var binding: QuizItemBinding) : RecyclerView.ViewHolder(binding.root)
 

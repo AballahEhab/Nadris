@@ -183,5 +183,11 @@ constructor(
     fun createNewQuiz(quizData: QuizData)  =
         quizService.addNewQuiz(quizData)
 
+    fun getQuizzesWithTeacherId(userID: String) =
+        quizService.getQuizWithTeacherId(userID)
+
+    fun getQuizzesWithGradeRef(grade: DocumentReference)=
+        quizService.getQuizzesWithGradeRef(grade)
+
 
 }

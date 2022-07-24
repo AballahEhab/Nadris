@@ -289,6 +289,8 @@
     <string name="title_the_quiz">title the quiz</string>
     <string name="course_added_successfully">course added successfully</string>
     <string name="quiz_Added_Successfully">quiz added successfully</string>
+    <string name="first_term">first term</string>
+    <string name="second_term">second term</string>
 
 
 </resources>

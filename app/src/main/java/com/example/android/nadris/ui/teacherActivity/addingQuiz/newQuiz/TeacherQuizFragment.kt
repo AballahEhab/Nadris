@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.TeacherQuizFragmentBinding
 import com.google.android.material.snackbar.Snackbar
@@ -133,7 +134,18 @@ class TeacherQuizFragment : Fragment() {
                 }
             )
         }
+        viewModel.gradesList.observe(viewLifecycleOwner) { list ->
+            list?.let {
+                val adapter = ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { it.name_ar })
+                (binding.chooseClass.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+            }
+        }
 
+        viewModel.subjectsList.observe(viewLifecycleOwner) { list ->
+            val adapter =
+                ArrayAdapter(requireContext(), R.layout.item_gender_list, list.map { if(NadrisApplication.instance?.lang == "en") it.name_en else it.name_ar})
+            (binding.chooseSubjects.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        }
         return binding.root
     }
 

@@ -499,15 +499,15 @@ class Repository @Inject constructor(
         }
 
     fun createNewCourse(course: Course) =
-        flow{
+        flow {
             emit(Result.Loading())
             try {
                 val courseId = remoteDataSource.generateCourseId()
                 course.courseId = courseId
                 val task = remoteDataSource.createCourse(course).continueWithTask {
-                    remoteDataSource.addCourseIdToTeacherData(courseId,course.ownerTeacherID)
+                    remoteDataSource.addCourseIdToTeacherData(courseId, course.ownerTeacherID)
                 }
-                 Tasks.await(task)
+                Tasks.await(task)
                 emit(Result.Success(true))
             } catch (exception: Exception) {
                 emit(Result.Error(exception.message!!))
@@ -516,13 +516,53 @@ class Repository @Inject constructor(
 
     fun createQuiz(quizData: QuizData) = flow {
         emit(Result.Loading())
-        try{
-            val result = Tasks . await (remoteDataSource.createNewQuiz(quizData))
+        try {
+            val result = Tasks.await(remoteDataSource.createNewQuiz(quizData))
             emit(Result.Success(true))
-        }catch (exception: Exception) {
+        } catch (exception: Exception) {
             emit(Result.Error(exception.message!!))
         }
     }
+
+    fun getQuizzesWithTeacherId(userID: String) =
+        flow {
+            emit(Result.Loading())
+            try {
+                val result = Tasks.await(remoteDataSource.getQuizzesWithTeacherId(userID))
+                val gradesList = getGrades().data
+                val quizzesList = result.map {
+                    docSnapToQuizObj(it, gradesList!!)
+                }
+                emit(Result.Success(quizzesList))
+            } catch (exception: Exception) {
+                emit(Result.Error(exception.message!!))
+            }
+        }
+
+    fun getQuizzesWithGradeRef(grade: DocumentReference) = flow {
+        emit(Result.Loading())
+        try {
+            val result = Tasks.await(remoteDataSource.getQuizzesWithGradeRef(grade))
+            val gradesList = getGrades().data
+            val quizzesList = result.map {
+                docSnapToQuizObj(it, gradesList!!)
+            }
+            emit(Result.Success(quizzesList))
+        } catch (exception: Exception) {
+            emit(Result.Error(exception.message!!))
+        }
+
+    }
+
+    private fun docSnapToQuizObj(doc: QueryDocumentSnapshot?,gradesList: List<Grade>) =
+         doc?.toObject<QuizData>().apply {
+            this?.gradeName =
+                gradesList?.find { it.gradeReference == this?.gradeRef }?.name_ar!!
+            this?.gradeName = getSubjectName(this?.subjectId!!)
+            val userData = getUserDataObj(this?.ownerTeacherId!!)
+            this?.teacherName = userData?.firstName + " " + userData?.lastName
+        }
+
 
 //    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
 //
