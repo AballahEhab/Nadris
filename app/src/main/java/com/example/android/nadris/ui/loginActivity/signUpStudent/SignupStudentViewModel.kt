@@ -7,10 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.nadris.InputError
-import com.example.android.nadris.NadrisApplication
+import com.example.android.nadris.database.models.DatabaseUser
 import com.example.android.nadris.network.firebase.dtos.Grade
 import com.example.android.nadris.network.firebase.dtos.User
 import com.example.android.nadris.repository.Repository
+import com.example.android.nadris.util.Result
 import com.example.android.nadris.util.checkPassword
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -77,6 +78,9 @@ SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewMod
 
     private var _errorMessageVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val errorMessageVisibility get() = _errorMessageVisibility
+
+    private var _loginResult: MutableLiveData<Result<DatabaseUser>> = MutableLiveData<Result<DatabaseUser>>()
+    val loginResult get() = _loginResult
 
 
 
@@ -152,7 +156,7 @@ SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewMod
                 }?.gradeReference
             Log.i("sectionId", grade?.path!!)
             viewModelScope.launch(Dispatchers.IO) {
-                val result = repository
+                _loginResult.value = repository
                     .createNewUser(
                         User(
                             firstName = firstname,
@@ -164,20 +168,6 @@ SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewMod
                             isATeacher = false,
                         ), password1)
 
-                result.handleRepoResponse(
-                    onLoading = {},
-                    onError = {
-                        disableProgressBar()
-                        enableErrorMessage()
-                        _errorMessage.value = result.error!!
-                        Log.v("ErrorResponce", _errorMessage.value!!)
-                    },
-                    onSuccess = {
-                        disableProgressBar()
-                        NadrisApplication.currentDatabaseUser = result.data
-                        navigateToHomeActivity()
-                    },
-                )
             }
         }
 
@@ -195,11 +185,11 @@ SignupStudentViewModel @Inject constructor(val repository: Repository) : ViewMod
         _showIndicator.value = true
     }
 
-    private fun disableProgressBar() {
+     fun disableProgressBar() {
         _showIndicator.postValue(false)
     }
 
-    private fun navigateToHomeActivity() {
+     fun navigateToHomeActivity() {
         _navigateToHomeScreen.postValue(true)
     }
 

@@ -288,6 +288,7 @@
     <string name="teacherName">teacherName</string>
     <string name="title_the_quiz">title the quiz</string>
     <string name="course_added_successfully">course added successfully</string>
+    <string name="quiz_Added_Successfully">quiz added successfully</string>
 
 
 </resources>

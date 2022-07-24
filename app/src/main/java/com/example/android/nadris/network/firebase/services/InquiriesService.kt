@@ -56,19 +56,6 @@ class InquiriesService @Inject constructor(val db: FirebaseFirestore) {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     //private functions
     private fun getRepliesCollectionRef(inquiryId:String) : CollectionReference =
         inquiriesCollection.document(inquiryId).collection("replies")

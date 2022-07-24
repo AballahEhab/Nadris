@@ -1,12 +1,12 @@
 package com.example.android.nadris.ui.studentActivity.quizzes
 
-import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
+import com.example.android.nadris.network.firebase.dtos.QuestionData
 
 object setData {
 
-    fun getQuestion():MutableList<QuizData>{
-        var que:ArrayList<QuizData> = arrayListOf()
-        var question1 = QuizData(
+    fun getQuestion():MutableList<QuestionData>{
+        var que:ArrayList<QuestionData> = arrayListOf()
+        var question1 = QuestionData(
             1,
             "قال الشاعر:\n" +
                     "إذا كنت في نعمة فارعها فإن المعاصي تزيل النعم\n"+
@@ -20,7 +20,7 @@ object setData {
             " في محل جزم جواب شرط",
 
             )
-        var question2 = QuizData(
+        var question2 = QuestionData(
             2,
             "\"إن ت رد محبة الناس فلن معهم تنل حبهم\".\n" +
                     "بين مما يلي سبب اقتران جواب الشرط بالفاء في الجملة السابقة.",
@@ -32,7 +32,7 @@ object setData {
             mutableListOf(2,4),
             " مبدوءة بجامد",
         )
-        var question3 = QuizData(
+        var question3 = QuestionData(
             3,
             "قال الشاعر:\n" +
                     "لمن تطلب الدنيا إذا لم ت رد بها سرور مح ِّب أو َمساءة مجرم\n" +
@@ -45,7 +45,7 @@ object setData {
             mutableListOf(4),
             "سرور",
         )
-        var question4 = QuizData(
+        var question4 = QuestionData(
             4,
             "من قتل محمد علي ؟",
 
@@ -57,7 +57,7 @@ object setData {
             "لما هكبر هعرف",
         )
 
-        var question5 = QuizData(
+        var question5 = QuestionData(
             5,
             "عارف حاجة في المنهج؟",
 

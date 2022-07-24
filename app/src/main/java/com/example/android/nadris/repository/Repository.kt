@@ -64,9 +64,9 @@ class Repository @Inject constructor(
 
             Result.Success(localDataSource.getUserData())
 
-        } catch (throwable: Throwable) {
+        } catch (exception: Exception) {
 
-            Result.Error(throwable.message!!)
+            Result.Error(exception.message!!)
         }
 
     fun getUserData(userId: String) =
@@ -513,6 +513,16 @@ class Repository @Inject constructor(
                 emit(Result.Error(exception.message!!))
             }
         }
+
+    fun createQuiz(quizData: QuizData) = flow {
+        emit(Result.Loading())
+        try{
+            val result = Tasks . await (remoteDataSource.createNewQuiz(quizData))
+            emit(Result.Success(true))
+        }catch (exception: Exception) {
+            emit(Result.Error(exception.message!!))
+        }
+    }
 
 //    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(
 //

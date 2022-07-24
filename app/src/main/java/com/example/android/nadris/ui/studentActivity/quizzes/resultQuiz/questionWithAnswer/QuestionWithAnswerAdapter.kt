@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.ItemQuestionWithAnswerBinding
-import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
+import com.example.android.nadris.network.firebase.dtos.QuestionData
 
 
 class QuestionWithAnswerAdapter(context: Context):RecyclerView.Adapter<QuestionWithAnswerAdapter.ViewHolder>() {
 var context = context
-    private val differCallback = object : DiffUtil.ItemCallback<QuizData>(){
-        override fun areItemsTheSame(oldItem: QuizData, newItem: QuizData): Boolean {
-            return oldItem.id == newItem.id
+    private val differCallback = object : DiffUtil.ItemCallback<QuestionData>(){
+        override fun areItemsTheSame(oldItem: QuestionData, newItem: QuestionData): Boolean {
+            return oldItem.questionId == newItem.questionId
         }
-        override fun areContentsTheSame(oldItem: QuizData, newItem: QuizData): Boolean {
+        override fun areContentsTheSame(oldItem: QuestionData, newItem: QuestionData): Boolean {
             return oldItem == newItem
         }
     }

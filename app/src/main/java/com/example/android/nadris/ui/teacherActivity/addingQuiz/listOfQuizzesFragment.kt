@@ -24,6 +24,10 @@ class listOfQuizzesFragment : Fragment() {
         inflater.inflate(R.layout.list_of_quizzes_fragment, container, false)
         binding = ListOfQuizzesFragmentBinding.inflate(inflater)
         binding.viewModel = viewModel
+
+
+
+
         binding.fabAddQuiz.setOnClickListener {
             val action = listOfQuizzesFragmentDirections.actionQuizzesFragmentToAddQuiz()
             findNavController().navigate(action)

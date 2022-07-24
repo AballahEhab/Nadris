@@ -7,6 +7,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ListOfQuizzesViewModel @Inject constructor(val repository: Repository) : ViewModel(){
+class ListOfQuizzesViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     val isTeacher = NadrisApplication.currentDatabaseUser?.IsATeacher
+
+
 }

@@ -9,10 +9,12 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.FragmentSignupStudentBinding
 import com.example.android.nadris.ui.studentActivity.StudentMainActivity
 import com.example.android.nadris.util.getErrorMessage
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -135,6 +137,22 @@ class signupStudentFragment : Fragment() {
                     list.map { it.name_ar })
                 (binding.spTermStudentSignup.editText as? AutoCompleteTextView)?.setAdapter(adapter)!!
             }
+        }
+
+        viewModel.loginResult.observe(viewLifecycleOwner){
+            it.handleRepoResponse(
+                onLoading = {},
+                onError = {
+                    Snackbar.make(binding.root, it.error!!, Snackbar.LENGTH_LONG)
+                        .show()
+
+                },
+                onSuccess = {
+                    viewModel.disableProgressBar()
+                    NadrisApplication.currentDatabaseUser = it.data
+                    viewModel.navigateToHomeActivity()
+                },
+            )
         }
     }
 }

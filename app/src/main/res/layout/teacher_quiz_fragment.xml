@@ -7,178 +7,195 @@
         <variable name="viewModel"
                   type="com.example.android.nadris.ui.teacherActivity.addingQuiz.newQuiz.TeacherQuizViewModel"/>
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.teacherActivity.addingQuiz.newQuiz.TeacherQuizFragment">
-
-        <TextView
-            android:id="@+id/tv_my_quize_teacher"
-            style="@style/MaterialAlertDialog.App.Title.Text"
-            android:layout_width="@dimen/match_constrain"
-            android:layout_height="wrap_content"
-            android:text="@string/add_quiz"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/containedButton"/>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/information_quiz"
-            style="@style/material_card"
+        android:orientation="vertical">
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/small_margin"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_quize_teacher"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <androidx.constraintlayout.widget.ConstraintLayout
+            app:indicatorColor="@color/bink"
+            android:indeterminate="true"
+            isVisible="@{viewModel.loadingState}"
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/page_content_parent_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.teacherActivity.addingQuiz.newQuiz.TeacherQuizFragment">
+
+            <TextView
+                android:id="@+id/tv_my_quize_teacher"
+                style="@style/MaterialAlertDialog.App.Title.Text"
+                android:layout_width="@dimen/match_constrain"
+                android:layout_height="wrap_content"
+                android:text="@string/add_quiz"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/containedButton"/>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/information_quiz"
+                style="@style/material_card"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <EditText
-                    android:id="@+id/ed_title_quiz"
-                    android:layout_width="@dimen/match_constrain"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/title_the_quiz"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/mid_margin"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    android:textAppearance="@style/material_text_body"/>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/choose_class"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="@dimen/match_constrain"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    android:layout_marginStart="@dimen/small_margin"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ed_title_quiz">
-                    <!-- Inside text input layout add
-                          an auto complete text view
-                            and make its input type to none-->
-                    <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTV_choose_class"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:inputType="none"
-                        android:hint="@string/autoCompleteTV_choose_class"
-                        />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/tv_my_quize_teacher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/ed_title_quiz"
+                        android:layout_width="@dimen/match_constrain"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.quizTitle}"
+                        android:hint="@string/title_the_quiz"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:layout_marginTop="@dimen/mid_margin"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:textAppearance="@style/material_text_body"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/choose_class"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="@dimen/match_constrain"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:layout_marginStart="@dimen/small_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ed_title_quiz">
+                        <!-- Inside text input layout add
+                              an auto complete text view
+                                and make its input type to none-->
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTV_choose_class"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="none"
+                            android:hint="@string/autoCompleteTV_choose_class"
+                            />
 
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/choose_subjects"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="@dimen/match_constrain"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    android:layout_marginStart="@dimen/small_margin"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/choose_class">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/choose_subjects"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="@dimen/match_constrain"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:layout_marginStart="@dimen/small_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/choose_class">
 
-                    <!-- Inside text input layout add
-                          an auto complete text view
-                            and make its input type to none-->
-                    <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTV_choose_subjects"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:inputType="none"
-                        android:hint="@string/autoCompleteTV_choose_subjects"
-                        />
+                        <!-- Inside text input layout add
+                              an auto complete text view
+                                and make its input type to none-->
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTV_choose_subjects"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="none"
+                            android:hint="@string/autoCompleteTV_choose_subjects"
+                            />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/term_menu"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="@dimen/match_constrain"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/small_margin"
-                    android:layout_marginEnd="@dimen/small_margin"
-                    android:layout_marginStart="@dimen/small_margin"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/choose_subjects">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/term_menu"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="@dimen/match_constrain"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_margin"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:layout_marginStart="@dimen/small_margin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/choose_subjects">
 
-                    <!-- Inside text input layout add
-                          an auto complete text view
-                            and make its input type to none-->
-                    <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTV_choose_semester"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:inputType="none"
-                        android:hint="@string/autoCompleteTV_choose_semester"
-                        />
+                        <!-- Inside text input layout add
+                              an auto complete text view
+                                and make its input type to none-->
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTV_choose_semester"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="none"
+                            android:hint="@string/autoCompleteTV_choose_semester"
+                            />
 
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RV_teacher_quiz"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/match_constrain"
-            android:layout_margin="8dp"
-            tools:listitem="@layout/quiz_item"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/information_quiz"/>
+            </com.google.android.material.card.MaterialCardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RV_teacher_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/match_constrain"
+                android:layout_margin="8dp"
+                tools:listitem="@layout/quiz_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/information_quiz"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/containedButton"
-            style="@style/material_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:layout_marginEnd="@dimen/mid_margin"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_my_quize_teacher"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_my_quize_teacher"
-            app:layout_constraintTop_toTopOf="@id/tv_my_quize_teacher"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAddQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:contentDescription="@string/add_question"
-            android:text="@string/add_question"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="@dimen/mid_margin"
-            app:srcCompat="@drawable/ic_add"/>
-        <!--    <TextView-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:id="@+id/questionText1"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/RV_teacher_quiz"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/containedButton"
+                style="@style/material_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:layout_marginEnd="@dimen/mid_margin"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_my_quize_teacher"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_my_quize_teacher"
+                app:layout_constraintTop_toTopOf="@id/tv_my_quize_teacher"
+                android:onClick="@{()->viewModel.createQuiz()}"
+                />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:contentDescription="@string/add_question"
+                android:text="@string/add_question"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="@dimen/mid_margin"
+                app:srcCompat="@drawable/ic_add"/>
+            <!--    <TextView-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:id="@+id/questionText1"-->
+            <!--        app:layout_constraintTop_toBottomOf="@id/RV_teacher_quiz"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
 
-        <!--    />-->
-        <!--    <TextView-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:id="@+id/questionText2"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/questionText1"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--    />-->
+            <!--    />-->
+            <!--    <TextView-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:id="@+id/questionText2"-->
+            <!--        app:layout_constraintTop_toBottomOf="@id/questionText1"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--    />-->
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

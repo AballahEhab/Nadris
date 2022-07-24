@@ -1,0 +1,128 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Course #header:lightblue   {
+- courseId :String
+- gradeRef:DocumentReference
+- ownerTeacherId:String
+- subjectId:String
+- subscribedStudentsIds: String[]
+- subscribedStudentsRatings: Int[]
+- listOfCourseUnits: CourseUnit[]
+- term:Boolean
+- timeCreated:Date
+
+}
+
+class College {
+- collegeId: String
+- name_ar: String
+- name_en: String
+- universities_available_in : String[]
+}
+
+class CourseSection {
+ - sectionID: String
+ - youtubeVideoURl: String
+ - audioFilePathOnStorage: String
+ - pdfFilePathOnStorage: String
+ - formattedTextAsHtml: String
+}
+class Grade {
+- gradeId : String
+- department: String
+- division: String
+- level: String
+- name_ar: String
+- name_en: String
+
+}
+class post {
+- postId: String
+- body: String
+- imagePathOnStorage: String
+- repliesNum : Int
+- votedUsersIds: String[]
+- subjectId: String
+- timeCreated: Date
+- userId: Date
+}
+class Lesson {
+- lessonId: String
+- name: String
+}
+
+class AbstractLesson {
+- lessonId: String
+- name: String
+}
+class QuestionData {
+- questionId: String
+- question: String
+- answers: String[]
+- correctAnswers: String[]
+- answersLocation: String
+}
+class QuizData {
+- quizId:String
+- subjectId: String
+- ownerTeacherId: String
+- quizTitle: String
+}
+class Reply {
+- replyID: String
+- time: Date
+- userId: String
+- replyBody: String
+}
+class Subject {
+- gradeId: String
+- name_ar: String
+- name_en: String
+- numOfTeachersHaveCourseForSubject: Int
+- SubjectId: String
+}
+class AbstractUnit{
+- unitID: String
+- name: String
+- lessons: AbstractLesson[]
+}
+class CourseUnit {
+- unitID: String
+- name: String
+- lessons: AbstractLesson[]
+
+}
+
+class University {
+- name_ar: String
+- name_en: String
+}
+class User {
+- userId: String
+- collegeId: String
+- universityId: String
+- coursesSubscribedIds: String[]
+- coursesSubscribedProgress: String[]
+- email: String
+- firstName: String
+- lastName: String
+- gender: Boolean
+- gradeRef: DocumentReference
+- isATeacher: Boolean
+- phoneNumber: String
+- myCourses: String[]
+
+}
+
+Subject *-- AbstractUnit
+AbstractUnit *-- AbstractLesson
+CourseUnit *-- Lesson
+Lesson *-- CourseSection
+QuizData *-- QuestionData
+Course *-- CourseUnit
+post *-- Reply
+
+
+
+@enduml

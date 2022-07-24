@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.nadris.databinding.QuizItemBinding
-import com.example.android.nadris.ui.teacherActivity.addingQuiz.QuizData
+import com.example.android.nadris.network.firebase.dtos.QuestionData
 
 class QuizAdapterTeacher(val viewModel: TeacherQuizViewModel) : RecyclerView.Adapter<QuizAdapterTeacher.ViewHolder>() {
-    private val differCallback = object : DiffUtil.ItemCallback<QuizData>() {
-        override fun areItemsTheSame(oldItem: QuizData, newItem: QuizData): Boolean {
-            return oldItem.id == newItem.id
+    private val differCallback = object : DiffUtil.ItemCallback<QuestionData>() {
+        override fun areItemsTheSame(oldItem: QuestionData, newItem: QuestionData): Boolean {
+            return oldItem.questionId == newItem.questionId
         }
 
-        override fun areContentsTheSame(oldItem: QuizData, newItem: QuizData): Boolean {
+        override fun areContentsTheSame(oldItem: QuestionData, newItem: QuestionData): Boolean {
             return oldItem == newItem
         }
     }
@@ -59,59 +59,59 @@ class QuizAdapterTeacher(val viewModel: TeacherQuizViewModel) : RecyclerView.Ada
 
 
         holder.binding.editTextQuestion.doOnTextChanged { text, start, before, count ->
-            viewModel.list.value!![position].question = text.toString()
+            viewModel.quizQuestionsList.value!![position].question = text.toString()
         }
         holder.binding.answerLocation.doOnTextChanged { text, start, before, count ->
-            viewModel.list.value!![position].answer_location = text.toString()
+            viewModel.quizQuestionsList.value!![position].answer_location = text.toString()
         }
         holder.binding.textAnswerOne.doOnTextChanged { text, start, before, count ->
-            viewModel.list.value!![position].answer.set(0,text.toString())
+            viewModel.quizQuestionsList.value!![position].answer.set(0,text.toString())
         }
 
         holder.binding.textAnswerTwo.doOnTextChanged { text, start, before, count ->
-            viewModel.list.value!![position].answer.set(1,text.toString())
+            viewModel.quizQuestionsList.value!![position].answer.set(1,text.toString())
         }
         holder.binding.textAnswerThree.doOnTextChanged { text, start, before, count ->
-            viewModel.list.value!![position].answer.set(2,text.toString())
+            viewModel.quizQuestionsList.value!![position].answer.set(2,text.toString())
         }
         holder.binding.textAnswerFour.doOnTextChanged { text, start, before, count ->
-            viewModel.list.value!![position].answer.set(3,text.toString())
+            viewModel.quizQuestionsList.value!![position].answer.set(3,text.toString())
         }
 
         holder.binding.answer1.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked1: Boolean = holder.binding.answer1.isChecked
 
             if(checked1 ){
-                viewModel.list.value!![position].correct_ans.add(1)}
+                viewModel.quizQuestionsList.value!![position].correct_ans.add(1)}
             else{
-                viewModel.list.value!![position].correct_ans.remove(1)
+                viewModel.quizQuestionsList.value!![position].correct_ans.remove(1)
             }
         }
         holder.binding.answer2.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked2: Boolean = holder.binding.answer2.isChecked
 
             if(checked2 ){
-                viewModel.list.value!![position].correct_ans.add(2)}
+                viewModel.quizQuestionsList.value!![position].correct_ans.add(2)}
             else{
-                viewModel.list.value!![position].correct_ans.remove(2)
+                viewModel.quizQuestionsList.value!![position].correct_ans.remove(2)
             }
         }
         holder.binding.answer3.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked3: Boolean = holder.binding.answer3.isChecked
 
             if(checked3 ){
-                viewModel.list.value!![position].correct_ans.add(3)}
+                viewModel.quizQuestionsList.value!![position].correct_ans.add(3)}
             else{
-                viewModel.list.value!![position].correct_ans.remove(3)
+                viewModel.quizQuestionsList.value!![position].correct_ans.remove(3)
             }
         }
         holder.binding.answer4.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked4: Boolean = holder.binding.answer4.isChecked
 
             if(checked4 ){
-                viewModel.list.value!![position].correct_ans.add(4)}
+                viewModel.quizQuestionsList.value!![position].correct_ans.add(4)}
             else{
-                viewModel.list.value!![position].correct_ans.remove(4)
+                viewModel.quizQuestionsList.value!![position].correct_ans.remove(4)
             }
         }
 

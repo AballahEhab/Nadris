@@ -229,11 +229,15 @@
     >
         <action android:id="@+id/action_Feedback_page_to_result_quiz" app:destination="@id/result_quiz"/>
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/addContentFragment"-->
-<!--        android:name="com.example.android.nadris.ui.teacherActivity.addContent.addContentFragment"-->
-<!--        android:label="addContentFragment"-->
-<!--        tools:layout="@layout/add_content_fragment"/>-->
 
+    <fragment
+        android:id="@+id/Quizzes_fragment"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment"
+        android:label="QuizzesFragment"
+        tools:layout="@layout/item_gender_list">
 
+        <action
+            android:id="@+id/action_Quizzes_fragment_to_add_quiz"
+            app:destination="@id/add_quiz" />
+    </fragment>
 </navigation>

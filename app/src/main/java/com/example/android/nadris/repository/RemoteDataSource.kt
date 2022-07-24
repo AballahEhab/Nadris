@@ -25,6 +25,7 @@ constructor(
     private val inquiriesService: InquiriesService,
     private val subjectsService: SubjectsService,
     private val coursesService: CoursesService,
+    private val quizService: QuizService,
     private val storageService: StorageService,
 ) {
 
@@ -90,7 +91,6 @@ constructor(
     fun addNewReply(reply: Reply, inquiryId: String): Task<Void> =
         inquiriesService.addNewReplyWithID(reply, inquiryId)
 
-
     fun addNewInquiryWithoutImage(inquiry: Inquiry): Task<DocumentReference> =
         inquiriesService.addNewInquiry(inquiry)
 
@@ -102,10 +102,8 @@ constructor(
     fun getProfileImage(file: File, imagePath: String): FileDownloadTask =
         storageService.getProfileImage(file, imagePath)
 
-
     fun getCommentsForAnInquiry(id: String): Task<QuerySnapshot> =
         inquiriesService.getCommentsForAnInquiry(id)
-
 
     fun getSubjectWithId(subjectId: String): Subject {
         var subject = subjectsList.find { it.subject_id == subjectId }
@@ -129,10 +127,8 @@ constructor(
     fun setVotedUserIdsForInquiry(inquiryId: String, votedIdsList: MutableList<String>?) =
         inquiriesService.setVotedUserIdsForInquiry(inquiryId, votedIdsList)
 
-
     fun incrementReplies(inquiryId: String) =
         inquiriesService.incrementReplies(inquiryId)
-
 
     fun signOut() {
         authService.signOut()
@@ -141,10 +137,8 @@ constructor(
     fun getCoursesWithIds(coursesIds: List<String>) =
         coursesService.getCoursesWithIds(coursesIds)
 
-
     fun getCoursesWithId(coursesId: String) =
         coursesService.getCoursesWithId(coursesId)
-
 
     fun getCoursesWithGradeId(gradeIdS: String) =
         coursesService.getCoursesWithSubjectIds(gradeIdS)
@@ -185,6 +179,9 @@ constructor(
 
     fun generateCourseId(): String =
         coursesService.generateCourseId()
+
+    fun createNewQuiz(quizData: QuizData)  =
+        quizService.addNewQuiz(quizData)
 
 
 }
