@@ -3,10 +3,10 @@ package com.example.android.nadris.ui.teacherActivity.addingQuiz
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.nadris.NadrisApplication
 import com.example.android.nadris.R
 import com.example.android.nadris.databinding.ItemQuizCardBinding
 import com.example.android.nadris.network.firebase.dtos.QuizData
@@ -51,15 +51,10 @@ class TeacherMyQuizzesAdapter: RecyclerView.Adapter<TeacherMyQuizzesAdapter.View
             else holder.binding.root.resources.getString(R.string.second_term)
 
         holder.binding.root.setOnClickListener {
-            if (NadrisApplication.currentDatabaseUser?.IsATeacher!!) {
-                // TODO: navigate to edit post fragment
-            } else {
-//                it.findNavController().navigate()
-            }
+                it.findNavController().navigate(listOfQuizzesFragmentDirections.actionQuizzesFragmentToQuiz())
         }
     }
 
     class ViewHolder(var binding: ItemQuizCardBinding) : RecyclerView.ViewHolder(binding.root)
-
 
 }

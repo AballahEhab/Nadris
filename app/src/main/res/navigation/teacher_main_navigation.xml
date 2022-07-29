@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -288,13 +289,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/Quizzes_fragment"
+        android:id="@+id/show_my_quizzes"
         android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment"
         android:label="QuizzesFragment"
-        tools:layout="@layout/item_gender_list">
+        tools:layout="@layout/list_of_quizzes_fragment">
 
         <action
-            android:id="@+id/action_Quizzes_fragment_to_add_quiz"
+            android:id="@+id/action_Quizzes_fragment_to_quiz"
             app:destination="@id/add_quiz" />
     </fragment>
     <fragment
@@ -305,7 +306,7 @@
 
         <action
             android:id="@+id/action_add_quiz_to_Quizzes_fragment"
-            app:destination="@id/Quizzes_fragment" />
+            app:destination="@id/show_my_quizzes" />
     </fragment>
 
 

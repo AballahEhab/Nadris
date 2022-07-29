@@ -554,7 +554,7 @@ class Repository @Inject constructor(
 
     }
 
-    private fun docSnapToQuizObj(doc: QueryDocumentSnapshot?,gradesList: List<Grade>) =
+    private fun docSnapToQuizObj(doc: DocumentSnapshot?,gradesList: List<Grade>) =
          doc?.toObject<QuizData>().apply {
             this?.gradeName =
                 gradesList?.find { it.gradeReference == this?.gradeRef }?.name_ar!!
@@ -562,6 +562,18 @@ class Repository @Inject constructor(
             val userData = getUserDataObj(this?.ownerTeacherId!!)
             this?.teacherName = userData?.firstName + " " + userData?.lastName
         }
+
+    fun getQuizQuestionsWithQuizId(quizId: String)= flow {
+        emit(Result.Loading())
+        try {
+            val result = Tasks.await(remoteDataSource.getQuizQuestionsWithQuizId(quizId))
+            val quiz = docSnapToQuizObj(result,listOf())
+
+            emit(Result.Success(quiz))
+        } catch (exception: Exception) {
+            emit(Result.Error(exception.message!!))
+        }
+    }
 
 
 //    suspend fun getSubjectUnit(subjectID: Long, token: String) = getFromApiAndSaveToDataBase(

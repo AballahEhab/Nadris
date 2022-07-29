@@ -47,4 +47,8 @@ class QuizService @Inject constructor(val db: FirebaseFirestore) {
             .whereEqualTo("gradeRef",grade)
             .get()
 
+    fun getQuizQuestionsWithQuizId(id: String) =
+        quizzesCollection.document(id).get()
+
+
 }

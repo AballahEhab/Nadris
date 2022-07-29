@@ -32,33 +32,33 @@ class QuizFragment : Fragment() {
         binding.CBAnswer1.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked1: Boolean = binding.CBAnswer1.isChecked
             if (checked1) {
-                viewModel.selecedOption.add(1)
+                viewModel.selectedOption.add(1)
             } else {
-                viewModel.selecedOption.remove(1)
+                viewModel.selectedOption.remove(1)
             }
         }
         binding.CBAnswer2.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked2: Boolean = binding.CBAnswer2.isChecked
             if (checked2) {
-                viewModel.selecedOption.add(2)
+                viewModel.selectedOption.add(2)
             } else {
-                viewModel.selecedOption.remove(2)
+                viewModel.selectedOption.remove(2)
             }
         }
         binding.CBAnswer3.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked3: Boolean = binding.CBAnswer3.isChecked
             if (checked3) {
-                viewModel.selecedOption.add(3)
+                viewModel.selectedOption.add(3)
             } else {
-                viewModel.selecedOption.remove(3)
+                viewModel.selectedOption.remove(3)
             }
         }
         binding.CBAnswer4.setOnCheckedChangeListener { buttonView, isChecked ->
             val checked4: Boolean = binding.CBAnswer4.isChecked
             if (checked4) {
-                viewModel.selecedOption.add(4)
+                viewModel.selectedOption.add(4)
             } else {
-                viewModel.selecedOption.remove(4)
+                viewModel.selectedOption.remove(4)
             }
         }
         if(binding.submit.text=="FINISH"){
@@ -99,24 +99,24 @@ class QuizFragment : Fragment() {
             binding.submit.setOnClickListener {
                 when(binding.RBGroupAnswer.checkedRadioButtonId){
                     R.id.RB_answer1-> {
-                        viewModel.selecedOption.clear()
-                        viewModel.selecedOption.add(1)
+                        viewModel.selectedOption.clear()
+                        viewModel.selectedOption.add(1)
                     }
                     R.id.RB_answer2->{
-                        viewModel.selecedOption.clear()
-                        viewModel.selecedOption.add(2)
+                        viewModel.selectedOption.clear()
+                        viewModel.selectedOption.add(2)
                         Log.v(TAG,"RB_answer2 CLICKED")
                     }
                     R.id.RB_answer3->{
-                        viewModel.selecedOption.clear()
-                        viewModel.selecedOption.add(3)
+                        viewModel.selectedOption.clear()
+                        viewModel.selectedOption.add(3)
                     }
                     R.id.RB_answer4->{
-                        viewModel.selecedOption.clear()
-                        viewModel.selecedOption.add(4)
+                        viewModel.selectedOption.clear()
+                        viewModel.selectedOption.add(4)
                     }
                 }
-                if (viewModel.selecedOption.containsAll(question.correct_ans)) {
+                if (viewModel.selectedOption.containsAll(question.correct_ans)) {
                     viewModel.score++
                 } else {
                     viewModel.wrongQuestion.add(viewModel.currentPosition)
@@ -155,7 +155,7 @@ class QuizFragment : Fragment() {
             binding.CBAnswer4.isVisible(true)
             binding.submit.setOnClickListener {
                 //
-                if (viewModel.selecedOption.containsAll(question.correct_ans)) {
+                if (viewModel.selectedOption.containsAll(question.correct_ans)) {
                     viewModel.score++
                 } else {
                     viewModel.wrongQuestion.add(viewModel.currentPosition)

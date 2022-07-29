@@ -189,5 +189,8 @@ constructor(
     fun getQuizzesWithGradeRef(grade: DocumentReference)=
         quizService.getQuizzesWithGradeRef(grade)
 
+    fun getQuizQuestionsWithQuizId(id:String)=
+        quizService.getQuizQuestionsWithQuizId(id)
+
 
 }

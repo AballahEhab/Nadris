@@ -61,7 +61,7 @@ class listOfQuizzesFragment : Fragment() {
 
 
         binding.fabAddQuiz.setOnClickListener {
-            val action = listOfQuizzesFragmentDirections.actionQuizzesFragmentToAddQuiz()
+            val action = listOfQuizzesFragmentDirections.actionQuizzesFragmentToQuiz()
             findNavController().navigate(action)
         }
         return binding.root

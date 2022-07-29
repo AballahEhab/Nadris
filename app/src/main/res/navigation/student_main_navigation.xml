@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-            app:startDestination="@id/posts_fragment">
+    app:startDestination="@id/posts_fragment">
 
     <fragment
         android:id="@+id/posts_fragment"
@@ -12,59 +12,59 @@
         tools:layout="@layout/fragment_post_page">
         <action
             android:id="@+id/action_posts_fragment_to_add_post_fragment"
-            app:destination="@id/add_post_fragment"/>
+            app:destination="@id/add_post_fragment" />
         <action
             android:id="@+id/action_posts_fragment_to_add_comment_fragment"
-            app:destination="@id/add_comment_fragment"/>
+            app:destination="@id/add_comment_fragment" />
         <action
             android:id="@+id/action_posts_fragment_to_public_profile_fragment"
-            app:destination="@id/public_profile_fragment"/>
+            app:destination="@id/public_profile_fragment" />
         <action
             android:id="@+id/action_posts_fragment_to_private_profile_fragment"
-            app:destination="@id/private_profile_fragment"/>
+            app:destination="@id/private_profile_fragment" />
 
 
     </fragment>
 
-<!--    TODO:to be reviewed-->
+    <!--    TODO:to be reviewed-->
     <fragment
         android:id="@+id/add_post_fragment"
         android:name="com.example.android.nadris.ui.studentActivity.posts.addPosts.AddPostFragment"
         tools:layout="@layout/fragment_add_pos">
         <argument
             android:name="post_id"
-            app:argType="string"
             android:defaultValue=""
+            app:argType="string"
 
-        />
+            />
 
         <argument
             android:name="subject"
+            android:defaultValue=""
             app:argType="string"
             app:nullable="true"
-            android:defaultValue=""
 
-        />
+            />
         <argument
             android:name="grade"
-            app:argType="string"
             android:defaultValue=""
+            app:argType="string"
 
-        />
+            />
         <argument
             android:name="discussion_content"
-            app:argType="string"
             android:defaultValue=""
+            app:argType="string"
 
-        />
+            />
         <argument
             android:name="is_in_edit_view"
             app:argType="boolean"
 
-        />
+            />
         <action
             android:id="@+id/action_add_post_fragment_to_posts_fragment"
-            app:destination="@id/posts_fragment"/>
+            app:destination="@id/posts_fragment" />
     </fragment>
 
     <fragment
@@ -82,7 +82,7 @@
         tools:layout="@layout/follow_profile_fragment">
         <argument
             android:name="user_profile_id"
-            app:argType="string"/>
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -92,10 +92,10 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_private_profile_fragment_to_previewProfilePicFragment"
-            app:destination="@id/previewProfilePicFragment"/>
+            app:destination="@id/previewProfilePicFragment" />
         <action
             android:id="@+id/action_private_profile_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment"/>
+            app:destination="@id/settings_fragment" />
     </fragment>
 
     <fragment
@@ -106,7 +106,7 @@
         <argument
             android:name="imgString64"
             app:argType="string"
-            app:nullable="true"/>
+            app:nullable="true" />
 
     </fragment>
 
@@ -116,10 +116,10 @@
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settings_fragment_to_private_profile_fragment"
-            app:destination="@id/private_profile_fragment"/>
+            app:destination="@id/private_profile_fragment" />
         <action
             android:id="@+id/action_settings_fragment_to_help_fragment"
-            app:destination="@id/help_fragment"/>
+            app:destination="@id/help_fragment" />
         <action
             android:id="@+id/action_settings_fragment_to_change_password"
             app:destination="@id/change_password" />
@@ -132,7 +132,7 @@
         tools:layout="@layout/fragment_change_password">
         <action
             android:id="@+id/action_change_password_to_settings_fragment"
-            app:destination="@id/settings_fragment"/>
+            app:destination="@id/settings_fragment" />
     </fragment>
 
     <fragment
@@ -141,7 +141,7 @@
         tools:layout="@layout/fragment_help">
         <action
             android:id="@+id/action_help_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment"/>
+            app:destination="@id/settings_fragment" />
     </fragment>
 
     <fragment
@@ -151,27 +151,30 @@
         tools:layout="@layout/fragment_teachers_courses">
         <argument
             android:name="subjectId"
-            app:nullable="false"
-            app:argType="string"/>
+            app:argType="string"
+            app:nullable="false" />
 
-        <action android:id="@+id/action_student_teachers_for_a_subject_fragment_to_student_subject_units_fragment"
-                app:destination="@id/student_subject_units_fragment"/>
+        <action
+            android:id="@+id/action_student_teachers_for_a_subject_fragment_to_student_subject_units_fragment"
+            app:destination="@id/student_subject_units_fragment" />
 
-        <action android:id="@+id/action_student_teachers_for_a_subject_fragment_to_public_profile_fragment"
-                app:destination="@id/public_profile_fragment"/>
+        <action
+            android:id="@+id/action_student_teachers_for_a_subject_fragment_to_public_profile_fragment"
+            app:destination="@id/public_profile_fragment" />
     </fragment>
-
 
 
     <fragment
         android:id="@+id/student_subject_units_fragment"
         android:name="com.example.android.nadris.ui.teacherActivity.courseUnits.UnitsFragment"
         tools:layout="@layout/fragment_units">
-        <argument android:name="courseId" app:argType="string"/>
+        <argument
+            android:name="courseId"
+            app:argType="string" />
 
-<!--        <action-->
-<!--            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"-->
-<!--            app:destination="@id/addingSubjectSectionsFragment" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_student_subject_units_fragment_to_addingSubjectSectionsFragment"-->
+        <!--            app:destination="@id/addingSubjectSectionsFragment" />-->
     </fragment>
 
 
@@ -188,56 +191,66 @@
         tools:layout="@layout/fragment_subject">
         <action
             android:id="@+id/action_subject_fragment_to_subject_Units"
-            app:destination="@id/student_subject_units_fragment"/>
+            app:destination="@id/student_subject_units_fragment" />
         <action
             android:id="@+id/action_subject_fragment_to_student_teachers_for_a_subject_fragment"
-            app:destination="@id/student_teachers_for_a_subject_fragment"/>
+            app:destination="@id/student_teachers_for_a_subject_fragment" />
     </fragment>
     <fragment
         android:id="@+id/student_quiz"
         android:name="com.example.android.nadris.ui.studentActivity.quizzes.QuizFragment"
         android:label="QuizFragment"
         tools:layout="@layout/quiz_fragment">
-        <action android:id="@+id/action_student_quiz_to_result_quiz" app:destination="@id/result_quiz"/>
+        <action
+            android:id="@+id/action_student_quiz_to_result_quiz"
+            app:destination="@id/result_quiz" />
     </fragment>
 
     <fragment
-    android:id="@+id/result_quiz"
-    android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.ResultFragment"
-    android:label="Result quiz"
-    tools:layout="@layout/result_fragment">
+        android:id="@+id/result_quiz"
+        android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.ResultFragment"
+        android:label="Result quiz"
+        tools:layout="@layout/result_fragment">
 
-
-        <action android:id="@+id/action_result_quiz_to_posts_fragment" app:destination="@id/posts_fragment"/>
-        <action android:id="@+id/action_result_quiz_to_question_with_answer"
-                app:destination="@id/question_with_answer"/>
-        <action android:id="@+id/action_result_quiz_to_Feedback_page" app:destination="@id/Feedback_page"/>
-    </fragment>
-    <fragment
-    android:id="@+id/question_with_answer"
-    android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.questionWithAnswer.QuestionWithAnswerFragment"
-    android:label="Quiz answer"
-    tools:layout="@layout/fragment_question_with_answer">
-
-        <action android:id="@+id/action_question_with_answer_to_result_quiz" app:destination="@id/result_quiz"/>
-    </fragment>
-    <fragment
-    android:id="@+id/Feedback_page"
-    android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.feedbackSheet.FeedbackFragment"
-    android:label="Quiz feedback"
-    tools:layout="@layout/fragment_feedback"
-    >
-        <action android:id="@+id/action_Feedback_page_to_result_quiz" app:destination="@id/result_quiz"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/Quizzes_fragment"
-        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment"
-        android:label="QuizzesFragment"
-        tools:layout="@layout/item_gender_list">
 
         <action
-            android:id="@+id/action_Quizzes_fragment_to_add_quiz"
-            app:destination="@id/add_quiz" />
+            android:id="@+id/action_result_quiz_to_posts_fragment"
+            app:destination="@id/posts_fragment" />
+        <action
+            android:id="@+id/action_result_quiz_to_question_with_answer"
+            app:destination="@id/question_with_answer" />
+        <action
+            android:id="@+id/action_result_quiz_to_Feedback_page"
+            app:destination="@id/Feedback_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/question_with_answer"
+        android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.questionWithAnswer.QuestionWithAnswerFragment"
+        android:label="Quiz answer"
+        tools:layout="@layout/fragment_question_with_answer">
+
+        <action
+            android:id="@+id/action_question_with_answer_to_result_quiz"
+            app:destination="@id/result_quiz" />
+    </fragment>
+    <fragment
+        android:id="@+id/Feedback_page"
+        android:name="com.example.android.nadris.ui.studentActivity.quizzes.resultQuiz.feedbackSheet.FeedbackFragment"
+        android:label="Quiz feedback"
+        tools:layout="@layout/fragment_feedback">
+        <action
+            android:id="@+id/action_Feedback_page_to_result_quiz"
+            app:destination="@id/result_quiz" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/show_my_quizzes"
+        android:name="com.example.android.nadris.ui.teacherActivity.addingQuiz.listOfQuizzesFragment"
+        android:label="QuizzesFragment"
+        tools:layout="@layout/list_of_quizzes_fragment">
+
+        <action
+            android:id="@+id/action_Quizzes_fragment_to_quiz"
+            app:destination="@id/student_quiz" />
     </fragment>
 </navigation>

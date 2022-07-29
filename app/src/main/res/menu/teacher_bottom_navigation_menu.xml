@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/student_subjects_title" />
     <item
-        android:id="@+id/Quizzes_fragment"
+        android:id="@+id/show_my_quizzes"
         android:icon="@drawable/icon_quiz"
         android:title="@string/quiz"/>
     <item
